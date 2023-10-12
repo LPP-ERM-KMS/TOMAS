@@ -90,10 +90,13 @@ class GUI(tk.Tk):
         self.scanAPS_lbl = tk.Label(self.scan_frm, text="Scan capacitor combinations", bg="LightSteelBlue")
         self.scanAPS_btn = tk.Button(self.scan_frm, text="Go!", bg="DarkSeaGreen4", command=self.scanCap)
 
-        self.exit_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue3", pady=40)
-        self.exit_btn = tk.Button(self.exit_frm, text="Exit", bg="LightPink3", command=self.escape)
+        self.matchICRH_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
+        self.matchICRH_lbl = tk.Label(self.matchICRH_frm, text="match at frequency (MHz):", bg="LightSteelBlue")
+        self.matchICRH_entr = tk.Entry(self.matchICRH_frm, width=5)
+        self.matchICRH_btn = tk.Button(self.matchICRH_frm, text="Go!", bg="DarkSeaGreen4", command=self.MatchICRH)
 
-        # GRID MATCHING SYSTEM
+
+                # GRID MATCHING SYSTEM
         self.matching_frm.grid(column=0, row=0, sticky="nsew")
         self.matching_lbl.grid(column=0, row=0, pady=10)
 
@@ -124,6 +127,13 @@ class GUI(tk.Tk):
         self.moveS_lbl.grid(column=0, row=2, columnspan=2, sticky="w", pady=5, padx=5)
         self.moveS_entr.grid(column=2, row=2, padx=10)
         self.move_btn.grid(column=0, row=3, pady=5, sticky="w")
+        
+        self.matchICRH_entr.grid(column=1, row=1, padx=10)
+        self.matchICRH_btn.grid(column=2, row=1, sticky="w")
+
+        self.exit_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue3", pady=40)
+        self.exit_btn = tk.Button(self.exit_frm, text="Exit", bg="LightPink3", command=self.escape)
+
 
         self.scan_frm.grid(column=0, row=5, sticky="nsew", pady=10)
         self.scanAPS_lbl.grid(column=0, row=0, columnspan=3, rowspan=1, sticky="w")
@@ -1493,3 +1503,154 @@ class GUI(tk.Tk):
         
         for i in range(0, int(nIter)):
             self.doRoutine(doIC, doEC, doDAQ)
+
+    
+    def MatchICRH(self):
+        def FindStepA(self,Capacitance)
+            #needs to return step corresponding to capacitor value
+        def FindStepP(self,Capacitance)
+            #needs to return step corresponding to capacitor value
+        def FindStepS(self,Capacitance)
+            #needs to return step corresponding to capacitor value
+        def BFactor(Freq):
+            Steps = 287
+            PFarad = 993
+            return 100*(Steps/PFarad) #100 is found trough simulation
+        def GFactor(Freq):
+            Steps = 261
+            PFarad = 975
+            return 100*(Steps/PFarad) #100 is found trough simulation
+
+        ####################################
+        #            constants             #
+        ####################################
+        MeasurePoints = np.array([0.235,0.895,1.69,2.35])
+        #speed of light in m/s
+        c = 299792458
+        beta = 2*np.pi*FREQ/(c)
+        S = np.sin(2*beta*MeasurePoints) #array
+        C = np.cos(2*beta*MeasurePoints) #array
+        BigS = (S[0] - S[1])/(S[2] - S[3])
+        BigC = (C[0] - C[1])/(C[2] - C[3])
+
+        # not matched yet
+        matched = False
+
+        if self.matchICRH_entr == "":
+            print("frequency must be specified")
+            return
+
+        ############################################
+        # move capacitors to the tabled positions #
+        ############################################
+        Data = np.loadtxt("BestConfigs.csv", delimiter=",", dtype=float)
+        Closest = Data[(np.abs(Data[:,0] - FREQ)).argmin()]
+        moveAto = FindStepA(Closest[3])
+        movePto = FindStepP(Closest[4])
+        moveSto = FindStepS(Closest[5])
+        cmd = ""
+        cmd += "A " + moveAto + " "
+        cmd += "P " + movePto + " "
+        cmd += "S " + moveSto + " "
+        if cmd == "":
+            print("Some error occured whilst trying to move the capacitor")
+            return
+        # Communicate the desired position to Arduino
+        print(cmd)
+        self.arduino.write(cmd.encode())
+        time.sleep(2) #buffer, 
+        # Retrieve communication from Arduino
+        if "Error" in newPos.decode():
+            print(newPos.decode())
+            # After the error, Arduino will communicate the new positions
+        print("The positions of the capacitor are:")
+        print(newPos.decode())
+        self.f.write(newPos.decode().strip()+"\n")
+        # Update the information on the GUI
+        posStrs = newPos.decode().split(" ")
+        for i in range(0, len(posStrs)):
+            if posStrs[i] == "A":
+                self.posA_lbl.config(text="A: " + posStrs[i + 1].strip())
+            elif posStrs[i] == "P":
+                self.posP_lbl.config(text="P: " + posStrs[i + 1].strip())
+            elif posStrs[i] == "S":
+                self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
+        #######################################
+        #           Connect to DAQ            #
+        #######################################
+        # note that we are the server and labview is the client
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #start basic server
+        DAQip = '134.94.244.134' #Needs to be changed to local ipv4, not juvnet
+        server.bind((DAQip,8089)) #bind DAQ adress to port 8089
+        server.listen(1) #listen for 1 connection (only the DAQ)
+
+        
+        Matched = False
+        TooManySteps = False
+        MaxSteps = 10
+        i = 0
+        while not Matched and not TooManySteps:
+            #######################################
+            #       ICRH pulse and adjust loop    #
+            #######################################
+            self.doDAQ()
+            # Force an immediate trigger event to occur, such that one IC frequency sweep occurs
+            self.dev.IC_enable()
+            self.dev.trigger()
+            time.sleep(1)
+            self.dev.IC_disable()
+
+            #######################################
+            #          Get Measurements           #
+            #######################################
+            conn, addr = server.accept()
+
+            message = conn.recv(1024) #idk how big these packets are going to be
+            message_listform = message.split(",")
+            # we want V = V0,V1,V2,V3,Vf,Vr,ICa,ICs,ICp
+            V = np.array(message_listform)
+            print("Reflection coeff:")
+            Vf = V[4]
+            Vr = V[5]
+            ReflCoeff = Vr/Vf
+            print(ReflCoeff)
+            ICa = V[6]
+            ICs = V[7]
+            ICp = V[8]
+
+            #Stop matching if reflection is < 5%
+            # NOTE this should be tunable at some point
+            if  ReflCoeff < 0.05: 
+                Matched = True
+
+            if not Matched:
+                ##################################
+                # Compute the necessary movement #
+                ##################################
+                Vs = (np.abs(V)**2)/(np.abs(Vf)**2) 
+
+                u = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigS)/((C[0] - C[1]) - (C[2] - C[3])*BigS)
+                v = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigC)/((S[0] - S[1]) - (S[2] - S[3])*BigC) 
+
+                EpsB = 2*v/((1+u)**2 + v**2)
+                EpsG = (1 - ((1-u**2-v**2)/((1+u)**2 + v**2)))
+
+                CsSteps = GFactor(Freq)*EpsG
+                CpSteps = BFactor(Freq)*EpsB
+
+                moveSto = myPos[2] + CsSteps
+                movePto = myPos[1] + CpSteps
+                cmd = ""
+                cmd += "P " + movePto + " "
+                cmd += "S " + moveSto
+                print("Instructing Arduino:")
+                print(cmd)
+                self.arduino.write(cmd.encode())
+                time.sleep(2)
+            i += 1
+            if i >= MaxSteps:
+                TooManySteps = True
+
+        print("MATCHED! The Reflection coëfficient is now {}".format(ReflCoeff))
+        server.close()
+         
