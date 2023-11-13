@@ -4,6 +4,7 @@ import vxi11
 import time
 import sys
 import math
+import numpy as np
 
 
 # Class for the function generator AFG 3252 (Tektronix) that is used to trigger the DAQ (TEMPORARILY)
@@ -57,17 +58,18 @@ class DAQtrigger:
         self.conn.write('SOUR1:VOLT:OFFSET {0}'.format(Vout / 2))
 
     def setECPower(self, Power):
+        
+        if float(Power)<1000:
+            print("Note that for small wattage the power is non-linear, a best fit was made but check the DAQ")
+            Power = np.log((Power - 664.442)/4.41317)/0.00432413 #Best Fit
+                
         #The opamp used is calibrated and gives y=1.9944x + 0.0031 so
         #if a signal of 1V is given, roughly 2V comes out, after
         #this voltage goes to the EC antenna, this was also calibrated
         # from which Power=598.38V + 1.128 came
+        
         Vout = ((Power - 1.128)/(598.38) - 0.0031)/1.9944
-        if float(Power)>800:
-            Vout = (1193.32/1202.35)*Vout - (8.803/1202.35)
-        else:
-            print("Note that for small wattage the power is non-linear")
-            #to try and fit, linearize
-            Vout = math.log(Vout/3.6327)
+        Vout = (1193.32/1202.35)*Vout - (8.803/1202.35)
         # 2-88) Set the voltage amplitude to Vout, idk why it has to be done this way
         self.conn.write('SOUR2:VOLT:AMPL {0}'.format(Vout))
         self.conn.write('SOUR2:VOLT:OFFSET {0}'.format(Vout/2))

@@ -1,0 +1,3188 @@
+
+
+*******************************************************************************
+Mon Nov 13 13:43:15 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 1              
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:43:17 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE"
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 1              
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:43:43 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 1              
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:43:44 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 1              
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:43:54 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:43:54 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:44:09 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:44:53 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:44:54 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:45:03 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:45:04 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:45:09 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 1              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 1              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:45:50 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 5              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 5              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:50:15 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 2 out of 11
+x               = 5              
+z               = 760            
+
+Current set of parameters
+=========================
+a               = 5              
+b               = 1              
+c               = 660            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:50:27 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 1 out of 11
+x               = 100            
+z               = 740            
+
+Current set of parameters
+=========================
+a               = 100            
+b               = 100            
+c               = 500            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:50:28 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+
+Current data point
+=========================
+#               = 1 out of 11
+x               = 100            
+z               = 740            
+
+Current set of parameters
+=========================
+a               = 100            
+b               = 100            
+c               = 500            
+
+BREAK: Undefined value during function evaluation
+
+*******************************************************************************
+Mon Nov 13 13:50:38 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.1262156217e+67   0.00e+00  8.10e+34    1.000000e-01   1.000000e-01   5.000000e+02
+   1 4.8444887277e+66  -5.45e+05  8.10e+33    9.998599e-02   9.883428e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 4.84449e+66
+rel. change during last iteration : -5.45314
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 7.78178e+32
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.05561e+65
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.099986         +/- 9.925        (9927%)
+b               = 0.0988343        +/- 0.1193       (120.7%)
+c               = 500              +/- 4.493e+32    (8.986e+31%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:39 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.8444887277e+66   0.00e+00  3.15e+34    9.998599e-02   9.883428e-02   5.000000e+02
+   1 7.5005754990e+65  -5.46e+05  3.15e+33    9.997164e-02   9.766799e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 7.50058e+65
+rel. change during last iteration : -5.45882
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.06198e+32
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.37572e+64
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999716        +/- 9.702        (9705%)
+b               = 0.097668         +/- 0.1167       (119.5%)
+c               = 500              +/- 1.768e+32    (3.536e+31%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:40 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 7.5005754990e+65   0.00e+00  1.22e+34    9.997164e-02   9.766799e-02   5.000000e+02
+   1 1.1602686416e+65  -5.46e+05  1.22e+33    9.995693e-02   9.650113e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.16027e+65
+rel. change during last iteration : -5.46452
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.2043e+32
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.45034e+64
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999569        +/- 9.484        (9488%)
+b               = 0.0965011        +/- 0.1141       (118.3%)
+c               = 500              +/- 6.953e+31    (1.391e+31%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:40 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.1602686416e+65   0.00e+00  4.76e+33    9.995693e-02   9.650113e-02   5.000000e+02
+   1 1.7932447519e+64  -5.47e+05  4.76e+32    9.994185e-02   9.533369e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.79324e+64
+rel. change during last iteration : -5.47022
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.73451e+31
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.24156e+63
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999418        +/- 9.27         (9275%)
+b               = 0.0953337        +/- 0.1116       (117.1%)
+c               = 500              +/- 2.733e+31    (5.467e+30%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:41 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.7932447519e+64   0.00e+00  1.85e+33    9.994185e-02   9.533369e-02   5.000000e+02
+   1 2.7690917416e+63  -5.48e+05  1.85e+32    9.992638e-02   9.416567e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.76909e+63
+rel. change during last iteration : -5.47593
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.86047e+31
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.46136e+62
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999264        +/- 9.061        (9068%)
+b               = 0.0941657        +/- 0.1092       (116%)
+c               = 500              +/- 1.074e+31    (2.148e+30%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:41 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.7690917416e+63   0.00e+00  7.16e+32    9.992638e-02   9.416567e-02   5.000000e+02
+   1 4.2722002382e+62  -5.48e+05  7.16e+31    9.991051e-02   9.299708e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 4.2722e+62
+rel. change during last iteration : -5.48165
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 7.3077e+30
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.34025e+61
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999105        +/- 8.857        (8865%)
+b               = 0.0929971        +/- 0.1068       (114.8%)
+c               = 500              +/- 4.219e+30    (8.438e+29%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:42 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.2722002382e+62   0.00e+00  2.78e+32    9.991051e-02   9.299708e-02   5.000000e+02
+   1 6.5853983988e+61  -5.49e+05  2.78e+31    9.989423e-02   9.182791e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 6.5854e+61
+rel. change during last iteration : -5.48738
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.8691e+30
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.23175e+60
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998942        +/- 8.657        (8666%)
+b               = 0.0918279        +/- 0.1045       (113.8%)
+c               = 500              +/- 1.656e+30    (3.313e+29%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:42 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 6.5853983988e+61   0.00e+00  1.08e+32    9.989423e-02   9.182791e-02   5.000000e+02
+   1 1.0142112557e+61  -5.49e+05  1.08e+31    9.987752e-02   9.065815e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.01421e+61
+rel. change during last iteration : -5.49312
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.12595e+30
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.26776e+60
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998775        +/- 8.461        (8471%)
+b               = 0.0906582        +/- 0.1022       (112.7%)
+c               = 500              +/- 6.501e+29    (1.3e+29%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:43 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.0142112557e+61   0.00e+00  4.17e+31    9.987752e-02   9.065815e-02   5.000000e+02
+   1 1.5605958168e+60  -5.50e+05  4.17e+30    9.986035e-02   8.948781e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.5606e+60
+rel. change during last iteration : -5.49887
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.41672e+29
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.95074e+59
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998604        +/- 8.269        (8281%)
+b               = 0.0894878        +/- 0.09992      (111.7%)
+c               = 500              +/- 2.55e+29     (5.1e+28%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:43 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.5605958168e+60   0.00e+00  1.61e+31    9.986035e-02   8.948781e-02   5.000000e+02
+   1 2.3992075219e+59  -5.50e+05  1.61e+30    9.984273e-02   8.831689e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.39921e+59
+rel. change during last iteration : -5.50463
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.73176e+29
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.99901e+58
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998427        +/- 8.082        (8095%)
+b               = 0.0883169        +/- 0.09772      (110.6%)
+c               = 500              +/- 9.998e+28    (2e+28%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:43 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.3992075219e+59   0.00e+00  6.24e+30    9.984273e-02   8.831689e-02   5.000000e+02
+   1 3.6851933502e+58  -5.51e+05  6.24e+29    9.982461e-02   8.714538e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.68519e+58
+rel. change during last iteration : -5.5104
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 6.78711e+28
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.60649e+57
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998246        +/- 7.898        (7912%)
+b               = 0.0871454        +/- 0.09557      (109.7%)
+c               = 500              +/- 3.919e+28    (7.837e+27%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:44 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.6851933502e+58   0.00e+00  2.41e+30    9.982461e-02   8.714538e-02   5.000000e+02
+   1 5.6554551037e+57  -5.52e+05  2.41e+29    9.980599e-02   8.597328e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 5.65546e+57
+rel. change during last iteration : -5.51617
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.65882e+28
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.06932e+56
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.099806         +/- 7.719        (7734%)
+b               = 0.0859733        +/- 0.09346      (108.7%)
+c               = 500              +/- 1.535e+28    (3.07e+27%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:44 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 5.6554551037e+57   0.00e+00  9.31e+29    9.980599e-02   8.597328e-02   5.000000e+02
+   1 8.6714032798e+56  -5.52e+05  9.31e+28    9.978684e-02   8.480059e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 8.6714e+56
+rel. change during last iteration : -5.52196
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.04112e+28
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.08393e+56
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997868        +/- 7.543        (7559%)
+b               = 0.0848006        +/- 0.0914       (107.8%)
+c               = 500              +/- 6.011e+27    (1.202e+27%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:45 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 8.6714032798e+56   0.00e+00  3.60e+29    9.978684e-02   8.480059e-02   5.000000e+02
+   1 1.3283896601e+56  -5.53e+05  3.60e+28    9.976714e-02   8.362731e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.32839e+56
+rel. change during last iteration : -5.52776
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.07491e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.66049e+55
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997671        +/- 7.371        (7388%)
+b               = 0.0836273        +/- 0.08937      (106.9%)
+c               = 500              +/- 2.353e+27    (4.705e+26%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:45 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.3283896601e+56   0.00e+00  1.39e+29    9.976714e-02   8.362731e-02   5.000000e+02
+   1 2.0331789266e+55  -5.53e+05  1.39e+28    9.974687e-02   8.245342e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.03318e+55
+rel. change during last iteration : -5.53356
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.5942e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.54147e+54
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997469        +/- 7.202        (7220%)
+b               = 0.0824534        +/- 0.08739      (106%)
+c               = 500              +/- 9.204e+26    (1.841e+26%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:45 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.0331789266e+55   0.00e+00  5.35e+28    9.974687e-02   8.245342e-02   5.000000e+02
+   1 3.1091341514e+54  -5.54e+05  5.35e+27    9.972599e-02   8.127895e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.10913e+54
+rel. change during last iteration : -5.53937
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 6.23411e+26
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.88642e+53
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.099726         +/- 7.037        (7056%)
+b               = 0.0812789        +/- 0.08545      (105.1%)
+c               = 500              +/- 3.599e+26    (7.199e+25%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:46 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.1091341514e+54   0.00e+00  2.06e+28    9.972599e-02   8.127895e-02   5.000000e+02
+   1 4.7502537686e+53  -5.55e+05  2.06e+27    9.970449e-02   8.010387e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 4.75025e+53
+rel. change during last iteration : -5.5452
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.43676e+26
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.93782e+52
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997045        +/- 6.875        (6896%)
+b               = 0.0801039        +/- 0.08355      (104.3%)
+c               = 500              +/- 1.407e+26    (2.814e+25%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:46 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.7502537686e+53   0.00e+00  7.93e+27    9.970449e-02   8.010387e-02   5.000000e+02
+   1 7.2511584185e+52  -5.55e+05  7.93e+26    9.968234e-02   7.892818e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 7.25116e+52
+rel. change during last iteration : -5.55103
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.52048e+25
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.06395e+51
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0996823        +/- 6.717        (6738%)
+b               = 0.0789282        +/- 0.08168      (103.5%)
+c               = 500              +/- 5.497e+25    (1.099e+25%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:47 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 7.2511584185e+52   0.00e+00  3.05e+27    9.968234e-02   7.892818e-02   5.000000e+02
+   1 1.1058875155e+52  -5.56e+05  3.05e+26    9.965950e-02   7.775189e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.10589e+52
+rel. change during last iteration : -5.55687
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.71801e+25
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.38236e+51
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0996595        +/- 6.562        (6584%)
+b               = 0.0777519        +/- 0.07986      (102.7%)
+c               = 500              +/- 2.147e+25    (4.293e+24%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:47 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.1058875155e+52   0.00e+00  1.17e+27    9.965950e-02   7.775189e-02   5.000000e+02
+   1 1.6851060907e+51  -5.56e+05  1.17e+26    9.963595e-02   7.657499e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.68511e+51
+rel. change during last iteration : -5.56272
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.45134e+25
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.10638e+50
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0996359        +/- 6.41         (6433%)
+b               = 0.076575         +/- 0.07806      (101.9%)
+c               = 500              +/- 7.257e+24    (1.451e+24%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:48 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.6851060907e+51   0.00e+00  4.51e+26    9.963595e-02   7.657499e-02   5.000000e+02
+   1 2.5654055418e+50  -5.57e+05  4.51e+25    9.961164e-02   7.539748e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.56541e+50
+rel. change during last iteration : -5.56858
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.66282e+24
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.20676e+49
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0996116        +/- 6.26         (6285%)
+b               = 0.0753975        +/- 0.07631      (101.2%)
+c               = 500              +/- 2.831e+24    (5.663e+23%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:48 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.5654055418e+50   0.00e+00  1.73e+26    9.961164e-02   7.539748e-02   5.000000e+02
+   1 3.9020879786e+49  -5.57e+05  1.73e+25    9.958655e-02   7.421936e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.90209e+49
+rel. change during last iteration : -5.57444
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.20853e+24
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.87761e+48
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0995866        +/- 6.114        (6140%)
+b               = 0.0742194        +/- 0.07458      (100.5%)
+c               = 500              +/- 1.104e+24    (2.209e+23%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:49 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.9020879786e+49   0.00e+00  6.64e+25    9.958655e-02   7.421936e-02   5.000000e+02
+   1 5.9299372819e+48  -5.58e+05  6.64e+24    9.956063e-02   7.304061e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 5.92994e+48
+rel. change during last iteration : -5.58032
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 8.60954e+23
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.41242e+47
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0995606        +/- 5.971        (5997%)
+b               = 0.0730406        +/- 0.07289      (99.8%)
+c               = 500              +/- 4.305e+23    (8.61e+22%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:49 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 5.9299372819e+48   0.00e+00  2.55e+25    9.956063e-02   7.304061e-02   5.000000e+02
+   1 9.0035738304e+47  -5.59e+05  2.55e+24    9.953385e-02   7.186125e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 9.00357e+47
+rel. change during last iteration : -5.5862
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.35477e+23
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.12545e+47
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0995339        +/- 5.83         (5857%)
+b               = 0.0718612        +/- 0.07123      (99.12%)
+c               = 500              +/- 1.677e+23    (3.355e+22%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:50 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 9.0035738304e+47   0.00e+00  9.76e+24    9.953385e-02   7.186125e-02   5.000000e+02
+   1 1.3658132654e+47  -5.59e+05  9.76e+23    9.950616e-02   7.068126e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.36581e+47
+rel. change during last iteration : -5.5921
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.30662e+23
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.70727e+46
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0995062        +/- 5.692        (5720%)
+b               = 0.0706813        +/- 0.0696       (98.47%)
+c               = 500              +/- 6.533e+22    (1.307e+22%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:50 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.3658132654e+47   0.00e+00  3.74e+24    9.950616e-02   7.068126e-02   5.000000e+02
+   1 2.0700416101e+46  -5.60e+05  3.74e+23    9.947751e-02   6.950064e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.07004e+46
+rel. change during last iteration : -5.598
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.0868e+22
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.58755e+45
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0994775        +/- 5.556        (5586%)
+b               = 0.0695006        +/- 0.068        (97.84%)
+c               = 500              +/- 2.543e+22    (5.087e+21%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:51 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.0700416101e+46   0.00e+00  1.43e+24    9.947751e-02   6.950064e-02   5.000000e+02
+   1 3.1345699895e+45  -5.60e+05  1.43e+23    9.944785e-02   6.831939e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.13457e+45
+rel. change during last iteration : -5.60391
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.97945e+22
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.91821e+44
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0994479        +/- 5.423        (5453%)
+b               = 0.0683194        +/- 0.06643      (97.23%)
+c               = 500              +/- 1.228e+21    (2.455e+20%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:51 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.1345699895e+45   0.00e+00  5.47e+23    9.944785e-02   6.831939e-02   5.000000e+02
+   1 4.7422868294e+44  -5.61e+05  5.47e+22    9.941714e-02   6.713750e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 4.74229e+44
+rel. change during last iteration : -5.60983
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 7.69926e+21
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.92786e+43
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0994171        +/- 5.292        (5323%)
+b               = 0.0671375        +/- 0.06488      (96.64%)
+c               = 500              +/- 3.85e+21     (7.699e+20%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:52 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.7422868294e+44   0.00e+00  2.09e+23    9.941714e-02   6.713750e-02   5.000000e+02
+   1 7.1681721879e+43  -5.62e+05  2.09e+22    9.938530e-02   6.595498e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 7.16817e+43
+rel. change during last iteration : -5.61575
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.99336e+21
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.96022e+42
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0993853        +/- 5.164        (5196%)
+b               = 0.065955         +/- 0.06336      (96.07%)
+c               = 500              +/- 1.497e+21    (2.993e+20%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:52 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 7.1681721879e+43   0.00e+00  7.97e+22    9.938530e-02   6.595498e-02   5.000000e+02
+   1 1.0825292233e+43  -5.62e+05  7.97e+21    9.935228e-02   6.477180e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.08253e+43
+rel. change during last iteration : -5.62169
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.16325e+21
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.35316e+42
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0993523        +/- 5.038        (5070%)
+b               = 0.0647718        +/- 0.06187      (95.52%)
+c               = 500              +/- 5.816e+20    (1.163e+20%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:53 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.0825292233e+43   0.00e+00  3.04e+22    9.935228e-02   6.477180e-02   5.000000e+02
+   1 1.6333575170e+42  -5.63e+05  3.04e+21    9.931802e-02   6.358798e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.63336e+42
+rel. change during last iteration : -5.62763
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.51851e+20
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.0417e+41
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.099318         +/- 4.913        (4947%)
+b               = 0.063588         +/- 0.0604       (94.98%)
+c               = 500              +/- 2.021e+20    (4.041e+19%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:53 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.6333575170e+42   0.00e+00  1.16e+22    9.931802e-02   6.358798e-02   5.000000e+02
+   1 2.4622557456e+41  -5.63e+05  1.16e+21    9.928244e-02   6.240351e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.46226e+41
+rel. change during last iteration : -5.63358
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.75437e+20
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.07782e+40
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0992824        +/- 4.791        (4826%)
+b               = 0.0624035        +/- 0.05895      (94.46%)
+c               = 500              +/- 7.846e+19    (1.569e+19%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:54 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.4622557456e+41   0.00e+00  4.41e+21    9.928244e-02   6.240351e-02   5.000000e+02
+   1 3.7084737381e+40  -5.64e+05  4.41e+20    9.924547e-02   6.121837e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.70847e+40
+rel. change during last iteration : -5.63954
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 6.80852e+19
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.63559e+39
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0992455        +/- 4.671        (4706%)
+b               = 0.0612184        +/- 0.05752      (93.96%)
+c               = 500              +/- 3.045e+19    (6.09e+18%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:54 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.7084737381e+40   0.00e+00  1.68e+21    9.924547e-02   6.121837e-02   5.000000e+02
+   1 5.5804251191e+39  -5.65e+05  1.68e+20    9.920701e-02   6.003257e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 5.58043e+39
+rel. change during last iteration : -5.6455
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.64112e+19
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.97553e+38
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.099207         +/- 4.552        (4588%)
+b               = 0.0600326        +/- 0.05611      (93.47%)
+c               = 500              +/- 1.181e+19    (2.362e+18%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:55 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 5.5804251191e+39   0.00e+00  6.38e+20    9.920701e-02   6.003257e-02   5.000000e+02
+  11 4.2912485305e+05  -1.22e-10  6.38e+09    1.201491e-16   5.323695e-02   5.000000e+02
+
+After 11 iterations the fit converged.
+final sum of squares of residuals : 429125
+rel. change during last iteration : -1.22078e-15
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 231.604
+variance of residuals (reduced chisquare) = WSSR/ndf   : 53640.6
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.20149e-16      +/- 8.483e-15    (7061%)
+b               = 0.053237         +/- 0.08651      (162.5%)
+c               = 500              +/- 83.39        (16.68%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.401  0.398  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:56 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.2912485305e+05   0.00e+00  3.03e+03    1.201491e-16   5.323695e-02   5.000000e+02
+ 114 1.2257799462e+04  -4.64e-01  3.03e-01    7.259991e-16   4.931309e-02   7.126076e+02
+
+After 114 iterations the fit converged.
+final sum of squares of residuals : 12257.8
+rel. change during last iteration : -4.63623e-06
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 39.1436
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1532.22
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 7.25999e-16      +/- 3.011e-14    (4148%)
+b               = 0.0493131        +/- 0.05091      (103.2%)
+c               = 712.608          +/- 14.3         (2.006%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.420  0.416  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:57 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.2257799462e+04   0.00e+00  8.45e+02    7.259991e-16   4.931309e-02   7.126076e+02
+ 522 1.0490102978e+04  -2.11e-01  8.45e-05    1.943168e-11   3.662407e-02   7.093040e+02
+
+After 522 iterations the fit converged.
+final sum of squares of residuals : 10490.1
+rel. change during last iteration : -2.11378e-06
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 36.2114
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1311.26
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 1.94317e-11      +/- 4.969e-10    (2557%)
+b               = 0.0366241        +/- 0.03158      (86.22%)
+c               = 709.304          +/- 14.19        (2%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.498  0.493  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:57 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.0490102978e+04   0.00e+00  7.23e+02    1.943168e-11   3.662407e-02   7.093040e+02
+1172 2.4655292977e+02  -2.38e-01  7.23e-15    2.256984e+00   5.104749e-03   6.633245e+02
+
+After 1172 iterations the fit converged.
+final sum of squares of residuals : 246.553
+rel. change during last iteration : -2.37871e-06
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.5515
+variance of residuals (reduced chisquare) = WSSR/ndf   : 30.8191
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.25698          +/- 0.9936       (44.02%)
+b               = 0.00510475       +/- 0.0005408    (10.59%)
+c               = 663.324          +/- 4.343        (0.6547%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.791  0.748  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:58 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.4655292977e+02   0.00e+00  4.22e+02    2.256984e+00   5.104749e-03   6.633245e+02
+   1 2.4655292928e+02  -1.99e-04  4.22e+01    2.256984e+00   5.104746e-03   6.633245e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 246.553
+rel. change during last iteration : -1.99428e-09
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.5515
+variance of residuals (reduced chisquare) = WSSR/ndf   : 30.8191
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.25698          +/- 0.9936       (44.02%)
+b               = 0.00510475       +/- 0.0005408    (10.59%)
+c               = 663.324          +/- 4.343        (0.6547%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.791  0.748  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 13:50:59 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.4655292928e+02   0.00e+00  4.22e+02    2.256984e+00   5.104746e-03   6.633245e+02
+   1 2.4655292917e+02  -4.32e-05  4.22e+01    2.256985e+00   5.104745e-03   6.633245e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 246.553
+rel. change during last iteration : -4.31913e-10
+
+degrees of freedom    (FIT_NDF)                        : 8
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.5515
+variance of residuals (reduced chisquare) = WSSR/ndf   : 30.8191
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 2.25698          +/- 0.9936       (44.02%)
+b               = 0.00510475       +/- 0.0005408    (10.59%)
+c               = 663.325          +/- 4.343        (0.6547%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.791  0.748  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:03:49 2023
+
+
+FIT:    data read from "TopFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.1022024497e+02   0.00e+00  4.58e+02    2.256985e+00   5.104745e-03   6.633245e+02
+1087 5.0679821544e+01  -9.98e-01  4.58e+00    1.758932e-01   8.071915e-03   6.897509e+02
+
+After 1087 iterations the fit converged.
+final sum of squares of residuals : 50.6798
+rel. change during last iteration : -9.98253e-06
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.03388
+variance of residuals (reduced chisquare) = WSSR/ndf   : 25.3399
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.175893         +/- 1.16         (659.4%)
+b               = 0.00807192       +/- 0.007459     (92.4%)
+c               = 689.751          +/- 70.97        (10.29%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.995  0.994  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:03:51 2023
+
+
+FIT:    data read from "TopFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 5.0679821544e+01   0.00e+00  4.97e+02    1.758932e-01   8.071915e-03   6.897509e+02
+   1 5.0679815583e+01  -1.18e-02  4.97e+01    1.758932e-01   8.071936e-03   6.897502e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 50.6798
+rel. change during last iteration : -1.17618e-07
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.03388
+variance of residuals (reduced chisquare) = WSSR/ndf   : 25.3399
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.175893         +/- 1.16         (659.3%)
+b               = 0.00807194       +/- 0.007458     (92.4%)
+c               = 689.75           +/- 70.97        (10.29%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.995  0.994  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:03:51 2023
+
+
+FIT:    data read from "TopFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 5.0679815583e+01   0.00e+00  4.97e+02    1.758932e-01   8.071936e-03   6.897502e+02
+   1 5.0679813105e+01  -4.89e-03  4.97e+01    1.758931e-01   8.071950e-03   6.897494e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 50.6798
+rel. change during last iteration : -4.88998e-08
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.03388
+variance of residuals (reduced chisquare) = WSSR/ndf   : 25.3399
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.175893         +/- 1.16         (659.3%)
+b               = 0.00807195       +/- 0.007458     (92.4%)
+c               = 689.749          +/- 70.97        (10.29%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.995  0.994  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:08:01 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 7
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.6886957302e+03   0.00e+00  4.10e+02    1.758931e-01   8.071950e-03   6.897494e+02
+ 178 6.5490187444e+01  -1.47e-02  4.10e-06    7.355606e+00   3.534559e-03   6.547889e+02
+
+After 178 iterations the fit converged.
+final sum of squares of residuals : 65.4902
+rel. change during last iteration : -1.47327e-07
+
+degrees of freedom    (FIT_NDF)                        : 4
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.0463
+variance of residuals (reduced chisquare) = WSSR/ndf   : 16.3725
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 7.35561          +/- 3.679        (50.01%)
+b               = 0.00353456       +/- 0.0006342    (17.94%)
+c               = 654.789          +/- 6.112        (0.9334%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.930  0.901  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:08:02 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 7
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 6.5490187444e+01   0.00e+00  3.87e+02    7.355606e+00   3.534559e-03   6.547889e+02
+   1 6.5490187439e+01  -7.16e-06  3.87e+01    7.355606e+00   3.534559e-03   6.547889e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 65.4902
+rel. change during last iteration : -7.15848e-11
+
+degrees of freedom    (FIT_NDF)                        : 4
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.0463
+variance of residuals (reduced chisquare) = WSSR/ndf   : 16.3725
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 7.35561          +/- 3.679        (50.01%)
+b               = 0.00353456       +/- 0.0006342    (17.94%)
+c               = 654.789          +/- 6.112        (0.9334%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.930  0.901  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:47:49 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Mon Nov 13 14:47:57 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 -nan              -nan       inf         1.000000e+00   1.000000e+00   1.000000e+00
+
+Current data point
+=========================
+#               = 1 out of 5
+x               = nan            
+z               = 738            
+
+Current set of parameters
+=========================
+a               = nan            
+b               = nan            
+c               = -nan           
+
+BREAK: Function evaluation yields NaN ("not a number")
+
+*******************************************************************************
+Mon Nov 13 14:48:07 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.1226299102e+55   0.00e+00  8.12e+28    1.000000e-01   1.000000e-01   5.000000e+02
+   1 3.4605319923e+54  -5.13e+05  8.12e+27    9.997986e-02   9.862620e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.46053e+54
+rel. change during last iteration : -5.13383
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.3154e+27
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.73027e+54
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999799        +/- 280.5        (2.806e+05%)
+b               = 0.0986262        +/- 4.115        (4172%)
+c               = 500              +/- 9.301e+26    (1.86e+26%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:08 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.4605319923e+54   0.00e+00  3.23e+28    9.997986e-02   9.862620e-02   5.000000e+02
+   1 5.6370291497e+53  -5.14e+05  3.23e+27    9.995915e-02   9.725178e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 5.63703e+53
+rel. change during last iteration : -5.13893
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.30897e+26
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.81851e+53
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999591        +/- 258.4        (2.585e+05%)
+b               = 0.0972518        +/- 3.792        (3899%)
+c               = 500              +/- 3.754e+26    (7.508e+25%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:09 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 5.6370291497e+53   0.00e+00  1.29e+28    9.995915e-02   9.725178e-02   5.000000e+02
+   1 9.1747922792e+52  -5.14e+05  1.29e+27    9.993783e-02   9.587673e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 9.17479e+52
+rel. change during last iteration : -5.14404
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.14182e+26
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.5874e+52
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999378        +/- 238          (2.381e+05%)
+b               = 0.0958767        +/- 3.495        (3645%)
+c               = 500              +/- 1.514e+26    (3.029e+25%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:09 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 9.1747922792e+52   0.00e+00  5.11e+27    9.993783e-02   9.587673e-02   5.000000e+02
+   1 1.4920400232e+52  -5.15e+05  5.11e+26    9.991588e-02   9.450107e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.49204e+52
+rel. change during last iteration : -5.14916
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 8.63724e+25
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.4602e+51
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0999159        +/- 219.2        (2.193e+05%)
+b               = 0.0945011        +/- 3.221        (3408%)
+c               = 500              +/- 4.987e+25    (9.973e+24%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:09 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.4920400232e+52   0.00e+00  2.03e+27    9.991588e-02   9.450107e-02   5.000000e+02
+   1 2.4243912249e+51  -5.15e+05  2.03e+26    9.989327e-02   9.312478e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.42439e+51
+rel. change during last iteration : -5.15429
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.48166e+25
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.2122e+51
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998933        +/- 201.8        (2.02e+05%)
+b               = 0.0931248        +/- 2.968        (3187%)
+c               = 500              +/- 2.01e+25     (4.02e+24%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:10 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.4243912249e+51   0.00e+00  8.06e+26    9.989327e-02   9.312478e-02   5.000000e+02
+   1 3.9360685824e+50  -5.16e+05  8.06e+25    9.986997e-02   9.174787e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.93607e+50
+rel. change during last iteration : -5.15942
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.40287e+25
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.96803e+50
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.09987          +/- 185.9        (1.861e+05%)
+b               = 0.0917479        +/- 2.735        (2981%)
+c               = 500              +/- 8.099e+24    (1.62e+24%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:10 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.9360685824e+50   0.00e+00  3.20e+26    9.986997e-02   9.174787e-02   5.000000e+02
+   1 6.3849876206e+49  -5.16e+05  3.20e+25    9.984595e-02   9.037034e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 6.38499e+49
+rel. change during last iteration : -5.16457
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.65022e+24
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.19249e+49
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998459        +/- 171.1        (1.714e+05%)
+b               = 0.0903703        +/- 2.52         (2789%)
+c               = 500              +/- 3.262e+24    (6.524e+23%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:11 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 6.3849876206e+49   0.00e+00  1.27e+26    9.984595e-02   9.037034e-02   5.000000e+02
+   1 1.0348910650e+49  -5.17e+05  1.27e+25    9.982117e-02   8.899219e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.03489e+49
+rel. change during last iteration : -5.16972
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.27474e+24
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.17446e+48
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0998212        +/- 157.6        (1.579e+05%)
+b               = 0.0889922        +/- 2.322        (2610%)
+c               = 500              +/- 1.313e+24    (2.627e+23%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:11 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.0348910650e+49   0.00e+00  5.03e+25    9.982117e-02   8.899219e-02   5.000000e+02
+   1 1.6759695248e+48  -5.17e+05  5.03e+24    9.979561e-02   8.761342e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.67597e+48
+rel. change during last iteration : -5.17488
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.15415e+23
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.37985e+47
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997956        +/- 145.1        (1.454e+05%)
+b               = 0.0876134        +/- 2.14         (2442%)
+c               = 500              +/- 5.285e+23    (1.057e+23%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:12 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.6759695248e+48   0.00e+00  1.99e+25    9.979561e-02   8.761342e-02   5.000000e+02
+   1 2.7119034724e+47  -5.18e+05  1.99e+24    9.976921e-02   8.623402e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.7119e+47
+rel. change during last iteration : -5.18005
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.68232e+23
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.35595e+47
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997692        +/- 133.6        (1.339e+05%)
+b               = 0.086234         +/- 1.972        (2286%)
+c               = 500              +/- 2.126e+23    (4.252e+22%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:12 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.7119034724e+47   0.00e+00  7.88e+24    9.976921e-02   8.623402e-02   5.000000e+02
+   1 4.3844860807e+46  -5.19e+05  7.88e+23    9.974195e-02   8.485401e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 4.38449e+46
+rel. change during last iteration : -5.18523
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.48062e+23
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.19224e+46
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997419        +/- 123          (1.233e+05%)
+b               = 0.084854         +/- 1.816        (2141%)
+c               = 500              +/- 8.548e+22    (1.71e+22%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:13 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.3844860807e+46   0.00e+00  3.11e+24    9.974195e-02   8.485401e-02   5.000000e+02
+   1 7.0827066213e+45  -5.19e+05  3.11e+23    9.971377e-02   8.347337e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 7.08271e+45
+rel. change during last iteration : -5.19041
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 5.95093e+22
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.54135e+45
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0997138        +/- 113.2        (1.136e+05%)
+b               = 0.0834734        +/- 1.674        (2005%)
+c               = 500              +/- 3.436e+22    (6.872e+21%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:13 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 7.0827066213e+45   0.00e+00  1.23e+24    9.971377e-02   8.347337e-02   5.000000e+02
+   1 1.1431826654e+45  -5.20e+05  1.23e+23    9.968464e-02   8.209211e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.14318e+45
+rel. change during last iteration : -5.1956
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.3908e+22
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.71591e+44
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0996846        +/- 104.2        (1.046e+05%)
+b               = 0.0820921        +/- 1.542        (1878%)
+c               = 500              +/- 1.38e+22     (2.761e+21%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:14 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.1431826654e+45   0.00e+00  4.86e+23    9.968464e-02   8.209211e-02   5.000000e+02
+   1 1.8436036609e+44  -5.20e+05  4.86e+22    9.965450e-02   8.071022e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.8436e+44
+rel. change during last iteration : -5.2008
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.60105e+21
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.21802e+43
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0996545        +/- 95.95        (9.628e+04%)
+b               = 0.0807102        +/- 1.42         (1760%)
+c               = 500              +/- 5.543e+21    (1.109e+21%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:14 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.8436036609e+44   0.00e+00  1.92e+23    9.965450e-02   8.071022e-02   5.000000e+02
+   1 2.9706725482e+43  -5.21e+05  1.92e+22    9.962330e-02   7.932772e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 2.97067e+43
+rel. change during last iteration : -5.20601
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.85401e+21
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.48534e+43
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0996233        +/- 88.32        (8.866e+04%)
+b               = 0.0793277        +/- 1.308        (1649%)
+c               = 500              +/- 2.225e+21    (4.45e+20%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:15 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 2.9706725482e+43   0.00e+00  7.57e+22    9.962330e-02   7.932772e-02   5.000000e+02
+   1 4.7827428642e+42  -5.21e+05  7.57e+21    9.959099e-02   7.794460e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 4.78274e+42
+rel. change during last iteration : -5.21123
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1.54641e+21
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.39137e+42
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.099591         +/- 81.3         (8.163e+04%)
+b               = 0.0779446        +/- 1.205        (1546%)
+c               = 500              +/- 8.928e+20    (1.786e+20%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:15 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.7827428642e+42   0.00e+00  2.98e+22    9.959099e-02   7.794460e-02   5.000000e+02
+   1 7.6936788188e+41  -5.22e+05  2.98e+21    9.955749e-02   7.656085e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 7.69368e+41
+rel. change during last iteration : -5.21646
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 6.20229e+20
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.84684e+41
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0995575        +/- 74.83        (7.516e+04%)
+b               = 0.0765609        +/- 1.11         (1450%)
+c               = 500              +/- 3.581e+20    (7.162e+19%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:16 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 7.6936788188e+41   0.00e+00  1.17e+22    9.955749e-02   7.656085e-02   5.000000e+02
+   1 1.2365895967e+41  -5.22e+05  1.17e+21    9.952276e-02   7.517649e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.23659e+41
+rel. change during last iteration : -5.22169
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.48655e+20
+variance of residuals (reduced chisquare) = WSSR/ndf   : 6.18295e+40
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0995228        +/- 68.87        (6.92e+04%)
+b               = 0.0751765        +/- 1.023        (1360%)
+c               = 500              +/- 1.436e+20    (2.871e+19%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:16 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.2365895967e+41   0.00e+00  4.62e+21    9.952276e-02   7.517649e-02   5.000000e+02
+   1 1.9858726388e+40  -5.23e+05  4.62e+20    9.948671e-02   7.379150e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 1.98587e+40
+rel. change during last iteration : -5.22693
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.96462e+19
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.92936e+39
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0994867        +/- 63.38        (6.371e+04%)
+b               = 0.0737915        +/- 0.942        (1277%)
+c               = 500              +/- 5.753e+19    (1.151e+19%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:17 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.9858726388e+40   0.00e+00  1.82e+21    9.948671e-02   7.379150e-02   5.000000e+02
+   1 3.1864801689e+39  -5.23e+05  1.82e+20    9.944928e-02   7.240590e-02   5.000000e+02
+
+The maximum lambda = 1.000000e+20 was exceeded. Fit stopped.
+final sum of squares of residuals : 3.18648e+39
+rel. change during last iteration : -5.23218
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.99154e+19
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.59324e+39
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 0.0994493        +/- 58.33        (5.865e+04%)
+b               = 0.0724059        +/- 0.8676       (1198%)
+c               = 500              +/- 2.305e+19    (4.609e+18%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.000  0.000  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:17 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 3.1864801689e+39   0.00e+00  7.14e+20    9.944928e-02   7.240590e-02   5.000000e+02
+  12 1.4616012935e+05  -4.51e-04  7.14e+08    3.527024e-16   6.223491e-02   5.000000e+02
+
+After 12 iterations the fit converged.
+final sum of squares of residuals : 146160
+rel. change during last iteration : -4.51037e-09
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 270.333
+variance of residuals (reduced chisquare) = WSSR/ndf   : 73080.1
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 3.52702e-16      +/- 2.034e-13    (5.768e+04%)
+b               = 0.0622349        +/- 0.8557       (1375%)
+c               = 500              +/- 156.1        (31.22%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -1.000  1.000 
+c              -0.492  0.491  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:18 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.4616012935e+05   0.00e+00  2.65e+03    3.527024e-16   6.223491e-02   5.000000e+02
+1887 8.0129030395e+00  -1.00e-03  2.65e-21    2.027266e+01   2.292467e-03   6.457359e+02
+
+After 1887 iterations the fit converged.
+final sum of squares of residuals : 8.0129
+rel. change during last iteration : -9.9969e-09
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.00161
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.00645
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 20.2727          +/- 7.442        (36.71%)
+b               = 0.00229247       +/- 0.0004262    (18.59%)
+c               = 645.736          +/- 8.799        (1.363%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.988  0.974  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:19 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 8.0129030395e+00   0.00e+00  3.78e+02    2.027266e+01   2.292467e-03   6.457359e+02
+   1 8.0129030395e+00  -1.11e-07  3.78e+01    2.027266e+01   2.292467e-03   6.457359e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 8.0129
+rel. change during last iteration : -1.11021e-12
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.00161
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.00645
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 20.2727          +/- 7.442        (36.71%)
+b               = 0.00229247       +/- 0.0004262    (18.59%)
+c               = 645.736          +/- 8.799        (1.363%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.988  0.974  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:48:59 2023
+
+
+FIT:    data read from "BottomFit" u 1:2
+        format = x:z
+        #datapoints = 5
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 8.0129030395e+00   0.00e+00  3.78e+02    2.027266e+01   2.292467e-03   6.457359e+02
+   1 8.0129030395e+00  -6.91e-08  3.78e+01    2.027266e+01   2.292467e-03   6.457359e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 8.0129
+rel. change during last iteration : -6.90777e-13
+
+degrees of freedom    (FIT_NDF)                        : 2
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.00161
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4.00645
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 20.2727          +/- 7.442        (36.71%)
+b               = 0.00229247       +/- 0.0004262    (18.59%)
+c               = 645.736          +/- 8.799        (1.363%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.996  1.000 
+c              -0.988  0.974  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:49:14 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 14
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 4.6173104021e+04   0.00e+00  4.03e+02    2.027266e+01   2.292467e-03   6.457359e+02
+ 113 7.0217916636e+02  -1.48e-03  4.03e-03    4.413166e+00   4.324132e-03   6.644417e+02
+
+After 113 iterations the fit converged.
+final sum of squares of residuals : 702.179
+rel. change during last iteration : -1.47629e-08
+
+degrees of freedom    (FIT_NDF)                        : 11
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 7.98965
+variance of residuals (reduced chisquare) = WSSR/ndf   : 63.8345
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 4.41317          +/- 1.021        (23.14%)
+b               = 0.00432413       +/- 0.0002265    (5.238%)
+c               = 664.442          +/- 6.104        (0.9187%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.995  1.000 
+c              -0.852  0.809  1.000 
+
+
+*******************************************************************************
+Mon Nov 13 14:49:15 2023
+
+
+FIT:    data read from "rawECLOWWATTAGE" u 1:2
+        format = x:z
+        #datapoints = 14
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a*exp(b*x) + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 7.0217916636e+02   0.00e+00  5.30e+02    4.413166e+00   4.324132e-03   6.644417e+02
+   1 7.0217916634e+02  -1.92e-06  5.30e+01    4.413166e+00   4.324132e-03   6.644417e+02
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 702.179
+rel. change during last iteration : -1.92129e-11
+
+degrees of freedom    (FIT_NDF)                        : 11
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 7.98965
+variance of residuals (reduced chisquare) = WSSR/ndf   : 63.8345
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 4.41317          +/- 1.021        (23.14%)
+b               = 0.00432413       +/- 0.0002265    (5.238%)
+c               = 664.442          +/- 6.104        (0.9187%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.995  1.000 
+c              -0.852  0.809  1.000 

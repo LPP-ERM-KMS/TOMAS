@@ -1,4 +1,5 @@
 import tkinter as tk
+import threading #making tk not freeze when moving probe
 import serial
 import time
 from os.path import exists
@@ -26,7 +27,8 @@ class GUI(tk.Tk):
         self.ICoutPulsedStartTime = 0
 
         # Member variables for the EC output settings
-        self.ECout = 1  # continuous
+        self.ECout = 1  # eiter 1 or 2, continuous or pulsed
+        self.ECPower = 0 # indication of wattage
         self.ECoutPulsedOnTime = 0
         self.ECoutPulsedOffTime = 0
         self.ECoutPulsedNumber = 0
@@ -184,7 +186,7 @@ class GUI(tk.Tk):
         self.moveY_entr = tk.Entry(self.moveProbe_frm, width=5)
         self.moveZ_lbl = tk.Label(self.moveProbe_frm, text="Move Triple Probe V to:", bg="LightSteelBlue")
         self.moveZ_entr = tk.Entry(self.moveProbe_frm, width=5)
-        self.moveProbe_btn = tk.Button(self.moveProbe_frm, text="Go!", bg="DarkSeaGreen4", command=self.moveProbe)
+        self.moveProbe_btn = tk.Button(self.moveProbe_frm, text="Go!", bg="DarkSeaGreen4", command=self.moveProbeMultithreading)
 
         self.scanProbe_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue")
         self.scanXYZ_lbl = tk.Label(self.scanProbe_frm, text="Scan positions of:", bg="LightSteelBlue")
@@ -587,6 +589,7 @@ class GUI(tk.Tk):
 
         self.mainloop()
 
+    
     def moveCap(self):
 
         moveAto = self.moveA_entr.get()
@@ -781,6 +784,9 @@ class GUI(tk.Tk):
 
         # Once all positions are scanned, disable the function generator output for IC and EC
         self.dev.disableOutputs()
+
+    def moveProbeMultithreading(self):
+        threading.Thread(target=self.moveProbe).start()
 
     def moveProbe(self):
 
@@ -1202,22 +1208,28 @@ class GUI(tk.Tk):
     def setECPower(self):
         # MODDED by Arthur 17/08/23 to make the power setting automatic
         Pin = self.setECpower_entr.get() # get filled in value
+        try:
+            float(Pin)
+        except ValueError:
+            print("EC power must be a number")
+            return
         if len(Pin) == 0:
             print("Specify EC power")
             return
-        if float(Pin)<675:
-            print("Power should be between 675W and 5970W")
-            #return
+        if float(Pin)<665:
+            print("Power should be between 660W and 5970W; using 665W")
+            Pin = 665
         if float(Pin)>5970:
-            print("Power should be between 675W and 5970W")
-            return
+            print("Power should be between 675W and 5970W; using 5970W")
+            Pin = 5970
 
         print('set EC power to ' + str(Pin))
         # Set the EC voltage amplitude to Pin (in dBm) and the voltage ofsett
         # to 0 V, limited at 10 dBm.
         self.DAQtrig.setECPower(float(Pin))  # dBm
         # Update information on GUI
-        self.ECpower_lbl.config(text="The EC power is " + str(self.dev.GetECPower()))
+        self.ECPower = float(Pin)
+        self.ECpower_lbl.config(text="The EC power is " + str(self.ECPower) +" W")
         self.setECpower_entr.delete(0, 'end')
 
 
