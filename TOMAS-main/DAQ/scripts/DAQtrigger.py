@@ -82,3 +82,6 @@ class DAQtrigger:
         # 2-34) Disable the function generator output for channel 1
         self.conn.write('OUTP1:STAT OFF')
 
+    def disconnect(self):
+        self.conn.close()
+        print("disconnected")

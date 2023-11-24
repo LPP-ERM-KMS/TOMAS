@@ -1,0 +1,1 @@
+This will contain phase measurements (180 deg), ramp from -45 to 0dB on line and the connection is on probe 1 to box circuit 2, here we look at phase (splitter reduces by 3dB)

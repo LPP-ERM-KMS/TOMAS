@@ -1,0 +1,1 @@
+The coaxial cable was connected to the VNA and a power ramp was performed, each voltage probe was subsequently connected to different circuits in the power box and the output signal registered in the DAQ.

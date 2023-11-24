@@ -9,6 +9,11 @@ import os
 class GUI(tk.Tk):
     def __init__(self, myminPos, mymaxPos, myPos, myArduino, myfile, myfileLim, myAFG, myDAQtrig):
 
+        if not myDAQtrig: 
+            global Debug
+            Debug = True
+            print("Debug Mode")
+
         self.minPos = myminPos
         self.maxPos = mymaxPos
         self.Pos = myPos
@@ -47,13 +52,21 @@ class GUI(tk.Tk):
 
         self.lim_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue3")
         self.lim_lbl = tk.Label(self.lim_frm, text="The capacitor limits are", bg="LightSteelBlue3")
-        self.limA_lbl = tk.Label(self.lim_frm, text="A: [" + str(self.minPos[0]) + ", " + str(self.maxPos[0]) + "]",
+        if not Debug:
+            self.limA_lbl = tk.Label(self.lim_frm, text="A: [" + str(self.minPos[0]) + ", " + str(self.maxPos[0]) + "]",
                                  bg="LightSteelBlue3")
-        self.limP_lbl = tk.Label(self.lim_frm, text="P: [" + str(self.minPos[1]) + ", " + str(self.maxPos[1]) + "]",
+            self.limP_lbl = tk.Label(self.lim_frm, text="P: [" + str(self.minPos[1]) + ", " + str(self.maxPos[1]) + "]",
                                  bg="LightSteelBlue3")
-        self.limS_lbl = tk.Label(self.lim_frm,
+            self.limS_lbl = tk.Label(self.lim_frm,
                                  text="S: [" + str(self.minPos[2]) + ", " + str(self.maxPos[2]).strip() + "]",
                                  bg="LightSteelBlue3")
+        else:
+            self.limA_lbl = tk.Label(self.lim_frm, text="A: DEBUG",
+                                 bg="LightSteelBlue3")
+            self.limP_lbl = tk.Label(self.lim_frm, text="P: DEBUG",
+                                 bg="LightSteelBlue3")
+            self.limS_lbl = tk.Label(self.lim_frm,text="S: DEBUG",
+                                bg="LightSteelBlue3")
 
         self.findlim_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
         self.findlim_lbl = tk.Label(self.findlim_frm, text="Find limits of capacitor:", bg="LightSteelBlue")
@@ -70,14 +83,16 @@ class GUI(tk.Tk):
         self.posA_lbl = tk.Label(self.pos_frm, bg="LightSteelBlue3")
         self.posP_lbl = tk.Label(self.pos_frm, bg="LightSteelBlue3")
         self.posS_lbl = tk.Label(self.pos_frm, bg="LightSteelBlue3")
-        posStrs = self.Pos.split(" ")
-        for i in range(0, len(posStrs)):
-            if posStrs[i] == "A":
-                self.posA_lbl.config(text="A: " + posStrs[i + 1].strip())
-            elif posStrs[i] == "P":
-                self.posP_lbl.config(text="P: " + posStrs[i + 1].strip())
-            elif posStrs[i] == "S":
-                self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
+
+        if not Debug:
+            posStrs = self.Pos.split(" ")
+            for i in range(0, len(posStrs)):
+                if posStrs[i] == "A":
+                    self.posA_lbl.config(text="A: " + posStrs[i + 1].strip())
+                elif posStrs[i] == "P":
+                    self.posP_lbl.config(text="P: " + posStrs[i + 1].strip())
+                elif posStrs[i] == "S":
+                    self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
 
         self.move_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
         self.moveA_lbl = tk.Label(self.move_frm, text="Move capacitor A to:", bg="LightSteelBlue")
@@ -89,8 +104,10 @@ class GUI(tk.Tk):
         self.move_btn = tk.Button(self.move_frm, text="Go!", bg="DarkSeaGreen4", command=self.moveCap)
 
         self.scan_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
-        self.scanAPS_lbl = tk.Label(self.scan_frm, text="Scan capacitor combinations", bg="LightSteelBlue")
-        self.scanAPS_btn = tk.Button(self.scan_frm, text="Go!", bg="DarkSeaGreen4", command=self.scanCap)
+        self.scanAPS_lbl = tk.Label(self.scan_frm, text="Semi-Automatic Matching System", bg="LightSteelBlue")
+        self.scanAPS_btn = tk.Button(self.scan_frm, text="Try", bg="DarkSeaGreen4", command=self.NelderMeadMatching)
+        #self.scanAPS_lbl = tk.Label(self.scan_frm, text="Scan capacitor combinations", bg="LightSteelBlue")
+        #self.scanAPS_btn = tk.Button(self.scan_frm, text="Go!", bg="DarkSeaGreen4", command=self.scanCap)
 
         self.exit_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue3", pady=40)
         self.exit_btn = tk.Button(self.exit_frm, text="Exit", bg="LightPink3", command=self.escape)
@@ -140,16 +157,29 @@ class GUI(tk.Tk):
 
         self.limProbe_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue3")
         self.limProbe_lbl = tk.Label(self.limProbe_frm, text="The probe limits are", bg="LightSteelBlue3")
-        self.limX_lbl = tk.Label(self.limProbe_frm,
-                                 text="Sample manipulator: [" + str(self.minPos[3]) + ", " + str(self.maxPos[3]) + "]",
-                                 bg="LightSteelBlue3")
-        self.limY_lbl = tk.Label(self.limProbe_frm,
-                                 text="Triple Probe H: [" + str(self.minPos[4]) + ", " + str(self.maxPos[4]) + "]",
-                                 bg="LightSteelBlue3")
-        self.limZ_lbl = tk.Label(self.limProbe_frm,
-                                 text="Vertical Probe V: [" + str(self.minPos[5]) + ", " + str(
-                                     self.maxPos[5]).strip() + "]",
-                                 bg="LightSteelBlue3")
+
+        if not Debug:
+            self.limX_lbl = tk.Label(self.limProbe_frm,
+                                text="Sample manipulator: [" + str(self.minPos[3]) + ", " + str(self.maxPos[3]) + "]",
+                                bg="LightSteelBlue3")
+            self.limY_lbl = tk.Label(self.limProbe_frm,
+                                text="Triple Probe H: [" + str(self.minPos[4]) + ", " + str(self.maxPos[4]) + "]",
+                                bg="LightSteelBlue3")
+            self.limZ_lbl = tk.Label(self.limProbe_frm,
+                                text="Vertical Probe V: [" + str(self.minPos[5]) + ", " + str(
+                                         self.maxPos[5]).strip() + "]",
+                                bg="LightSteelBlue3")
+        else:
+            self.limX_lbl = tk.Label(self.limProbe_frm,
+                                text="Sample manipulator: Debug",
+                                bg="LightSteelBlue3")
+            self.limY_lbl = tk.Label(self.limProbe_frm,
+                                text="Triple Probe H: Debug",
+                                bg="LightSteelBlue3")
+            self.limZ_lbl = tk.Label(self.limProbe_frm,
+                                text="Vertical Probe V: Debug",
+                                bg="LightSteelBlue3")
+
 
         self.findlimProbe_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue")
         self.findlimProbe_lbl = tk.Label(self.findlimProbe_frm, text="Find limits of probes:", bg="LightSteelBlue")
@@ -170,14 +200,16 @@ class GUI(tk.Tk):
         self.posX_lbl = tk.Label(self.posProbe_frm, bg="LightSteelBlue3")
         self.posY_lbl = tk.Label(self.posProbe_frm, bg="LightSteelBlue3")
         self.posZ_lbl = tk.Label(self.posProbe_frm, bg="LightSteelBlue3")
-        posStrs = self.Pos.split(" ")
-        for i in range(0, len(posStrs)):
-            if posStrs[i] == "X":
-                self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
-            elif posStrs[i] == "Y":
-                self.posY_lbl.config(text="Triple Probe H: " + posStrs[i + 1].strip())
-            elif posStrs[i] == "Z":
-                self.posZ_lbl.config(text="Triple Probe V: " + posStrs[i + 1].strip())
+
+        if not Debug:
+            posStrs = self.Pos.split(" ")
+            for i in range(0, len(posStrs)):
+                if posStrs[i] == "X":
+                    self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
+                elif posStrs[i] == "Y":
+                    self.posY_lbl.config(text="Triple Probe H: " + posStrs[i + 1].strip())
+                elif posStrs[i] == "Z":
+                    self.posZ_lbl.config(text="Triple Probe V: " + posStrs[i + 1].strip())
 
         self.moveProbe_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue")
         self.moveX_lbl = tk.Label(self.moveProbe_frm, text="Move Sample manipulator to:", bg="LightSteelBlue")
@@ -273,7 +305,11 @@ class GUI(tk.Tk):
         self.IC_lbl = tk.Label(self.IC_frm, text="IC system", bg="LightSteelBlue3", font='helvetica 15 bold')
 
         self.ICpower_frm = tk.Frame(self.IC_frm, borderwidth=5, bg="LightSteelBlue3")
-        self.ICpower_lbl = tk.Label(self.ICpower_frm, text="The IC power is " + str(self.dev.GetICPower()), bg="LightSteelBlue3")
+
+        if not Debug:
+            self.ICpower_lbl = tk.Label(self.ICpower_frm, text="The IC power is " + str(self.dev.GetICPower()), bg="LightSteelBlue3")
+        else:
+            self.ICpower_lbl = tk.Label(self.ICpower_frm, text="The IC power is Debug", bg="LightSteelBlue3")
 
         self.ICsetpower_frm = tk.Frame(self.IC_frm, borderwidth=5, bg="LightSteelBlue")
         self.setICpower_lbl = tk.Label(self.ICsetpower_frm, text="Set IC power to: ", bg="LightSteelBlue")
@@ -281,7 +317,10 @@ class GUI(tk.Tk):
         self.setICpower_btn = tk.Button(self.ICsetpower_frm, text="Set!", bg="DarkSeaGreen4", command=self.setICPower)
 
         self.ICfreq_frm = tk.Frame(self.IC_frm, borderwidth=5, bg="LightSteelBlue3")
-        freqText = str(self.getICfreqText())
+        if not Debug:
+            freqText = str(self.getICfreqText())
+        else:
+            freqText = "Debug"
         if "!!" in freqText:
             self.ICfreq_lbl = tk.Label(self.ICfreq_frm, text=freqText, bg="LightSteelBlue3", fg="red")
         else:
@@ -339,7 +378,10 @@ class GUI(tk.Tk):
        
         self.ICswitch_lbl = tk.Label(self.ICswitch_frm, text="The IC is on", bg="LightSteelBlue")
         self.ICswitch_btn = tk.Button(self.ICswitch_frm, text="disable IC!", bg="DarkSeaGreen4", command=self.ICswitch)
-        ICstatus = str(self.dev.GetICOutputStatus())
+        if not Debug:
+            ICstatus = str(self.dev.GetICOutputStatus())
+        else:
+            ICstatus = "ICstatus Debug"
         if ICstatus == "0":
             self.ICswitch_lbl.config(text="The IC is off")
             self.ICswitch_btn.config(text="Do IC!")
@@ -410,7 +452,11 @@ class GUI(tk.Tk):
         self.EC_lbl = tk.Label(self.EC_frm, text="EC system", bg="LightSteelBlue3", font='helvetECa 15 bold')
 
         self.ECpower_frm = tk.Frame(self.EC_frm, borderwidth=5, bg="LightSteelBlue3")
-        self.ECpower_lbl = tk.Label(self.ECpower_frm, text="The EC power is " + str(self.dev.GetECPower()), bg="LightSteelBlue3")
+
+        if not Debug:
+            self.ECpower_lbl = tk.Label(self.ECpower_frm, text="The EC power is " + str(self.dev.GetECPower()), bg="LightSteelBlue3")
+        else:
+            self.ECpower_lbl = tk.Label(self.ECpower_frm, text="The EC power is Debug", bg="LightSteelBlue3")
 
         self.ECsetpower_frm = tk.Frame(self.EC_frm, borderwidth=5, bg="LightSteelBlue")
         self.setECpower_lbl = tk.Label(self.ECsetpower_frm, text="Set EC power to: ", bg="LightSteelBlue")
@@ -449,7 +495,10 @@ class GUI(tk.Tk):
         self.ECswitch_frm = tk.Frame(self.EC_frm, borderwidth=5, bg="LightSteelBlue")
         self.ECswitch_lbl = tk.Label(self.ECswitch_frm, text="The EC is on", bg="LightSteelBlue")
         self.ECswitch_btn = tk.Button(self.ECswitch_frm, text="disable EC!", bg="DarkSeaGreen4", command=self.ECswitch)
-        ECstatus = str(self.dev.GetECOutputStatus())
+        if not Debug:
+            ECstatus = str(self.dev.GetECOutputStatus())
+        else: 
+            ECstatus = "Debug ECstatus"
         if ECstatus == "0":
             self.ECswitch_lbl.config(text="The EC is off")
             self.ECswitch_btn.config(text="Do EC!")
@@ -587,9 +636,13 @@ class GUI(tk.Tk):
         for i in range(6):
             self.columnconfigure(i, weight=1)
 
+        self.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.mainloop()
 
-    
+    def on_closing(self):
+        self.DAQtrig.disconnect()
+        self.destroy()
+        
     def moveCap(self):
 
         moveAto = self.moveA_entr.get()
@@ -718,6 +771,17 @@ class GUI(tk.Tk):
                     self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
 
             self.update()
+
+    def NelderMeadMatching(self):
+        top= tk.Toplevel(self)
+        top.geometry("750x250")
+        top.title("Semi Automatic Matching System")
+        self.Gamma_lbl = tk.Label(top, text="Current Gamma:", bg="LightSteelBlue").place(x=100,y=100)
+        self.Gamma_entr = tk.Entry(top, width=5).place(x=200,y=100)
+        tk.Label(top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=100,y=0)
+        tk.Button(top,text="Quit", font=('Mistral 18 bold'),command=top.destroy).place(x=600,y=200)
+
+
 
     def scanCap(self):
 
@@ -1042,9 +1106,10 @@ class GUI(tk.Tk):
                     self.posZ_lbl.config(text="Triple Probe V: " + posStrs[i + 1].strip())
 
     def escape(self):
-        self.f.close()
-        self.fLim.close()
-        self.dev.disableOutputs()
+        if not Debug:
+            self.f.close()
+            self.fLim.close()
+            self.dev.disableOutputs()
         self.destroy()
 
     def getICfreqText(self):

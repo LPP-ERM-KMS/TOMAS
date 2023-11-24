@@ -1,0 +1,1 @@
+This will contain power measurements, ramp from -45 to 0dB on line and the connection is on probe 0 to box circuit 1, here we look at power (splitter reduces by 3dB)
