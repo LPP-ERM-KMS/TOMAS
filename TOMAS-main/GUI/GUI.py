@@ -790,9 +790,7 @@ class GUI(tk.Tk):
         tk.Button(self.top,text="Reset", font=('Mistral 18 bold'),command=self.NelderMeadReset).place(x=600,y=200)
         tk.Label(self.top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=300,y=0)
         tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.top.destroy).place(x=750,y=200)
-        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
-            bg="LightSteelBlue3").place(x=320,y=50)
-
+        
     def NelderMeadStart(self):
         self.SuggestedCpVal = 100
         self.SuggestedCsVal = 100
@@ -808,6 +806,8 @@ class GUI(tk.Tk):
         CsVal = CVals[1]
         self.SuggestedCsVal = CsVal
         self.SuggestedCpVal = CpVal
+        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
+            bg="LightSteelBlue3").place(x=320,y=50)
 
         Gamma_lbl = tk.Label(self.top, text="Current Gamma:", bg="LightSteelBlue").place(x=100,y=150)
         Gamma = tk.Entry(self.top, width=5)
