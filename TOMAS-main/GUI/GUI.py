@@ -2,8 +2,10 @@ import tkinter as tk
 import threading #making tk not freeze when moving probe
 import serial
 import time
+import numpy as np
 from os.path import exists
 from datetime import date
+from scipy import optimize
 import os
 
 class GUI(tk.Tk):
@@ -13,6 +15,10 @@ class GUI(tk.Tk):
             global Debug
             Debug = True
             print("Debug Mode")
+
+        self.SuggestedCsVal = None
+        self.SuggestedCpVal = None
+        self.SuggestedCaVal = None
 
         self.minPos = myminPos
         self.maxPos = mymaxPos
@@ -773,13 +779,46 @@ class GUI(tk.Tk):
             self.update()
 
     def NelderMeadMatching(self):
-        top= tk.Toplevel(self)
-        top.geometry("750x250")
-        top.title("Semi Automatic Matching System")
-        self.Gamma_lbl = tk.Label(top, text="Current Gamma:", bg="LightSteelBlue").place(x=100,y=100)
-        self.Gamma_entr = tk.Entry(top, width=5).place(x=200,y=100)
-        tk.Label(top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=100,y=0)
-        tk.Button(top,text="Quit", font=('Mistral 18 bold'),command=top.destroy).place(x=600,y=200)
+        self.top= tk.Toplevel(self)
+        self.top.geometry("1000x250")
+        self.top.title("Semi Automatic Matching System")
+
+        self.FREQ_lbl = tk.Label(self.top, text="Freq (MHz):", bg="LightSteelBlue").place(x=100,y=100)
+        self.FREQ_entr = tk.Entry(self.top, width=5).place(x=250,y=100)
+        tk.Button(self.top,text="Start", command=self.NelderMeadStart).place(x=300,y=95)
+
+        tk.Button(self.top,text="Reset", font=('Mistral 18 bold'),command=self.NelderMeadReset).place(x=600,y=200)
+        tk.Label(self.top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=300,y=0)
+        tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.top.destroy).place(x=750,y=200)
+        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
+            bg="LightSteelBlue3").place(x=320,y=50)
+
+    def NelderMeadStart(self):
+        self.SuggestedCpVal = 100
+        self.SuggestedCsVal = 100
+        self.SuggestedCaVal = 100
+        self.update()
+        result = optimize.minimize(self.NelderMeadMinimizeableFunction, np.array([self.SuggestedCpVal,self.SuggestedCsVal]),method='Nelder-Mead')
+    def NelderMeadReset(self):
+        self.SuggestedCsVal = None
+        self.SuggestedCpVal = None
+        self.SuggestedCaVal = None
+    def NelderMeadMinimizeableFunction(self,CVals):
+        CpVal = CVals[0]
+        CsVal = CVals[1]
+        self.SuggestedCsVal = CsVal
+        self.SuggestedCpVal = CpVal
+
+        Gamma_lbl = tk.Label(self.top, text="Current Gamma:", bg="LightSteelBlue").place(x=100,y=150)
+        Gamma = tk.Entry(self.top, width=5)
+        Gamma.place(x=250,y=150)
+
+
+        button_pressed = tk.StringVar()
+        NextStepButton = tk.Button(self.top,text="Next Step",command=lambda: button_pressed.set("button pressed"))
+        NextStepButton.place(x=300,y=145)
+        NextStepButton.wait_variable(button_pressed)
+        return float(Gamma.get())
 
 
 
