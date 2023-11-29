@@ -784,19 +784,34 @@ class GUI(tk.Tk):
         self.top.title("Semi Automatic Matching System")
 
         self.FREQ_lbl = tk.Label(self.top, text="Freq (MHz):", bg="LightSteelBlue").place(x=100,y=100)
-        self.FREQ_entr = tk.Entry(self.top, width=5).place(x=250,y=100)
+        self.FREQ_entr = tk.Entry(self.top, width=5)
+        self.FREQ_entr.place(x=250,y=100)
         tk.Button(self.top,text="Start", command=self.NelderMeadStart).place(x=300,y=95)
 
-        tk.Button(self.top,text="Reset", font=('Mistral 18 bold'),command=self.NelderMeadReset).place(x=600,y=200)
         tk.Label(self.top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=300,y=0)
         tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.top.destroy).place(x=750,y=200)
         
     def NelderMeadStart(self):
-        self.SuggestedCpVal = 100
-        self.SuggestedCsVal = 100
-        self.SuggestedCaVal = 100
+        if not Debug:
+            SimValues = np.loadtxt("CapacitorSettings/SimulatedpF.csv",delimiter=",")
+            SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
+            self.SuggestedCpVal = SuggestedValues[1]/(1000-7)*(self.maxpos[1]-self.minpos[1]) + self.minpos[1]
+            self.SuggestedCsVal = SuggestedValues[2]/(1000-25)*(self.maxpos[2]-self.minpos[2]) + self.minpos[2]
+            self.SuggestedCaVal = SuggestedValues[3]/(1000-35)*(self.maxpos[3]-self.minpos[3]) + self.minpos[3]
+            bounds = ((self.minPos[1],self.maxPos[1]),(self.minPos[2],self.maxPos[2]))
+        else:
+            SimValues = np.loadtxt("CapacitorSettings/SimulatedpF.csv",delimiter=",")
+            SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
+            self.SuggestedCpVal = SuggestedValues[1]
+            self.SuggestedCsVal = SuggestedValues[2]
+            self.SuggestedCaVal = SuggestedValues[3]
+            bounds = ((7,1000),(25,1000))
         self.update()
-        result = optimize.minimize(self.NelderMeadMinimizeableFunction, np.array([self.SuggestedCpVal,self.SuggestedCsVal]),method='Nelder-Mead')
+        result = optimize.minimize(self.NelderMeadMinimizeableFunction, np.array([self.SuggestedCpVal,self.SuggestedCsVal]),method='Nelder-Mead',bounds=bounds,callback=self.NelderMeadCallBack)
+    def NelderMeadCallBack(self,intermediate_result):
+        if intermediate_result.fun <= 0.1:
+            print("Stopping")
+            raise StopIteration
     def NelderMeadReset(self):
         self.SuggestedCsVal = None
         self.SuggestedCpVal = None
@@ -812,12 +827,12 @@ class GUI(tk.Tk):
         Gamma_lbl = tk.Label(self.top, text="Current Gamma:", bg="LightSteelBlue").place(x=100,y=150)
         Gamma = tk.Entry(self.top, width=5)
         Gamma.place(x=250,y=150)
-
-
+        tk.Button(self.top,text="Reset", font=('Mistral 18 bold'),command=self.NelderMeadReset).place(x=600,y=200)
         button_pressed = tk.StringVar()
         NextStepButton = tk.Button(self.top,text="Next Step",command=lambda: button_pressed.set("button pressed"))
         NextStepButton.place(x=300,y=145)
         NextStepButton.wait_variable(button_pressed)
+
         return float(Gamma.get())
 
 
