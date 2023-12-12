@@ -16,8 +16,8 @@ arx::vector<int> Pos = {0, 0, 0, 0, 0, 0};
    Define a vector for the pins of the Arduino that are used to drive the stepper motors
 */
 
-arx::vector<int> limitPinMin = {2, 7, 12, 17, 22, 27};
-arx::vector<int> limitPinMax = {3, 8, 13, 18, 23, 28};
+arx::vector<int> limitPinMin = {2, 7, 13, 17, 22, 27};
+arx::vector<int> limitPinMax = {3, 8, 12, 18, 23, 28};
 arx::vector<int> dirPin = {4, 9, 14, 19, 24, 29};
 arx::vector<int> pulsePin = {5, 10, 15, 20, 25, 30};
 arx::vector<int> enablePin = {6, 11, 16, 21, 26, 31};
@@ -33,9 +33,9 @@ arx::vector<ezButton*> limitSwitchMax;
    List the characteristics of the stepper motors
 */
 arx::vector<int> pulsesPerRev = {400, 400, 400, 400, 400, 400}; //The number of pulses that let the stepper motor make a full revolution of 360 degrees
-arx::vector<int> stepsPerRev = {10, 10, 10, 4, 4, 4}; //The user-defined number of steps we want there to be in a full revolution
+arx::vector<int> stepsPerRev = {400, 400, 400, 4, 4, 4}; //The user-defined number of steps we want there to be in a full revolution
 arx::vector<int> pulsesPerStep = {0, 0, 0, 0, 0, 0}; // The setup function will enter the number of pulses per step in the vector
-int millisbetweenPulses = 2; // The number of milliseconds the motor waits between pulses
+int millisbetweenPulses = 1; // The number of milliseconds the motor waits between pulses
 
 //====================================================================================================================
 
@@ -101,17 +101,15 @@ void findLimits(String motor, int &min, int &max)
   }
   max = Pos[i];
 
-  // Motor for vertical
-  if (i == 4){ 
-    max = max-min;
-    min = 0;
-    Pos[4] = max;
-  }
+  // Motor for vertical (dynamic zero)
+  max = max-min;
+  min = 0;
+  Pos[i] = max;
 }
 
 /*
    Turn the stepper motor with index i a number of pulses according to one steps, e.g. 40 pulses in 1 step.
-   If a limitswitch is touched, go back to the last step and return false.
+   If a limitswitch is touched, go back until the limit switch is no longer touched and return false.
 */
 bool Step(int i)
 {
@@ -123,49 +121,39 @@ bool Step(int i)
     // In order to do so, the loop() function of the limitswitch must be called first.
     limitSwitchMin[i]->loop();
     limitSwitchMax[i]->loop();
-    if (limitSwitchMin[i]->getState() == HIGH or limitSwitchMax[i]->getState() == HIGH) {
-      // Reverse last pulses in order to move to the last exact step.
-      // Reverse direction
-      bool dir = digitalRead(dirPin[i]);
-      digitalWrite(dirPin[i], !dir);
-      for (int nReversePulses = 1; nReversePulses < nPulses % pulsesPerStep[i]; nReversePulses++) {
-        digitalWrite(pulsePin[i], HIGH);
-        digitalWrite(pulsePin[i], LOW);
-        delay(millisbetweenPulses);
-      }
-      // Reverse steps until the limit switch is not touched anymore
-      // A counter avoids that the stepper keeps moving when the limit switch remains pressed for some reason.
-      int counter = 0;
-      do {
-        for (int nPulses = 1; nPulses <= 1 * pulsesPerStep[i]; nPulses++) {
-          digitalWrite(pulsePin[i], HIGH);
-          digitalWrite(pulsePin[i], LOW);
-          delay(millisbetweenPulses);
+    bool HitASwitch = false;
+    // Move until no longer hitting min limit switch
+    while (limitSwitchMin[i]->getState() == HIGH) {
+        HitASwitch = true;
+        digitalWrite(dirPin[i], LOW);
+        for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
+            digitalWrite(pulsePin[i], HIGH);
+            digitalWrite(pulsePin[i], LOW);
+            delay(millisbetweenPulses);
         }
-        // Update the position with every step that is taken
-        if (!digitalRead(dirPin[i])) Pos[i] += 1;
-        else Pos[i] -= 1;
         limitSwitchMin[i]->loop();
+    }
+    // Move until no longer hitting max limit switch
+    while (limitSwitchMax[i]->getState() == HIGH) {
+        HitASwitch = true;
+        digitalWrite(dirPin[i], HIGH);
+        for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
+            digitalWrite(pulsePin[i], HIGH);
+            digitalWrite(pulsePin[i], LOW);
+            delay(millisbetweenPulses);
+        }
         limitSwitchMax[i]->loop();
-        counter += 1;
-      } while ((limitSwitchMin[i]->getState() == HIGH or limitSwitchMax[i]->getState() == HIGH) and counter < 10);
-      // Return that step could not be performed
-      return false;
-
-    } else {
-
-      digitalWrite(pulsePin[i], HIGH);
-      digitalWrite(pulsePin[i], LOW);
-      delay(millisbetweenPulses);
-      if (nPulses % pulsesPerStep[i] == 0) {
+    }
+    if (HitASwitch){return false;}
+    digitalWrite(pulsePin[i], HIGH);
+    digitalWrite(pulsePin[i], LOW);
+    delay(millisbetweenPulses);
+    if (nPulses % pulsesPerStep[i] == 0) {
         if (!digitalRead(dirPin[i])) Pos[i] += 1;
         else Pos[i] -= 1;
-      }
     }
   }
-  // Return that step could be performed
   return true;
-
 }
 
 /*

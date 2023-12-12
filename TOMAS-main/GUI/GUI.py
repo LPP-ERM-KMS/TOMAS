@@ -111,7 +111,7 @@ class GUI(tk.Tk):
 
         self.scan_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
         self.scanAPS_lbl = tk.Label(self.scan_frm, text="Semi-Automatic Matching System", bg="LightSteelBlue")
-        self.scanAPS_btn = tk.Button(self.scan_frm, text="Try", bg="DarkSeaGreen4", command=self.NelderMeadMatching)
+        self.scanAPS_btn = tk.Button(self.scan_frm, text="Try", bg="DarkSeaGreen4", command=self.SemiAutoMatching)
         #self.scanAPS_lbl = tk.Label(self.scan_frm, text="Scan capacitor combinations", bg="LightSteelBlue")
         #self.scanAPS_btn = tk.Button(self.scan_frm, text="Go!", bg="DarkSeaGreen4", command=self.scanCap)
 
@@ -778,7 +778,7 @@ class GUI(tk.Tk):
 
             self.update()
 
-    def NelderMeadMatching(self):
+    def SemiAutoMatching(self):
         self.top= tk.Toplevel(self)
         self.top.geometry("1000x250")
         self.top.title("Semi Automatic Matching System")
@@ -786,11 +786,90 @@ class GUI(tk.Tk):
         self.FREQ_lbl = tk.Label(self.top, text="Freq (MHz):", bg="LightSteelBlue").place(x=100,y=100)
         self.FREQ_entr = tk.Entry(self.top, width=5)
         self.FREQ_entr.place(x=250,y=100)
-        tk.Button(self.top,text="Start", command=self.NelderMeadStart).place(x=300,y=95)
+        tk.Button(self.top,text="Start Nelder Mead", command=self.NelderMeadStart).place(x=500,y=95)
+
+        self.Algo_vf_lbl = tk.Label(self.top, text="Vf:", bg="LightSteelBlue").place(x=100,y=150)
+        self.Algo_vf_entr = tk.Entry(self.top, width=2)
+        self.Algo_vf_entr.place(x=120,y=150)
+
+        self.Algo_vr_lbl = tk.Label(self.top, text="Vr:", bg="LightSteelBlue").place(x=150,y=150)
+        self.Algo_vr_entr = tk.Entry(self.top, width=2)
+        self.Algo_vr_entr.place(x=170,y=150)
+
+        self.Algo_v0_lbl = tk.Label(self.top, text="V0:", bg="LightSteelBlue").place(x=200,y=150)
+        self.Algo_v0_entr = tk.Entry(self.top, width=2)
+        self.Algo_v0_entr.place(x=220,y=150)
+
+        self.Algo_v1_lbl = tk.Label(self.top, text="V1:", bg="LightSteelBlue").place(x=250,y=150)
+        self.Algo_v1_entr = tk.Entry(self.top, width=2)
+        self.Algo_v1_entr.place(x=270,y=150)
+
+        self.Algo_v2_lbl = tk.Label(self.top, text="V2:", bg="LightSteelBlue").place(x=300,y=150)
+        self.Algo_v2_entr = tk.Entry(self.top, width=2)
+        self.Algo_v2_entr.place(x=320,y=150)
+
+        self.Algo_v3_lbl = tk.Label(self.top, text="V3:", bg="LightSteelBlue").place(x=350,y=150)
+        self.Algo_v3_entr = tk.Entry(self.top, width=2)
+        self.Algo_v3_entr.place(x=370,y=150)
+
+        tk.Button(self.top,text="Suggest capacitor values using 4V algorithm", command=self.V4ManualAlgo).place(x=500,y=145)
 
         tk.Label(self.top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=300,y=0)
         tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.top.destroy).place(x=750,y=200)
         
+    def V4ManualAlgo(self):
+        pF_ = 1e-12
+        MHz_ = 1e6
+
+        Vf = float(self.Algo_vf_entr.get())
+        Vr = float(self.Algo_vr_entr.get())
+        V0 = float(self.Algo_v0_entr.get())
+        V1 = float(self.Algo_v1_entr.get())
+        V2 = float(self.Algo_v2_entr.get())
+        V3 = float(self.Algo_v3_entr.get())
+        FREQ = self.FREQ_entr.get()
+        FREQ = MHz_*float(FREQ)
+        print(FREQ)
+
+        MeasurePoints = np.array([0.235,0.895,1.69,2.35])
+        V = np.zeros(len(MeasurePoints))
+
+        #constants:
+        beta = 2*np.pi*FREQ/(3*(10**8))
+        S = np.sin(2*beta*MeasurePoints) #array
+        C = np.cos(2*beta*MeasurePoints) #array
+        BigS = (S[0] - S[1])/(S[2] - S[3])
+        BigC = (C[0] - C[1])/(C[2] - C[3])
+
+        CsFactor = 100*pF_
+        CpFactor = 100*pF_
+
+        #Make array of voltages on the various points:
+        V[3] = V0
+        V[2] = V1
+        V[1] = V2
+        V[0] = V3
+
+        Vf = Vf
+        Vr = Vr
+
+        Gamma = np.abs(Vr/Vf)
+
+        Vs = (V/Vf)**2
+
+        u = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigS)/((C[0] - C[1]) - (C[2] - C[3])*BigS)
+        v = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigC)/((S[0] - S[1]) - (S[2] - S[3])*BigC) 
+
+        EpsB = 2*v/((1+u)**2 + v**2)
+        EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
+
+        print(f"Gamma = {Gamma}, the errors are:")
+        print(f"EpsG: {EpsG} and EpsB: {EpsB}")
+        print(f"So I suggest moving Cs by a multiple of {EpsG}")
+        print(f"And Cp by a multiple of {EpsB}")
+
+
+
     def NelderMeadStart(self):
         if not Debug:
             SimValues = np.loadtxt("CapacitorSettings/SimulatedpF.csv",delimiter=",")
