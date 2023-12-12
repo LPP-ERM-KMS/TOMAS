@@ -110,10 +110,9 @@ class GUI(tk.Tk):
         self.move_btn = tk.Button(self.move_frm, text="Go!", bg="DarkSeaGreen4", command=self.moveCap)
 
         self.scan_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
-        self.scanAPS_lbl = tk.Label(self.scan_frm, text="Semi-Automatic Matching System", bg="LightSteelBlue")
-        self.scanAPS_btn = tk.Button(self.scan_frm, text="Try", bg="DarkSeaGreen4", command=self.SemiAutoMatching)
-        #self.scanAPS_lbl = tk.Label(self.scan_frm, text="Scan capacitor combinations", bg="LightSteelBlue")
-        #self.scanAPS_btn = tk.Button(self.scan_frm, text="Go!", bg="DarkSeaGreen4", command=self.scanCap)
+        self.ICMatch_lbl = tk.Label(self.scan_frm, text="IC Matching System", bg="LightSteelBlue")
+        self.ICMatchMan_btn = tk.Button(self.scan_frm, text="Manual", bg="DarkSeaGreen4", command=self.ManualMatching)
+        self.ICMatchAut_btn = tk.Button(self.scan_frm, text="Auto", bg="DarkSeaGreen4", command=self.AutoMatching)
 
         self.exit_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue3", pady=40)
         self.exit_btn = tk.Button(self.exit_frm, text="Exit", bg="LightPink3", command=self.escape)
@@ -151,8 +150,9 @@ class GUI(tk.Tk):
         self.move_btn.grid(column=0, row=3, pady=5, sticky="w")
 
         self.scan_frm.grid(column=0, row=5, sticky="nsew", pady=10)
-        self.scanAPS_lbl.grid(column=0, row=0, columnspan=3, rowspan=1, sticky="w")
-        self.scanAPS_btn.grid(column=0, row=1, sticky="w")
+        self.ICMatch_lbl.grid(column=0, row=0, columnspan=3, rowspan=1, sticky="w")
+        self.ICMatchMan_btn.grid(column=0, row=1, sticky="w")
+        self.ICMatchAut_btn.grid(column=1, row=1, sticky="w")
 
         self.exit_frm.grid(column=0, row=6, sticky="nsew")
         self.exit_btn.grid(column=0, row=11)
@@ -777,8 +777,151 @@ class GUI(tk.Tk):
                     self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
 
             self.update()
+    def AutoMatching(self):
+        print("booting up receiving server, please use the matching DAQ program")
+        try:
+            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.ICserver.bind(('192.168.70.18',5020))
+            self.ICserver.listen(1)
+            print("Server booting succeeded")
+        except:
+            print("Server booting failed")
 
-    def SemiAutoMatching(self):
+        self.top= tk.Toplevel(self)
+        self.top.geometry("1000x250")
+        self.top.title("Automatic Matching System")
+
+        tk.Label(self.top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=300,y=0)
+
+        self.FREQ_lbl = tk.Label(self.top, text="Freq (MHz):", bg="LightSteelBlue").place(x=100,y=100)
+        self.FREQ_entr = tk.Entry(self.top, width=5)
+        self.FREQ_entr.place(x=250,y=100)
+
+        tk.Button(self.top,text="Suggest initial Capacitor values from simulation", command=self.SuggestValues).place(x=380,y=95)
+        tk.Button(self.top,text="Suggest initial Capacitor values from database", command=self.ICDataBaseLookup).place(x=700,y=95)
+
+        #self.ICPower_lbl = tk.Label(self.top, text="Power (dBm):", bg="LightSteelBlue").place(x=100,y=200)
+        #self.ICPower_entr = tk.Entry(self.top, width=5)
+        #self.ICPower_entr.place(x=250,y=200)
+        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ICListen).place(x=380,y=195)
+
+        tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.top.destroy).place(x=900,y=200)
+        tk.Button(self.top,text="MOVE", font=('Mistral 18 bold'),command=self.MoveToSuggested).place(x=800,y=200)
+
+    def MoveToSuggested(self):
+        if self.SuggestedCaVal:
+            moveAto = self.SuggestedCaVal
+        if self.SuggestedCpVal:
+            movePto = self.SuggestedCpVal
+        if self.SuggestedCsVal:
+            moveSto = self.SuggestedCsVal
+
+        cmd = ""
+        if moveAto:
+            cmd += "A " + moveAto + " "
+        if movePto:
+            cmd += "P " + movePto + " "
+        if moveSto:
+            cmd += "S " + moveSto
+
+        if cmd == "":
+            print("Specify at least one position")
+            return
+
+        # Communicate the desired position to Arduino
+        print("Instruct Arduino:")
+        print(cmd)
+        self.arduino.write(cmd.encode())
+        time.sleep(2)
+
+        # Retrieve communication from Arduino
+        newPos = self.arduino.readline()
+        if "Error" in newPos.decode():
+            print(newPos.decode())
+            # After the error, Arduino will communicate the new positions
+            newPos = self.arduino.readline()
+        print("The new positions are:")
+        print(newPos.decode())
+        self.f.write(newPos.decode().strip()+"\n")
+
+        # Update the information on the GUI
+        posStrs = newPos.decode().split(" ")
+        for i in range(0, len(posStrs)):
+            if posStrs[i] == "A":
+                self.posA_lbl.config(text="A: " + posStrs[i + 1].strip())
+            elif posStrs[i] == "P":
+                self.posP_lbl.config(text="P: " + posStrs[i + 1].strip())
+            elif posStrs[i] == "S":
+                self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
+
+        self.moveA_entr.delete(0, 'end')
+        self.moveP_entr.delete(0, 'end')
+        self.moveS_entr.delete(0, 'end')
+
+        self.update()
+
+    def ICListen(self):
+        received = False
+        conn,addr = self.ICserver.accept()
+        cmnd = conn.recv(60)
+        print("Received values:")
+        print(np.array(str(cmnd)[2:-1].split(",")))
+        Vmeas = np.array(str(cmnd)[2:-1].split(",")).astype(float)
+        Pdbm = (Vmeas-0.9)/0.09 + self.setICpower_entr.get() - 17.2
+        V = 10**((Pdbm-10)/20) #Convert to Vpeak
+
+        ######################################
+        # Calculate new values of Cs and Cp  #
+        ######################################
+        MeasurePoints = np.array([0.235,0.895,1.69,2.35])
+
+        #constants:
+        beta = 2*np.pi*FREQ/(3*(10**8))
+        S = np.sin(2*beta*MeasurePoints) #array
+        C = np.cos(2*beta*MeasurePoints) #array
+        BigS = (S[0] - S[1])/(S[2] - S[3])
+        BigC = (C[0] - C[1])/(C[2] - C[3])
+
+        CsFactor = 100
+        CpFactor = 100
+
+        Vf = max(V) #CHANGE TO ACTUAL
+
+        Vs = (V/Vf)**2
+
+        u = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigS)/((C[0] - C[1]) - (C[2] - C[3])*BigS)
+        v = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigC)/((S[0] - S[1]) - (S[2] - S[3])*BigC) 
+
+        EpsB = 2*v/((1+u)**2 + v**2)
+        EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
+
+        self.SuggestedCpVal = CpFactor*EpsB
+        self.SuggestedCsVal = CsFactor*EpsG
+        self.update()
+
+
+    def ICDataBaseLookup(self):
+        print("Sorry, this doesn't work yet")
+    def SuggestValues(self):
+        if not Debug:
+            SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
+            SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
+            self.SuggestedCpVal = SuggestedValues[1]/(1000-7)*(self.maxpos[1]-self.minpos[1]) + self.minpos[1]
+            self.SuggestedCsVal = SuggestedValues[2]/(1000-25)*(self.maxpos[2]-self.minpos[2]) + self.minpos[2]
+            self.SuggestedCaVal = SuggestedValues[3]/(1000-35)*(self.maxpos[3]-self.minpos[3]) + self.minpos[3]
+            bounds = ((self.minPos[1],self.maxPos[1]),(self.minPos[2],self.maxPos[2]))
+        else:
+            SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
+            SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
+            self.SuggestedCpVal = SuggestedValues[1]
+            self.SuggestedCsVal = SuggestedValues[2]
+            self.SuggestedCaVal = SuggestedValues[3]
+            bounds = ((7,1000),(25,1000))
+        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
+            bg="LightSteelBlue3").place(x=220,y=50)
+        self.update()
+ 
+    def ManualMatching(self):
         self.top= tk.Toplevel(self)
         self.top.geometry("1000x250")
         self.top.title("Semi Automatic Matching System")
@@ -872,14 +1015,14 @@ class GUI(tk.Tk):
 
     def NelderMeadStart(self):
         if not Debug:
-            SimValues = np.loadtxt("CapacitorSettings/SimulatedpF.csv",delimiter=",")
+            SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
             SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
             self.SuggestedCpVal = SuggestedValues[1]/(1000-7)*(self.maxpos[1]-self.minpos[1]) + self.minpos[1]
             self.SuggestedCsVal = SuggestedValues[2]/(1000-25)*(self.maxpos[2]-self.minpos[2]) + self.minpos[2]
             self.SuggestedCaVal = SuggestedValues[3]/(1000-35)*(self.maxpos[3]-self.minpos[3]) + self.minpos[3]
             bounds = ((self.minPos[1],self.maxPos[1]),(self.minPos[2],self.maxPos[2]))
         else:
-            SimValues = np.loadtxt("CapacitorSettings/SimulatedpF.csv",delimiter=",")
+            SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
             SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
             self.SuggestedCpVal = SuggestedValues[1]
             self.SuggestedCsVal = SuggestedValues[2]
