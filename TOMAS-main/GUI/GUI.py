@@ -1,6 +1,7 @@
 import tkinter as tk
 import threading #making tk not freeze when moving probe
 import serial
+import socket
 import time
 import numpy as np
 from os.path import exists
@@ -10,11 +11,12 @@ import os
 
 class GUI(tk.Tk):
     def __init__(self, myminPos, mymaxPos, myPos, myArduino, myfile, myfileLim, myAFG, myDAQtrig):
-
+        global Debug
         if not myDAQtrig: 
-            global Debug
             Debug = True
             print("Debug Mode")
+        else:
+            Debug = False
 
         self.SuggestedCsVal = None
         self.SuggestedCpVal = None
@@ -779,13 +781,9 @@ class GUI(tk.Tk):
             self.update()
     def AutoMatching(self):
         print("booting up receiving server, please use the matching DAQ program")
-        try:
-            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.ICserver.bind(('192.168.70.18',5020))
-            self.ICserver.listen(1)
-            print("Server booting succeeded")
-        except:
-            print("Server booting failed")
+        self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.ICserver.bind(('192.168.70.18',5020))
+        self.ICserver.listen(1)
 
         self.top= tk.Toplevel(self)
         self.top.geometry("1000x250")
@@ -803,10 +801,15 @@ class GUI(tk.Tk):
         #self.ICPower_lbl = tk.Label(self.top, text="Power (dBm):", bg="LightSteelBlue").place(x=100,y=200)
         #self.ICPower_entr = tk.Entry(self.top, width=5)
         #self.ICPower_entr.place(x=250,y=200)
-        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ICListen).place(x=380,y=195)
-
-        tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.top.destroy).place(x=900,y=200)
-        tk.Button(self.top,text="MOVE", font=('Mistral 18 bold'),command=self.MoveToSuggested).place(x=800,y=200)
+        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ThreadICListen).place(x=380,y=195)
+        
+        tk.Button(self.top,text="Update", font=('Mistral 18 bold'),command=self.top.update).place(x=700,y=180)
+        tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.MatchQUIT).place(x=900,y=180)
+        tk.Button(self.top,text="MOVE", font=('Mistral 18 bold'),command=self.MoveToSuggested).place(x=800,y=180)
+        
+    def MatchQUIT(self):
+        self.ICserver.close()
+        self.top.destroy()
 
     def MoveToSuggested(self):
         if self.SuggestedCaVal:
@@ -863,18 +866,20 @@ class GUI(tk.Tk):
     def ICListen(self):
         received = False
         conn,addr = self.ICserver.accept()
-        cmnd = conn.recv(60)
+        cmnd = conn.recv(90)
+        if cmnd:
+            received = True
         print("Received values:")
         print(np.array(str(cmnd)[2:-1].split(",")))
-        Vmeas = np.array(str(cmnd)[2:-1].split(",")).astype(float)
-        Pdbm = (Vmeas-0.9)/0.09 + self.setICpower_entr.get() - 17.2
+        Vmeas = (np.array(str(cmnd)[2:-1].split(","))[:-2]).astype(float)
+        Pdbm = (Vmeas-0.9)/0.09 + float(self.setICpower_entr.get()) - 17.2
         V = 10**((Pdbm-10)/20) #Convert to Vpeak
 
         ######################################
         # Calculate new values of Cs and Cp  #
         ######################################
         MeasurePoints = np.array([0.235,0.895,1.69,2.35])
-
+        FREQ = float(self.FREQ_entr.get())*1e6
         #constants:
         beta = 2*np.pi*FREQ/(3*(10**8))
         S = np.sin(2*beta*MeasurePoints) #array
@@ -885,19 +890,27 @@ class GUI(tk.Tk):
         CsFactor = 100
         CpFactor = 100
 
-        Vf = max(V) #CHANGE TO ACTUAL
-
+        Vf = (np.array(str(cmnd)[2:-1].split(","))[-2]).astype(float)
+        print('Vs')
         Vs = (V/Vf)**2
+        print(Vs)
 
         u = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigS)/((C[0] - C[1]) - (C[2] - C[3])*BigS)
         v = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigC)/((S[0] - S[1]) - (S[2] - S[3])*BigC) 
 
         EpsB = 2*v/((1+u)**2 + v**2)
         EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
+        
+        print("Matching Errors:")
+        print(EpsB)
+        print(EpsG)
 
-        self.SuggestedCpVal = CpFactor*EpsB
-        self.SuggestedCsVal = CsFactor*EpsG
-        self.update()
+        self.SuggestedCpVal = str(int(float(self.SuggestedCpVal) +  CpFactor*EpsB))
+        self.SuggestedCsVal = str(int(float(self.SuggestedCsVal) +  CsFactor*EpsG))
+        if received:
+            self.CapLbl = None
+            self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
+            bg="LightSteelBlue3").place(x=220,y=50)
 
 
     def ICDataBaseLookup(self):
@@ -906,9 +919,9 @@ class GUI(tk.Tk):
         if not Debug:
             SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
             SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
-            self.SuggestedCpVal = SuggestedValues[1]/(1000-7)*(self.maxpos[1]-self.minpos[1]) + self.minpos[1]
-            self.SuggestedCsVal = SuggestedValues[2]/(1000-25)*(self.maxpos[2]-self.minpos[2]) + self.minpos[2]
-            self.SuggestedCaVal = SuggestedValues[3]/(1000-35)*(self.maxpos[3]-self.minpos[3]) + self.minpos[3]
+            self.SuggestedCpVal = str(int(SuggestedValues[1]/(1000e-12-7e-12)*float(self.maxPos[1])))
+            self.SuggestedCsVal = str(int(SuggestedValues[2]/(1000e-12-25e-12)*float(self.maxPos[2])))
+            self.SuggestedCaVal = str(int(SuggestedValues[3]/(1000e-12-35e-12)*float(self.maxPos[0])))
             bounds = ((self.minPos[1],self.maxPos[1]),(self.minPos[2],self.maxPos[2]))
         else:
             SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
@@ -917,6 +930,7 @@ class GUI(tk.Tk):
             self.SuggestedCsVal = SuggestedValues[2]
             self.SuggestedCaVal = SuggestedValues[3]
             bounds = ((7,1000),(25,1000))
+        self.CapLbl = None
         self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
             bg="LightSteelBlue3").place(x=220,y=50)
         self.update()
@@ -1127,7 +1141,8 @@ class GUI(tk.Tk):
 
     def moveProbeMultithreading(self):
         threading.Thread(target=self.moveProbe).start()
-
+    def ThreadICListen(self):
+        threading.Thread(target=self.ICListen).start()
     def moveProbe(self):
 
         moveXto = self.moveX_entr.get()
@@ -1178,7 +1193,8 @@ class GUI(tk.Tk):
         self.moveX_entr.delete(0, 'end')
         self.moveY_entr.delete(0, 'end')
         self.moveZ_entr.delete(0, 'end')
-
+        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
+            bg="LightSteelBlue3").place(x=220,y=50)
         self.update()
 
     def findLimProbe(self):

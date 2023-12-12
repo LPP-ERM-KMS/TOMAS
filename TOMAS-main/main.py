@@ -24,7 +24,7 @@ if not args.debug:
 
     # Create a serial object and specify the serial port that the Arduino is connected to, in my case /dev/ttyACM0.
     # Python and Arduino communicate through the serial port.
-    ArduinoUnoSerial = serial.Serial('COM4', 9600)
+    ArduinoUnoSerial = serial.Serial('COM5', 9600)
 
 
 
@@ -77,7 +77,6 @@ if not args.debug:
 
     # Make a connection to the function generator AFG 3252 (Tektronix) at the specified IP address
     DAQtrig = DAQtrigger('192.168.70.200')
-
     # THE GUI
 
 else:
