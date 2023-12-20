@@ -923,16 +923,17 @@ class GUI(tk.Tk):
         print(EpsB)
         print(EpsG)
         
-        posStrs = self.Pos.split(" ")
-        for i in range(0, len(posStrs)):
-            if posStrs[i] == "A":
-                self.SuggestedCpVal = str(posStrs[i + 1].strip())
-            if posStrs[i] == "P":
-                self.SuggestedCpVal = str(posStrs[i + 1].strip())
-            elif posStrs[i] == "S":
-                self.SuggestedCsVal = str(posStrs[i + 1].strip())
-                print("before matching cs:")
-                print(str(posStrs[i + 1].strip()))
+        if not self.SuggestedCpVal and not self.SuggestedCsVal:
+            posStrs = self.Pos.split(" ")
+            for i in range(0, len(posStrs)):
+                if posStrs[i] == "A":
+                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
+                if posStrs[i] == "P":
+                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
+                elif posStrs[i] == "S":
+                    self.SuggestedCsVal = str(posStrs[i + 1].strip())
+                    print("before matching cs:")
+                    print(str(posStrs[i + 1].strip()))
 
         self.SuggestedCpVal = str(int(float(self.SuggestedCpVal) +  CpFactor*EpsB))
         self.SuggestedCsVal = str(int(float(self.SuggestedCsVal) +  CsFactor*EpsG))
