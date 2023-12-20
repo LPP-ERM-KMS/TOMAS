@@ -122,8 +122,12 @@ bool Step(int i)
     limitSwitchMin[i]->loop();
     limitSwitchMax[i]->loop();
     bool HitASwitch = false;
+    int counter = 0; //if someone, for some unknown reason keeps
+    // pressing a limit switch (or it gets stuck)
+
     // Move until no longer hitting min limit switch
-    while (limitSwitchMin[i]->getState() == HIGH) {
+    // Note: Counter hasn't been tested yet
+    while (limitSwitchMin[i]->getState() == HIGH && counter<20*pulsesPerStep[i]) {
         HitASwitch = true;
         digitalWrite(dirPin[i], LOW);
         for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
@@ -132,9 +136,10 @@ bool Step(int i)
             delay(millisbetweenPulses);
         }
         limitSwitchMin[i]->loop();
+        counter+=1;
     }
     // Move until no longer hitting max limit switch
-    while (limitSwitchMax[i]->getState() == HIGH) {
+    while (limitSwitchMax[i]->getState() == HIGH && counter<20*pulsesPerStep[i]) {
         HitASwitch = true;
         digitalWrite(dirPin[i], HIGH);
         for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
@@ -143,6 +148,7 @@ bool Step(int i)
             delay(millisbetweenPulses);
         }
         limitSwitchMax[i]->loop();
+        counter+=1;
     }
     if (HitASwitch){return false;}
     digitalWrite(pulsePin[i], HIGH);

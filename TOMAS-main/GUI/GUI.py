@@ -114,7 +114,7 @@ class GUI(tk.Tk):
         self.scan_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
         self.ICMatch_lbl = tk.Label(self.scan_frm, text="IC Matching System", bg="LightSteelBlue")
         self.ICMatchMan_btn = tk.Button(self.scan_frm, text="Manual", bg="DarkSeaGreen4", command=self.ManualMatching)
-        self.ICMatchAut_btn = tk.Button(self.scan_frm, text="Auto", bg="DarkSeaGreen4", command=self.AutoMatching)
+        self.ICMatchAut_btn = tk.Button(self.scan_frm, text="Semi", bg="DarkSeaGreen4", command=self.SemiAutoMatching)
 
         self.exit_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue3", pady=40)
         self.exit_btn = tk.Button(self.exit_frm, text="Exit", bg="LightPink3", command=self.escape)
@@ -779,11 +779,17 @@ class GUI(tk.Tk):
                     self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
 
             self.update()
-    def AutoMatching(self):
+    def SemiAutoMatching(self):
         print("booting up receiving server, please use the matching DAQ program")
-        self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.ICserver.bind(('192.168.70.18',5020))
-        self.ICserver.listen(1)
+        try:
+            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+            self.ICserver.bind(('192.168.70.18',5020))
+            print("port bound succesfully")
+        except:
+            print("port seems to be bound already,")
+            print("reusing port")
+            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+            print("ICserver set up")
 
         self.top= tk.Toplevel(self)
         self.top.geometry("1000x250")
@@ -801,7 +807,7 @@ class GUI(tk.Tk):
         #self.ICPower_lbl = tk.Label(self.top, text="Power (dBm):", bg="LightSteelBlue").place(x=100,y=200)
         #self.ICPower_entr = tk.Entry(self.top, width=5)
         #self.ICPower_entr.place(x=250,y=200)
-        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ThreadICListen).place(x=380,y=195)
+        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ICListen).place(x=380,y=195)
         
         tk.Button(self.top,text="Update", font=('Mistral 18 bold'),command=self.top.update).place(x=700,y=180)
         tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.MatchQUIT).place(x=900,y=180)
@@ -812,6 +818,9 @@ class GUI(tk.Tk):
         self.top.destroy()
 
     def MoveToSuggested(self):
+        moveAto = None
+        movePto = None
+        moveSto = None
         if self.SuggestedCaVal:
             moveAto = self.SuggestedCaVal
         if self.SuggestedCpVal:
@@ -864,16 +873,25 @@ class GUI(tk.Tk):
         self.update()
 
     def ICListen(self):
-        received = False
-        conn,addr = self.ICserver.accept()
-        cmnd = conn.recv(90)
-        if cmnd:
-            received = True
+        data,addr = self.ICserver.recvfrom(256)
         print("Received values:")
-        print(np.array(str(cmnd)[2:-1].split(",")))
-        Vmeas = (np.array(str(cmnd)[2:-1].split(","))[:-2]).astype(float)
-        Pdbm = (Vmeas-0.9)/0.09 + float(self.setICpower_entr.get()) - 17.2
-        V = 10**((Pdbm-10)/20) #Convert to Vpeak
+        Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
+        print(Vmeas)
+        Pdbm = np.zeros(6)
+        
+        offset = 70
+        
+        Pdbm[0] = (Vmeas[3]-2.27324)/0.02492 + offset
+        Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 + offset
+        Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 + offset
+        Pdbm[3] = (Vmeas[0]-2.339)/0.02475 + offset
+        Pdbm[4] = Vmeas[4]
+        Pdbm[5] = Vmeas[5]
+        print("power of V3,V2,V1,V0,Vf,Vr:")
+        print(Pdbm)
+        V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
+        Vf = V[-2]
+        Vr = V[-1]
 
         ######################################
         # Calculate new values of Cs and Cp  #
@@ -887,10 +905,10 @@ class GUI(tk.Tk):
         BigS = (S[0] - S[1])/(S[2] - S[3])
         BigC = (C[0] - C[1])/(C[2] - C[3])
 
-        CsFactor = 100
-        CpFactor = 100
+        CsFactor = 10
+        CpFactor = 10
 
-        Vf = (np.array(str(cmnd)[2:-1].split(","))[-2]).astype(float)
+        Vf = (np.array(str(data)[2:-1].split(","))[-2]).astype(float)
         print('Vs')
         Vs = (V/Vf)**2
         print(Vs)
@@ -904,13 +922,25 @@ class GUI(tk.Tk):
         print("Matching Errors:")
         print(EpsB)
         print(EpsG)
+        
+        posStrs = self.Pos.split(" ")
+        for i in range(0, len(posStrs)):
+            if posStrs[i] == "A":
+                self.SuggestedCpVal = str(posStrs[i + 1].strip())
+            if posStrs[i] == "P":
+                self.SuggestedCpVal = str(posStrs[i + 1].strip())
+            elif posStrs[i] == "S":
+                self.SuggestedCsVal = str(posStrs[i + 1].strip())
+                print("before matching cs:")
+                print(str(posStrs[i + 1].strip()))
 
         self.SuggestedCpVal = str(int(float(self.SuggestedCpVal) +  CpFactor*EpsB))
         self.SuggestedCsVal = str(int(float(self.SuggestedCsVal) +  CsFactor*EpsG))
-        if received:
-            self.CapLbl = None
-            self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
+        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
             bg="LightSteelBlue3").place(x=220,y=50)
+        self.top.update()
+        print("new suggested Cap values:")
+        print(f"Cs: {self.SuggestedCsVal} & Cp: {self.SuggestedCpVal}")
 
 
     def ICDataBaseLookup(self):
@@ -1141,8 +1171,6 @@ class GUI(tk.Tk):
 
     def moveProbeMultithreading(self):
         threading.Thread(target=self.moveProbe).start()
-    def ThreadICListen(self):
-        threading.Thread(target=self.ICListen).start()
     def moveProbe(self):
 
         moveXto = self.moveX_entr.get()

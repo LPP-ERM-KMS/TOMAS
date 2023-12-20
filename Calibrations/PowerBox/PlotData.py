@@ -7,8 +7,8 @@ def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return idx
 
-folder = 'meas1'
-filename = 'logging_data_09_11_2023_15_52_30_1.LVM'
+folder = 'meas6'
+filename = 'logging_data_09_11_2023_16_46_33_1.LVM'
 ToRead = folder + '/' + filename
 
 data = read(ToRead)
