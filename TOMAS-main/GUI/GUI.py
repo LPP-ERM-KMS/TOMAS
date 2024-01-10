@@ -807,13 +807,17 @@ class GUI(tk.Tk):
         #self.ICPower_lbl = tk.Label(self.top, text="Power (dBm):", bg="LightSteelBlue").place(x=100,y=200)
         #self.ICPower_entr = tk.Entry(self.top, width=5)
         #self.ICPower_entr.place(x=250,y=200)
-        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ICListen).place(x=380,y=195)
+        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ICListen4V).place(x=380,y=195)
+        tk.Button(self.top,text="listen for voltages and suggest using 2V algorithm", command=self.ICListen2V).place(x=380,y=175)
         
         tk.Button(self.top,text="Update", font=('Mistral 18 bold'),command=self.top.update).place(x=700,y=180)
         tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.MatchQUIT).place(x=900,y=180)
         tk.Button(self.top,text="MOVE", font=('Mistral 18 bold'),command=self.MoveToSuggested).place(x=800,y=180)
         
     def MatchQUIT(self):
+        self.SuggestedCsVal = None
+        self.SuggestedCpVal = None
+        self.SuggestedCaVal = None
         self.ICserver.close()
         self.top.destroy()
 
@@ -872,7 +876,7 @@ class GUI(tk.Tk):
 
         self.update()
 
-    def ICListen(self):
+    def ICListen4V(self):
         data,addr = self.ICserver.recvfrom(256)
         print("Received values:")
         Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
@@ -885,13 +889,12 @@ class GUI(tk.Tk):
         Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 + offset
         Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 + offset
         Pdbm[3] = (Vmeas[0]-2.339)/0.02475 + offset
-        Pdbm[4] = Vmeas[4]
-        Pdbm[5] = Vmeas[5]
-        print("power of V3,V2,V1,V0,Vf,Vr:")
-        print(Pdbm)
+        Pdbm[4] = (Vmeas[4]-2.2687)/0.02485 + offset
+        Pdbm[5] = (Vmeas[5]-2.324)/0.0241 + offset
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
-        Vf = V[-2]
-        Vr = V[-1]
+        Vf = V[4]
+        Vr = V[5]
+        print(f"Gamma = {10**((Pdbm[5]-Pdbm[4])/10)}")
 
         ######################################
         # Calculate new values of Cs and Cp  #
@@ -905,11 +908,9 @@ class GUI(tk.Tk):
         BigS = (S[0] - S[1])/(S[2] - S[3])
         BigC = (C[0] - C[1])/(C[2] - C[3])
 
-        CsFactor = 10
-        CpFactor = 10
+        CsFactor = 30
+        CpFactor = 30
 
-        Vf = (np.array(str(data)[2:-1].split(","))[-2]).astype(float)
-        print('Vs')
         Vs = (V/Vf)**2
         print(Vs)
 
@@ -919,6 +920,76 @@ class GUI(tk.Tk):
         EpsB = 2*v/((1+u)**2 + v**2)
         EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
         
+        print("Matching Errors:")
+        print(EpsB)
+        print(EpsG)
+        
+        if not self.SuggestedCpVal and not self.SuggestedCsVal:
+            posStrs = self.Pos.split(" ")
+            for i in range(0, len(posStrs)):
+                if posStrs[i] == "A":
+                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
+                if posStrs[i] == "P":
+                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
+                elif posStrs[i] == "S":
+                    self.SuggestedCsVal = str(posStrs[i + 1].strip())
+                    print("before matching cs:")
+                    print(str(posStrs[i + 1].strip()))
+
+        self.SuggestedCpVal = str(int(float(self.SuggestedCpVal) +  CpFactor*EpsB))
+        self.SuggestedCsVal = str(int(float(self.SuggestedCsVal) +  CsFactor*EpsG))
+        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
+            bg="LightSteelBlue3").place(x=220,y=50)
+        self.top.update()
+        print("new suggested Cap values:")
+        print(f"Cs: {self.SuggestedCsVal} & Cp: {self.SuggestedCpVal}")
+
+    def ICListen2V(self):
+        data,addr = self.ICserver.recvfrom(256)
+        print("Received values:")
+        Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
+        print(Vmeas)
+        Pdbm = np.zeros(6)
+        
+        offset = 70
+        
+        Pdbm[0] = (Vmeas[3]-2.27324)/0.02492 + offset #V0
+        Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 + offset #V1
+        Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 + offset #V2
+        Pdbm[3] = (Vmeas[0]-2.339)/0.02475 + offset #V3
+        Pdbm[4] = (Vmeas[4]-2.2687)/0.02485 + offset #Vf
+        Pdbm[5] = (Vmeas[5]-2.324)/0.0241 + offset #Vr
+        V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak, now V0,V1,V2,V3,Vf,Vr
+
+        Vf = V[4]
+        Vr = V[5]
+
+        print(f"Gamma = {10**((Pdbm[5]-Pdbm[4])/10)}")
+
+        ######################################
+        # Calculate new values of Cs and Cp  #
+        ######################################
+
+        MeasurePoints = np.array([2.35,1.69,0.895,0.235])
+        FREQ = float(self.FREQ_entr.get())*1e6
+        #constants:
+        beta = 2*np.pi*FREQ/(3*(10**8))
+        S = np.sin(2*beta*MeasurePoints) #array
+        C = np.cos(2*beta*MeasurePoints) #array
+
+        CsFactor = 30
+        CpFactor = 30
+
+        Vs = (V/Vf)**2
+
+        EpsB = (V[3] - Vf)*S[2] - (V[2] - Vf)*S[3]
+        EpsG = (V[3] - Vf)*C[2] - (V[2] - Vf)*C[3]
+
+        x = np.array([EpsG,EpsB])
+        x = x/np.linalg.norm(x)
+        EpsG = x[0]
+        EpsB = x[1]
+
         print("Matching Errors:")
         print(EpsB)
         print(EpsG)
