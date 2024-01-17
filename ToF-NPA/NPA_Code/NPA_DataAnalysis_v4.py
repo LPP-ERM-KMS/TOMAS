@@ -4,6 +4,7 @@
 
 
 ##### Library #################################################################
+import os
 import sys
 import matplotlib.pyplot as plt  
 import numpy as np              
@@ -103,6 +104,9 @@ plt.plot(ED_Histogram_interval, ED_Histogram_value_sec, label='Energy distributi
 plt.yscale('log')
 plt.xlim(left=0)
 plt.legend()
+plt.xlabel("E/s")
+plt.ylabel("counts")
+plt.title("Energy Distribution")
 plt.savefig('figures/ED_{}.png'.format(Data_name), dpi=600)
 plt.show()
 
@@ -143,26 +147,10 @@ plt.legend()
 plt.savefig('figures/ED_DF_{}.png'.format(Data_name), dpi=600)
 plt.show()
 
-
-"""
-##### Compariosn of series for different Power and Gas flow ###################
-plt.figure(4, figsize=(6, 4), dpi=600) # Final and fitting
-x_axis = [i for i in range(5, 730, 5)]
-# plt.plot(x_axis, ED_DF_sec_20210714_11, label='20 sccm, 0.5 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_12, label='20 sccm, 1 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_13, label='20 sccm, 1.5 kW')
-plt.plot(x_axis, ED_DF_sec_20210714_14, label='30 sccm, 0.5 kW')
-plt.plot(x_axis, ED_DF_sec_20210714_15, label='30 sccm, 1 kW')
-plt.plot(x_axis, ED_DF_sec_20210714_16, label='30 sccm, 1.5 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_17, label='40 sccm, 0.5 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_18, label='40 sccm, 1 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_19, label='40 sccm, 1.5 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_21, label='50 sccm, 0.5 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_22, label='50 sccm, 1 kW')
-# plt.plot(x_axis, ED_DF_sec_20210714_23, label='50 sccm, 1.5 kW')
-plt.yscale('log')
-plt.xlim(left = 0.5, right = 750)
-plt.ylim(top = 1e14, bottom = 1e7)
-plt.legend(prop={'size': 12})
-plt.show()
-"""
+sputteringquestion = input('Do you want to calculate the sputtering rate based off these measurements? [y/n]')
+if sputteringquestion == 'n':
+    sys.exit(0)
+elif sputteringquestion == 'y':
+    print("ok") #still needs to be implemented
+else:
+    sys.exit(1)
