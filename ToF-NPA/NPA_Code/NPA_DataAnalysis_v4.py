@@ -11,11 +11,11 @@ import tkinter as tk
 from scipy import spatial
 import matplotlib.pyplot as plt  
 from tkinter import filedialog as fd
+from tkinter import StringVar, OptionMenu
 from tkinter.messagebox import showinfo
 
 ##### Inputs ##################################################################
 Program_type = 1 # 1 = CoMPASS, 2 = DPP-PSD
-Gas_type = 'H' # input H or He
 number_densities = {'B': 1.364744e29}
 
 ###########################
@@ -50,13 +50,22 @@ selected_file_ch0_label.pack()
 open_button = tk.Button(root, text="Ch1 file", command=open_Ch1_file_dialog)
 open_button.pack(padx=20, pady=20)
 
-selected_file_ch1_label = tk.Label(root, text="Selected File:")
+selected_file_ch1_label = tk.Label(root, text="Gas type:")
 selected_file_ch1_label.pack()
+
+choices = ['H', 'He']
+variable = StringVar(root)
+variable.set('H')
+
+w = OptionMenu(root, variable, *choices)
+w.pack()
 
 done_button = tk.Button(root, text="Done", command=CloseDialog)
 done_button.pack(padx=20, pady=20)
 
 root.mainloop()
+
+Gas_type = variable.get()
 
 # If data was recorded in DPP-PSD
 #NPA_file    = 'radialscan_from323_011_ls_0.dat' 
@@ -172,20 +181,16 @@ elif sputteringquestion == 'y':
     Sr = 0
     E_avg = 0
     dE = 5
-    print('diff tomasflux:')
-    print(Diff_TOMAS_flux)
-    print('len tomasflux:')
-    print(len(Diff_TOMAS_flux))
     for i,e in enumerate(x_axis):
         IndexOfClosest = tree.query(np.array([e,0]))[1] #get index of closest lying computed yield
         Yield = YieldMap[IndexOfClosest][2]
         fluxpersec = Diff_TOMAS_flux[i]*dE #Diff_TOMAS_flux is the flux/(cm^2 eV s),
                                  #multiplied by the energy bin we get the flux/(s cm^2)
-        Sr += fluxpersec*10e6/(number_densities[target]) #devided by number density (in cm^3) we get the erosion rate in cm/s
+        Sr += Yield*fluxpersec*10e6/(number_densities[target]) #devided by number density (in cm^3) we get the erosion rate in cm/s
     for i,e in enumerate(x_axis):
         E_avg += Diff_TOMAS_flux[i]*e
     E_avg = E_avg/(np.sum(Diff_TOMAS_flux))
-    Sr = Sr*(10**7) #convert to nm/s
-    print("Vertical erosion rate: {} nm/s".format(Sr))
+    Sr = Sr*(10**7)*3600 #convert to nm/h
+    print("Erosion rate: {} nm/s".format(Sr))
 else:
     sys.exit(1)
