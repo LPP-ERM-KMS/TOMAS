@@ -6,15 +6,17 @@
 ##### Library #################################################################
 import os
 import sys
-import matplotlib.pyplot as plt  
 import numpy as np              
 import tkinter as tk
+from scipy import spatial
+import matplotlib.pyplot as plt  
 from tkinter import filedialog as fd
 from tkinter.messagebox import showinfo
 
 ##### Inputs ##################################################################
 Program_type = 1 # 1 = CoMPASS, 2 = DPP-PSD
 Gas_type = 'H' # input H or He
+number_densities = {'B': 1.364744e29}
 
 ###########################
 # Gui for selecting data: #
@@ -87,6 +89,9 @@ AT_data, AT_Histogram_value, AT_Histogram_interval = ATD_ED.AT(Ch, Ch0, Unit_coe
 ED_data, ED_Histogram_value, ED_Histogram_interval = ATD_ED.ED(AT_data, Gas_type)
 AT_Histogram_value_sec, ED_Histogram_value_sec = ATD_ED.Normalization(Ch, Ch0, Gas_type, Unit_coeff)
 
+if not os.path.exists("figures"):
+    os.mkdir("figures")
+
 ##### Plot Arrival Time Distribution (ATD) #################################### 
 plt.figure(1, figsize=(12, 8), dpi=80) 
 plt.rcParams['lines.linewidth'] = 5
@@ -104,8 +109,8 @@ plt.plot(ED_Histogram_interval, ED_Histogram_value_sec, label='Energy distributi
 plt.yscale('log')
 plt.xlim(left=0)
 plt.legend()
-plt.xlabel("E/s")
-plt.ylabel("counts")
+plt.xlabel("E")
+plt.ylabel("counts/s") #I assume this to be the case
 plt.title("Energy Distribution")
 plt.savefig('figures/ED_{}.png'.format(Data_name), dpi=600)
 plt.show()
@@ -115,7 +120,8 @@ plt.show()
 import Detection_Efficiency 
 # ED_DF = Detection_Efficiency.main(ED_Histogram_value) # Differential Flux (DF)
 ED_DF_sec_cm2 = Detection_Efficiency.main(ED_Histogram_value_sec, Gas_type) # DF / sec
-TOMAS_flux = Detection_Efficiency.totalflux(ED_DF_sec_cm2) 
+TOMAS_flux = Detection_Efficiency.totalflux(ED_DF_sec_cm2)  #4pi times sum of ED_DF_cm2, i.e over full sphere and summed over
+Diff_TOMAS_flux = 2*np.pi*np.array(Detection_Efficiency.main(ED_Histogram_value_sec, Gas_type)) # over half sphere flux (samples receive no flux from top)
 
 globals()['ED_DF_sec_{}'.format(Data_name)] = ED_DF_sec_cm2 # Save differential flux /sec for comparison
 globals()['TOMAS_flux_{}'.format(Data_name)] = TOMAS_flux # Save total flux for comparison
@@ -151,6 +157,35 @@ sputteringquestion = input('Do you want to calculate the sputtering rate based o
 if sputteringquestion == 'n':
     sys.exit(0)
 elif sputteringquestion == 'y':
-    print("ok") #still needs to be implemented
+    target = input(f"What is the target material? (e.g B, we're assuming the flux to be {Gas_type} as it has been troughout the analysis):")
+    yieldmapfilename = Gas_type + "On" + target + '.csv'
+    YieldMapPath = 'YieldMaps/' + yieldmapfilename
+    YieldMap = np.genfromtxt(YieldMapPath, delimiter=",")
+
+    SearchFile = YieldMap[:,:2]
+    #tree search algorithm
+    tree = spatial.KDTree(SearchFile) 
+
+    #-------------#
+    #  Algorithm  #
+    #-------------#
+    Sr = 0
+    E_avg = 0
+    dE = 5
+    print('diff tomasflux:')
+    print(Diff_TOMAS_flux)
+    print('len tomasflux:')
+    print(len(Diff_TOMAS_flux))
+    for i,e in enumerate(x_axis):
+        IndexOfClosest = tree.query(np.array([e,0]))[1] #get index of closest lying computed yield
+        Yield = YieldMap[IndexOfClosest][2]
+        fluxpersec = Diff_TOMAS_flux[i]*dE #Diff_TOMAS_flux is the flux/(cm^2 eV s),
+                                 #multiplied by the energy bin we get the flux/(s cm^2)
+        Sr += fluxpersec*10e6/(number_densities[target]) #devided by number density (in cm^3) we get the erosion rate in cm/s
+    for i,e in enumerate(x_axis):
+        E_avg += Diff_TOMAS_flux[i]*e
+    E_avg = E_avg/(np.sum(Diff_TOMAS_flux))
+    Sr = Sr*(10**7) #convert to nm/s
+    print("Vertical erosion rate: {} nm/s".format(Sr))
 else:
     sys.exit(1)
