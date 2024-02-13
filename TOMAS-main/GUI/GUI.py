@@ -808,7 +808,7 @@ class GUI(tk.Tk):
         #self.ICPower_entr = tk.Entry(self.top, width=5)
         #self.ICPower_entr.place(x=250,y=200)
         tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ICListen4V).place(x=380,y=195)
-        tk.Button(self.top,text="listen for voltages and suggest using 2V algorithm", command=self.ICListen2V).place(x=380,y=175)
+        tk.Button(self.top,text="listen for voltages and suggest using 2V algorithm", command=self.ICListen2V).place(x=380,y=165)
         
         tk.Button(self.top,text="Update", font=('Mistral 18 bold'),command=self.top.update).place(x=700,y=180)
         tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.MatchQUIT).place(x=900,y=180)
@@ -977,8 +977,8 @@ class GUI(tk.Tk):
         S = np.sin(2*beta*MeasurePoints) #array
         C = np.cos(2*beta*MeasurePoints) #array
 
-        CsFactor = 30
-        CpFactor = 30
+        CsFactor = 10
+        CpFactor = 10
 
         Vs = (V/Vf)**2
 
@@ -987,7 +987,7 @@ class GUI(tk.Tk):
 
         x = np.array([EpsG,EpsB])
         x = x/np.linalg.norm(x)
-        EpsG = x[0]
+        EpsG = -1*x[0]
         EpsB = x[1]
 
         print("Matching Errors:")

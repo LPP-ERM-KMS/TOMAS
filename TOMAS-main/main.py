@@ -73,6 +73,7 @@ if not args.debug:
     # Make a connection to the function generator AFG 3252 (Tektronix) at the specified IP address
     dev = AFG3252('192.168.70.100')
 
+
     # INITIALIZE THE DAQ TRIGGER
 
     # Make a connection to the function generator AFG 3252 (Tektronix) at the specified IP address

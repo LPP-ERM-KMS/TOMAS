@@ -15,7 +15,7 @@ He_Mass = 4.002602 * u
 ToF_D = 4.07 # [m]
 eV = 1.60E-19 # [J]
 
-##### Calculation of Neutral Particel (NP) Arrival Time (AT) with laser data 
+##### Calculation of Neutral Particle (NP) Arrival Time (AT) with laser data 
 def AT(Ch, Ch0, Unit_coeff):
     AT_data = [] 
     AT_energy = []
