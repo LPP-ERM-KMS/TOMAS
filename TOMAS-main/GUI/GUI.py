@@ -113,8 +113,16 @@ class GUI(tk.Tk):
 
         self.scan_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
         self.ICMatch_lbl = tk.Label(self.scan_frm, text="IC Matching System", bg="LightSteelBlue")
-        self.ICMatchMan_btn = tk.Button(self.scan_frm, text="Manual", bg="DarkSeaGreen4", command=self.ManualMatching)
-        self.ICMatchAut_btn = tk.Button(self.scan_frm, text="Semi", bg="DarkSeaGreen4", command=self.SemiAutoMatching)
+
+        self.ContinuousOrPulsed = tk.IntVar()
+        self.MatchContinuous_btn = tk.Radiobutton(self.scan_frm, variable=self.ContinuousOrPulsed, value=1,text="Continuous EC",
+                                       bg="LightSteelBlue")
+        self.MatchPulsed_btn = tk.Radiobutton(self.scan_frm, variable=self.ContinuousOrPulsed, value=2, text="Pulsed EC",
+                                       bg="LightSteelBlue")
+
+        self.Steps_lbl = tk.Label(self.scan_frm, text="Steps:", bg="LightSteelBlue")
+        self.Steps_entr = tk.Entry(self.scan_frm, width=5)
+        self.ICMatchAut_btn = tk.Button(self.scan_frm, text="Go!", bg="DarkSeaGreen4", command=self.AutoMatching)
 
         self.exit_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue3", pady=40)
         self.exit_btn = tk.Button(self.exit_frm, text="Exit", bg="LightPink3", command=self.escape)
@@ -153,8 +161,13 @@ class GUI(tk.Tk):
 
         self.scan_frm.grid(column=0, row=5, sticky="nsew", pady=10)
         self.ICMatch_lbl.grid(column=0, row=0, columnspan=3, rowspan=1, sticky="w")
-        self.ICMatchMan_btn.grid(column=0, row=1, sticky="w")
-        self.ICMatchAut_btn.grid(column=1, row=1, sticky="w")
+
+        self.MatchContinuous_btn.grid(column=0, row=1, sticky="w")
+        self.MatchPulsed_btn.grid(column=1, row=1, sticky="w")
+
+        self.Steps_lbl.grid(column=0, row=2, sticky="w")
+        self.Steps_entr.grid(column=1, row=2, sticky="w")
+        self.ICMatchAut_btn.grid(column=4, row=2, sticky="w")
 
         self.exit_frm.grid(column=0, row=6, sticky="nsew")
         self.exit_btn.grid(column=0, row=11)
@@ -779,6 +792,28 @@ class GUI(tk.Tk):
                     self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
 
             self.update()
+
+    def AutoMatching(self):
+        if self.ContinuousOrPulsed.get() == 1:
+            pulsed = False
+        elif self.ContinuousOrPulsed.get() == 2:
+            pulsed = True
+        else:
+            print("Neither pulse, nor continuous was selected. Aborting")
+            return False
+        if Debug:
+            return True
+        print("booting up receiving server, please use the matching DAQ program")
+        try:
+            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+            self.ICserver.bind(('192.168.70.18',5020))
+            print("port bound succesfully")
+        except:
+            print("port seems to be bound already,")
+            print("reusing port")
+            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+            print("ICserver set up")
+        ICListen4V(self)
     def SemiAutoMatching(self):
         print("booting up receiving server, please use the matching DAQ program")
         try:
@@ -892,10 +927,13 @@ class GUI(tk.Tk):
         Pdbm[4] = (Vmeas[4]-2.2687)/0.02485 + offset
         Pdbm[5] = (Vmeas[5]-2.324)/0.0241 + offset
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
-        Vf = V[4]
-        Vr = V[5]
-        print(f"Gamma = {10**((Pdbm[5]-Pdbm[4])/10)}")
-
+        FPhase = Vmeas[6]
+        RPhase = Vmeas[7]
+        Vf = V[4] + 1j*FPhase
+        Vr = V[5] + 1j*RPhase
+        Gamma = Vf/Vr
+        print(f"Gamma = {Gamma}")
+        
         ######################################
         # Calculate new values of Cs and Cp  #
         ######################################
@@ -923,27 +961,16 @@ class GUI(tk.Tk):
         print("Matching Errors:")
         print(EpsB)
         print(EpsG)
+
+        beta = -1.2*np.angle(Gamma) #yolo
+        #x = np.array([EpsG-*EpsB,EpsB])
+        x = np.array([np.cos(beta)*EpsG-np.sin(beta)*EpsB,np.sin(beta)*EpsG + np.cos(beta)*EpsB])
+        x = x/np.linalg.norm(x)
+        EpsG = SPFactor*x[0]
+        EpsB = SPFactor*x[1]
+
+        return EpsB,EpsG
         
-        if not self.SuggestedCpVal and not self.SuggestedCsVal:
-            posStrs = self.Pos.split(" ")
-            for i in range(0, len(posStrs)):
-                if posStrs[i] == "A":
-                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
-                if posStrs[i] == "P":
-                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
-                elif posStrs[i] == "S":
-                    self.SuggestedCsVal = str(posStrs[i + 1].strip())
-                    print("before matching cs:")
-                    print(str(posStrs[i + 1].strip()))
-
-        self.SuggestedCpVal = str(int(float(self.SuggestedCpVal) +  CpFactor*EpsB))
-        self.SuggestedCsVal = str(int(float(self.SuggestedCsVal) +  CsFactor*EpsG))
-        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
-            bg="LightSteelBlue3").place(x=220,y=50)
-        self.top.update()
-        print("new suggested Cap values:")
-        print(f"Cs: {self.SuggestedCsVal} & Cp: {self.SuggestedCpVal}")
-
     def ICListen2V(self):
         data,addr = self.ICserver.recvfrom(256)
         print("Received values:")
@@ -1037,45 +1064,6 @@ class GUI(tk.Tk):
             bg="LightSteelBlue3").place(x=220,y=50)
         self.update()
  
-    def ManualMatching(self):
-        self.top= tk.Toplevel(self)
-        self.top.geometry("1000x250")
-        self.top.title("Semi Automatic Matching System")
-
-        self.FREQ_lbl = tk.Label(self.top, text="Freq (MHz):", bg="LightSteelBlue").place(x=100,y=100)
-        self.FREQ_entr = tk.Entry(self.top, width=5)
-        self.FREQ_entr.place(x=250,y=100)
-        tk.Button(self.top,text="Start Nelder Mead", command=self.NelderMeadStart).place(x=500,y=95)
-
-        self.Algo_vf_lbl = tk.Label(self.top, text="Vf:", bg="LightSteelBlue").place(x=100,y=150)
-        self.Algo_vf_entr = tk.Entry(self.top, width=2)
-        self.Algo_vf_entr.place(x=120,y=150)
-
-        self.Algo_vr_lbl = tk.Label(self.top, text="Vr:", bg="LightSteelBlue").place(x=150,y=150)
-        self.Algo_vr_entr = tk.Entry(self.top, width=2)
-        self.Algo_vr_entr.place(x=170,y=150)
-
-        self.Algo_v0_lbl = tk.Label(self.top, text="V0:", bg="LightSteelBlue").place(x=200,y=150)
-        self.Algo_v0_entr = tk.Entry(self.top, width=2)
-        self.Algo_v0_entr.place(x=220,y=150)
-
-        self.Algo_v1_lbl = tk.Label(self.top, text="V1:", bg="LightSteelBlue").place(x=250,y=150)
-        self.Algo_v1_entr = tk.Entry(self.top, width=2)
-        self.Algo_v1_entr.place(x=270,y=150)
-
-        self.Algo_v2_lbl = tk.Label(self.top, text="V2:", bg="LightSteelBlue").place(x=300,y=150)
-        self.Algo_v2_entr = tk.Entry(self.top, width=2)
-        self.Algo_v2_entr.place(x=320,y=150)
-
-        self.Algo_v3_lbl = tk.Label(self.top, text="V3:", bg="LightSteelBlue").place(x=350,y=150)
-        self.Algo_v3_entr = tk.Entry(self.top, width=2)
-        self.Algo_v3_entr.place(x=370,y=150)
-
-        tk.Button(self.top,text="Suggest capacitor values using 4V algorithm", command=self.V4ManualAlgo).place(x=500,y=145)
-
-        tk.Label(self.top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=300,y=0)
-        tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.top.destroy).place(x=750,y=200)
-        
     def V4ManualAlgo(self):
         pF_ = 1e-12
         MHz_ = 1e6
