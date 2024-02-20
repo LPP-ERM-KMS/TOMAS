@@ -159,21 +159,27 @@ open_button.pack(in_=top)
 selected_file_ch0_label = tk.Label(root, text="Selected File:")
 selected_file_ch0_label.pack(in_=top)
     
-selected_file_ch0_label.pack(in_=top)
-
 PlotVoltages_button = tk.Button(root, text="Plot voltages", command= lambda: SelectSignals(ch0filepath,False,variable.get()))
 
 PlotSignals_button = tk.Button(root, text="Plot Signals", command= lambda: SelectSignals(ch0filepath,True,variable.get()))
 
-PlotVoltages_button.pack(pady=10,in_=top, side=LEFT)
-PlotSignals_button.pack(pady=10,in_=top, side=LEFT)
-
+PlotVoltages_button.pack(pady=10,in_=top, side=LEFT,fill="none",expand=True)
+PlotSignals_button.pack(pady=10,in_=top, side=LEFT,fill="none",expand=True)
 
 open_button = tk.Button(root, text="folder containing DAQ files", command=open_Ch1_file_dialog)
 open_button.pack(pady=20,in_=bottom)
 
+selected_file_ch1_label = tk.Label(root, text="Selected Folder:")
+selected_file_ch1_label.pack(in_=bottom)
+
+exportchoices = ['csv','mat']
+exportvariable = StringVar(root)
+exportvariable.set('H')
+exportw = OptionMenu(root, exportvariable, *exportchoices)
+exportw.pack(in_=bottom)
+
 done_button = tk.Button(root, text="Done", command=CloseDialog)
-done_button.pack(in_=bottom)
+done_button.pack(pady=10,in_=bottom)
 
 root.mainloop()
 
