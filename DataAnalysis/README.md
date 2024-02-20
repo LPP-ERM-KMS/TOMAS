@@ -2,7 +2,8 @@
 
 ## PlotData
 
-A first prototype of viewing DAQ files, a quick demo is shown below:
+A prototypical program able to view DAQ files and convert to measured quantities using the necessary calibrations. 
+A quick demo is shown below:
 
 https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/8b22509e-621d-4d63-9a03-b5a4062a0ac2
 
