@@ -11,8 +11,9 @@ more features will be added such as:
 - Having a conversion for interferometer implemented
 - Converting a folder of input data to voltage or calibrated output in various formats (e.g matlab)
 
-*Further suggestions are welcome!*
-To easily get a hold of new suggestions, I suggest creating an issue.
+**Further suggestions are welcome!**
+
+To easily get a hold of new suggestions, please create an issue.
 
 # Requirements
 
