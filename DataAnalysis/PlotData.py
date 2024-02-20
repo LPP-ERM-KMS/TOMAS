@@ -172,11 +172,18 @@ open_button.pack(pady=20,in_=bottom)
 selected_file_ch1_label = tk.Label(root, text="Selected Folder:")
 selected_file_ch1_label.pack(in_=bottom)
 
+select_export = tk.Label(root, text="Export to format")
+select_export.pack(in_=bottom)
+
 exportchoices = ['csv','mat']
 exportvariable = StringVar(root)
-exportvariable.set('H')
+exportvariable.set('csv')
 exportw = OptionMenu(root, exportvariable, *exportchoices)
 exportw.pack(in_=bottom)
+
+export_button = tk.Button(root, text="Export (doesn't work yet)", command=CloseDialog)
+export_button.pack(pady=10,in_=bottom)
+
 
 done_button = tk.Button(root, text="Done", command=CloseDialog)
 done_button.pack(pady=10,in_=bottom)
