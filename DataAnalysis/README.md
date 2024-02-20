@@ -10,6 +10,6 @@ https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/850150f5-87da-4634-bd96-ea4
 
 more features will be added such as:
 
-- Having a, as accurate as possible, conversion of triple probe implemented
+- Having a conversion of triple probe implemented (as accurate as possible)
 - Having a conversion for interferometer implemented
 - Converting a folder of input data to calibrated output
