@@ -4,7 +4,7 @@
 
 A first prototype of viewing DAQ files, a quick demo is shown below:
 
-https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/850150f5-87da-4634-bd96-ea4eeef02e8c
+https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/8b22509e-621d-4d63-9a03-b5a4062a0ac2
 
 
 
