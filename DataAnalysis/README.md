@@ -15,7 +15,7 @@ more features will be added such as:
 
 ## Requirements
 
-### list
+### list of requirements
 specials:
 - tkinter
 - lvm_read
@@ -27,17 +27,28 @@ usual suspects:
 
 ### install guide
 If you're on an old distro (e.g ubuntu):
+```console
 $ pip install tkinter lvm_read numpy scipy matplotlib
+```
 
 If you're on macos or on a rolling release distro (e.g arch), open up your
 terminal and create a venv:
+```console
 $ python -m venv FOLDER
+```
 where FOLDER is where you want your venv to be located
 source the venv (I suggest making a shortcut for this):
+
+```console
 $ source FOLDER/bin/activate
+```
 and install the required software in this venv (this avoids
 bricking your system if one of the python programs is incompatible):
+
+```console
 $ pip install tkinter lvm_read numpy scipy matplotlib
+```
+
 now every time you open a new terminal, prior to running the software you'll have
 to source the venv.
 Alternatively, if you're not afraid of bricking your system, most of these packages
