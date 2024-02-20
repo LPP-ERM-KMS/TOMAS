@@ -13,9 +13,9 @@ more features will be added such as:
 - Having a conversion for interferometer implemented
 - Converting a folder of input data to calibrated output
 
-## Requirements
+# Requirements
 
-### list of requirements
+## list of requirements
 specials:
 - tkinter
 - lvm_read
@@ -25,12 +25,13 @@ usual suspects:
 - scipy
 - matplotlib
 
-### install guide
+## install guide
+### Debian based
 If you're on an old distro (e.g ubuntu):
 ```console
 $ pip install tkinter lvm_read numpy scipy matplotlib
 ```
-
+### macos / rolling release
 If you're on macos or on a rolling release distro (e.g arch), open up your
 terminal and create a venv:
 ```console
@@ -42,8 +43,8 @@ source the venv (I suggest making a shortcut for this):
 ```console
 $ source FOLDER/bin/activate
 ```
-and install the required software in this venv (this avoids
-bricking your system if one of the python programs is incompatible):
+and install the required software in this venv (this is
+considered the "safer" way of installing python packages):
 
 ```console
 $ pip install tkinter lvm_read numpy scipy matplotlib
@@ -51,8 +52,8 @@ $ pip install tkinter lvm_read numpy scipy matplotlib
 
 now every time you open a new terminal, prior to running the software you'll have
 to source the venv.
-Alternatively, if you're not afraid of bricking your system, most of these packages
-can also be downloaded from the repository in the form "python-xyz", e.g "python-tkinter".
+Alternatively, as the listed packages are quite tame, most (I didn't test this) of these packages
+can be downloaded using your package manager in the form "python-xyz", e.g "python-tkinter".
 (for macos I suggest homebrew)
 
 If you're on windows, I guess anaconda has you covered? (I haven't willingly used windows in 5 years so idk)
