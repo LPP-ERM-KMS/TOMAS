@@ -56,4 +56,7 @@ Alternatively, as the listed packages are quite tame, most (I didn't test this) 
 can be downloaded using your package manager in the form "python-xyz", e.g "python-tkinter".
 (for macos I suggest homebrew)
 
-If you're on windows, I guess anaconda has you covered? (I haven't willingly used windows in 5 years so idk)
+### Windows
+🚧 under construction
+I guess in some ide with anaconda loaded you install stuff you don't have yet using pip in the kernel? 
+(I haven't willingly used windows in 5 years so idk)
