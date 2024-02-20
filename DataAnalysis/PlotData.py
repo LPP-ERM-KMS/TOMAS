@@ -27,10 +27,8 @@ def PlotFile(selection):
     if selection == 1:
         #header
         data = read(ToRead)
-        keys = data[0]['Channel names'][:-1]
+        keys = data[0]['Channel names']
         for i,key in enumerate(keys):
-            if i == 0:
-                continue
             x = data[0]['data'][:,0]
             y = data[0]['data'][:,i]
             plt.plot(x,y,label=key)
@@ -39,7 +37,7 @@ def PlotFile(selection):
             plt.legend()
         plt.show()
     
-def SelectSignals(ToRead):
+def SelectSignals(ToRead,convert,GasType):
     win = tk.Toplevel()
     win.wm_title("Select Signals")
     # Create a listbox
@@ -50,8 +48,10 @@ def SelectSignals(ToRead):
         print("Error, no file selected")
         sys.exit(0)
     data = read(ToRead)
-    keys = data[0]['Channel names'][:-1]
+    keys = data[0]['Channel names']
     for i,key in enumerate(keys):
+        if key=="X_Value" or key=="Comment":
+                continue
         listbox.insert(i, key)
      
     # Function for printing the
@@ -61,6 +61,7 @@ def SelectSignals(ToRead):
         # curselection method and print
         # corresponding value(s) in the listbox
         ToPlot = []
+        unit = "Volts"
         for i in listbox.curselection():
             ToPlot.append(listbox.get(i))
         lookuptable = np.array(data[0]['Channel names'][:-1])
@@ -69,9 +70,11 @@ def SelectSignals(ToRead):
             i = np.where(key == lookuptable)[0]
             x = data[0]['data'][:,0]
             y = data[0]['data'][:,i]
+            if convert:
+                unit,y = Convert(key,y,GasType)
             plt.plot(x,y,label=key)
             plt.xlabel("time (s)")
-            plt.ylabel("Voltage")
+            plt.ylabel(unit)
             plt.legend()
         plt.show()
 
@@ -85,6 +88,30 @@ def SelectSignals(ToRead):
     btn.pack(side='bottom')
     listbox.pack()
 
+def Convert(key,y,GasType):
+    unit = "Not known"
+    if key == "ECF" or key == "ECR":
+        y *= 600
+        unit = "Watts"
+    if key == "ICF":
+        y = 10**(((y/0.02485 - 91.29577) + 70)/10 - 3)
+        unit = "Watts"
+    if key == "ICR":
+        y = 10**(((y/0.0241 - 96.43154) + 70)/10 - 3)
+        unit = "Watts"
+    if key == "Penning":
+        y = 10**((y*1.25) - 9.75)/100
+        if GasType == "H":
+            y *= 2.4
+        elif GasType == "He":
+            y *= 5.9
+        elif GasType == "Ar":
+            y *= 0.8
+        unit = "mbar"
+    if key == "Baratron":
+        y = (y-1)*0.125
+        unit = "mbar"
+    return unit,y 
     
 ###########################
 # Gui for selecting data: #
@@ -108,31 +135,45 @@ def CloseDialog():
     root.destroy()
 
 root = tk.Tk()
-root.title("File Dialog Example")
+root.title("DAQ file explorer")
+
+top = Frame(root)
+bottom = Frame(root)
+top.pack(side=TOP)
+bottom.pack(side=BOTTOM, fill=BOTH, expand=True)
 
 selected_file_ch1_label = tk.Label(root, text="Gas type:")
-selected_file_ch1_label.pack()
+selected_file_ch1_label.pack(in_=top)
 
 choices = ['H','D', 'He','Ar']
 variable = StringVar(root)
 variable.set('H')
 w = OptionMenu(root, variable, *choices)
-w.pack()
+w.pack(in_=top)
 
 open_button = tk.Button(root, text="DAQ file", command=open_Ch0_file_dialog)
 open_button.pack(padx=20, pady=20)
 
+open_button.pack(in_=top)
+
 selected_file_ch0_label = tk.Label(root, text="Selected File:")
-selected_file_ch0_label.pack()
+selected_file_ch0_label.pack(in_=top)
     
-PlotSignals_button = tk.Button(root, text="Plot voltages", command= lambda: SelectSignals(ch0filepath))
-PlotSignals_button.pack(padx=20, pady=20)
+selected_file_ch0_label.pack(in_=top)
+
+PlotVoltages_button = tk.Button(root, text="Plot voltages", command= lambda: SelectSignals(ch0filepath,False,variable.get()))
+
+PlotSignals_button = tk.Button(root, text="Plot Signals", command= lambda: SelectSignals(ch0filepath,True,variable.get()))
+
+PlotVoltages_button.pack(pady=10,in_=top, side=LEFT)
+PlotSignals_button.pack(pady=10,in_=top, side=LEFT)
+
 
 open_button = tk.Button(root, text="folder containing DAQ files", command=open_Ch1_file_dialog)
-open_button.pack(padx=20, pady=20)
+open_button.pack(pady=20,in_=bottom)
 
 done_button = tk.Button(root, text="Done", command=CloseDialog)
-done_button.pack(padx=20, pady=20)
+done_button.pack(in_=bottom)
 
 root.mainloop()
 
