@@ -223,7 +223,7 @@ select_export.pack(in_=bottom)
 export_V_button = tk.Button(root, text="Voltages", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
 export_V_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
 
-export_S_button = tk.Button(root, text="Signals", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
+export_S_button = tk.Button(root, text="Signals 🚧", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
 export_S_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
 
 done_button = tk.Button(root, text="Done", command=CloseDialog)
