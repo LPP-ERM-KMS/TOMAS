@@ -3,6 +3,7 @@
 import os
 import sys
 import numpy as np              
+from pathlib import Path
 from scipy import spatial
 from lvm_read import read
 import matplotlib.pyplot as plt  
@@ -15,9 +16,6 @@ def find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.abs(array - value)).argmin()
     return idx
-
-def PlotVoltages():
-    PlotFile(1)
 
 def PlotFile(selection):
     ToRead = ch0filepath
@@ -113,6 +111,42 @@ def Convert(key,y,GasType):
         unit = "mbar"
     return unit,y 
     
+def ConvertFolder(FolderLocation,convert,GasType):
+    pathlist = Path(FolderLocation).rglob('*.LVM')
+    Foldername=FolderLocation.split('/')[-1]
+    if convert == 'csv':
+        import csv
+        CSVFolderLocation = FolderLocation+f'/../{Foldername}-CSV'
+        Path(CSVFolderLocation).mkdir(exist_ok=True)
+    elif convert == 'mat':
+        from scipy.io import savemat
+        MATFolderLocation = FolderLocation+f'/../{Foldername}-MAT'
+        Path(MATFolderLocation).mkdir(exist_ok=True)
+    for path in pathlist:
+        # because path is object not string
+        path_in_str = str(path)   
+        filename = path_in_str.split('/')[-1][:-4]
+        data = read(path)
+        fieldnames = data[0]['Channel names']
+        FieldnameList =[str(fieldname) for fieldname in fieldnames]
+
+        if convert == 'csv':
+            with open(f'{CSVFolderLocation}/{filename}.csv', 'w', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(FieldnameList)
+                datalength=len(data[0]['data'][:,0])    
+                writer.writerows(data[0]['data'][:])
+                
+        if convert == 'mat':
+            mdic = {}
+            for key in FieldnameList:
+                if key == 'Comment':
+                    continue
+                i = np.where(key == np.array(FieldnameList))
+                y = data[0]['data'][:,i]
+                mdic[key] = y
+            savemat(f'{MATFolderLocation}/{filename}.mat',mdic)
+                
 ###########################
 # Gui for selecting data: #
 ###########################
@@ -139,8 +173,10 @@ root.title("DAQ file explorer")
 
 top = Frame(root)
 bottom = Frame(root)
-top.pack(side=TOP)
-bottom.pack(side=BOTTOM, fill=BOTH, expand=True)
+south = Frame(root)
+top.pack(anchor=N)
+bottom.pack(anchor=CENTER)
+south.pack(anchor=S)
 
 selected_file_ch1_label = tk.Label(root, text="Gas type:")
 selected_file_ch1_label.pack(in_=top)
@@ -152,7 +188,7 @@ w = OptionMenu(root, variable, *choices)
 w.pack(in_=top)
 
 open_button = tk.Button(root, text="DAQ file", command=open_Ch0_file_dialog)
-open_button.pack(padx=20, pady=20)
+open_button.pack(padx=20, pady=20,in_=top)
 
 open_button.pack(in_=top)
 
@@ -179,15 +215,18 @@ exportchoices = ['csv','mat']
 exportvariable = StringVar(root)
 exportvariable.set('csv')
 exportw = OptionMenu(root, exportvariable, *exportchoices)
-exportw.pack(in_=bottom)
+exportw.pack(pady=10,in_=bottom)
 
-export_button = tk.Button(root, text="Export (doesn't work yet)", command=CloseDialog)
-export_button.pack(pady=10,in_=bottom)
+select_export = tk.Label(root, text="In the form of:")
+select_export.pack(in_=bottom)
 
+export_V_button = tk.Button(root, text="Voltages", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
+export_V_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
+
+export_S_button = tk.Button(root, text="Signals", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
+export_S_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
 
 done_button = tk.Button(root, text="Done", command=CloseDialog)
-done_button.pack(pady=10,in_=bottom)
+done_button.pack(in_=south)
 
 root.mainloop()
-
-
