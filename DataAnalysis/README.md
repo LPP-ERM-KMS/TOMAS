@@ -3,7 +3,7 @@
 A prototypical program able to view DAQ files and convert to measured quantities using the necessary calibrations. 
 A quick demo is shown below:
 
-https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/8b22509e-621d-4d63-9a03-b5a4062a0ac2
+https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/2af9eed7-13e1-45f9-89bb-2bd93444c1af
 
 more features will be added such as:
 
