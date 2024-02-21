@@ -1,6 +1,7 @@
 # PlotData
 
-A prototypical program able to view DAQ files and convert to measured quantities using the necessary calibrations. 
+A prototypical program able to view DAQ files and it's corresponding quantities using the necessary calibrations. 
+It's also able to convert LVM files in a folder to both CSV and mat formats.
 A quick demo is shown below:
 
 https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/711fd172-c898-4e78-98fb-bf01928a915f
