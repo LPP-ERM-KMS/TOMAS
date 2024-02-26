@@ -98,7 +98,7 @@ def Convert(key,y,GasType):
         y = 10**(((y/0.0241 - 96.43154) + 70)/10 - 3)
         unit = "Watts"
     if key == "Penning":
-        y = 10**((y*1.25) - 9.75)/100
+        y = 10**((y*1.25) - 9.75)/1000
         if GasType == "H":
             y *= 2.4
         elif GasType == "He":
@@ -107,7 +107,7 @@ def Convert(key,y,GasType):
             y *= 0.8
         unit = "mbar"
     if key == "Baratron":
-        y = (y-1)*0.125
+        y = (y-1)*0.125*0.1
         unit = "mbar"
     return unit,y 
     
