@@ -111,6 +111,61 @@ def Convert(key,y,GasType):
         unit = "mbar"
     return unit,y 
     
+def PScan(FolderLocation,number):
+    pathlist = Path(FolderLocation).rglob('*.LVM')
+    Foldername=FolderLocation.split('/')[-1]
+    win = tk.Toplevel()
+    win.wm_title("Triple probe scan evaluation")
+    # Create a listbox
+    select_TP1_LABEL = tk.Label(win, text="Select TP1 and TP2")
+    select_TP1_LABEL.pack()
+
+    listbox = Listbox(win, width=40, height=10, selectmode=MULTIPLE)
+    # Inserting the listbox items
+    if not FolderLocation:
+        print("Error, no folder selected")
+        sys.exit(0)
+
+    i = 0
+    for x in pathlist:
+        path = x
+        if i != 0:
+            continue
+        i+=1 #Please don't ask
+
+    data = read(path)
+    keys = data[0]['Channel names']
+    for i,key in enumerate(keys):
+        if key=="X_Value" or key=="Comment":
+                continue
+        listbox.insert(i, key)
+
+    listbox.pack()
+
+    Voltage = tk.StringVar()
+    VoltageLabel = tk.Label(win, text="Supply Voltage:")
+    VoltageEntry = tk.Entry(win, textvariable=Voltage)
+    VoltageLabel.pack()
+    VoltageEntry.pack()
+
+    VoltageLabel = tk.Label(win, text="Circuit structure:")
+    VoltageEntry = tk.Entry(win, textvariable=Voltage)
+    VoltageLabel.pack()
+    VoltageEntry.pack()
+
+    self.ContinuousOrPulsed = tk.IntVar()
+    self.MatchContinuous_btn = tk.Radiobutton(self.scan_frm, variable=self.ContinuousOrPulsed, value=1,text="Continuous EC",
+    self.MatchPulsed_btn = tk.Radiobutton(self.scan_frm, variable=self.ContinuousOrPulsed, value=2, text="Pulsed EC",
+
+
+    for path in pathlist:
+        # because path is object not string
+        path_in_str = str(path)   
+        filename = path_in_str.split('/')[-1][:-4]
+        data = read(path)
+        fieldnames = data[0]['Channel names']
+        FieldnameList =[str(fieldname) for fieldname in fieldnames]
+
 def ConvertFolder(FolderLocation,convert,GasType):
     pathlist = Path(FolderLocation).rglob('*.LVM')
     Foldername=FolderLocation.split('/')[-1]
@@ -208,6 +263,7 @@ open_button.pack(pady=20,in_=bottom)
 selected_file_ch1_label = tk.Label(root, text="Selected Folder:")
 selected_file_ch1_label.pack(in_=bottom)
 
+
 select_export = tk.Label(root, text="Export to format")
 select_export.pack(in_=bottom)
 
@@ -226,7 +282,19 @@ export_V_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
 export_S_button = tk.Button(root, text="Signals 🚧", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
 export_S_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
 
+select_export = tk.Label(root, text="Probe scan analysis")
+select_export.pack(in_=south)
+
+P_scan = tk.Button(root, text="TP1&TP2", command= lambda: PScan(ch1filepath,2))
+P_scan.pack(in_=south,side=LEFT,fill="none",expand=True)
+
+P_scan2 = tk.Button(root, text="TP1-3", command= lambda: PScan(ch1filepath,3))
+P_scan2.pack(in_=south,side=LEFT,fill="none",expand=True)
+
+P_scan3 = tk.Button(root, text="QP", command= lambda: PScan(ch1filepath,4))
+P_scan3.pack(in_=south,side=LEFT,fill="none",expand=True)
+
 done_button = tk.Button(root, text="Done", command=CloseDialog)
-done_button.pack(in_=south)
+done_button.pack(pady=10)
 
 root.mainloop()
