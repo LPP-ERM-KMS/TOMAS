@@ -12,6 +12,7 @@ import time
 from Signalgenerator.scripts.AFG3252 import *
 from DAQ.scripts.DAQtrigger import *
 from GUI.GUI import *
+from GUI.MatchingAlgos import ModAlgo3V
 
 parser = argparse.ArgumentParser() #Allow for local debugging
 parser.add_argument("-d", "--debug", help="Debug flag if not running on TOMAS control PC")

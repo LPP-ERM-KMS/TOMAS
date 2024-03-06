@@ -109,7 +109,7 @@ class GUI(tk.Tk):
         self.moveP_entr = tk.Entry(self.move_frm, width=5)
         self.moveS_lbl = tk.Label(self.move_frm, text="Move capacitor S to:", bg="LightSteelBlue")
         self.moveS_entr = tk.Entry(self.move_frm, width=5)
-        self.move_btn = tk.Button(self.move_frm, text="Go!", bg="DarkSeaGreen4", command=self.moveCap)
+        self.move_btn = tk.Button(self.move_frm, text="Go!", bg="DarkSeaGreen4", command=lambda: self.moveCap(None,None))
 
         self.scan_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
         self.ICMatch_lbl = tk.Label(self.scan_frm, text="IC Matching System", bg="LightSteelBlue")
@@ -639,7 +639,7 @@ class GUI(tk.Tk):
         self.OPDoEC_chk = tk.Checkbutton(self.OProutine_frm, variable=self.OPDoEC, text="EC", bg="LightSteelBlue")
         self.OPDoDAQ = tk.IntVar()
         self.OPDoDAQ_chk = tk.Checkbutton(self.OProutine_frm, variable=self.OPDoDAQ, text="DAQ", bg="LightSteelBlue")
-        self.OP_btn = tk.Button(self.OProutine_frm, text="Go!", bg="DarkSeaGreen4", command=self.operation)
+        self.OP_btn = tk.Button(self.OProutine_frm, text="Go!", bg="DarkSeaGreen4", command=lambda: self.operation(None,None,None))
         
         # GRID OPERATION
         self.operation_frm.grid(column=5, row=0, sticky="nsew")
@@ -664,11 +664,16 @@ class GUI(tk.Tk):
         self.DAQtrig.disconnect()
         self.destroy()
         
-    def moveCap(self):
+    def moveCap(self,CsM=None,CpM=None):
 
-        moveAto = self.moveA_entr.get()
-        movePto = self.moveP_entr.get()
-        moveSto = self.moveS_entr.get()
+        if CsM and CpM:
+            moveAto = None
+            movePto = str(CpM)
+            moveSto = str(CsM)
+        else:
+            moveAto = self.moveA_entr.get()
+            movePto = self.moveP_entr.get()
+            moveSto = self.moveS_entr.get()
 
         cmd = ""
         if moveAto:
@@ -794,6 +799,10 @@ class GUI(tk.Tk):
             self.update()
 
     def AutoMatching(self):
+
+        #######################################
+        #         Input verification          #
+        #######################################
         if self.ContinuousOrPulsed.get() == 1:
             pulsed = False
         elif self.ContinuousOrPulsed.get() == 2:
@@ -803,7 +812,11 @@ class GUI(tk.Tk):
             return False
         if Debug:
             return True
-        print("booting up receiving server, please use the matching DAQ program")
+
+        #######################################
+        #        Boot up receiving server     #
+        #######################################
+        print("booting up receiving server, please set the DAQ collection time to 1 second")
         try:
             self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
             self.ICserver.bind(('192.168.70.18',5020))
@@ -813,237 +826,109 @@ class GUI(tk.Tk):
             print("reusing port")
             self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
             print("ICserver set up")
-        ICListen4V(self)
-    def SemiAutoMatching(self):
-        print("booting up receiving server, please use the matching DAQ program")
-        try:
-            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
-            self.ICserver.bind(('192.168.70.18',5020))
-            print("port bound succesfully")
-        except:
-            print("port seems to be bound already,")
-            print("reusing port")
-            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
-            print("ICserver set up")
 
-        self.top= tk.Toplevel(self)
-        self.top.geometry("1000x250")
-        self.top.title("Automatic Matching System")
+        #######################################
+        #          Configure RF Output        #
+        #######################################
 
-        tk.Label(self.top, text= "Semi-Automatic Matching System", font=('Mistral 18 bold')).place(x=300,y=0)
+        if not pulsed:
+            self.ECout = 1
+            ECswitch() #Turn on EC
+        else:
+            self.ECout = 2
+            self.ECoutPulsedNumber = 1
+            self.ECoutPulsedStartTime = 0
+            self.ECoutPulsedOnTime = 0.1 #just enough for a discharge
+            self.ECoutPulsedOffTime = 0.4
 
-        self.FREQ_lbl = tk.Label(self.top, text="Freq (MHz):", bg="LightSteelBlue").place(x=100,y=100)
-        self.FREQ_entr = tk.Entry(self.top, width=5)
-        self.FREQ_entr.place(x=250,y=100)
+        self.ICout = 2
+        self.ICoutPulsedNumber = 1
+        self.ICoutPulsedStartTime = 0.1
+        self.ICoutPulsedOnTime = 0.4 #should be stable enough
+        self.ICoutPulsedOffTime = 0
 
-        tk.Button(self.top,text="Suggest initial Capacitor values from simulation", command=self.SuggestValues).place(x=380,y=95)
-        tk.Button(self.top,text="Suggest initial Capacitor values from database", command=self.ICDataBaseLookup).place(x=700,y=95)
 
-        #self.ICPower_lbl = tk.Label(self.top, text="Power (dBm):", bg="LightSteelBlue").place(x=100,y=200)
-        #self.ICPower_entr = tk.Entry(self.top, width=5)
-        #self.ICPower_entr.place(x=250,y=200)
-        tk.Button(self.top,text="listen for voltages and suggest using 4V algorithm", command=self.ICListen4V).place(x=380,y=195)
-        tk.Button(self.top,text="listen for voltages and suggest using 2V algorithm", command=self.ICListen2V).place(x=380,y=165)
-        
-        tk.Button(self.top,text="Update", font=('Mistral 18 bold'),command=self.top.update).place(x=700,y=180)
-        tk.Button(self.top,text="Quit", font=('Mistral 18 bold'),command=self.MatchQUIT).place(x=900,y=180)
-        tk.Button(self.top,text="MOVE", font=('Mistral 18 bold'),command=self.MoveToSuggested).place(x=800,y=180)
-        
-    def MatchQUIT(self):
-        self.SuggestedCsVal = None
-        self.SuggestedCpVal = None
-        self.SuggestedCaVal = None
-        self.ICserver.close()
-        self.top.destroy()
+        #######################################
+        #           Match the system          #
+        #######################################
 
-    def MoveToSuggested(self):
-        moveAto = None
-        movePto = None
-        moveSto = None
-        if self.SuggestedCaVal:
-            moveAto = self.SuggestedCaVal
-        if self.SuggestedCpVal:
-            movePto = self.SuggestedCpVal
-        if self.SuggestedCsVal:
-            moveSto = self.SuggestedCsVal
+        for i in range(self.Steps_entr.get()):
+            print(f"Step number {i}")
+            if pulsed:
+                operation(doIC=True,doEC=True,doDAQ=True) #Discharge
+            else:
+                operation(doIC=True,doEC=False,doDAQ=True) #Discharge
+            CsM, CpM = ICMatch() #Get UDP signal and determine change in capacitor values
+            moveCap(CsM,CpM) 
+            time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
+            # and the system to have cooled a bit.
+            # It will also have cooled whilst waiting for the DAQ response
 
-        cmd = ""
-        if moveAto:
-            cmd += "A " + moveAto + " "
-        if movePto:
-            cmd += "P " + movePto + " "
-        if moveSto:
-            cmd += "S " + moveSto
+        if not pulsed:
+            self.ECout = 1
+            ECswitch() #Turn off EC
 
-        if cmd == "":
-            print("Specify at least one position")
-            return
 
-        # Communicate the desired position to Arduino
-        print("Instruct Arduino:")
-        print(cmd)
-        self.arduino.write(cmd.encode())
-        time.sleep(2)
 
-        # Retrieve communication from Arduino
-        newPos = self.arduino.readline()
-        if "Error" in newPos.decode():
-            print(newPos.decode())
-            # After the error, Arduino will communicate the new positions
-            newPos = self.arduino.readline()
-        print("The new positions are:")
-        print(newPos.decode())
-        self.f.write(newPos.decode().strip()+"\n")
-
-        # Update the information on the GUI
-        posStrs = newPos.decode().split(" ")
-        for i in range(0, len(posStrs)):
-            if posStrs[i] == "A":
-                self.posA_lbl.config(text="A: " + posStrs[i + 1].strip())
-            elif posStrs[i] == "P":
-                self.posP_lbl.config(text="P: " + posStrs[i + 1].strip())
-            elif posStrs[i] == "S":
-                self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
-
-        self.moveA_entr.delete(0, 'end')
-        self.moveP_entr.delete(0, 'end')
-        self.moveS_entr.delete(0, 'end')
-
-        self.update()
-
-    def ICListen4V(self):
+    def ICMatch(self):
         data,addr = self.ICserver.recvfrom(256)
         print("Received values:")
         Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
         print(Vmeas)
         Pdbm = np.zeros(6)
         
-        offset = 70
-        
-        Pdbm[0] = (Vmeas[3]-2.27324)/0.02492 + offset
-        Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 + offset
-        Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 + offset
-        Pdbm[3] = (Vmeas[0]-2.339)/0.02475 + offset
-        Pdbm[4] = (Vmeas[4]-2.2687)/0.02485 + offset
-        Pdbm[5] = (Vmeas[5]-2.324)/0.0241 + offset
-        V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
-        FPhase = Vmeas[6]
-        RPhase = Vmeas[7]
-        Vf = V[4] + 1j*FPhase
-        Vr = V[5] + 1j*RPhase
-        Gamma = Vf/Vr
-        print(f"Gamma = {Gamma}")
-        
-        ######################################
-        # Calculate new values of Cs and Cp  #
-        ######################################
-        MeasurePoints = np.array([0.235,0.895,1.69,2.35])
-        FREQ = float(self.FREQ_entr.get())*1e6
-        #constants:
-        beta = 2*np.pi*FREQ/(3*(10**8))
-        S = np.sin(2*beta*MeasurePoints) #array
-        C = np.cos(2*beta*MeasurePoints) #array
-        BigS = (S[0] - S[1])/(S[2] - S[3])
-        BigC = (C[0] - C[1])/(C[2] - C[3])
+        offset = 70 #Directional Coupler
 
-        CsFactor = 30
-        CpFactor = 30
-
-        Vs = (V/Vf)**2
-        print(Vs)
-
-        u = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigS)/((C[0] - C[1]) - (C[2] - C[3])*BigS)
-        v = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigC)/((S[0] - S[1]) - (S[2] - S[3])*BigC) 
-
-        EpsB = 2*v/((1+u)**2 + v**2)
-        EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
-        
-        print("Matching Errors:")
-        print(EpsB)
-        print(EpsG)
-
-        beta = -1.2*np.angle(Gamma) #yolo
-        #x = np.array([EpsG-*EpsB,EpsB])
-        x = np.array([np.cos(beta)*EpsG-np.sin(beta)*EpsB,np.sin(beta)*EpsG + np.cos(beta)*EpsB])
-        x = x/np.linalg.norm(x)
-        EpsG = SPFactor*x[0]
-        EpsB = SPFactor*x[1]
-
-        return EpsB,EpsG
-        
-    def ICListen2V(self):
-        data,addr = self.ICserver.recvfrom(256)
-        print("Received values:")
-        Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
-        print(Vmeas)
-        Pdbm = np.zeros(6)
-        
-        offset = 70
-        
-        Pdbm[0] = (Vmeas[3]-2.27324)/0.02492 + offset #V0
-        Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 + offset #V1
-        Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 + offset #V2
-        Pdbm[3] = (Vmeas[0]-2.339)/0.02475 + offset #V3
+        #The following needs to be modified
+        Pdbm[0] = (Vmeas[3]-2.27324)/0.02492 #V0
+        Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 #V1
+        Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 #V2
+        Pdbm[3] = (Vmeas[0]-2.339)/0.02475 #V3
         Pdbm[4] = (Vmeas[4]-2.2687)/0.02485 + offset #Vf
         Pdbm[5] = (Vmeas[5]-2.324)/0.0241 + offset #Vr
-        V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak, now V0,V1,V2,V3,Vf,Vr
-
+        V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
+        GPhase = Vmeas[6] #phase(Vf)-phase(Vr)
         Vf = V[4]
         Vr = V[5]
+        Gamma = Vr/Vf + 1j*GPhase
+        print(f"Gamma = {Gamma}")
+        
+        FREQ = float(self.FREQ_entr.get())*1e6
 
-        print(f"Gamma = {10**((Pdbm[5]-Pdbm[4])/10)}")
+        SPFactor = 4
+        StepConversionFactor = 1/10 #about 10 steps per pF
+
+        ######################################
+        #       Calculate modification       #
+        ######################################
+        EpsG, EpsB = ModAlgo3V(V,Vf,Vr,FREQ,0,1,3)
+
+        CsM = SPFactor*StepConversionFactor*EpsG
+        CpM = SPFactor*StepConversionFactor*EpsB
+
+        ######################################
+        #  Get current values of capacitors  #
+        ######################################
+        posStrs = self.Pos.split(" ")
+        for i in range(0, len(posStrs)):
+            if posStrs[i] == "P":
+                CpO = int(posStrs[i + 1].strip())
+            elif posStrs[i] == "S":
+                CsO = int(posStrs[i + 1].strip())
 
         ######################################
         # Calculate new values of Cs and Cp  #
         ######################################
+        CsN = CsO + CsM
+        CpN = CpO + CpM
 
-        MeasurePoints = np.array([2.35,1.69,0.895,0.235])
-        FREQ = float(self.FREQ_entr.get())*1e6
-        #constants:
-        beta = 2*np.pi*FREQ/(3*(10**8))
-        S = np.sin(2*beta*MeasurePoints) #array
-        C = np.cos(2*beta*MeasurePoints) #array
+        print(f"Cs becomes {CsN} and Cp becomes {CpN}")
 
-        CsFactor = 10
-        CpFactor = 10
-
-        Vs = (V/Vf)**2
-
-        EpsB = (V[3] - Vf)*S[2] - (V[2] - Vf)*S[3]
-        EpsG = (V[3] - Vf)*C[2] - (V[2] - Vf)*C[3]
-
-        x = np.array([EpsG,EpsB])
-        x = x/np.linalg.norm(x)
-        EpsG = -1*x[0]
-        EpsB = x[1]
-
-        print("Matching Errors:")
-        print(EpsB)
-        print(EpsG)
+        return CsN,CpN
         
-        if not self.SuggestedCpVal and not self.SuggestedCsVal:
-            posStrs = self.Pos.split(" ")
-            for i in range(0, len(posStrs)):
-                if posStrs[i] == "A":
-                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
-                if posStrs[i] == "P":
-                    self.SuggestedCpVal = str(posStrs[i + 1].strip())
-                elif posStrs[i] == "S":
-                    self.SuggestedCsVal = str(posStrs[i + 1].strip())
-                    print("before matching cs:")
-                    print(str(posStrs[i + 1].strip()))
-
-        self.SuggestedCpVal = str(int(float(self.SuggestedCpVal) +  CpFactor*EpsB))
-        self.SuggestedCsVal = str(int(float(self.SuggestedCsVal) +  CsFactor*EpsG))
-        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
-            bg="LightSteelBlue3").place(x=220,y=50)
-        self.top.update()
-        print("new suggested Cap values:")
-        print(f"Cs: {self.SuggestedCsVal} & Cp: {self.SuggestedCpVal}")
-
-
     def ICDataBaseLookup(self):
         print("Sorry, this doesn't work yet")
+
     def SuggestValues(self):
         if not Debug:
             SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
@@ -1063,106 +948,7 @@ class GUI(tk.Tk):
         self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
             bg="LightSteelBlue3").place(x=220,y=50)
         self.update()
- 
-    def V4ManualAlgo(self):
-        pF_ = 1e-12
-        MHz_ = 1e6
-
-        Vf = float(self.Algo_vf_entr.get())
-        Vr = float(self.Algo_vr_entr.get())
-        V0 = float(self.Algo_v0_entr.get())
-        V1 = float(self.Algo_v1_entr.get())
-        V2 = float(self.Algo_v2_entr.get())
-        V3 = float(self.Algo_v3_entr.get())
-        FREQ = self.FREQ_entr.get()
-        FREQ = MHz_*float(FREQ)
-        print(FREQ)
-
-        MeasurePoints = np.array([0.235,0.895,1.69,2.35])
-        V = np.zeros(len(MeasurePoints))
-
-        #constants:
-        beta = 2*np.pi*FREQ/(3*(10**8))
-        S = np.sin(2*beta*MeasurePoints) #array
-        C = np.cos(2*beta*MeasurePoints) #array
-        BigS = (S[0] - S[1])/(S[2] - S[3])
-        BigC = (C[0] - C[1])/(C[2] - C[3])
-
-        CsFactor = 100*pF_
-        CpFactor = 100*pF_
-
-        #Make array of voltages on the various points:
-        V[3] = V0
-        V[2] = V1
-        V[1] = V2
-        V[0] = V3
-
-        Vf = Vf
-        Vr = Vr
-
-        Gamma = np.abs(Vr/Vf)
-
-        Vs = (V/Vf)**2
-
-        u = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigS)/((C[0] - C[1]) - (C[2] - C[3])*BigS)
-        v = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigC)/((S[0] - S[1]) - (S[2] - S[3])*BigC) 
-
-        EpsB = 2*v/((1+u)**2 + v**2)
-        EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
-
-        print(f"Gamma = {Gamma}, the errors are:")
-        print(f"EpsG: {EpsG} and EpsB: {EpsB}")
-        print(f"So I suggest moving Cs by a multiple of {EpsG}")
-        print(f"And Cp by a multiple of {EpsB}")
-
-
-
-    def NelderMeadStart(self):
-        if not Debug:
-            SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
-            SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
-            self.SuggestedCpVal = SuggestedValues[1]/(1000-7)*(self.maxpos[1]-self.minpos[1]) + self.minpos[1]
-            self.SuggestedCsVal = SuggestedValues[2]/(1000-25)*(self.maxpos[2]-self.minpos[2]) + self.minpos[2]
-            self.SuggestedCaVal = SuggestedValues[3]/(1000-35)*(self.maxpos[3]-self.minpos[3]) + self.minpos[3]
-            bounds = ((self.minPos[1],self.maxPos[1]),(self.minPos[2],self.maxPos[2]))
-        else:
-            SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
-            SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
-            self.SuggestedCpVal = SuggestedValues[1]
-            self.SuggestedCsVal = SuggestedValues[2]
-            self.SuggestedCaVal = SuggestedValues[3]
-            bounds = ((7,1000),(25,1000))
-        self.update()
-        result = optimize.minimize(self.NelderMeadMinimizeableFunction, np.array([self.SuggestedCpVal,self.SuggestedCsVal]),method='Nelder-Mead',bounds=bounds,callback=self.NelderMeadCallBack)
-    def NelderMeadCallBack(self,intermediate_result):
-        if intermediate_result.fun <= 0.1:
-            print("Stopping")
-            raise StopIteration
-    def NelderMeadReset(self):
-        self.SuggestedCsVal = None
-        self.SuggestedCpVal = None
-        self.SuggestedCaVal = None
-    def NelderMeadMinimizeableFunction(self,CVals):
-        CpVal = CVals[0]
-        CsVal = CVals[1]
-        self.SuggestedCsVal = CsVal
-        self.SuggestedCpVal = CpVal
-        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
-            bg="LightSteelBlue3").place(x=320,y=50)
-
-        Gamma_lbl = tk.Label(self.top, text="Current Gamma:", bg="LightSteelBlue").place(x=100,y=150)
-        Gamma = tk.Entry(self.top, width=5)
-        Gamma.place(x=250,y=150)
-        tk.Button(self.top,text="Reset", font=('Mistral 18 bold'),command=self.NelderMeadReset).place(x=600,y=200)
-        button_pressed = tk.StringVar()
-        NextStepButton = tk.Button(self.top,text="Next Step",command=lambda: button_pressed.set("button pressed"))
-        NextStepButton.place(x=300,y=145)
-        NextStepButton.wait_variable(button_pressed)
-
-        return float(Gamma.get())
-
-
-
+    
     def scanCap(self):
 
         # Enable the IC function generator output
@@ -1509,7 +1295,6 @@ class GUI(tk.Tk):
         return ICfreqText
 
     def setICPower(self):
-        Pin = self.setICpower_entr.get()
         if len(Pin) == 0:
             print("Specify IC power")
             return
@@ -1934,10 +1719,11 @@ class GUI(tk.Tk):
                 toc = time.time()
             # print(str(toc - tic))
 
-    def operation(self):
-        doIC = self.OPDoIC.get()
-        doEC = self.OPDoEC.get()
-        doDAQ = self.OPDoDAQ.get()
+    def operation(self,doIC=None,doEC=None,doDAQ=None):
+        if not doDAQ: #Test if not called from matching system
+            doIC = self.OPDoIC.get()
+            doEC = self.OPDoEC.get()
+            doDAQ = self.OPDoDAQ.get()
 
         good = self.makeRoutine(doIC, doEC)
         if good == 0:
