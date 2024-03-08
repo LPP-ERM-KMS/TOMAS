@@ -118,7 +118,7 @@ def TemperatureFunction(T,Vd2,Vd3):
     bottom = 1 - np.exp(-Vd3/T) #T in eV
     return top/bottom - 0.5
 
-def DensityFunction(T,R,Vd2,GasType,Current,position):
+def DensityFunction(T,R,Vd2,GasType,Current,position,Orientation):
     if T < 0.1:
         return 0
 
@@ -126,7 +126,10 @@ def DensityFunction(T,R,Vd2,GasType,Current,position):
     c = 2.99792E8 #m/s
     B = 5.7E-5*Current*78/(78-position+26) #Tesla
 
-    A = (-0.96*B+13.96)*1E-6 #Zie TLP calibration van Johan
+    if Orientation == 1: #Vertical
+        A = 6.4*1E-6
+    else:
+        A = (-0.96*B+13.96)*1E-6 #Zie TLP calibration van Johan
 
     if GasType == 'H':
         m = 9.3895E8 #eV/c^2
@@ -149,6 +152,13 @@ def PScan(FolderLocation,probecount):
     if not FolderLocation:
         print("Error, no folder selected")
         sys.exit(0)
+
+    OrientationLabel = tk.Label(win, text="Current for Magnetic field:")
+    Orientation = tk.IntVar()
+    Vertical_btn = tk.Radiobutton(win, variable=Orientation, value=1,text="Vertical")
+    Horizontal_btn = tk.Radiobutton(win, variable=Orientation, value=2,text="Horizontal")
+    Vertical_btn.pack()
+    Horizontal_btn.pack()
 
     Current = tk.StringVar()
     CurrentLabel = tk.Label(win, text="Current for Magnetic field:")
@@ -202,7 +212,7 @@ def PScan(FolderLocation,probecount):
     R7_btn.pack()
     R8_btn.pack()
 
-    Plot_button = tk.Button(win, text="Plot", command=lambda: PlotProbes(GasType.get(),float(Current.get()),probecount,Resistor.get(),pathlist,float(TimeInterest.get()),float(Voltage.get()),np.arange(float(Start.get()),float(Stop.get())+float(StepSize.get()),float(StepSize.get()))))
+    Plot_button = tk.Button(win, text="Plot", command=lambda: PlotProbes(GasType.get(),float(Current.get()),probecount,Resistor.get(),pathlist,float(TimeInterest.get()),float(Voltage.get()),np.arange(float(Start.get()),float(Stop.get())+float(StepSize.get()),float(StepSize.get())),Orientation.get()))
     Plot_button.pack(pady=10)
     
     def GetProbeNames(ListboxSelection,probecount):
@@ -237,7 +247,7 @@ def PScan(FolderLocation,probecount):
             return tp1,tp2,tp3,tp4
 
 
-    def PlotProbes(GasType,Current,probecount,Resistor,pathlist,TimeInterest,SupplyVoltage,X):
+    def PlotProbes(GasType,Current,probecount,Resistor,pathlist,TimeInterest,SupplyVoltage,X,Orientation):
         if probecount == 2:
             T = []
             n = []
@@ -276,7 +286,7 @@ def PScan(FolderLocation,probecount):
                     Tfinal = optimize.newton(TemperatureFunction,x0=-1*TGuess,args=(-1*Tp1V,SupplyVoltage)) #temporary
                 T.append(Tfinal)
                 position = X[l]
-                n.append(DensityFunction(Tfinal,Resistor,Tp2V,GasType,Current,position))
+                n.append(DensityFunction(Tfinal,Resistor,Tp2V,GasType,Current,position,Orientation))
 
             T = np.array(T)
             n = np.array(n)
