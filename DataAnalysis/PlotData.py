@@ -119,7 +119,7 @@ def TemperatureFunction(T,Vd2,Vd3):
     return top/bottom - 0.5
 
 def DensityFunction(T,R,Vd2,GasType,Current,position):
-    if T == 0:
+    if T < 0.1:
         return 0
 
     e = 1.602176634E-19 #Coulomb
@@ -194,7 +194,7 @@ def PScan(FolderLocation,probecount):
     R5_btn = tk.Radiobutton(win, variable=Resistor, value=158,text="R5")
     R6_btn = tk.Radiobutton(win, variable=Resistor, value=750, text="R6")
     R7_btn = tk.Radiobutton(win, variable=Resistor, value=3300, text="R7")
-    R8_btn = tk.Radiobutton(win, variable=Resistor, value=3300, text="R8")
+    R8_btn = tk.Radiobutton(win, variable=Resistor, value=9200, text="R8")
 
     Up_btn.pack()
     R5_btn.pack()
