@@ -1,10 +1,12 @@
 # TOMAS DAQ data analysis 
 # An AA inc. product
 import os
+import re
 import sys
 import numpy as np              
 from pathlib import Path
 from scipy import spatial
+from scipy import optimize
 from lvm_read import read
 import matplotlib.pyplot as plt  
 from tkinter import filedialog as fd
@@ -110,37 +112,49 @@ def Convert(key,y,GasType):
         y = (y-1)*0.125*0.1
         unit = "mbar"
     return unit,y 
-    
-def PScan(FolderLocation,number):
+
+def TemperatureFunction(T,Vd2,Vd3):
+    top = 1 - np.exp(-Vd2/T) #T in eV
+    bottom = 1 - np.exp(-Vd3/T) #T in eV
+    return top/bottom - 0.5
+
+def DensityFunction(T,R,Vd2,GasType,Current,position):
+    if T == 0:
+        return 0
+
+    e = 1.602176634E-19 #Coulomb
+    c = 2.99792E8 #m/s
+    B = 5.7E-5*Current*78/(78-position+26) #Tesla
+
+    A = (-0.96*B+13.96)*1E-6 #Zie TLP calibration van Johan
+
+    if GasType == 'H':
+        m = 9.3895E8 #eV/c^2
+    elif GasType == 'He':
+        m = 3.7284E9 #eV/c^2
+    elif GasType == 'D':
+        m = 2*9.3895E8 #eV/c^2
+
+    top = (Vd2/R)*np.exp(-Vd2/T)
+    bottom = np.exp(-1/2)*c*e*A*np.sqrt(T/m)*(1-np.exp(-Vd2/T))
+    return top/bottom
+
+def PScan(FolderLocation,probecount):
     pathlist = Path(FolderLocation).rglob('*.LVM')
     Foldername=FolderLocation.split('/')[-1]
     win = tk.Toplevel()
-    win.wm_title("Triple probe scan evaluation")
-    # Create a listbox
-    select_TP1_LABEL = tk.Label(win, text="Select TP1 and TP2")
-    select_TP1_LABEL.pack()
+    if probecount == 2 or probecount == 3:
+        win.wm_title("Triple probe scan evaluation")
 
-    listbox = Listbox(win, width=40, height=10, selectmode=MULTIPLE)
-    # Inserting the listbox items
     if not FolderLocation:
         print("Error, no folder selected")
         sys.exit(0)
 
-    i = 0
-    for x in pathlist:
-        path = x
-        if i != 0:
-            continue
-        i+=1 #Please don't ask
-
-    data = read(path)
-    keys = data[0]['Channel names']
-    for i,key in enumerate(keys):
-        if key=="X_Value" or key=="Comment":
-                continue
-        listbox.insert(i, key)
-
-    listbox.pack()
+    Current = tk.StringVar()
+    CurrentLabel = tk.Label(win, text="Current for Magnetic field:")
+    CurrentEntry = tk.Entry(win, textvariable=Current)
+    CurrentLabel.pack()
+    CurrentEntry.pack()
 
     Voltage = tk.StringVar()
     VoltageLabel = tk.Label(win, text="Supply Voltage:")
@@ -148,24 +162,153 @@ def PScan(FolderLocation,number):
     VoltageLabel.pack()
     VoltageEntry.pack()
 
+    TimeInterest = tk.StringVar()
+    TimeLabel = tk.Label(win, text="Time of interest (-1 for the end)")
+    TimeEntry = tk.Entry(win, textvariable=TimeInterest)
+    TimeLabel.pack()
+    TimeEntry.pack()
+
+    Start = tk.StringVar()
+    StartLabel = tk.Label(win, text="Start position (cm)")
+    StartEntry = tk.Entry(win, textvariable=Start)
+    StartLabel.pack()
+    StartEntry.pack()
+
+    StepSize = tk.StringVar()
+    StepSizeLabel = tk.Label(win, text="Step size (cm)")
+    StepSizeEntry = tk.Entry(win, textvariable=StepSize)
+    StepSizeLabel.pack()
+    StepSizeEntry.pack()
+
+    Stop = tk.StringVar()
+    StopLabel = tk.Label(win, text="Stop position (cm)")
+    StopEntry = tk.Entry(win, textvariable=Stop)
+    StopLabel.pack()
+    StopEntry.pack()
+
     VoltageLabel = tk.Label(win, text="Circuit structure:")
-    VoltageEntry = tk.Entry(win, textvariable=Voltage)
     VoltageLabel.pack()
-    VoltageEntry.pack()
 
-    self.ContinuousOrPulsed = tk.IntVar()
-    self.MatchContinuous_btn = tk.Radiobutton(self.scan_frm, variable=self.ContinuousOrPulsed, value=1,text="Continuous EC",
-    self.MatchPulsed_btn = tk.Radiobutton(self.scan_frm, variable=self.ContinuousOrPulsed, value=2, text="Pulsed EC",
+    Resistor= tk.IntVar()
+    Up_btn = tk.Radiobutton(win, variable=Resistor, value=0,text="Up3-Up2-U2")
+    R5_btn = tk.Radiobutton(win, variable=Resistor, value=158,text="R5")
+    R6_btn = tk.Radiobutton(win, variable=Resistor, value=750, text="R6")
+    R7_btn = tk.Radiobutton(win, variable=Resistor, value=3300, text="R7")
+    R8_btn = tk.Radiobutton(win, variable=Resistor, value=3300, text="R8")
+
+    Up_btn.pack()
+    R5_btn.pack()
+    R6_btn.pack()
+    R7_btn.pack()
+    R8_btn.pack()
+
+    Plot_button = tk.Button(win, text="Plot", command=lambda: PlotProbes(GasType.get(),float(Current.get()),probecount,Resistor.get(),pathlist,float(TimeInterest.get()),float(Voltage.get()),np.arange(float(Start.get()),float(Stop.get())+float(StepSize.get()),float(StepSize.get()))))
+    Plot_button.pack(pady=10)
+    
+    def GetProbeNames(ListboxSelection,probecount):
+        Pselection = []
+        for i in ListboxSelection:
+            if probecount == 2:
+                if re.findall(r'\d+',listbox.get(i)) == ['1']:
+                    tp1 = probelistbox.get(i)
+                else:
+                    tp2 = probelistbox.get(i)
+            elif probecount == 3:
+                if re.findall(r'\d+',listbox.get(i)) == ['1']:
+                    tp1 = probelistbox.get(i)
+                elif re.findall(r'\d+',listbox.get(i)) == ['2']:
+                    tp2 = probelistbox.get(i)
+                else:
+                    tp3 = probelistbox.get(i)
+            elif probecount == 4:
+                if re.findall(r'\d+',listbox.get(i)) == ['1']:
+                    tp1 = probelistbox.get(i)
+                elif re.findall(r'\d+',listbox.get(i)) == ['2']:
+                    tp2 = probelistbox.get(i)
+                elif re.findall(r'\d+',listbox.get(i)) == ['3']:
+                    tp3 = probelistbox.get(i)
+                else:
+                    tp4 = probelistbox.get(i)
+        if probecount == 2:
+            return tp1,tp2
+        elif probecount == 3:
+            return tp1,tp2,tp3
+        elif probecount == 4:
+            return tp1,tp2,tp3,tp4
 
 
-    for path in pathlist:
-        # because path is object not string
-        path_in_str = str(path)   
-        filename = path_in_str.split('/')[-1][:-4]
-        data = read(path)
-        fieldnames = data[0]['Channel names']
-        FieldnameList =[str(fieldname) for fieldname in fieldnames]
+    def PlotProbes(GasType,Current,probecount,Resistor,pathlist,TimeInterest,SupplyVoltage,X):
+        if probecount == 2:
+            T = []
+            n = []
+            numbers = []
+            for l,path in enumerate(pathlist):
+                path_in_str = str(path)   
+                filename = path_in_str.split('/')[-1][:-4]
+                number = filename.split('_')[-1]
+                numbers.append(int(number))
 
+                data = read(path)
+                i = np.where('TP1' == np.array(data[0]['Channel names']))
+                x = data[0]['data'][:,0]
+                k = np.abs(TimeInterest - x).argmin()
+                kBeginAvg = np.abs(TimeInterest - 0.1 - x).argmin()
+                if TimeInterest == -1:
+                    Tp1V = 5*float(data[0]['data'][-1,i][0]) #5 because of recent remap
+                else:
+                    kEndAvg = np.abs(TimeInterest + 0.1 - x).argmin()
+                    Tp1V = 5*float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,i])/(kEndAvg-kBeginAvg)) 
+                    
+
+                j = np.where('TP2' == np.array(data[0]['Channel names']))
+                x_ = data[0]['data'][:,0]
+                k = np.abs(TimeInterest - x_).argmin()
+                kBeginAvg = np.abs(TimeInterest - 0.1 - x_).argmin() 
+                if TimeInterest == -1:
+                    Tp2V = data[0]['data'][-1,j]
+                else:
+                    kEndAvg = np.abs(TimeInterest + 0.1 - x_).argmin()#average over 0.2s
+                    Tp2V = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,j])/(kEndAvg-kBeginAvg))
+                TGuess = Tp1V/np.log(2)
+                if TGuess > 0:
+                    Tfinal = 0
+                else:
+                    Tfinal = optimize.newton(TemperatureFunction,x0=-1*TGuess,args=(-1*Tp1V,SupplyVoltage)) #temporary
+                T.append(Tfinal)
+                position = X[l]
+                n.append(DensityFunction(Tfinal,Resistor,Tp2V,GasType,Current,position))
+
+            T = np.array(T)
+            n = np.array(n)
+            #Check if mostly negative or positive
+            if len(np.where(T < 0)[0]) > len(np.where(T > 0)[0]):
+                T = -1*T
+            T[np.where(T<0)[0]] = 0 #set others to zero
+            sortednumbers = sorted(numbers)
+            CorrectedT = np.zeros(len(T))
+            for i,number in enumerate(sortednumbers):
+                #index of old list
+                j = np.where(number == np.array(numbers))[0][0]
+                CorrectedT[i] = T[j]
+            Correctedn = np.zeros(len(n))
+            for i,number in enumerate(sortednumbers):
+                #index of old list
+                j = np.where(number == np.array(numbers))[0][0]
+                Correctedn[i] = n[j]
+
+
+            plt.plot(X,CorrectedT)
+            plt.xlabel("position (cm)")
+            plt.ylabel("Temperature (eV)")
+            plt.show()
+
+            plt.plot(X,Correctedn)
+            plt.xlabel("position (cm)")
+            plt.ylabel(r"Density ($\frac{particles}{m^3}$)")
+            plt.show()
+
+
+    
 def ConvertFolder(FolderLocation,convert,GasType):
     pathlist = Path(FolderLocation).rglob('*.LVM')
     Foldername=FolderLocation.split('/')[-1]
@@ -237,9 +380,9 @@ selected_file_ch1_label = tk.Label(root, text="Gas type:")
 selected_file_ch1_label.pack(in_=top)
 
 choices = ['H','D', 'He','Ar']
-variable = StringVar(root)
-variable.set('H')
-w = OptionMenu(root, variable, *choices)
+GasType = StringVar(root)
+GasType.set('H')
+w = OptionMenu(root, GasType, *choices)
 w.pack(in_=top)
 
 open_button = tk.Button(root, text="DAQ file", command=open_Ch0_file_dialog)
@@ -250,9 +393,9 @@ open_button.pack(in_=top)
 selected_file_ch0_label = tk.Label(root, text="Selected File:")
 selected_file_ch0_label.pack(in_=top)
     
-PlotVoltages_button = tk.Button(root, text="Plot voltages", command= lambda: SelectSignals(ch0filepath,False,variable.get()))
+PlotVoltages_button = tk.Button(root, text="Plot voltages", command= lambda: SelectSignals(ch0filepath,False,GasType.get()))
 
-PlotSignals_button = tk.Button(root, text="Plot Signals", command= lambda: SelectSignals(ch0filepath,True,variable.get()))
+PlotSignals_button = tk.Button(root, text="Plot Signals", command= lambda: SelectSignals(ch0filepath,True,GasType.get()))
 
 PlotVoltages_button.pack(pady=10,in_=top, side=LEFT,fill="none",expand=True)
 PlotSignals_button.pack(pady=10,in_=top, side=LEFT,fill="none",expand=True)
@@ -276,10 +419,10 @@ exportw.pack(pady=10,in_=bottom)
 select_export = tk.Label(root, text="In the form of:")
 select_export.pack(in_=bottom)
 
-export_V_button = tk.Button(root, text="Voltages", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
+export_V_button = tk.Button(root, text="Voltages", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),GasType.get()))
 export_V_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
 
-export_S_button = tk.Button(root, text="Signals 🚧", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),variable.get()))
+export_S_button = tk.Button(root, text="Signals 🚧", command= lambda: ConvertFolder(ch1filepath,exportvariable.get(),GasType.get()))
 export_S_button.pack(pady=10,in_=bottom,side=LEFT,fill="none",expand=True)
 
 select_export = tk.Label(root, text="Probe scan analysis")
