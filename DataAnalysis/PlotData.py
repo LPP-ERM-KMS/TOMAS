@@ -148,6 +148,8 @@ def PScan(FolderLocation,probecount):
     win = tk.Toplevel()
     if probecount == 2 or probecount == 3:
         win.wm_title("Triple probe scan evaluation")
+    if probecount == 4:
+        win.wm_title("Quadruple probe scan evaluation")
 
     if not FolderLocation:
         print("Error, no folder selected")
