@@ -4,7 +4,7 @@ A prototypical program able to view DAQ files and it's corresponding quantities 
 It's also able to convert LVM files in a folder to both CSV and mat formats.
 A quick demo is shown below:
 
-https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/711fd172-c898-4e78-98fb-bf01928a915f
+https://github.com/LPP-ERM-KMS/TOMAS/assets/66306556/e85db991-f8f5-4ba5-b31e-944a3c9ea37e
 
 more features will be added such as:
 
