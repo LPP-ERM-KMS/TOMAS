@@ -261,18 +261,18 @@ def PScan(FolderLocation,probecount):
                 numbers.append(int(number))
 
                 data = read(path)
-                i = np.where('TP1' == np.array(data[0]['Channel names']))
+                i = np.where('TP1' == np.array(data[0]['Channel names']) or 'TP_1' == np.array(data[0]['Channel names']))
                 x = data[0]['data'][:,0]
                 k = np.abs(TimeInterest - x).argmin()
                 kBeginAvg = np.abs(TimeInterest - 0.1 - x).argmin()
                 if TimeInterest == -1:
-                    Tp1V = 5*float(data[0]['data'][-1,i][0]) #5 because of recent remap
+                    Tp1V = 5*float(data[0]['data'][-1,i][0]) #5 because otherwise saturation
                 else:
                     kEndAvg = np.abs(TimeInterest + 0.1 - x).argmin()
                     Tp1V = 5*float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,i])/(kEndAvg-kBeginAvg)) 
                     
 
-                j = np.where('TP2' == np.array(data[0]['Channel names']))
+                j = np.where('TP2' == np.array(data[0]['Channel names']) or 'TP_2' == np.array(data[0]['Channel names']))
                 x_ = data[0]['data'][:,0]
                 k = np.abs(TimeInterest - x_).argmin()
                 kBeginAvg = np.abs(TimeInterest - 0.1 - x_).argmin() 
@@ -285,7 +285,7 @@ def PScan(FolderLocation,probecount):
                 if TGuess > 0:
                     Tfinal = 0
                 else:
-                    Tfinal = optimize.newton(TemperatureFunction,x0=-1*TGuess,args=(-1*Tp1V,SupplyVoltage)) #temporary
+                    Tfinal = optimize.newton(TemperatureFunction,x0=abs(TGuess),args=(abs(Tp1V),SupplyVoltage)) #temporary
                 T.append(Tfinal)
                 position = X[l]
                 n.append(DensityFunction(Tfinal,Resistor,Tp2V,GasType,Current,position,Orientation))
