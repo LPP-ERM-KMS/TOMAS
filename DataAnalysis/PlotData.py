@@ -119,7 +119,7 @@ def TemperatureFunction(T,Vd2,Vd3):
     return top/bottom - 0.5
 
 def DensityFunction(T,R,Vd2,GasType,Current,position,Orientation):
-    if T < 0.1:
+    if T < 0.01:
         return 0
 
     e = 1.602176634E-19 #Coulomb
@@ -208,11 +208,14 @@ def PScan(FolderLocation,probecount):
     R7_btn = tk.Radiobutton(win, variable=Resistor, value=3300, text="R7")
     R8_btn = tk.Radiobutton(win, variable=Resistor, value=9200, text="R8")
 
+    RC_btn = tk.Radiobutton(win, variable=Resistor, value=909, text="900")
+
     Up_btn.pack()
     R5_btn.pack()
     R6_btn.pack()
     R7_btn.pack()
     R8_btn.pack()
+    RC_btn.pack()
 
     Plot_button = tk.Button(win, text="Plot", command=lambda: PlotProbes(GasType.get(),float(Current.get()),probecount,Resistor.get(),pathlist,float(TimeInterest.get()),float(Voltage.get()),np.arange(float(Start.get()),float(Stop.get())+float(StepSize.get()),float(StepSize.get())),Orientation.get()))
     Plot_button.pack(pady=10)
@@ -261,7 +264,11 @@ def PScan(FolderLocation,probecount):
                 numbers.append(int(number))
 
                 data = read(path)
-                i = np.where('TP1' == np.array(data[0]['Channel names']) or 'TP_1' == np.array(data[0]['Channel names']))
+                try: 
+                    i = int(np.where('TP2' == np.array(data[0]['Channel names']))[0][0])
+                except:
+                    i = int(np.where('TP_1' == np.array(data[0]['Channel names']))[0][0])
+
                 x = data[0]['data'][:,0]
                 k = np.abs(TimeInterest - x).argmin()
                 kBeginAvg = np.abs(TimeInterest - 0.1 - x).argmin()
@@ -272,7 +279,11 @@ def PScan(FolderLocation,probecount):
                     Tp1V = 5*float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,i])/(kEndAvg-kBeginAvg)) 
                     
 
-                j = np.where('TP2' == np.array(data[0]['Channel names']) or 'TP_2' == np.array(data[0]['Channel names']))
+                try: 
+                    j = int(np.where('TP2' == np.array(data[0]['Channel names']))[0][0])
+                except: 
+                    j = int(np.where('TP_1' == np.array(data[0]['Channel names']))[0][0])
+
                 x_ = data[0]['data'][:,0]
                 k = np.abs(TimeInterest - x_).argmin()
                 kBeginAvg = np.abs(TimeInterest - 0.1 - x_).argmin() 
@@ -285,7 +296,7 @@ def PScan(FolderLocation,probecount):
                 if TGuess > 0:
                     Tfinal = 0
                 else:
-                    Tfinal = optimize.newton(TemperatureFunction,x0=abs(TGuess),args=(abs(Tp1V),SupplyVoltage)) #temporary
+                    Tfinal = optimize.newton(TemperatureFunction,x0=abs(TGuess),args=(abs(Tp1V),SupplyVoltage))
                 T.append(Tfinal)
                 position = X[l]
                 n.append(DensityFunction(Tfinal,Resistor,Tp2V,GasType,Current,position,Orientation))
