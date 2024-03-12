@@ -118,7 +118,7 @@ def TemperatureFunction(T,Vd2,Vd3):
     bottom = 1 - np.exp(-Vd3/T) #T in eV
     return top/bottom - 0.5
 
-def DensityFunction(T,R,Vd2,GasType,Current,position,Orientation):
+def DensityFunction(T,R,TP1,TP2,GasType,Current,position,Orientation):
     if T < 0.01:
         return 0
 
@@ -138,8 +138,8 @@ def DensityFunction(T,R,Vd2,GasType,Current,position,Orientation):
     elif GasType == 'D':
         m = 2*9.3895E8 #eV/c^2
 
-    top = (Vd2/R)*np.exp(-Vd2/T)
-    bottom = np.exp(-1/2)*c*e*A*np.sqrt(T/m)*(1-np.exp(-Vd2/T))
+    top = (TP2/R)*np.exp(-TP1/T)
+    bottom = np.exp(-1/2)*c*e*A*np.sqrt(T/m)*(1-np.exp(-TP1/T))
     return top/bottom
 
 def PScan(FolderLocation,probecount):
@@ -299,7 +299,7 @@ def PScan(FolderLocation,probecount):
                     Tfinal = optimize.newton(TemperatureFunction,x0=abs(TGuess),args=(abs(Tp1V),SupplyVoltage))
                 T.append(Tfinal)
                 position = X[l]
-                n.append(DensityFunction(Tfinal,Resistor,Tp2V,GasType,Current,position,Orientation))
+                n.append(DensityFunction(Tfinal,Resistor,Tp1V,Tp2V,GasType,Current,position,Orientation))
 
             T = np.array(T)
             n = np.array(n)
