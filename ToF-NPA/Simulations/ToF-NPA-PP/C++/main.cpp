@@ -60,7 +60,7 @@ int main() {
     double P = 1e-9; //bar
     double r = 0.035;
     double h = 3;
-    int sections = 10000; //divy up in sections with prob P, total passing prob is then p**sections
+    int sections = 100; //divy up in sections with prob P, total passing prob is then p**sections
     double V = M_PI * r * r * h / sections;
     double T = 300.0;
     int hits = 0, misses = 0;
@@ -88,10 +88,12 @@ int main() {
     cout << "Hits: " << hits << endl;
     cout << "Misses: " << misses << endl;
 
-    double PassingProbabilitySection = hits/misses;
+    misses = 1;
+
+    double PassingProbabilitySection = hits/(hits+misses);
     double PassingProbability = pow(PassingProbabilitySection,sections);
 
-    cout << "Passing Probability: " << misses << endl;
+    cout << "Passing Probability: " << PassingProbability << endl;
 
     return 0;
 }
