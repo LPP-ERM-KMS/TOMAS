@@ -6,3 +6,7 @@
 6. Reflected power new setup: -20dbm to -2dbm 25MHz
 7. Reflected power new setup: -20dbm to -2dbm 35MHz
 8. Reflected power new setup: -20dbm to -2dbm 45MHz
+9. ICV3 scan -30dbm to -2dbm 25MHz
+10. ICV2 scan -30dbm to -2dbm 25MHz
+11. ICV1 scan -30dbm to -2dbm 25MHz
+12. ICV0 scan -30dbm to -2dbm 25MHz
