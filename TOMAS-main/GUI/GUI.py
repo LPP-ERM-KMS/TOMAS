@@ -1,5 +1,6 @@
 import tkinter as tk
 import threading #making tk not freeze when moving probe
+import pyRFtk
 import serial
 import socket
 import time
@@ -830,7 +831,6 @@ class GUI(tk.Tk):
         #######################################
         #          Configure RF Output        #
         #######################################
-
         if not pulsed:
             self.ECout = 1
             ECswitch() #Turn on EC
@@ -876,16 +876,19 @@ class GUI(tk.Tk):
         Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
         print(Vmeas)
         Pdbm = np.zeros(6)
-        
-        offset = 70 #Directional Coupler
 
+        V0SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V0.s3p')
+        V1SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V1.s3p')
+        V2SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V2.s3p')
+        V3SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V3.s3p')
+        
         #The following needs to be modified
-        Pdbm[0] = (Vmeas[3]-2.27324)/0.02492 #V0
-        Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 #V1
-        Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 #V2
-        Pdbm[3] = (Vmeas[0]-2.339)/0.02475 #V3
-        Pdbm[4] = (Vmeas[4]-2.2687)/0.02485 + offset #Vf
-        Pdbm[5] = (Vmeas[5]-2.324)/0.0241 + offset #Vr
+        Pdbm[0] = (Vmeas[3]-2.27324)/0.02492 - V0SMatrix.getS(Freq)[:,0,2] #V0
+        Pdbm[1] = (Vmeas[2]-2.3545)/0.02475 - V1SMatrix.getS(Freq)[:,0,2]#V1
+        Pdbm[2] = (Vmeas[1]-2.34188)/0.02444 - V2SMatrix.getS(Freq)[:,0,2]#V2
+        Pdbm[3] = (Vmeas[0]-2.339)/0.02475 - V3SMatrix.getS(Freq)[:,0,2]#V3
+        Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Vf
+        Pdbm[5] = (Vmeas[5]-2.253668)/0.02488522 + 70 #Vr
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
         GPhase = Vmeas[6] #phase(Vf)-phase(Vr)
         Vf = V[4]

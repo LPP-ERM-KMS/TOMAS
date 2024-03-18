@@ -94,10 +94,10 @@ def Convert(key,y,GasType):
         y *= 600
         unit = "Watts"
     if key == "ICF":
-        y = 10**(((y/0.02485 - 91.29577) + 70)/10 - 3)
+        y = 10**(((y - 2.196569)/0.0257915 + 70)/10 - 3) #Using 35MHz calibration
         unit = "Watts"
     if key == "ICR":
-        y = 10**(((y/0.0241 - 96.43154) + 70)/10 - 3)
+        y = 10**(((y-2.188172)/0.02554517 + 70)/10 - 3)
         unit = "Watts"
     if key == "Penning":
         y = 10**((y*1.25) - 9.75)/1000
