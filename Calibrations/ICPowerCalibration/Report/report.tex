@@ -5,11 +5,13 @@
 \usepackage{graphicx}
 
 \title{IC Calibration}
+\author{Arthur Adriaens}
 
 \begin{document}
 \maketitle
 
 \section{Setup}
+\begin{figure}
 \includegraphics[width=\textwidth]{setup.pdf}
 \caption{The new setup splits the signals of the forward and reflected in two, using one side to measure power and the other side to measure the phase}
 \end{figure}
@@ -120,14 +122,14 @@ So the power we get from the voltage is:
 \end{eqnarray}
 \end{center}
 \subsection{ICV0-3}
-ICV3
 \begin{tabular}{||c c c c c c c||}
  \hline
  Signal & a & error on a (\%) & b & error on b (\%) & $\omega$ & $t_{fin}$\\ [0.5ex]
  \hline\hline
- ICF & 0.459813&  0.039 & 0.595329 & 0.051 & 18 & 3.353\\
- ICR & 0.446204&  0.09459& 0.935934& 0.1042& 18 & 2.822\\
+ ICV3 & 0.707133&  0.04609 & 0.328061 & 0.2369 & 28 & 2.764\\
+ ICV2& 0.706039&  0.02707 & -0.138149 & 0.4025 & 28 & 3.4346\\
+ ICV1& 0.702135&  0.02917 & 0.576769 & 0.06987 & 28 & 2.4675\\
+ ICV0& 0.694397&  0.03 & 0.123464 & 0.4494 & 28 & 3.1335\\
  \hline
 \end{tabular}
-
 \end{document}

@@ -1,4 +1,4 @@
-PWD /home/arthur/Universiteit/PhD/Projecten/Extra/ICCal/Report
+PWD /home/arthur/Universiteit/PhD/Projects/TOMAS/Calibrations/ICPowerCalibration/Report
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT report.tex
