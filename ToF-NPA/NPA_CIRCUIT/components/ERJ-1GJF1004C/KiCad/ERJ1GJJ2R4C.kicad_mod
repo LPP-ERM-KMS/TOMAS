@@ -1,0 +1,224 @@
+(footprint "ERJ1GJJ2R4C"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "ERJ1G_1023")
+	(tags "Resistor")
+	(property "Reference" "R**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "9a7a07dd-810c-4875-8ea9-f45b94b57d3c")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "ERJ1GJJ2R4C"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "f2c9794f-3bb1-4f3e-be61-b7a59c495ac9")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "70e162ea-5099-4fff-b0e5-76f753343688")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ed83a74a-c548-4e5d-ae04-9bdb068edb0a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "03c4a3e2-caf3-4887-b434-fff11e7f5b5e")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -0.675 -0.025)
+		(end -0.675 -0.025)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c0a3a0ef-de3d-4bf3-af81-2f4185e7e8cc")
+	)
+	(fp_line
+		(start -0.675 0.025)
+		(end -0.675 0.025)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e0794205-5c36-4a12-b119-9c4d5aa2218b")
+	)
+	(fp_arc
+		(start -0.675 -0.025)
+		(mid -0.65 0)
+		(end -0.675 0.025)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "9c3c25e5-7aed-44b8-864e-136c300bc862")
+	)
+	(fp_arc
+		(start -0.675 0.025)
+		(mid -0.7 0)
+		(end -0.675 -0.025)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "694c7ea6-b461-4fec-b945-3cc00553c501")
+	)
+	(fp_line
+		(start -0.975 -0.45)
+		(end 0.975 -0.45)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d3f41237-1d7f-4d53-8e7a-09694ee39b16")
+	)
+	(fp_line
+		(start -0.975 0.45)
+		(end -0.975 -0.45)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "0228ab2d-7f56-4e61-a65e-084466871325")
+	)
+	(fp_line
+		(start 0.975 -0.45)
+		(end 0.975 0.45)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "caa83f4a-f7dc-4b86-8e37-104e9ef18b92")
+	)
+	(fp_line
+		(start 0.975 0.45)
+		(end -0.975 0.45)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "60659416-0c24-47bf-a6d1-a155e21ed6de")
+	)
+	(fp_line
+		(start -0.3 -0.15)
+		(end 0.3 -0.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c51d5915-e74b-4f82-a16b-3cfca8a415bc")
+	)
+	(fp_line
+		(start -0.3 0.15)
+		(end -0.3 -0.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "d4dc627d-494c-446a-8781-8016acc65982")
+	)
+	(fp_line
+		(start 0.3 -0.15)
+		(end 0.3 0.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "a9ba6abc-819a-468f-89cc-024fecc3dd47")
+	)
+	(fp_line
+		(start 0.3 0.15)
+		(end -0.3 0.15)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c651fedf-6440-4493-b6b7-eac44b4d8075")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "137ff30f-a82f-4f07-bf4a-954057c5f77c")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -0.313 0)
+		(size 0.275 0.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "d745ae87-9940-429a-8b34-6d8c84c4f56a")
+	)
+	(pad "2" smd rect
+		(at 0.313 0)
+		(size 0.275 0.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "e72618c2-3c83-4aff-9998-3358452dadd7")
+	)
+	(model "/home/arthur/Universiteit/PhD/Projects/TOMAS/ToF-NPA/NPA_CIRCUIT/components/ERJ-1GJF1004C/3D/ERJ-1GJF1004C.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

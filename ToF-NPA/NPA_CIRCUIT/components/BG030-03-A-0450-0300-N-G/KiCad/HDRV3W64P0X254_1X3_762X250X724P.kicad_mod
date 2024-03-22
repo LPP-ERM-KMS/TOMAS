@@ -1,0 +1,234 @@
+(footprint "HDRV3W64P0X254_1X3_762X250X724P"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "BG030-03-A-0450-0300-N-G")
+	(tags "Connector")
+	(property "Reference" "J**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "18213028-35d2-4f8d-955c-81196f256c50")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "HDRV3W64P0X254_1X3_762X250X724P"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "24739ef6-49c3-40f5-86f3-6c28476c8782")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b74b393c-c99e-4c0c-a385-6f45dbe77689")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "44a5596a-c6d9-4203-8737-770cb1126e6a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8569fa29-d6b8-433b-8e62-1726323bdfba")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -1.46 0)
+		(end -1.46 1.325)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "95eaf257-64ba-4f48-87e3-b6b06d5eea58")
+	)
+	(fp_line
+		(start -1.46 1.325)
+		(end 6.54 1.325)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "83f41a8b-4000-434c-9803-8828eb3a5cb2")
+	)
+	(fp_line
+		(start 6.54 -1.325)
+		(end 0 -1.325)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "73ba8952-9749-4306-b8ae-fb1a8a5ad228")
+	)
+	(fp_line
+		(start 6.54 1.325)
+		(end 6.54 -1.325)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "39112ad2-9ac4-44f6-957b-88a00c2f91ed")
+	)
+	(fp_line
+		(start -1.71 -1.575)
+		(end 6.79 -1.575)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "0ff48105-9578-49ed-8cb1-3bc36e971ee4")
+	)
+	(fp_line
+		(start -1.71 1.575)
+		(end -1.71 -1.575)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7157573e-7eaa-43d4-807a-af15bac08bfb")
+	)
+	(fp_line
+		(start 6.79 -1.575)
+		(end 6.79 1.575)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "6ee55699-da1c-421a-808a-2546c5755bdd")
+	)
+	(fp_line
+		(start 6.79 1.575)
+		(end -1.71 1.575)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d59d50fc-800f-4381-b3b8-1cdbd3297c9c")
+	)
+	(fp_line
+		(start -1.46 -1.325)
+		(end 6.54 -1.325)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7a2ea8e3-2383-4431-999b-e42e3612c1e6")
+	)
+	(fp_line
+		(start -1.46 1.325)
+		(end -1.46 -1.325)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4144b398-ddd8-49c7-a07e-a33d4599f2c1")
+	)
+	(fp_line
+		(start 6.54 -1.325)
+		(end 6.54 1.325)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c0da5504-2ebe-4de3-871e-fd912755a999")
+	)
+	(fp_line
+		(start 6.54 1.325)
+		(end -1.46 1.325)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "e14c5e27-844b-4787-bc5d-ea691b4f8e56")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "b262d210-4e05-499a-9de3-076e710c2b89")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 1.65 1.65)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7143cf75-29f3-44fe-801a-bfeaaa55e65a")
+	)
+	(pad "2" thru_hole circle
+		(at 2.54 0)
+		(size 1.65 1.65)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "99040c32-fb50-4f39-8ede-c65477b69bda")
+	)
+	(pad "3" thru_hole circle
+		(at 5.08 0)
+		(size 1.65 1.65)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "8f371b3b-f91a-4cfb-8ea8-480ee8047500")
+	)
+	(model "/home/arthur/Universiteit/PhD/Projects/TOMAS/ToF-NPA/NPA_CIRCUIT/components/BG030-03-A-0450-0300-N-G/3D/BG030-03-A-0450-0300-N-G.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "KAF32LR71E106KU"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2024-03-21-12:12:34)
+    (mountForm default
+        (footprintRef "CAPC3325X280N")
+        (spec "System")
+    )
+)

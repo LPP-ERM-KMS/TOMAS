@@ -1,0 +1,9 @@
+Manufacturer=GCT (GLOBAL CONNECTOR TECHNOLOGY)
+PartNumber=BG030-03-A-0450-0300-N-G
+PartCategory=Connector
+PackageCategory=Header, Vertical
+PinCount=3
+Version=1.1
+Released=2024-01-10 15:05:50
+Downloaded=2024-03-22 11:06:11
+3D=Y

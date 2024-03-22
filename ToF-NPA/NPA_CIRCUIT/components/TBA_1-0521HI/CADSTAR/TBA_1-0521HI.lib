@@ -1,0 +1,16 @@
+.TBA_1-0521HI :1 ;1 Watt DC/DC converter, industrial, +/-10% input, short circuit protection, 3000 VDC isolation, unregulated, encapsulated, SIP-7
+TBA10521HI
+*STM PS
+*NGS
+*PLB 1=" +VIN (VCC) " 2="-VIN (GND)" 5="-VOUT" 6="COMMON" 7=" +VOUT"
+*MXP 5
+*DFN TBA_1-0521HI
+~!Mouser Part Number (495-TBA1-0521HI)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/TRACO-Power/TBA-1-0521HI?qs=byeeYqUIh0Of75fD26t9jw%3D%3D)
+~!Manufacturer_Name (Traco Power)
+~!Manufacturer_Part_Number (TBA 1-0521HI)
+~!Link Datasheet (https://tracopower.com/tba1hi-datasheet/)
+~!Height (9.85mm)
+~!3D_Model (TBA_1-0521HI)
+TBA_1-0521HI
+1.1!U 2.1!U 5.1!U 6.1!U 7.1!U 

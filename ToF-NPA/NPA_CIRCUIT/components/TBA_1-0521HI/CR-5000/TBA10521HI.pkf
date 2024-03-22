@@ -1,0 +1,10 @@
+(unit MM)
+
+(package "TBA10521HI"
+    (type UNDEF)
+    (uver 2)
+    (mountForm default
+        (footprintRef "TBA10521HI")
+        (spec "default")
+    )
+)

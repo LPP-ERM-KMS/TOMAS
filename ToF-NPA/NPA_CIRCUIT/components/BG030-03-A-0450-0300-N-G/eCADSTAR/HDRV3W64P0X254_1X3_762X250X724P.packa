@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "BG030-03-A-0450-0300-N-G"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2024-01-10-15:05:50)
+    (mountForm default
+        (footprintRef "HDRV3W64P0X254_1X3_762X250X724P")
+        (spec "System")
+    )
+)

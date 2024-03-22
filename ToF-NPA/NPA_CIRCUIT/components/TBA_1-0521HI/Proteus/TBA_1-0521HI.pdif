@@ -1,0 +1,127 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "TBA_1-0521HI"
+   (description "1 Watt DC/DC converter, industrial, +/-10% input, short circuit protection, 3000 VDC isolation, unregulated, encapsulated, SIP-7")
+   (family "ANA")
+   (package "TBA10521HI")
+   (attribute "Datasheet Link" "https://tracopower.com/tba1hi-datasheet/")
+   (attribute "Geometry.Height" "9.85mm")
+   (attribute "Mouser Part Number" "495-TBA1-0521HI")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/TRACO-Power/TBA-1-0521HI?qs=byeeYqUIh0Of75fD26t9jw%3D%3D")
+   (attribute "Manufacturer_Name" "Traco Power")
+   (attribute "Manufacturer_Part_Number" "TBA 1-0521HI")
+   (gate
+    (symbol "TBA_1-0521HI")
+    (pin "_+VIN_(VCC)_" 1 PS)
+    (pin "-VIN_(GND)" 2 PS)
+    (pin "-VOUT" 5 PS)
+    (pin "COMMON" 6 PS)
+    (pin "_+VOUT" 7 PS)
+   )
+  )
+  (symbol "TBA_1-0521HI"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 1100 100) (pt 1100 -500) (pt 200 -500) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -300) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -400) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "TBA10521HI"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -2.4 1.35)
+      (pt 17.1 1.35)
+      (pt 17.1 -4.65)
+      (pt -2.4 -4.65)
+      (pt -2.4 1.35))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed true)
+      (pt -2.4 1.35)
+      (pt 17.1 1.35)
+      (pt 17.1 -4.65)
+      (pt -2.4 -4.65)
+      (pt -2.4 1.35))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -3.4 -5.65)
+      (pt 18.1 -5.65)
+      (pt 18.1 2.35)
+      (pt -3.4 2.35)
+      (pt -3.4 -5.65))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -3 0)
+      (arc (pt -3.000 0.000) (pt -3.000 0.050) (pt -2.900 -0.050) (start 180.0) (sweep 180.0))
+      (pt -2.9 0)
+      (arc (pt -2.900 0.000) (pt -3.000 0.050) (pt -2.900 -0.050) (start 180.0) (sweep .0))
+      (pt -3 0)
+      (arc (pt -3.000 0.000) (pt -3.000 0.050) (pt -2.900 -0.050) (start 180.0) (sweep 180.0))
+      (pt -2.9 0))))
+   (leg 1 (pt 0.000 0.000) (padstack 0))
+   (leg 2 (pt 2.540 0.000) (padstack 0))
+   (leg 5 (pt 10.160 0.000) (padstack 0))
+   (leg 6 (pt 12.700 0.000) (padstack 0))
+   (leg 7 (pt 15.240 0.000) (padstack 0))
+   (padstack 0
+    (hole 0.76)
+    (plated true)
+    (pad (layer TCOP) (round 1.303))
+    (pad (layer INNER) (round 1.303))
+    (pad (layer BCOP) (round 1.303))
+   )
+   (model "TBA_1-0521HI.stp"
+    (euler 0 0 0)
+    (offset -155.44000244140625 -126.62000274658203 -2.9100000858306885)
+   )
+  )
+ )
+)

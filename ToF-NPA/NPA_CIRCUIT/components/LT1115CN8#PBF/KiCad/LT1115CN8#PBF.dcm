@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LT1115CN8#PBF
+D OP Amp Single GP +/-22V 8-Pin PDIP N
+K
+F https://www.arrow.com/en/products/lt1115cn8pbf/linear-technology
+$ENDCMP
+#
+#End Doc Library

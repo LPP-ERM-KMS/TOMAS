@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP BG302-02-A-L-G
+D 2W, 2.54MM PTH SOCKET, SIL, TH,
+K
+F https://gct.co/files/drawings/bg302.pdf
+$ENDCMP
+#
+#End Doc Library

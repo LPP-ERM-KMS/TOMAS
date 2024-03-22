@@ -1,0 +1,16 @@
+.LT1115CN8_PBF :1 ;OP Amp Single GP +/-22V 8-Pin PDIP N
+DIP794W53P254L1016H394Q8N
+*STM IC
+*NGS
+*PLB 1="VOSTRIM_1" 2="-IN" 3="+IN" 4="V-" 5="OVER-COMP" 6="OUT" 7="V+" 8="VOSTRIM_2"
+*MXP 8
+*DFN LT1115CN8_PBF
+~!Mouser Part Number (584-LT1115CN8#PBF)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Analog-Devices/LT1115CN8PBF?qs=ytflclh7QUWk8x4PZzUG3w%3D%3D)
+~!Manufacturer_Name (Analog Devices)
+~!Manufacturer_Part_Number (LT1115CN8#PBF)
+~!Link Datasheet (https://www.arrow.com/en/products/lt1115cn8pbf/linear-technology)
+~!Height (3.937mm)
+~!3D_Model (LT1115CN8#PBF)
+LT1115CN8_PBF
+1.1!U 2.1!U 3.1!U 4.1!U 8.1!U 7.1!U 6.1!U 5.1!U 

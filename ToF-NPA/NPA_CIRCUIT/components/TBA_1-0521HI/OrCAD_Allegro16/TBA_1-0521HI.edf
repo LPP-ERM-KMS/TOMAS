@@ -1,0 +1,127 @@
+
+(EDIF
+  (rename &TBA_1_0521HI "TBA_1_0521HI")
+  (EDIFVersion 2 0 0)
+  (EDIFLevel 0)
+  (keywordMap (keywordLevel 0))
+  (status
+    (written
+      (timestamp 2024 03 22 10 10 59)
+      (dataOrigin "2071245/1356296/2.50/5/2/Power Supply")
+      (program "SamacSys ECAD Model TBA_1_0521HI"
+        (version "6.1"))))
+  (library
+  (rename &TBA_1_0521HI "TBA_1_0521HI")
+    (EDIFLevel 0)
+    (technology
+      (numberDefinition (scale 1 (e 254 -6) (unit DISTANCE)))
+      (userData GRIDRESOLUTION (integer 50 50))
+      (figureGroup DEFAULT (pathWidth 10) (textHeight 100))
+      (figureGroup PROPERTY (pathWidth 10) (textHeight 90))
+      (figureGroup PINNUMBER (pathWidth 10) (textHeight 90))
+      (figureGroup PINNAME (pathWidth 10) (textHeight 90))
+      (figureGroup COMMENT (pathWidth 10) (textHeight 90))
+      (figureGroup PIN (pathWidth 10) (textHeight 90))
+      (figureGroup GRAPHIC (pathWidth 10) (textHeight 100))
+    )
+    (cell
+      (rename &TBA_1_0521HI "TBA_1_0521HI")
+      (cellType GENERIC)
+      (view
+        (rename NORMAL "Normal")
+        (viewType SCHEMATIC)
+        (interface
+          (designator "PS")
+          (property (rename PACKAGENAME "PackageName") (string "TBA_1_0521HI"))
+          (property (rename ISHETEROGENEOUS "IsHeterogeneous") (string "False"))
+          (property (rename DEVICESINVIEW "DevicesInView") (string "1"))
+          (property (rename DEVICESINPACKAGE "DevicesInPackage") (string "1"))
+          (property (rename DEVICEDESIGNATOR "DeviceDesignator") (string "A"))
+          (property (rename DEVICENUMBERING "DeviceNumbering") (string "Alpha"))
+          (property (rename PCB_32_FOOTPRINT "PCB Footprint") (string "TBA10521HI"))
+          (property (rename &Mouser_Part_Number "Mouser Part Number") (string "495-TBA1-0521HI"))
+          (property (rename &Mouser_Price_Stock "Mouser Price/Stock") (string "https://www.mouser.co.uk/ProductDetail/TRACO-Power/TBA-1-0521HI?qs=byeeYqUIh0Of75fD26t9jw%3D%3D"))
+          (property (rename &Manufacturer_Name "Manufacturer_Name") (string "Traco Power"))
+          (property (rename &Manufacturer_Part_Number "Manufacturer_Part_Number") (string "TBA 1-0521HI"))
+          (property (rename &Description "Description") (string "1 Watt DC/DC converter, industrial, +/-10percent input, short circuit protection, 3000 VDC isolation, unregulated, encapsulated, SIP-7"))
+          (property (rename &Datasheet_Link "Datasheet Link") (string "https://tracopower.com/tba1hi-datasheet/"))
+          (property (rename &Height "Height") (string "9.85 mm"))
+          (property (rename &_60__32_VALUE_32__62_ "Value") (string "TBA_1_0521HI"))
+          (property (rename VALUE "Value") (string "Value"))
+          (port
+            (rename &_PVIN__VCC__ "_PVIN__VCC__")
+            (designator "1")
+            (property (rename ORDER "Order") (string "0") (owner "OrCAD"))
+          )
+          (port
+            (rename &–VIN__GND_ "–VIN__GND_")
+            (designator "2")
+            (property (rename ORDER "Order") (string "1") (owner "OrCAD"))
+          )
+          (port
+            (rename &–VOUT "–VOUT")
+            (designator "5")
+            (property (rename ORDER "Order") (string "2") (owner "OrCAD"))
+          )
+          (port
+            (rename &COMMON "COMMON")
+            (designator "6")
+            (property (rename ORDER "Order") (string "3") (owner "OrCAD"))
+          )
+          (port
+            (rename &_PVOUT "_PVOUT")
+            (designator "7")
+            (property (rename ORDER "Order") (string "4") (owner "OrCAD"))
+          )
+          (symbol
+            (portImplementation
+              (name &_PVIN__VCC__ (display PINNAME))
+              (keywordDisplay DESIGNATOR (display PINNUMBER))
+              (figure PIN (path (pointList (pt -200 -100) (pt 0 -100))))
+              (connectLocation (figure GRAPHIC (dot (pt -200 -100))))
+            )
+            (portImplementation
+              (name &MVIN__GND_ (display PINNAME))
+              (keywordDisplay DESIGNATOR (display PINNUMBER))
+              (figure PIN (path (pointList (pt -200 -200) (pt 0 -200))))
+              (connectLocation (figure GRAPHIC (dot (pt -200 -200))))
+            )
+            (portImplementation
+              (name &MVOUT (display PINNAME))
+              (keywordDisplay DESIGNATOR (display PINNUMBER))
+              (figure PIN (path (pointList (pt -200 -300) (pt 0 -300))))
+              (connectLocation (figure GRAPHIC (dot (pt -200 -300))))
+            )
+            (portImplementation
+              (name &COMMON (display PINNAME))
+              (keywordDisplay DESIGNATOR (display PINNUMBER))
+              (figure PIN (path (pointList (pt -200 -400) (pt 0 -400))))
+              (connectLocation (figure GRAPHIC (dot (pt -200 -400))))
+            )
+            (portImplementation
+              (name &_PVOUT (display PINNAME))
+              (keywordDisplay DESIGNATOR (display PINNUMBER))
+              (figure PIN (path (pointList (pt -200 -500) (pt 0 -500))))
+              (connectLocation (figure GRAPHIC (dot (pt -200 -500))))
+            )
+            (figure GRAPHIC
+              (figureGroupOverride GRAPHIC
+                (pathWidth 10))
+              (path
+                (pointList
+                  (pt 0 0)
+                  (pt 900 0)
+                  (pt 900 -600)
+                  (pt 0 -600)
+                  (pt 0 0)
+                )
+              )
+            )
+            (keywordDisplay DESIGNATOR (display PROPERTY (justify LOWERLEFT) (orientation R0) (origin (pt 950 130))))
+            (propertyDisplay &_60__32_VALUE_32__62_ (display PROPERTY (justify LOWERLEFT) (orientation R0) (origin (pt 950 30))))
+          )
+        )
+      )
+    )
+  )
+)

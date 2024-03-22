@@ -1,0 +1,70 @@
+(Japanese_coding: sjis)
+(function "ECS_838830"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2024-01-10-15:05:50)
+    (utime 2024-01-11-06:25:12)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+        (port "3" (symbPinId 3) (portType INOUT))
+    )
+    (property "symbolName" "BG030-03-A-0450-0300-N-G")
+)
+
+
+(pinAssign "ECS_838830"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2024-01-10-15:05:50)
+    (utime 2024-01-11-06:25:12)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+        (port "3" (symbPinId 3) (portName "3") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_838830")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+                (port "3" (match "3"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "BG030-03-A-0450-0300-N-G")
+)
+
+
+(part "BG030-03-A-0450-0300-N-G"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2024-01-10-15:05:50)
+    (utime 2024-01-11-06:25:12)
+    (packageRef "BG030-03-A-0450-0300-N-G")
+    (pinAssignRef "ECS_838830")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+        (port "3" (symbPinId 3) (portName "3") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "YES")
+    (property "refDesPrefix" "J")
+    (property "description" "Board to Board & Mezzanine Connectors 3w, 2.54mm Pitch Pin Hdr, SIL, TH, Vert, GF, Box")
+    (property "Mouser_Part_Number" "640-BG030-03A0453NG")
+    (property "Mouser_Price/Stock" "https://www.mouser.co.uk/ProductDetail/GCT/BG030-03-A-0450-0300-N-G?qs=iLbezkQI%252BshC%2Fei%2Fgzxysw%3D%3D")
+    (property "Manufacturer_Name" "GCT (GLOBAL CONNECTOR TECHNOLOGY)")
+    (property "Manufacturer_Part_Number" "BG030-03-A-0450-0300-N-G")
+    (property "Datasheet_Link" "https://gct.co/files/drawings/bg030.pdf")
+    (property "compAreaTopHeight" 7.24)
+)
+
+

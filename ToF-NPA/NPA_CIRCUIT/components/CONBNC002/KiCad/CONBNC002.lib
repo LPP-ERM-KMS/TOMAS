@@ -1,0 +1,23 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#SamacSys ECAD Model CONBNC002
+#/18153122/1356296/2.50/2/3/Connector
+DEF CONBNC002 J 0 30 Y Y 1 F N
+F0 "J" 650 300 50 H V L CNN
+F1 "CONBNC002" 650 200 50 H V L CNN
+F2 "CONBNC002" 650 100 50 H I L CNN
+F3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Customer+Drawing%7FC-CONBNC002%7FA%7Fpdf%7FEnglish%7FENG_CD_C-CONBNC002_A.pdf%7FCONBNC002" 650 0 50 H I L CNN
+F4 "RF Connectors / Coaxial Connectors BNC Connector Right Angle Jack, Female Socket 50 Ohm, Through Hole" 650 -100 50 H I L CNN "Description"
+F5 "16" 650 -200 50 H I L CNN "Height"
+F6 "N/A" 650 -300 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.co.uk/ProductDetail/TE-Connectivity/CONBNC002?qs=3Rah4i%252BhyCHiIo0AD1KSrA%3D%3D" 650 -400 50 H I L CNN "Mouser Price/Stock"
+F8 "TE Connectivity" 650 -500 50 H I L CNN "Manufacturer_Name"
+F9 "CONBNC002" 650 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+X 1 1 0 -100 200 R 50 50 0 0 P
+X 2 2 0 0 200 R 50 50 0 0 P
+P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 N
+ENDDRAW
+ENDDEF
+#
+#End Library

@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "BG302-02-A-L-G"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2020-12-08-05:20:53)
+    (mountForm default
+        (footprintRef "RHDRRA2W64P0X254_1X2_558X570X265P")
+        (spec "System")
+    )
+)

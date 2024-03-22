@@ -1,0 +1,9 @@
+Manufacturer=KEMET
+PartNumber=CBR06C109B5GACAUTO
+PartCategory=Capacitor
+PackageCategory=Other
+PinCount=2
+Version=1.1
+Released=2023-05-16 11:45:25
+Downloaded=2024-03-21 17:21:34
+3D=Y

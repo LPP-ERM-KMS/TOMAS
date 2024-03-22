@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'CONBNC002'
+CLASS = IO
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "TE Connectivity", "CONBNC002" (!) = "", "CONBNC002", "Other", "N/A", "https://www.mouser.co.uk/ProductDetail/TE-Connectivity/CONBNC002?qs=3Rah4i%252BhyCHiIo0AD1KSrA%3D%3D", "RF Connectors / Coaxial Connectors BNC Connector Right Angle Jack, Female Socket 50 Ohm, Through Hole", "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Customer+Drawing%7FC-CONBNC002%7FA%7Fpdf%7FEnglish%7FENG_CD_C-CONBNC002_A.pdf%7FCONBNC002", "16 mm"
+END_PART
+
+END.

@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'BG030_03_A_0450_0300_N_G'
+CLASS = IO
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "GCT (GLOBAL CONNECTOR TECHNOLOGY)", "BG030-03-A-0450-0300-N-G" (!) = "", "HDRV3W64P0X254_1X3_762X250X724P", "Header, Vertical", "640-BG030-03A0453NG", "https://www.mouser.co.uk/ProductDetail/GCT/BG030-03-A-0450-0300-N-G?qs=iLbezkQI%252BshC%2Fei%2Fgzxysw%3D%3D", "Board to Board & Mezzanine Connectors 3w, 2.54mm Pitch Pin Hdr, SIL, TH, Vert, GF, Box", "https://gct.co/files/drawings/bg030.pdf", "7.24 mm"
+END_PART
+
+END.

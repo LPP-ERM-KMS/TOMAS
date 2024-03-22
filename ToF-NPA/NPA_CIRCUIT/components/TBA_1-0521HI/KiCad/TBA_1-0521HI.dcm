@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TBA_1-0521HI
+D 1 Watt DC/DC converter, industrial, +/-10% input, short circuit protection, 3000 VDC isolation, unregulated, encapsulated, SIP-7
+K
+F https://tracopower.com/tba1hi-datasheet/
+$ENDCMP
+#
+#End Doc Library

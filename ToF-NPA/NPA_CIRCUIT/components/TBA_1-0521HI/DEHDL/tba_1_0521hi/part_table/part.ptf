@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'TBA_1_0521HI'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Traco Power", "TBA 1-0521HI" (!) = "", "TBA10521HI", "Other", "495-TBA1-0521HI", "https://www.mouser.co.uk/ProductDetail/TRACO-Power/TBA-1-0521HI?qs=byeeYqUIh0Of75fD26t9jw%3D%3D", "1 Watt DC/DC converter, industrial, +/-10% input, short circuit protection, 3000 VDC isolation, unregulated, encapsulated, SIP-7", "https://tracopower.com/tba1hi-datasheet/", "9.85 mm"
+END_PART
+
+END.

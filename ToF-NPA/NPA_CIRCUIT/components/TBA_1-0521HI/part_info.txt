@@ -1,0 +1,9 @@
+Manufacturer=Traco Power
+PartNumber=TBA 1-0521HI
+PartCategory=Power Supply
+PackageCategory=Other
+PinCount=5
+Version=6.1
+Released=2021-03-26 15:56:31
+Downloaded=2024-03-22 10:10:59
+3D=Y

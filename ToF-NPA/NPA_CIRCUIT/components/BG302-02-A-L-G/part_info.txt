@@ -1,0 +1,9 @@
+Manufacturer=GCT (GLOBAL CONNECTOR TECHNOLOGY)
+PartNumber=BG302-02-A-L-G
+PartCategory=Connector
+PackageCategory=Header, Receptacle - Right Angle PTH Box
+PinCount=2
+Version=1.1
+Released=2020-12-08 05:20:53
+Downloaded=2024-03-22 11:17:49
+3D=Y

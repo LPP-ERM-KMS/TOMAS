@@ -1,0 +1,16 @@
+.BG030-03-A-0450-0300-N-G :1 ;Board to Board & Mezzanine Connectors 3w, 2.54mm Pitch Pin Hdr, SIL, TH, Vert, GF, Box
+HDRV3W64P0X254_1X3_762X250X724P
+*STM J
+*NGS
+*PLB 1="1" 2="2" 3="3"
+*MXP 3
+*DFN BG030-03-A-0450-0300-N-G
+~!Mouser Part Number (640-BG030-03A0453NG)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/GCT/BG030-03-A-0450-0300-N-G?qs=iLbezkQI%252BshC%2Fei%2Fgzxysw%3D%3D)
+~!Manufacturer_Name (GCT (GLOBAL CONNECTOR TECHNOLOGY))
+~!Manufacturer_Part_Number (BG030-03-A-0450-0300-N-G)
+~!Link Datasheet (https://gct.co/files/drawings/bg030.pdf)
+~!Height (7.24mm)
+~!3D_Model (BG030-03-A-0450-0300-N-G)
+BG030-03-A-0450-0300-N-G
+1.1!U 2.1!U 3.1!U 

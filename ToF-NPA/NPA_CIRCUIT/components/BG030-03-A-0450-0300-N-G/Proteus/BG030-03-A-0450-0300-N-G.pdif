@@ -1,0 +1,110 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "BG030-03-A-0450-0300-N-G"
+   (description "Board to Board & Mezzanine Connectors 3w, 2.54mm Pitch Pin Hdr, SIL, TH, Vert, GF, Box")
+   (family "CON")
+   (package "HDRV3W64P0X254_1X3_762X250X724P")
+   (attribute "Datasheet Link" "https://gct.co/files/drawings/bg030.pdf")
+   (attribute "Geometry.Height" "7.24mm")
+   (attribute "Mouser Part Number" "640-BG030-03A0453NG")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/GCT/BG030-03-A-0450-0300-N-G?qs=iLbezkQI%252BshC%2Fei%2Fgzxysw%3D%3D")
+   (attribute "Manufacturer_Name" "GCT (GLOBAL CONNECTOR TECHNOLOGY)")
+   (attribute "Manufacturer_Part_Number" "BG030-03-A-0450-0300-N-G")
+   (gate
+    (symbol "BG030-03-A-0450-0300-N-G")
+    (pin "1" 1 PS)
+    (pin "2" 2 PS)
+    (pin "3" 3 PS)
+   )
+  )
+  (symbol "BG030-03-A-0450-0300-N-G"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 600 100) (pt 600 -300) (pt 200 -300) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "HDRV3W64P0X254_1X3_762X250X724P"
+   (units MM)
+   (layer OCCA
+    (graphic
+     (stroke 0.05)
+     (path
+      (closed false)
+      (pt -1.71 -1.575)
+      (pt -1.71 1.575)
+      (pt 6.79 1.575)
+      (pt 6.79 -1.575)
+      (pt -1.71 -1.575))))
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt -1.46 -1.325)
+      (pt -1.46 1.325)
+      (pt 6.54 1.325)
+      (pt 6.54 -1.325)
+      (pt -1.46 -1.325))))
+   (layer TSLK
+    (graphic
+     (stroke 0.2)
+     (path
+      (closed false)
+      (pt -1.46 0)
+      (pt -1.46 -1.325)
+      (pt 6.54 -1.325)
+      (pt 6.54 1.325)
+      (pt 0 1.325))))
+   (leg 1 (pt 0 0) (padstack 1))
+   (leg 2 (pt 2.54 0) (padstack 0))
+   (leg 3 (pt 5.08 0) (padstack 0))
+   (padstack 0
+    (hole 1.1)
+    (plated true)
+    (pad (layer TCOP) (round 1.65))
+    (pad (layer INNER) (round 1.65))
+    (pad (layer BCOP) (round 1.65))
+   )
+   (padstack 1
+    (hole 1.1)
+    (plated true)
+    (pad (layer TCOP) (square 1.65))
+    (pad (layer INNER) (round 1.65))
+    (pad (layer BCOP) (square 1.65))
+   )
+   (model "BG030-03-A-0450-0300-N-G.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)

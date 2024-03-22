@@ -1,0 +1,9 @@
+Manufacturer=Analog Devices
+PartNumber=LT1115CN8#PBF
+PartCategory=Integrated Circuit
+PackageCategory=Dual-In-Line Packages
+PinCount=8
+Version=1.3
+Released=2022-03-14 08:34:43
+Downloaded=2024-03-21 15:59:31
+3D=Y
