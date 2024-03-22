@@ -137,7 +137,7 @@
 		(descr "BG302-02-A-L-G")
 		(tags "Connector")
 		(property "Reference" "J1"
-			(at 0 0 270)
+			(at 0 0 -90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "fd593b50-733b-478c-9d70-8dd350121ae6")
@@ -149,7 +149,7 @@
 			)
 		)
 		(property "Value" "BG302-02-A-L-G"
-			(at 0 0 270)
+			(at 0 0 -90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "8c955edc-6e8b-4e00-92b7-c8a558faa132")
@@ -2889,7 +2889,7 @@
 			)
 		)
 		(property "Value" "BG030-03-A-0450-0300-N-G"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "b04e402e-bf4e-4905-944a-bcc16f2e528a")
@@ -5384,7 +5384,7 @@
 		(descr "TBA 1-0521HI-2")
 		(tags "Power Supply")
 		(property "Reference" "TBA 1-0521HI"
-			(at 7.35 1.65 270)
+			(at 7.35 1.65 -90)
 			(layer "F.SilkS")
 			(uuid "6a680ea6-8545-42a6-923e-41780e10cc72")
 			(effects
@@ -5395,7 +5395,7 @@
 			)
 		)
 		(property "Value" "TBA_1-0521HI"
-			(at 7.35 1.65 270)
+			(at 7.35 1.65 -90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "e85a1b74-268e-4be3-95fd-36ab464c6524")
@@ -5695,7 +5695,7 @@
 			(uuid "d6cc6a3c-b12d-4abb-b54e-f3384fe3c696")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 7.35 1.65 270)
+			(at 7.35 1.65 -90)
 			(layer "F.Fab")
 			(uuid "ebf680ba-9191-40f2-8e95-26b5ca6a0607")
 			(effects
@@ -5779,7 +5779,7 @@
 		(descr "N8 8-Lead PDIP")
 		(tags "Integrated Circuit")
 		(property "Reference" "OpAmp"
-			(at 0 0 270)
+			(at 0 0 -90)
 			(layer "F.SilkS")
 			(uuid "df8c4057-dbd1-4dd7-8184-9818d0ed6ae2")
 			(effects
@@ -6700,18 +6700,8 @@
 		)
 	)
 	(gr_line
-		(start 75 149)
-		(end 75 55)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(layer "Edge.Cuts")
-		(uuid "3258eb86-f09c-4b54-b82a-620f061cc72d")
-	)
-	(gr_line
-		(start 185 149)
-		(end 75 149)
+		(start 184.5 145)
+		(end 74.5 145)
 		(stroke
 			(width 0.05)
 			(type default)
@@ -6720,18 +6710,28 @@
 		(uuid "401470dd-09f2-4bac-b4a7-ae69b856686c")
 	)
 	(gr_line
-		(start 185 55)
-		(end 185 149)
+		(start 75 55)
+		(end 74.5 145)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "53641944-f606-4dd8-ba7a-f86e29e90cfb")
+		(uuid "573b034b-379c-4527-a2c8-90f840d2a10c")
+	)
+	(gr_line
+		(start 185 55)
+		(end 184.5 145)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Edge.Cuts")
+		(uuid "6fd7c42f-6064-47a1-a503-72d9312e01a4")
 	)
 	(gr_circle
-		(center 180 145)
-		(end 183 145)
+		(center 180 140)
+		(end 183 140)
 		(stroke
 			(width 0.05)
 			(type default)
@@ -6741,8 +6741,8 @@
 		(uuid "aa604efe-fae1-4a17-82f5-3867286aba27")
 	)
 	(gr_circle
-		(center 80 145)
-		(end 83 145)
+		(center 80 140)
+		(end 83 140)
 		(stroke
 			(width 0.05)
 			(type default)
