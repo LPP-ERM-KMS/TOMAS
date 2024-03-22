@@ -1,9 +1,0 @@
-Manufacturer=KYOCERA
-PartNumber=KAF32LR71E106KU
-PartCategory=Capacitor
-PackageCategory=Capacitor Chip Non-polarised
-PinCount=2
-Version=1.1
-Released=2024-03-21 12:12:34
-Downloaded=2024-03-21 17:26:38
-3D=Y

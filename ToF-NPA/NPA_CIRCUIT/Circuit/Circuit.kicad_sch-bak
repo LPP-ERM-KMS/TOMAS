@@ -1510,16 +1510,10 @@
 		(uuid "2e210f7d-99cf-4de5-aa14-59aaab21bfbb")
 	)
 	(junction
-		(at 138.43 92.71)
+		(at 156.21 76.2)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "2ec2d3ef-bf97-4e1e-aba7-669674334125")
-	)
-	(junction
-		(at 113.03 80.01)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3cb04443-1f51-47c9-b7aa-970bec82bf26")
+		(uuid "3bdfd13f-066b-427f-a651-4a54bfa6f10d")
 	)
 	(junction
 		(at 156.21 92.71)
@@ -1546,6 +1540,12 @@
 		(uuid "cac6189a-bfe0-4e1d-839f-a4462459095a")
 	)
 	(junction
+		(at 113.03 80.01)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "dd898880-5bd4-4ff3-a03a-31f6cb8f4c75")
+	)
+	(junction
 		(at 132.08 80.01)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1562,16 +1562,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fad3812a-8c87-4255-aef8-8ebfe4f2a130")
-	)
-	(wire
-		(pts
-			(xy 138.43 76.2) (xy 137.16 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0006e0d6-6b7b-40e1-b6a0-066c91f2e205")
 	)
 	(wire
 		(pts
@@ -1665,16 +1655,6 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 80.01) (xy 132.08 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d291783-479b-43dc-b42d-56cbece28a85")
-	)
-	(wire
-		(pts
 			(xy 134.62 96.52) (xy 113.03 96.52)
 		)
 		(stroke
@@ -1715,16 +1695,6 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 92.71) (xy 138.43 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3f764996-fe4e-4ec4-871c-e60164d1700b")
-	)
-	(wire
-		(pts
 			(xy 134.62 62.23) (xy 134.62 96.52)
 		)
 		(stroke
@@ -1742,6 +1712,16 @@
 			(type default)
 		)
 		(uuid "43af8c9c-ea85-49e5-b2b7-f0d922c20447")
+	)
+	(wire
+		(pts
+			(xy 113.03 92.71) (xy 113.03 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "458fc034-098e-476e-9f02-7dab5b2d0e1c")
 	)
 	(wire
 		(pts
@@ -1825,13 +1805,13 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 92.71) (xy 113.03 96.52)
+			(xy 113.03 80.01) (xy 132.08 80.01)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "80c89c63-fc84-49e2-8e3a-81a2fd9d0dfd")
+		(uuid "82e97d13-4786-481d-bc94-55e09c3409c6")
 	)
 	(wire
 		(pts
@@ -1842,6 +1822,16 @@
 			(type default)
 		)
 		(uuid "86e04993-ae8e-4acc-9845-1429283776e1")
+	)
+	(wire
+		(pts
+			(xy 156.21 76.2) (xy 137.16 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87470291-5b6a-44b0-9f66-06d24b5f2016")
 	)
 	(wire
 		(pts
@@ -1891,7 +1881,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ac697ee2-de44-420f-978d-3ac8c33c27e5")
+		(uuid "a8d07e60-28ef-4e6c-8c1b-08f78adad265")
 	)
 	(wire
 		(pts
@@ -2003,7 +1993,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0fffb439-8bf0-45b9-8dd0-9290fa4d2240")
-		(property "Reference" "C1-b1"
+		(property "Reference" "C1-b"
 			(at 116.84 106.6799 90)
 			(effects
 				(font
@@ -2110,7 +2100,7 @@
 		(instances
 			(project "Circuit"
 				(path "/9da35d7f-0531-4114-9242-19da34b83f92"
-					(reference "C1-b1")
+					(reference "C1-b")
 					(unit 1)
 				)
 			)
@@ -2498,7 +2488,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6617d30f-b68a-41c9-9ae1-f97e1d367351")
-		(property "Reference" "TBA1-052HI1"
+		(property "Reference" "PS1"
 			(at 99.06 57.1499 90)
 			(effects
 				(font
@@ -2613,7 +2603,7 @@
 		(instances
 			(project "Circuit"
 				(path "/9da35d7f-0531-4114-9242-19da34b83f92"
-					(reference "TBA1-052HI1")
+					(reference "PS1")
 					(unit 1)
 				)
 			)
@@ -2880,7 +2870,7 @@
 	)
 	(symbol
 		(lib_id "12103C106K4Z2A:12103C106K4Z2A")
-		(at 113.03 80.01 270)
+		(at 113.03 92.71 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2888,13 +2878,13 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dbbdcc2f-9533-4615-afce-b08d38cb1029")
-		(property "Reference" "C1-t1"
+		(property "Reference" "C1-t"
 			(at 116.84 85.0899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Value" "12103C106K4Z2A"
@@ -2903,11 +2893,11 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "CAPC3225X279N"
-			(at 114.3 88.9 0)
+			(at 111.76 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2917,7 +2907,7 @@
 			)
 		)
 		(property "Datasheet" "https://spicat.kyocera-avx.com/product/mlcc/chartview/12103C106K4Z2A/DataSheet/X7R"
-			(at 111.76 88.9 0)
+			(at 114.3 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2927,7 +2917,7 @@
 			)
 		)
 		(property "Description" "AVX - 12103C106K4Z2A - SMD Multilayer Ceramic Capacitor, 10 F, 25 V, 1210 [3225 Metric], +/- 10%, X7R, AVX 1210 MLCC"
-			(at 109.22 88.9 0)
+			(at 116.84 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2937,7 +2927,7 @@
 			)
 		)
 		(property "Height" "2.79"
-			(at 106.68 88.9 0)
+			(at 119.38 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2947,7 +2937,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 104.14 88.9 0)
+			(at 121.92 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2957,7 +2947,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 101.6 88.9 0)
+			(at 124.46 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2967,7 +2957,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "AVX"
-			(at 99.06 88.9 0)
+			(at 127 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2977,7 +2967,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "12103C106K4Z2A"
-			(at 96.52 88.9 0)
+			(at 129.54 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2995,7 +2985,7 @@
 		(instances
 			(project "Circuit"
 				(path "/9da35d7f-0531-4114-9242-19da34b83f92"
-					(reference "C1-t1")
+					(reference "C1-t")
 					(unit 1)
 				)
 			)

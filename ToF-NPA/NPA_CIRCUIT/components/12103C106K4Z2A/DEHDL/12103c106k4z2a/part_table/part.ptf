@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART '12103C106K4Z2A'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "AVX", "12103C106K4Z2A" (!) = "", "CAPC3225X279N", "Capacitor Chip Non-polarised", "", "", "AVX - 12103C106K4Z2A - SMD Multilayer Ceramic Capacitor, 10 F, 25 V, 1210 [3225 Metric], +/- 10%, X7R, AVX 1210 MLCC", "https://spicat.kyocera-avx.com/product/mlcc/chartview/12103C106K4Z2A/DataSheet/X7R", "2.79 mm"
+END_PART
+
+END.

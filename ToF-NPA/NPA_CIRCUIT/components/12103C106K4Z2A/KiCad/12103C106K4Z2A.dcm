@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 12103C106K4Z2A
+D AVX - 12103C106K4Z2A - SMD Multilayer Ceramic Capacitor, 10 F, 25 V, 1210 [3225 Metric], +/- 10%, X7R, AVX 1210 MLCC
+K
+F https://spicat.kyocera-avx.com/product/mlcc/chartview/12103C106K4Z2A/DataSheet/X7R
+$ENDCMP
+#
+#End Doc Library

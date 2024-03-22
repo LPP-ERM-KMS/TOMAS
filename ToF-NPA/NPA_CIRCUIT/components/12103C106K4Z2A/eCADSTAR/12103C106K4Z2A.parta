@@ -1,0 +1,66 @@
+(Japanese_coding: sjis)
+(function "ECS_778579"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-09-15-07:04:52)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portType INOUT))
+        (port "2" (symbPinId 2) (portType INOUT))
+    )
+    (property "symbolName" "12103C106K4Z2A")
+)
+
+
+(pinAssign "ECS_778579"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-09-15-07:04:52)
+    (utime 2023-03-07-16:10:32)
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (internal
+        (funcInst (functionRef "ECS_778579")
+                (port "1" (match "1"))
+                (port "2" (match "2"))
+        )
+    )
+    (property "usePowerBox" "No")
+    (property "symbolName" "12103C106K4Z2A")
+)
+
+
+(part "12103C106K4Z2A"
+    (uver 1)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (ctime 2022-09-15-07:04:52)
+    (utime 2023-03-07-16:10:32)
+    (packageRef "12103C106K4Z2A")
+    (pinAssignRef "ECS_778579")
+    (interface
+        (port "1" (symbPinId 1) (portName "1") (portType INOUT))
+        (port "2" (symbPinId 2) (portName "2") (portType INOUT))
+    )
+    (partClass UNDEF)
+    (useInSchema Y)
+    (useInLayout Y)
+    (inPartsList Y)
+    (partType NORMAL)
+    (placeRestriction FREE)
+    (property "enetNonSeries" "NO")
+    (property "refDesPrefix" "C")
+    (property "description" "AVX - 12103C106K4Z2A - SMD Multilayer Ceramic Capacitor, 10 F, 25 V, 1210 [3225 Metric], +/- 10%, X7R, AVX 1210 MLCC")
+    (property "Mouser_Part_Number" "")
+    (property "Mouser_Price/Stock" "")
+    (property "Manufacturer_Name" "AVX")
+    (property "Manufacturer_Part_Number" "12103C106K4Z2A")
+    (property "Datasheet_Link" "https://spicat.kyocera-avx.com/product/mlcc/chartview/12103C106K4Z2A/DataSheet/X7R")
+    (property "compAreaTopHeight" 2.79)
+)
+
+
