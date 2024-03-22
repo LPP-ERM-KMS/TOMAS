@@ -1,0 +1,9 @@
+Manufacturer=TE Connectivity
+PartNumber=CRGP2512F1M0
+PartCategory=Resistor
+PackageCategory=Resistor Chip
+PinCount=2
+Version=1.1
+Released=2022-02-10 15:18:27
+Downloaded=2024-03-22 16:13:08
+3D=Y

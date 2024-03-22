@@ -1,0 +1,16 @@
+.CRGP2512F1M0 :1 ;1M 2512 Thick Film Resistor +/-1% 2W CRGP2512F1M0
+RESC6432X65N
+*STM R
+*NGS
+*PLB 1="1" 2="2"
+*MXP 2
+*DFN CRGP2512F1M0
+~!Mouser Part Number (279-CRGP2512F1M0)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/TE-Connectivity-Holsworthy/CRGP2512F1M0?qs=wUXugUrL1qwpbWEKgYeyog%3D%3D)
+~!Manufacturer_Name (TE Connectivity)
+~!Manufacturer_Part_Number (CRGP2512F1M0)
+~!Link Datasheet (https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=9-1773463-9&DocType=DS&DocLang=English)
+~!Height (0.65mm)
+~!3D_Model (CRGP2512F1M0)
+CRGP2512F1M0
+1.1!U 2.1!U 
