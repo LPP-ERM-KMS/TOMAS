@@ -11,7 +11,7 @@
 \maketitle
 
 \section{Setup}
-\begin{figure}
+\begin{figure}[ht!]
 \includegraphics[width=\textwidth]{setup.pdf}
 \caption{The new setup splits the signals of the forward and reflected in two, using one side to measure power and the other side to measure the phase}
 \end{figure}
@@ -70,8 +70,8 @@ digits as possible.
 \end{center}
 So the power we get from the voltage is:
 \begin{eqnarray}
-    \text{P}_{ICF}\text{(dBm)} &= \frac{V_{\text{ICF}}-2.296065}{0.02543572}\\
-    \text{P}_{ICR}\text{(dBm)} &= \frac{V_{\text{ICR}}-2.1.856293}{0.02456144}
+    \text{P}_{ICF}\text{(dBm)} &= \frac{V_{\text{ICF}}-2.296889}{0.02543572}\\
+    \text{P}_{ICR}\text{(dBm)} &= \frac{V_{\text{ICR}}-2.353619}{0.02456144}
 \end{eqnarray}
 \subsection{New setup}
 This setup is in effect as of the 13th of march 2024.
@@ -132,4 +132,51 @@ So the power we get from the voltage is:
  ICV0& 0.694397&  0.03 & 0.123464 & 0.4494 & 28 & 3.1335\\
  \hline
 \end{tabular}
+\begin{eqnarray}
+    \text{P}_{V0}\text{(dBm)} &= \frac{V_{\text{0}}-2.333086}{0.02525475}\\
+    \text{P}_{V1}\text{(dBm)} &= \frac{V_{\text{1}}-2.333738}{0.02521568}\\
+    \text{P}_{V2}\text{(dBm)} &= \frac{V_{\text{2}}-2.35944}{0.02507625}\\
+    \text{P}_{V3}\text{(dBm)} &= \frac{V_{\text{3}}-2.348957}{0.02479989}
+\end{eqnarray}
+\subsection{Remarks and usage example}
+The relations given for ICF and ICR power are after the directional coupler
+(i.e the powers given were what is observed by the circuit), to thus get a
+power going into the machine you first need to add the 70dBm which gets
+attenuated by the directional coupler. To get the power in watts you can use
+the relation :
+\begin{equation}
+    P(W) = 10^{P(dBm)/10 - 3}
+\end{equation}
+As an example, let's convert an ICF voltage recorded on the DAQ of
+$V_{\text{ICF}}=2$ near 35MHz (of the new setup) to the power in watts it
+corresponds to:
+\begin{eqnarray}
+    P(W) &= 10^{\frac{1}{10}\left[        \text{eqn 11}+ 70 - 30\right]}\\
+    P(W) &= 10^{\frac{1}{10}\left[\frac{V_{\text{ICF}}-2.196569}{0.0257915} + 70 - 30\right]}\\
+    P(W) &= 10^{\frac{1}{10}\left[\frac{2-2.196569}{0.0257915} + 70 - 30\right]}\\
+    P(W) &= 1729.235W
+\end{eqnarray}
+\newpage
+\section{New System plug-in equations}
+as requested, a lookup table for the new system, per frequency
+\subsection{Near 25MHz}
+\begin{eqnarray}
+    P_f(W) &= 10^{\frac{V_{\text{ICF}}-2.200913}{0.2575556}+ 4}\\
+    P_r(W) &= 10^{\frac{V_{\text{ICR}}-2.268637}{0.2521306}+ 4}
+\end{eqnarray}
+\subsection{Near 35MHz}
+\begin{eqnarray}
+    P_f(W) &= 10^{\frac{V_{\text{ICF}}-2.196569}{0.257915} + 4}\\
+    P_r(W) &= 10^{\frac{V_{\text{ICR}}-2.253668}{0.2488522} + 4}
+\end{eqnarray}
+\subsection{Near 45MHz}
+\begin{eqnarray}
+    P_f(W) &= 10^{\frac{V_{\text{ICF}}-2.188172}{0.02554517} + 4}\\
+    P_r(W) &= 10^{\frac{V_{\text{ICR}}-2.2447}{0.02478911}+ 4}
+\end{eqnarray}
+\section{Old System plug-in equations}
+\begin{eqnarray}
+    P_f(W) &= 10^{\frac{V_{\text{ICF}}-2.296889}{0.02543572}+ 4}\\
+    P_r(W) &= 10^{\frac{V_{\text{ICR}}-2.353619}{0.02456144}+ 4}
+\end{eqnarray}
 \end{document}
