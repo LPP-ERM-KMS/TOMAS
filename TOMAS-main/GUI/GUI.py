@@ -833,7 +833,7 @@ class GUI(tk.Tk):
         #######################################
         if not pulsed:
             self.ECout = 1
-            ECswitch() #Turn on EC
+            self.ECswitch() #Turn on EC
         else:
             self.ECout = 2
             self.ECoutPulsedNumber = 1
@@ -852,13 +852,13 @@ class GUI(tk.Tk):
         #           Match the system          #
         #######################################
 
-        for i in range(self.Steps_entr.get()):
+        for i in range(int(self.Steps_entr.get())):
             print(f"Step number {i}")
             if pulsed:
-                operation(doIC=True,doEC=True,doDAQ=True) #Discharge
+                self.operation(doIC=True,doEC=True,doDAQ=True) #Discharge
             else:
-                operation(doIC=True,doEC=False,doDAQ=True) #Discharge
-            CsM, CpM = ICMatch() #Get UDP signal and determine change in capacitor values
+                self.operation(doIC=True,doEC=False,doDAQ=True) #Discharge
+            CsM, CpM = self.ICMatch() #Get UDP signal and determine change in capacitor values
             moveCap(CsM,CpM) 
             time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
             # and the system to have cooled a bit.
