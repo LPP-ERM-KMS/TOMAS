@@ -877,10 +877,10 @@ class GUI(tk.Tk):
         print(Vmeas)
         Pdbm = np.zeros(6)
 
-        V0SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V0.s3p')
-        V1SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V1.s3p')
-        V2SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V2.s3p')
-        V3SMatrix = rfObject(touchstone'../MatchingSystem/SMatrices/V3.s3p')
+        V0SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V0.s3p')
+        V1SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V1.s3p')
+        V2SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V2.s3p')
+        V3SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V3.s3p')
         
         #The following needs to be modified
         Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475 - V0SMatrix.getS(Freq)[:,0,2] #V0

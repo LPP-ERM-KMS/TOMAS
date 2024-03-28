@@ -2,7 +2,6 @@
 # TOMAS NPA data analysis 
 # contact: sunwoo@kth.se
 
-
 ##### Library #################################################################
 import os
 import sys
@@ -138,9 +137,10 @@ globals()['TOMAS_flux_{}'.format(Data_name)] = TOMAS_flux # Save total flux for 
 
 ##### Maxwell-Boltzmann Distribution Fitting (MBF) ############################
 import Maxwell_fitting
-T_eV = 13 # [eV]13
-T_eV_hot = 55 # [eV] 55
-Hot_ratio = 8 # [%] 8
+T_eV = 13 # [eV]13 guess
+T_eV_hot = 81 # [eV] 55 guess
+Hot_ratio = 4.5 # [%] 8 guess
+T_eV, T_eV_hot, Hot_ratio = Maxwell_fitting.Fit(ED_DF_sec_cm2,TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 T_eV, T_eV_hot, MBF, MBF_hot = Maxwell_fitting.main(TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 MBF_total = list(MBF[i] + MBF_hot[i] for i in range(len(MBF)))
 
