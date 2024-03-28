@@ -1298,6 +1298,7 @@ class GUI(tk.Tk):
         return ICfreqText
 
     def setICPower(self):
+        Pin = self.setICpower_entr.get()
         if len(Pin) == 0:
             print("Specify IC power")
             return
