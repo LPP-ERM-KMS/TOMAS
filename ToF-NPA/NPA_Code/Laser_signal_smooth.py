@@ -34,8 +34,8 @@ def main(Ch1_timing):
             laser_neighbors += 1
 
             if timing_interval > 153: 
-                laser_missing = round(timing_interval / 151.8, 1)
-                if np.mod(laser_missing, 1) < 0.1: 
+                laser_missing = round(timing_interval / 151.8, 1) #Check how many were missed
+                if np.mod(laser_missing, 1) < 0.1:  #Check if multiple of 151.8
                     Laser_interval.append(timing_interval)
                     Laser_timing.append(Ch1_timing[laser_position])
                     Laser_check.append(laser_neighbors)

@@ -137,9 +137,9 @@ globals()['TOMAS_flux_{}'.format(Data_name)] = TOMAS_flux # Save total flux for 
 
 ##### Maxwell-Boltzmann Distribution Fitting (MBF) ############################
 import Maxwell_fitting
-T_eV = 13 # [eV]13 guess
-T_eV_hot = 81 # [eV] 55 guess
-Hot_ratio = 4.5 # [%] 8 guess
+T_eV = 1 # [eV] 1 guess
+T_eV_hot = 120 # [eV] 100 guess
+Hot_ratio = 8 # [%] 8 guess
 T_eV, T_eV_hot, Hot_ratio = Maxwell_fitting.Fit(ED_DF_sec_cm2,TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 T_eV, T_eV_hot, MBF, MBF_hot = Maxwell_fitting.main(TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 MBF_total = list(MBF[i] + MBF_hot[i] for i in range(len(MBF)))
@@ -152,6 +152,7 @@ E = np.linspace(0, 725, num=726) # [eV]
 plt.ylabel('Differential flux (H0 / cm2 eV s sr)')
 plt.xlabel('Energy (eV)')
 plt.plot(x_axis, ED_DF_sec_cm2, label='Experimental data')
+#np.savetxt('Results/ED_DF.csv',np.hstack(x_axis,ED_DF_sec_cm2),',')
 plt.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV, (100 - Hot_ratio)))
 plt.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV_hot, Hot_ratio))
 plt.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label='Maxwell fitting')

@@ -62,7 +62,7 @@ def Fit(ED_DF_sec_cm2,TOMAS_flux, T_eV, T_eV_hot, Hot_ratio):
     Hot_ratio = xf[2]
     return T_eV, T_eV_hot , Hot_ratio
 
-def FunctionToFit(x,ED_DF_sec_cm2,TOMAS_flux):
+def FunctionToFit(x,ED_DF_sec_cm2,TOMAS_flux,startoffset=2,midpoint=20):
     T_eV = x[0]
     T_eV_hot = x[1]
     Hot_ratio = x[2]
@@ -79,5 +79,8 @@ def FunctionToFit(x,ED_DF_sec_cm2,TOMAS_flux):
     MBF_hot = list(N_i*(Hot_ratio*0.01)*2*math.sqrt(1/math.pi)*(1/(k_B_eV*T_K_hot))**(3/2) * math.sqrt(i) * math.exp(-i/(k_B_eV*T_K_hot)) for i in E)
 
     MBF_total = list(MBF[i] + MBF_hot[i] for i in range(len(MBF)))
+    A,B,C = 0.4,0.4,0.05
 
-    return np.sum(np.abs(np.array(ED_DF_sec_cm2[10:])-np.array(MBF_total[10:])))
+    return A*np.sum(np.abs(np.log(np.array(ED_DF_sec_cm2[startoffset:midpoint]))-np.log(np.array(MBF[startoffset:midpoint]))))/len(np.array(MBF[startoffset:midpoint]))\
+        + B*np.sum(np.abs(np.log(np.array(ED_DF_sec_cm2[midpoint:]))-np.log(np.array(MBF_hot[midpoint:]))))/len(np.array(MBF[midpoint:]))\
+        + C*np.sum(np.abs(np.log(np.array(ED_DF_sec_cm2[startoffset:]))-np.log(np.array(MBF_total[startoffset:]))))/len(np.array(MBF[startoffset:]))
