@@ -62,23 +62,26 @@ def Fit(ED_DF_sec_cm2,TOMAS_flux, T_eV, T_eV_hot, Hot_ratio):
     Hot_ratio = xf[2]
     return T_eV, T_eV_hot , Hot_ratio
 
+def MBFFunc(N_i,Hot_ratio,T_eV,e):
+    T_K = T_eV / K_to_eV # [K]
+    return N_i*(1-(Hot_ratio)*0.01)*2*np.sqrt(1/math.pi)*(1/(k_B_eV*T_K))**(3/2) * np.sqrt(e) * np.exp(-e/(k_B_eV*T_K))
+
+def MBFFunc_hot(N_i,Hot_ratio,T_eV_hot,e):
+    T_K_hot = T_eV_hot / K_to_eV # [K]
+    return N_i*(Hot_ratio*0.01)*2*np.sqrt(1/math.pi)*(1/(k_B_eV*T_K_hot))**(3/2) * np.sqrt(e) * np.exp(-e/(k_B_eV*T_K_hot))
+
 def FunctionToFit(x,ED_DF_sec_cm2,TOMAS_flux,startoffset=2,midpoint=20):
     T_eV = x[0]
     T_eV_hot = x[1]
     Hot_ratio = x[2]
-    # T_eV = T_eV # [eV]
-    # T_eV_hot = T_eV_hot
-    T_K = T_eV / K_to_eV # [K]
-    T_K_hot = T_eV_hot / K_to_eV # [K]
-    # Hot_ratio = Hot_ratio # [%]
     N_i = TOMAS_flux/(4*math.pi)
     
     # MBF = Maxwell Boltzmann distribution Fitting (or fitting Function)
     E = np.linspace(0, 725, len(ED_DF_sec_cm2)) # [eV]
-    MBF = list(N_i*(1-(Hot_ratio)*0.01)*2*math.sqrt(1/math.pi)*(1/(k_B_eV*T_K))**(3/2) * math.sqrt(i) * math.exp(-i/(k_B_eV*T_K)) for i in E)
-    MBF_hot = list(N_i*(Hot_ratio*0.01)*2*math.sqrt(1/math.pi)*(1/(k_B_eV*T_K_hot))**(3/2) * math.sqrt(i) * math.exp(-i/(k_B_eV*T_K_hot)) for i in E)
+    MBF = MBFFunc(N_i,Hot_ratio,T_eV,E)
+    MBF_hot = MBFFunc_hot(N_i,Hot_ratio,T_eV_hot,E)
 
-    MBF_total = list(MBF[i] + MBF_hot[i] for i in range(len(MBF)))
+    MBF_total = MBF + MBF_hot
     A,B,C = 0.4,0.4,0.05
 
     return A*np.sum(np.abs(np.log(np.array(ED_DF_sec_cm2[startoffset:midpoint]))-np.log(np.array(MBF[startoffset:midpoint]))))/len(np.array(MBF[startoffset:midpoint]))\

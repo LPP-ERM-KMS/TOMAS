@@ -10,8 +10,9 @@ import tkinter as tk
 from scipy import spatial
 import matplotlib.pyplot as plt  
 from tkinter import filedialog as fd
-from tkinter import StringVar, OptionMenu
 from tkinter.messagebox import showinfo
+from tkinter import StringVar, OptionMenu
+from matplotlib.widgets import Button, Slider
 
 ##### Inputs ##################################################################
 Program_type = 1 # 1 = CoMPASS, 2 = DPP-PSD
@@ -108,7 +109,6 @@ plt.plot(AT_Histogram_interval, AT_Histogram_value, label='Arrival Time Distribu
 plt.yscale('log')
 plt.xlim(left=0)
 plt.legend()
-plt.savefig('figures/ATD_{}.png'.format(Data_name), dpi=600)
 plt.show()
 
 ##### Plot Energy Distribution (ED) ###########################################
@@ -120,7 +120,6 @@ plt.legend()
 plt.xlabel("E")
 plt.ylabel("counts/s") #I assume this to be the case
 plt.title("Energy Distribution")
-plt.savefig('figures/ED_{}.png'.format(Data_name), dpi=600)
 plt.show()
 
 
@@ -146,26 +145,28 @@ MBF_total = list(MBF[i] + MBF_hot[i] for i in range(len(MBF)))
 
 
 ##### Plot Final distribution and Maxwell fitting #############################
-plt.figure(3, figsize=(12, 8), dpi=80) 
+fig, ax = plt.subplots()
 x_axis = [i for i in range(5, 730,  5)]
 E = np.linspace(0, 725, num=726) # [eV]
-plt.ylabel('Differential flux (H0 / cm2 eV s sr)')
-plt.xlabel('Energy (eV)')
-plt.plot(x_axis, ED_DF_sec_cm2, label='Experimental data')
-#np.savetxt('Results/ED_DF.csv',np.hstack(x_axis,ED_DF_sec_cm2),',')
-plt.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV, (100 - Hot_ratio)))
-plt.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV_hot, Hot_ratio))
-plt.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label='Maxwell fitting')
-plt.yscale('log')
-plt.xlim(left = 0, right = 750)
-plt.ylim(bottom = 1e7)#, top = 1e14)
-plt.legend()
-plt.savefig('figures/ED_DF_{}.png'.format(Data_name), dpi=600)
+ax.set_ylabel('Differential flux (H0 / cm2 eV s sr)')
+ax.set_xlabel('Energy (eV)')
+ax.plot(x_axis, ED_DF_sec_cm2, label='Experimental data')
+
+# Functions whom should have sliders
+ax.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV, (100 - Hot_ratio)))
+ax.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV_hot, Hot_ratio))
+ax.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label='Maxwell fitting')
+
+# Further figure adjustmens
+ax.set_yscale('log')
+ax.set_xlim(left = 0, right = 750)
+ax.set_ylim(bottom = 1e7)#, top = 1e14)
+ax.legend()
 plt.show()
 
 sputteringquestion = input('Do you want to calculate the sputtering rate based off these measurements? [y/n]')
 if sputteringquestion == 'n':
-    sys.exit(0)
+    exit()
 elif sputteringquestion == 'y':
     target = input(f"What is the target material? (e.g B, we're assuming the flux to be {Gas_type} as it has been troughout the analysis):")
     yieldmapfilename = Gas_type + "On" + target + '.csv'
@@ -193,5 +194,6 @@ elif sputteringquestion == 'y':
     E_avg = E_avg/(np.sum(Diff_TOMAS_flux))
     Sr = Sr*(10**7)*3600 #convert to nm/h
     print("Erosion rate: {} nm/s".format(Sr))
+    exit()
 else:
     sys.exit(1)
