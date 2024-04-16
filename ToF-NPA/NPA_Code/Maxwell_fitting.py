@@ -38,11 +38,11 @@ M_H0 = a_H0 * 0.99999999965E-3 # [kg⋅mol^−1]
 M_H2 = a_H2 * 0.99999999965E-3 # [kg⋅mol^−1]
 
 
-def main(TOMAS_flux, T_eV, T_eV_hot, Hot_ratio):
-    N_i = TOMAS_flux/(4*math.pi)
+def main(TOMAS_flux, T_eV, T_eV_hot, Hot_ratio,FluxAdjust=1,EnergyOffset=0):
+    N_i = FluxAdjust*TOMAS_flux/(4*math.pi)
     
     # MBF = Maxwell Boltzmann distribution Fitting (or fitting Function)
-    E = np.linspace(0, 725, 726) # [eV]
+    E = np.linspace(0, 725, 726) + EnergyOffset # [eV]
     MBF = MBFFunc(N_i,Hot_ratio,T_eV,E)
     MBF_hot = MBFFunc_hot(N_i,Hot_ratio,T_eV_hot,E)
     
