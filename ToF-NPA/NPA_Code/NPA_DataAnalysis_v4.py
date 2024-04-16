@@ -210,7 +210,7 @@ OffsetSlider = Slider(
     ax=energyoffset,
     label='E offset',
     valmin=0,
-    valmax=50,
+    valmax=100,
     valinit=0,
     orientation="vertical"
 )
@@ -220,7 +220,7 @@ FluxSlider = Slider(
     ax=axflux,
     label='Flux adjustment',
     valmin=0,
-    valmax=5,
+    valmax=10,
     valinit=1,
     orientation="vertical"
 )
