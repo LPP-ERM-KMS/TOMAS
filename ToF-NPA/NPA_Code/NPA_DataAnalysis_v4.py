@@ -42,6 +42,12 @@ def CloseDialog():
 root = tk.Tk()
 root.title("File Dialog Example")
 
+ExposureTime = tk.DoubleVar()
+label = tk.Label(root, text="Exposure time (s):")
+label.pack(padx=20, pady=20)
+entry = tk.Entry(root, textvariable=ExposureTime)
+entry.pack(padx=20, pady=20)
+
 open_button = tk.Button(root, text="Ch0 file", command=open_Ch0_file_dialog)
 open_button.pack(padx=20, pady=20)
 
@@ -97,7 +103,7 @@ if Program_type == 2: Unit_coeff = 250
 
 AT_data, AT_Histogram_value, AT_Histogram_interval = ATD_ED.AT(Ch, Ch0, Unit_coeff)
 ED_data, ED_Histogram_value, ED_Histogram_interval = ATD_ED.ED(AT_data, Gas_type)
-AT_Histogram_value_sec, ED_Histogram_value_sec = ATD_ED.Normalization(Ch, Ch0, Gas_type, Unit_coeff)
+AT_Histogram_value_sec, ED_Histogram_value_sec = ATD_ED.Normalization(Ch, Ch0, Gas_type, Unit_coeff,ExposureTime.get())
 
 if not os.path.exists("figures"):
     os.mkdir("figures")

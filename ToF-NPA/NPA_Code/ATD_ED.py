@@ -80,7 +80,7 @@ def ED(AT_data, Gas_type):
     return (ED_data, ED_Histogram_value, ED_Histogram_interval)
 
 ##### Normalization of AT and ED / AT -> AT/sec, ED -> ED/sec
-def Normalization(Ch, Ch0, Gas_type, Unit_coeff):
+def Normalization(Ch, Ch0, Gas_type, Unit_coeff,Laser_normalization_coeff=200):
     Chx = list(Ch[i][1] for i in range(len(Ch)))
     Laser_first_NPA_position = min(np.where(np.array(Chx) > 0)[0])
     Laser_last_NPA_position = max(np.where(np.array(Chx) > 0)[0])

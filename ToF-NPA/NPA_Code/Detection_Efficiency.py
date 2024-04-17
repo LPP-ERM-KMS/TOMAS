@@ -39,9 +39,9 @@ Eta[2] = (1-math.exp(-0.012))*0.25
 def main(ED_Histogram_value, Gas_type):
     ### Passing Probablity (PP) for Hydrogen ##################################
     if Gas_type == 'H':
-        A1 = 1.0354 # 4.6366 # (14.332 for 1-4 mbar case)
-        B1 = 0.496659 # 0.3657 # (0.2455 for 1-4 mbar case)
-        C1 = 2.79
+        A1 = 35.09265544# 4.6366 # (14.332 for 1-4 mbar case)
+        B1 = 0.14505386 # 0.3657 # (0.2455 for 1-4 mbar case)
+        C1 = -17.51401046
     if Gas_type == 'He':
         A1 = 10.3904 # (14.332 for 1-4 mbar case)
         B1 = 0.2785 # (0.2455 for 1-4 mbar case)
