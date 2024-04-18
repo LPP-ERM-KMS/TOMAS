@@ -92,7 +92,6 @@ def Normalization(Ch, Ch0, Gas_type, Unit_coeff,Laser_normalization_coeff=200):
    
     Laser_total_time_us = (Ch[Laser_last_NPA_position][0] - Ch[Laser_first_NPA_position][0]) / 1e6 # [µs]
     Laser_total_counts = Laser_total_time_us / 151.8
-    Laser_normalization_coeff = 907.2 # 432 shots à 2.1s #perhaps norm for lost counts would be also good... 
     # Laser_counts / Laser_total_counts # % of laser signal in NPA signal period
     #the old one compensated by dividing of about 51% - but we want here the actual normalization (right?) 
 
