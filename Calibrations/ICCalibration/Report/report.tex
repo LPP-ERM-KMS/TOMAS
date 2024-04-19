@@ -179,4 +179,33 @@ as requested, a lookup table for the new system, per frequency
     P_f(W) &= 10^{\frac{V_{\text{ICF}}-2.296889}{0.02543572}+ 4}\\
     P_r(W) &= 10^{\frac{V_{\text{ICR}}-2.353619}{0.02456144}+ 4}
 \end{eqnarray}
+\newpage
+\section{Phase Calibration}
+\subsection{Setup}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/PhaseSetup.pdf}
+\caption{The input signal gets split whereby one goes as reference and the other goes
+through a lengthening stub, as signal}
+\end{figure}
+After we measure this for various lenghts and repeat the measurement on a VNA to see the resulting phase change
+we end up with the correlation (for 100MHz, hopefully also valid for 25MHz):
+\begin{equation}
+    V(\phi) = a\phi + b
+\end{equation}
+With\\ 
+\begin{center}
+\begin{tabular}{||c c c c||}
+ \hline
+ a & error on a (\%) & b & error on b (\%)\\ [0.5ex]
+ \hline\hline
+ -0.0104633 & 0.1352 &  1.9031 & 0.03752 \\
+ \hline
+\end{tabular}
+\end{center}
+Or:
+\begin{equation}
+    \phi (\Gamma) =  190.31 - 95.57214 V_{\text{ICPhase}}
+\end{equation}
+
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.21)  27 MAR 2024 10:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.3.27)  19 APR 2024 15:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -208,25 +208,38 @@ Overfull \hbox (12.61186pt too wide) in paragraph at lines 125--135
 [] 
  []
 
-[3] [4] [5] (./report.aux)
+[3] [4] [5]
+
+pdfTeX warning: pdflatex (file ./figures/PhaseSetup.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<figures/PhaseSetup.pdf, id=52, 614.295pt x 794.97pt>
+File: figures/PhaseSetup.pdf Graphic file (type pdf)
+<use figures/PhaseSetup.pdf>
+Package pdftex.def Info: figures/PhaseSetup.pdf  used on input line 187.
+(pdftex.def)             Requested size: 207.0021pt x 267.88443pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
+
+ []
+
+[6 <./figures/PhaseSetup.pdf>] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3074 strings out of 476076
- 49364 string characters out of 5793775
+ 3081 strings out of 476076
+ 49590 string characters out of 5793775
  1950187 words of memory out of 5000000
- 25186 multiletter control sequences out of 15000+600000
+ 25193 multiletter control sequences out of 15000+600000
  563144 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 57i,12n,65p,278b,226s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,12n,65p,278b,234s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on report.pdf (6 pages, 294780 bytes).
+Output written on report.pdf (7 pages, 307905 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 118 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

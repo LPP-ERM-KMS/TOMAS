@@ -6,7 +6,7 @@ import numpy as np
 def InOutToDb(x):
     return 10*np.log(x)
 
-SMatrix = rfObject(touchstone='/home/arthur/PhD/TOMAS/Calibrations/ICPowerCalibration/S-matrices/Line/V1.s3p')
+SMatrix = rfObject(touchstone='/home/arthur/PhD/Data/PhaseCalibration/TouchStoneFiles/3600.s3p')
 
 Freqs = np.linspace(1E6,60E6)
 
