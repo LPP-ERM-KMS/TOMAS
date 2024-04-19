@@ -111,6 +111,10 @@ def Convert(key,y,GasType):
     if key == "Baratron":
         y = (y-1)*0.125*0.1
         unit = "mbar"
+    if key == "ICPhase":
+        y = 190.31-95.57214*y
+        unit = "degrees (°)"
+
     return unit,y 
 
 def TemperatureFunction(T,Vd2,Vd3):
