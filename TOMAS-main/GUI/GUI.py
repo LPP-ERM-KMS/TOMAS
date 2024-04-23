@@ -859,7 +859,7 @@ class GUI(tk.Tk):
             else:
                 self.operation(doIC=True,doEC=False,doDAQ=True) #Discharge
             CsM, CpM = self.ICMatch() #Get UDP signal and determine change in capacitor values
-            moveCap(CsM,CpM) 
+            self.moveCap(CsM,CpM) 
             time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
             # and the system to have cooled a bit.
             # It will also have cooled whilst waiting for the DAQ response
@@ -890,10 +890,10 @@ class GUI(tk.Tk):
         Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Vf
         Pdbm[5] = (Vmeas[5]-2.253668)/0.02488522 + 70 #Vr
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
-        GPhase = Vmeas[6] #phase(Vf)-phase(Vr)
+        GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr)
         Vf = V[4]
         Vr = V[5]
-        Gamma = Vr/Vf + 1j*GPhase
+        Gamma = Vr/Vf
         print(f"Gamma = {Gamma}")
         
         FREQ = float(self.FREQ_entr.get())*1e6
@@ -904,7 +904,7 @@ class GUI(tk.Tk):
         ######################################
         #       Calculate modification       #
         ######################################
-        EpsG, EpsB = ModAlgo3V(V,Vf,Vr,FREQ,0,1,3)
+        EpsG, EpsB = ModAlgo3V(V,Vf,Vr,Gamma,PGamma,FREQ,0,1,3)
 
         CsM = SPFactor*StepConversionFactor*EpsG
         CpM = SPFactor*StepConversionFactor*EpsB

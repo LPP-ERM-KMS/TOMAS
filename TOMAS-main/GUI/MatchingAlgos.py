@@ -2,7 +2,7 @@ import csv
 import numpy as np
 from scipy import spatial, optimize
 
-def ModAlgo3V(V,Vf,Vr,FREQ,probeindexA,probeindexB,probeindexC):
+def ModAlgo3V(V,Vf,Vr,Gamma,PGamma,FREQ,probeindexA,probeindexB,probeindexC):
     ######################################
     # Calculate new values of Cs and Cp  #
     ######################################
@@ -22,8 +22,6 @@ def ModAlgo3V(V,Vf,Vr,FREQ,probeindexA,probeindexB,probeindexC):
     SABBC = (S[Ai] - S[Bi])/(S[Bi] - S[Ci])
     CABBC = (C[Ai] - C[Bi])/(C[Bi] - C[Ci])
 
-    Gamma = Vr/Vf
-
     Vf = np.abs(Vf)
     Vs = (V**2)/(Vf**2) - 1
 
@@ -36,8 +34,8 @@ def ModAlgo3V(V,Vf,Vr,FREQ,probeindexA,probeindexB,probeindexC):
     EpsB = 2*v/((1+u)**2 + v**2)
     EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
 
-    beta = -1*np.angle(Gamma)
-    x = np.array([np.cos(beta)*EpsG-np.sin(beta)*EpsB,np.sin(beta)*EpsG + np.cos(beta)*EpsB])
+    theta = -1*PGamma
+    x = np.array([np.cos(theta)*EpsG-np.sin(theta)*EpsB,np.sin(theta)*EpsG + np.cos(theta)*EpsB])
     x = x/np.linalg.norm(x)
     CsM = x[0]
     CpM = x[1]
