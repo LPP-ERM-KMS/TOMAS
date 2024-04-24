@@ -145,9 +145,9 @@ globals()['TOMAS_flux_{}'.format(Data_name)] = TOMAS_flux # Save total flux for 
 
 ##### Maxwell-Boltzmann Distribution Fitting (MBF) ############################
 import Maxwell_fitting
-T_eV = 1 # [eV] 1 guess
-T_eV_hot = 120 # [eV] 100 guess
-Hot_ratio = 8 # [%] 8 guess
+T_eV = 25 # [eV] 26 guess
+T_eV_hot = 110 # [eV] 100 guess
+Hot_ratio = 11 # [%] 8 guess
 T_eV, T_eV_hot, Hot_ratio = Maxwell_fitting.Fit(ED_DF_sec_cm2,TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 T_eV, T_eV_hot, MBF, MBF_hot = Maxwell_fitting.main(TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 MBF_total = MBF + MBF_hot
@@ -174,9 +174,10 @@ for x_axis_index,energy in enumerate(x_axis):
         SStot += (np.log(ED_DF_sec_cm2[x_axis_index]) - np.log(Mean))**2
 Rsquared = 1 - SSres/SStot
 
-ax.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV, (100 - Hot_ratio)))
-ax.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV_hot, Hot_ratio))
-ax.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label=f'Maxwell fitting with $R^2$={Rsquared[0]}')
+ax.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell with T={:#.5g} eV ({:#.4g} %)'.format(T_eV, (100 - Hot_ratio)))
+ax.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell with T={:#.5g} eV ({:#.4g} %)'.format(T_eV_hot, Hot_ratio))
+ax.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label='Bi-maxwellian fitting with $R^2$={:#.4g}'.format(Rsquared[0]))
+
 
 # adjust the main plot to make room for the sliders
 fig.subplots_adjust(left=0.30, bottom=0.30)
@@ -257,9 +258,9 @@ def update(val):
             SStot += (np.log(ED_DF_sec_cm2[x_axis_index]) - np.log(Mean))**2
     Rsquared = 1 - SSres/SStot
 
-    ax.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV, (100 - Hot_ratio)))
-    ax.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV_hot, Hot_ratio))
-    ax.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label=f'Maxwell fitting with $R^2$={Rsquared[0]}')
+    ax.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell with T={:#.5g} eV ({:#.4g} %)'.format(T_eV, (100 - RatioSlider.val)))
+    ax.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell with T={:#.5g} eV ({:#.4g} %)'.format(T_eV_hot, RatioSlider.val))
+    ax.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label='Bi-maxwellian fitting with $R^2$={:#.4g}'.format(Rsquared[0]))
     ax.set_yscale('log')
     ax.set_xlim(left = 0, right = 750)
     ax.set_ylim(bottom = 1e7)#, top = 1e14)
@@ -309,9 +310,9 @@ def lock(event):
             SStot += (np.log(ED_DF_sec_cm2[x_axis_index]) - np.log(Mean))**2
     Rsquared = 1 - SSres/SStot
 
-    plt.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV, (100 - Hot_ratio)))
-    plt.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell {} eV ({} %)'.format(T_eV_hot, Hot_ratio))
-    plt.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label=f'Maxwell fitting with $R^2$={Rsquared[0]}')
+    plt.plot(E, MBF, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell with T={:#.5g} eV ({:#.4g} %)'.format(T_eV, (100 - RatioSlider.val)))
+    plt.plot(E, MBF_hot, linestyle='-', linewidth=1, color='#1f77b4', alpha=0.5, label='Maxwell with T={:#.5g} eV ({:#.4g} %)'.format(T_eV_hot, RatioSlider.val))
+    plt.plot(E, MBF_total, linestyle='-', linewidth=5, color='#1f77b4', alpha=0.5, label='Bi-maxwellian fitting with $R^2$={:#.4g}'.format(Rsquared[0]))
     plt.yscale('log')
     plt.xlim(left = 0, right = 750)
     plt.ylim(bottom = 1e7)#, top = 1e14)
