@@ -54,7 +54,7 @@ def Fit(ED_DF_sec_cm2,TOMAS_flux, T_eV, T_eV_hot, Hot_ratio):
     T_eV = xf[0]
     T_eV_hot = xf[1]
     Hot_ratio = xf[2]
-    return T_eV, T_eV_hot , Hot_ratio
+    return T_eV,T_eV_hot,Hot_ratio
 
 def MBFFunc(N_i,Hot_ratio,T_eV,e):
     T_K = T_eV / K_to_eV # [K]
@@ -65,9 +65,7 @@ def MBFFunc_hot(N_i,Hot_ratio,T_eV_hot,e):
     return N_i*(Hot_ratio*0.01)*2*np.sqrt(1/math.pi)*(1/(k_B_eV*T_K_hot))**(3/2) * np.sqrt(e) * np.exp(-e/(k_B_eV*T_K_hot))
 
 def FunctionToFit(x,ED_DF_sec_cm2,TOMAS_flux,startoffset=2,midpoint=20):
-    T_eV = x[0]
-    T_eV_hot = x[1]
-    Hot_ratio = x[2]
+    T_eV, T_eV_hot, Hot_ratio = x
     E = np.linspace(0, 725, len(ED_DF_sec_cm2)) # [eV]
     x_axis = [i for i in range(5, 730,  5)]
     N_i = TOMAS_flux/(4*math.pi)
@@ -83,7 +81,5 @@ def FunctionToFit(x,ED_DF_sec_cm2,TOMAS_flux,startoffset=2,midpoint=20):
         if energy in E:
             SSres += (np.log(ED_DF_sec_cm2[x_axis_index]) - np.log(MBF_total[np.where(np.isclose(E,energy))]))**2
             SStot += (np.log(ED_DF_sec_cm2[x_axis_index]) - np.log(Mean))**2
-    Rsquared = 1 - SSres/SStot
 
-        
-    return abs(1-Rsquared)
+    return abs(SSres/SStot)

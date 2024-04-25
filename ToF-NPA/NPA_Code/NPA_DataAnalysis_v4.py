@@ -145,9 +145,9 @@ globals()['TOMAS_flux_{}'.format(Data_name)] = TOMAS_flux # Save total flux for 
 
 ##### Maxwell-Boltzmann Distribution Fitting (MBF) ############################
 import Maxwell_fitting
-T_eV = 25 # [eV] 26 guess
-T_eV_hot = 110 # [eV] 100 guess
-Hot_ratio = 11 # [%] 8 guess
+T_eV = 20.266 # [eV] 26 guess
+T_eV_hot = 103.15 # [eV] 100 guess
+Hot_ratio = 30 # [%] 8 guess
 T_eV, T_eV_hot, Hot_ratio = Maxwell_fitting.Fit(ED_DF_sec_cm2,TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 T_eV, T_eV_hot, MBF, MBF_hot = Maxwell_fitting.main(TOMAS_flux, T_eV, T_eV_hot, Hot_ratio)
 MBF_total = MBF + MBF_hot
