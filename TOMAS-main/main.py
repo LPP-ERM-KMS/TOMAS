@@ -12,7 +12,6 @@ import time
 from Signalgenerator.scripts.AFG3252 import *
 from DAQ.scripts.DAQtrigger import *
 from GUI.GUI import *
-from GUI.MatchingAlgos import ModAlgo3V
 
 parser = argparse.ArgumentParser() #Allow for local debugging
 parser.add_argument("-d", "--debug", help="Debug flag if not running on TOMAS control PC")
@@ -23,8 +22,8 @@ if not args.debug:
 
     Motors = ["A", "P", "S", "X", "Y", "Z"]
 
-    # Create a serial object and specify the serial port that the Arduino is connected to, in my case /dev/ttyACM0.
-    # Python and Arduino communicate through the serial port.
+    # Create a serial object and specify the serial port that the Arduino is connected to, in this case COM5 on usb 
+    # splitter python and Arduino communicate through this serial port.
     ArduinoUnoSerial = serial.Serial('COM5', 9600)
 
 

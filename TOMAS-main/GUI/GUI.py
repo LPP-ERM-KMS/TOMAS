@@ -1,13 +1,12 @@
 import tkinter as tk
 import threading #making tk not freeze when moving probe
-import pyRFtk
-import serial
+from pyRFtk import rfObject
+from .MatchingAlgos import ModAlgo3V
 import socket
 import time
 import numpy as np
 from os.path import exists
 from datetime import date
-from scipy import optimize
 import os
 
 class GUI(tk.Tk):
@@ -714,6 +713,7 @@ class GUI(tk.Tk):
             elif posStrs[i] == "S":
                 self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
 
+        self.Pos = newPos.decode()
         self.moveA_entr.delete(0, 'end')
         self.moveP_entr.delete(0, 'end')
         self.moveS_entr.delete(0, 'end')
@@ -818,16 +818,12 @@ class GUI(tk.Tk):
         #        Boot up receiving server     #
         #######################################
         print("booting up receiving server, please set the DAQ collection time to 1 second")
+        
         try:
             self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
-            self.ICserver.bind(('192.168.70.18',5020))
-            print("port bound succesfully")
+            self.ICserver.bind(('192.168.70.150',5020)) #DAQ IP
         except:
-            print("port seems to be bound already,")
-            print("reusing port")
-            self.ICserver = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
-            print("ICserver set up")
-
+            self.ICserver = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         #######################################
         #          Configure RF Output        #
         #######################################
@@ -855,59 +851,60 @@ class GUI(tk.Tk):
         for i in range(int(self.Steps_entr.get())):
             print(f"Step number {i}")
             if pulsed:
-                self.operation(doIC=True,doEC=True,doDAQ=True) #Discharge
+                self.operation(doIC=True,doEC=True,doDAQ=True,nIter=1) #Discharge
+                #self.operation(doIC=False,doEC=False,doDAQ=True,nIter=1) #TEMPORARY
             else:
-                self.operation(doIC=True,doEC=False,doDAQ=True) #Discharge
+                self.operation(doIC=True,doEC=False,doDAQ=True,nIter=1) #Discharge
+                #self.operation(doIC=False,doEC=False,doDAQ=True,nIter=1) #TEMPORARY
             CsM, CpM = self.ICMatch() #Get UDP signal and determine change in capacitor values
-            self.moveCap(CsM,CpM) 
+            self.moveCap(CsM,CpM)
             time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
             # and the system to have cooled a bit.
             # It will also have cooled whilst waiting for the DAQ response
 
         if not pulsed:
             self.ECout = 1
-            ECswitch() #Turn off EC
+            self.ECswitch() #Turn off EC
 
 
 
     def ICMatch(self):
         data,addr = self.ICserver.recvfrom(256)
-        print("Received values:")
         Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
-        print(Vmeas)
         Pdbm = np.zeros(6)
+        
+        FREQ = float(self.dev.GetICFreq())
 
-        V0SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V0.s3p')
-        V1SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V1.s3p')
-        V2SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V2.s3p')
-        V3SMatrix = rfObject(touchstone='../MatchingSystem/SMatrices/V3.s3p')
+        V0SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V0.s3p') #gets called from main location
+        V1SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V1.s3p')
+        V2SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V2.s3p')
+        V3SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V3.s3p')
         
         #The following needs to be modified
-        Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475 - V0SMatrix.getS(Freq)[:,0,2] #V0
-        Pdbm[1] = (Vmeas[2]-2.333738)/0.02521568 - V1SMatrix.getS(Freq)[:,0,2] #V1
-        Pdbm[2] = (Vmeas[1]-2.35944)/0.02507625  - V2SMatrix.getS(Freq)[:,0,2] #V2
-        Pdbm[3] = (Vmeas[0]-2.348957)/0.02479989  - V3SMatrix.getS(Freq)[:,0,2] #V3
-        Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Vf
-        Pdbm[5] = (Vmeas[5]-2.253668)/0.02488522 + 70 #Vr
+        Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475 + 57#- V0SMatrix.getS(FREQ)[0,2].real #V0
+        Pdbm[1] = (Vmeas[2]-2.333738)/0.02521568 + 54#- V1SMatrix.getS(FREQ)[0,2].real #V1
+        Pdbm[2] = (Vmeas[1]-2.35944)/0.02507625  + 68#- V2SMatrix.getS(FREQ)[0,2].real #V2
+        Pdbm[3] = (Vmeas[0]-2.348957)/0.02479989 + 62 #- V3SMatrix.getS(FREQ)[0,2].real #V3
+        Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Pf
+        Pdbm[5] = (Vmeas[5]-2.257531)/0.02522978 + 70 #Pr
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
         GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr)
         Vf = V[4]
         Vr = V[5]
-        Gamma = Vr/Vf
-        print(f"Gamma = {Gamma}")
+        Gamma = (10**(Pdbm[5]/10))/(10**(Pdbm[4]/10))
+        print('deduced values:')
+        print(f"Gamma = {Gamma} with a phase of {GPhase} degrees and |V0-3|²/|Vf|² - 1={(V[0:4]/Vf)**2 - 1}")
         
-        FREQ = float(self.FREQ_entr.get())*1e6
-
-        SPFactor = 4
+        SPFactor = 60
         StepConversionFactor = 1/10 #about 10 steps per pF
 
         ######################################
         #       Calculate modification       #
         ######################################
-        EpsG, EpsB = ModAlgo3V(V,Vf,Vr,Gamma,PGamma,FREQ,0,1,3)
+        EpsG, EpsB = ModAlgo3V(V,Vf,Vr,Gamma,GPhase,FREQ,0,1,3)
 
-        CsM = SPFactor*StepConversionFactor*EpsG
-        CpM = SPFactor*StepConversionFactor*EpsB
+        CsM = round(SPFactor*StepConversionFactor*EpsG)
+        CpM = round(SPFactor*StepConversionFactor*EpsB)
 
         ######################################
         #  Get current values of capacitors  #
@@ -925,8 +922,8 @@ class GUI(tk.Tk):
         CsN = CsO + CsM
         CpN = CpO + CpM
 
-        print(f"Cs becomes {CsN} and Cp becomes {CpN}")
-
+        print(f"going from S = {CsO} to {CsN} and P = {CpO} to {CpN}")
+    
         return CsN,CpN
         
     def ICDataBaseLookup(self):
@@ -939,14 +936,12 @@ class GUI(tk.Tk):
             self.SuggestedCpVal = str(int(SuggestedValues[1]/(1000e-12-7e-12)*float(self.maxPos[1])))
             self.SuggestedCsVal = str(int(SuggestedValues[2]/(1000e-12-25e-12)*float(self.maxPos[2])))
             self.SuggestedCaVal = str(int(SuggestedValues[3]/(1000e-12-35e-12)*float(self.maxPos[0])))
-            bounds = ((self.minPos[1],self.maxPos[1]),(self.minPos[2],self.maxPos[2]))
         else:
             SimValues = np.loadtxt("MatchingSystem/SimulatedpF.csv",delimiter=",")
             SuggestedValues = SimValues[np.abs(SimValues[:,0] - float(self.FREQ_entr.get())).argmin()]
             self.SuggestedCpVal = SuggestedValues[1]
             self.SuggestedCsVal = SuggestedValues[2]
             self.SuggestedCaVal = SuggestedValues[3]
-            bounds = ((7,1000),(25,1000))
         self.CapLbl = None
         self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
             bg="LightSteelBlue3").place(x=220,y=50)
@@ -1279,6 +1274,11 @@ class GUI(tk.Tk):
             self.f.close()
             self.fLim.close()
             self.dev.disableOutputs()
+            self.arduino.close()
+            try:
+                self.ICserver.close()
+            except:
+                print("Assuming you didn't use the matching system")
         self.destroy()
 
     def getICfreqText(self):
@@ -1685,7 +1685,7 @@ class GUI(tk.Tk):
             # print("ticDAQ " + str(ticDAQ))
             self.doDAQ()
             tocDAQ = time.time()
-            while tocDAQ - ticDAQ < 0.5:
+            while tocDAQ - ticDAQ < 0.3:
                 time.sleep(0.001)
                 tocDAQ = time.time()
 
@@ -1723,7 +1723,7 @@ class GUI(tk.Tk):
                 toc = time.time()
             # print(str(toc - tic))
 
-    def operation(self,doIC=None,doEC=None,doDAQ=None):
+    def operation(self,doIC=None,doEC=None,doDAQ=None,nIter=None):
         if not doDAQ: #Test if not called from matching system
             doIC = self.OPDoIC.get()
             doEC = self.OPDoEC.get()
@@ -1732,11 +1732,11 @@ class GUI(tk.Tk):
         good = self.makeRoutine(doIC, doEC)
         if good == 0:
             return
-
-        nIter = self.OPamount_entr.get()
-        if len(nIter) == 0:
-            print("Specify amount of routines")
-            return
+        if not nIter:
+            nIter = self.OPamount_entr.get()
+            if len(nIter) == 0:
+                print("Specify amount of routines")
+                return
         
         for i in range(0, int(nIter)):
             self.doRoutine(doIC, doEC, doDAQ)

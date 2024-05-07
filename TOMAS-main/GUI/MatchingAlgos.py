@@ -13,7 +13,6 @@ def ModAlgo3V(V,Vf,Vr,Gamma,PGamma,FREQ,probeindexA,probeindexB,probeindexC):
 
     # Get voltages at positions in Measurepoints:
     MeasurePoints = np.array([2.35,1.69,0.895,0.235])
-    V = np.zeros(len(MeasurePoints))
 
     #constants:
     beta = 2*np.pi*FREQ/(3*(10**8))
@@ -33,8 +32,10 @@ def ModAlgo3V(V,Vf,Vr,Gamma,PGamma,FREQ,probeindexA,probeindexB,probeindexC):
 
     EpsB = 2*v/((1+u)**2 + v**2)
     EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
-
-    theta = -1*PGamma
+    
+    thetafactor = -2
+    thetaoffset = -20
+    theta = thetafactor*(PGamma + thetaoffset)
     x = np.array([np.cos(theta)*EpsG-np.sin(theta)*EpsB,np.sin(theta)*EpsG + np.cos(theta)*EpsB])
     x = x/np.linalg.norm(x)
     CsM = x[0]
