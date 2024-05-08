@@ -1,2 +1,5 @@
-# FREQ, Cs, Cp, Ca, Pressure, Gas type
-25, 
+#Gas Type,IC FREQ (MHz),Field current,IC injected power (kW),EC power (kW),Cs,Cp,Ca,Gas Pressure,neutrals pressure,Gamma
+H,40,1600,4,0,2193,7971,989,3.33e-4,0.1
+H,40,1700,5,0,2157,8020,800,4.14e-4,1e-4,0.08
+H,40,2000,4,0,2158,8002,989,3.46e-4,1e-4,0.04
+H,42,2000,4,0,2158,8002,400,3.27e-4,1e-4,0.04
