@@ -33,9 +33,9 @@ def ModAlgo3V(V,Vf,Vr,Gamma,PGamma,FREQ,probeindexA,probeindexB,probeindexC):
     EpsB = 2*v/((1+u)**2 + v**2)
     EpsG = 1 - ((1-u**2-v**2)/((1+u)**2 + v**2))
     
-    thetafactor = -2
-    thetaoffset = -20
-    theta = thetafactor*(PGamma + thetaoffset)
+    thetafactor = -1
+    thetaoffset = 0
+    theta = np.deg2rad(thetafactor*(PGamma + thetaoffset))
     x = np.array([np.cos(theta)*EpsG-np.sin(theta)*EpsB,np.sin(theta)*EpsG + np.cos(theta)*EpsB])
     x = x/np.linalg.norm(x)
     CsM = x[0]

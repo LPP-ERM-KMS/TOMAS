@@ -858,7 +858,7 @@ class GUI(tk.Tk):
                 #self.operation(doIC=False,doEC=False,doDAQ=True,nIter=1) #TEMPORARY
             CsM, CpM = self.ICMatch() #Get UDP signal and determine change in capacitor values
             self.moveCap(CsM,CpM)
-            time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
+            time.sleep(3) #wait 3 seconds for the capacitors to have moved
             # and the system to have cooled a bit.
             # It will also have cooled whilst waiting for the DAQ response
 
@@ -888,7 +888,7 @@ class GUI(tk.Tk):
         Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Pf
         Pdbm[5] = (Vmeas[5]-2.257531)/0.02522978 + 70 #Pr
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
-        GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr)
+        GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr) in degrees
         Vf = V[4]
         Vr = V[5]
         Gamma = (10**(Pdbm[5]/10))/(10**(Pdbm[4]/10))
