@@ -17,6 +17,7 @@ from matplotlib.widgets import Button, Slider
 
 ##### Inputs ##################################################################
 Program_type = 1 # 1 = CoMPASS, 2 = DPP-PSD
+global number_densities
 number_densities = {'B': 1.364744e29}
 
 ###########################
@@ -27,12 +28,12 @@ from tkinter import filedialog
 
 def open_Ch0_file_dialog():
     global ch0filepath
-    ch0filepath = filedialog.askopenfilename(title="Select Ch0 file",initialdir=".." ,filetypes=[("csv files", "*.csv"), ("All files", "*.*")])
+    ch0filepath = filedialog.askopenfilename(title="Select Ch0 file",initialdir=".." ,filetypes=[("CSV files", "*.CSV"),("csv files", "*.csv"), ("All files", "*.*")])
     if ch0filepath:
         selected_file_ch0_label.config(text=f"Selected File: {ch0filepath}")
 def open_Ch1_file_dialog():
     global ch1filepath
-    ch1filepath = filedialog.askopenfilename(title="Select Ch1 file", filetypes=[("csv files", "*.csv"), ("All files", "*.*")])
+    ch1filepath = filedialog.askopenfilename(title="Select Ch1 file", filetypes=[("csv files", "*.CSV"),("csv files", "*.csv"), ("All files", "*.*")])
     if ch1filepath:
         selected_file_ch1_label.config(text=f"Selected File: {ch1filepath}")
 
@@ -329,7 +330,7 @@ ax.set_ylim(bottom = 1e7)#, top = 1e14)
 ax.legend()
 plt.show()
 
-def SputteringCalc(target,Gas_type,x_axis,Diff_TOMAS_flux,number_densities):
+def SputteringCalc(target,Gas_type,x_axis,Diff_TOMAS_flux):
     yieldmapfilename = Gas_type + "On" + target + '.csv'
     YieldMapPath = 'YieldMaps/' + yieldmapfilename
     YieldMap = np.genfromtxt(YieldMapPath, delimiter=",")
@@ -361,29 +362,43 @@ if sputteringquestion == 'n':
     exit()
 elif sputteringquestion == 'y':
         target = input(f"What is the target material? (e.g B, we're assuming the flux to be {Gas_type} as it has been troughout the analysis):")
-        Sr = SputteringCalc(Gas_type,x_axis,Diff_TOMAS_flux,number_densities)
-        print("Neutral erosion rate: {} nm/s".format(Sr))
-        SahaQuestion = input('Do you want a sputtering estimate for the ions, following the SAHA equations? (Not needed if RFEA measurements are available) [y/n]')
+        Sr = SputteringCalc(target,Gas_type,x_axis,Diff_TOMAS_flux)
+        print("Neutral erosion rate: {} nm/h".format(Sr))
+        SahaQuestion = input('Do you want a sputtering estimate for the ions, following the SAHA equations? (Not needed if RFEA measurements are available) this doesnt work yet [y/n]')
         if SahaQuestion == 'n':
             exit()
         elif SahaQuestion == 'y':
-            def FluxRatio(n_e,T,species):
+            def FluxRatio(P,E,species):
+                
                 Chi_H = 13.6 #eV
                 c = 299792458 #m / s
-                m_p = 938.27208943e6 #eV/c^2
-                h = 4.135667696e-15 #eV/Hz
+                m_p = 938.27208943e6*c*c #eV
+                m_e = 0.51099895069 #MeV/c^2
+                h = 4.135667696e-15 #eV s
                 k_b = 8.617333262e-5 #eV/K
+                eV = 11604.525 #K
+                mbar = 0.0009869232667160128 #atm 
+                R = 8.20573660809596e-5 #m^3 atm (K mol)^-1
+                V = 2*(np.pi**2)*0.78*(0.26**2) #m^3
+                N_A = 6.02214076e23
+                T = np.array(E)
+
+                #ideal gas law P -> n:
+                n = (P*mbar*V)/(R*T*eV)*N_A #/m^3
+
+                Lambda_th = h/np.sqrt(2*np.pi*m_e*k_b*T*eV)
 
                 if species == 'H':
-                    return (((2*np.pi*m_p*k_b*T)**(3/2))/(h**3)) * 1 * np.exp(-1*Chi_H/(k_b*T))
+                    A = (1/n)*((1/Lambda_th)**3)*np.exp(-1*Chi_H/(k_b*T*eV))
+                return (-1*A + np.sqrt(A**2+4*A))/2
             #####################################################################
             #       Estimate ion flux from neutral flux using Saha equations    #
             #####################################################################
-            n_e = input('Average n_e:')
-            Diff_TOMAS_ion_flux = Diff_TOMAS_flux*FluxRatio(n_e,x_axis,Gas_type)
-            IonSr = SputteringCalc(target,Gas_type,x_axis,Diff_TOMAS_ion_flux,number_densities)
-            print("Estimated erosion rate due to ions: {} nm/s".format(IonSr))
-            print("Estimated total erosion rate: {} nm/s".format(IonSr+Sr))
+            P = float(input('Pressure before exposure (mbar): '))
+            Diff_TOMAS_ion_flux = Diff_TOMAS_flux*FluxRatio(P,x_axis,Gas_type)
+            IonSr = SputteringCalc(target,Gas_type,x_axis,Diff_TOMAS_ion_flux)
+            print("Estimated erosion rate due to ions: {} nm/h".format(IonSr))
+            print("Estimated total erosion rate: {} nm/h".format(IonSr+Sr))
             exit()
 else:
     sys.exit(1)
