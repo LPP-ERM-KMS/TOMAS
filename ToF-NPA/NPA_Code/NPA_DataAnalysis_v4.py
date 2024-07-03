@@ -329,11 +329,7 @@ ax.set_ylim(bottom = 1e7)#, top = 1e14)
 ax.legend()
 plt.show()
 
-sputteringquestion = input('Do you want to calculate the sputtering rate based off these measurements? [y/n]')
-if sputteringquestion == 'n':
-    exit()
-elif sputteringquestion == 'y':
-    target = input(f"What is the target material? (e.g B, we're assuming the flux to be {Gas_type} as it has been troughout the analysis):")
+def SputteringCalc(target,Gas_type,x_axis,Diff_TOMAS_flux,number_densities):
     yieldmapfilename = Gas_type + "On" + target + '.csv'
     YieldMapPath = 'YieldMaps/' + yieldmapfilename
     YieldMap = np.genfromtxt(YieldMapPath, delimiter=",")
@@ -358,7 +354,36 @@ elif sputteringquestion == 'y':
         E_avg += Diff_TOMAS_flux[i]*e
     E_avg = E_avg/(np.sum(Diff_TOMAS_flux))
     Sr = Sr*(10**7)*3600 #convert to nm/h
-    print("Erosion rate: {} nm/s".format(Sr))
+    return Sr
+
+sputteringquestion = input('Do you want to calculate the sputtering rate based off these measurements? [y/n]')
+if sputteringquestion == 'n':
     exit()
+elif sputteringquestion == 'y':
+        target = input(f"What is the target material? (e.g B, we're assuming the flux to be {Gas_type} as it has been troughout the analysis):")
+        Sr = SputteringCalc(Gas_type,x_axis,Diff_TOMAS_flux,number_densities)
+        print("Neutral erosion rate: {} nm/s".format(Sr))
+        SahaQuestion = input('Do you want a sputtering estimate for the ions, following the SAHA equations? (Not needed if RFEA measurements are available) [y/n]')
+        if SahaQuestion == 'n':
+            exit()
+        elif SahaQuestion == 'y':
+            def FluxRatio(n_e,T,species):
+                Chi_H = 13.6 #eV
+                c = 299792458 #m / s
+                m_p = 938.27208943e6 #eV/c^2
+                h = 4.135667696e-15 #eV/Hz
+                k_b = 8.617333262e-5 #eV/K
+
+                if species == 'H':
+                    return (((2*np.pi*m_p*k_b*T)**(3/2))/(h**3)) * 1 * np.exp(-1*Chi_H/(k_b*T))
+            #####################################################################
+            #       Estimate ion flux from neutral flux using Saha equations    #
+            #####################################################################
+            n_e = input('Average n_e:')
+            Diff_TOMAS_ion_flux = Diff_TOMAS_flux*FluxRatio(n_e,x_axis,Gas_type)
+            IonSr = SputteringCalc(target,Gas_type,x_axis,Diff_TOMAS_ion_flux,number_densities)
+            print("Estimated erosion rate due to ions: {} nm/s".format(IonSr))
+            print("Estimated total erosion rate: {} nm/s".format(IonSr+Sr))
+            exit()
 else:
     sys.exit(1)

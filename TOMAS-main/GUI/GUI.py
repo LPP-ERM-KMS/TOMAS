@@ -1,7 +1,7 @@
 import tkinter as tk
 import threading #making tk not freeze when moving probe
 from pyRFtk import rfObject
-from .MatchingAlgos import ModAlgo3V
+from .MatchingAlgos import *
 import socket
 import time
 import numpy as np
@@ -856,9 +856,9 @@ class GUI(tk.Tk):
             else:
                 self.operation(doIC=True,doEC=False,doDAQ=True,nIter=1) #Discharge
                 #self.operation(doIC=False,doEC=False,doDAQ=True,nIter=1) #TEMPORARY
-            CsM, CpM = self.ICMatch() #Get UDP signal and determine change in capacitor values
+            CsM, CpM = self.ICMatch("4V") #Get UDP signal and determine change in capacitor values
             self.moveCap(CsM,CpM)
-            time.sleep(3) #wait 3 seconds for the capacitors to have moved
+            time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
             # and the system to have cooled a bit.
             # It will also have cooled whilst waiting for the DAQ response
 
@@ -868,41 +868,66 @@ class GUI(tk.Tk):
 
 
 
-    def ICMatch(self):
+    def ICMatch(self,method="DirCoupler"):
+        
+        #######################################
+        #           Receive Voltages          #
+        #######################################
         data,addr = self.ICserver.recvfrom(256)
         Vmeas = (np.array(str(data)[2:-2].split(","))).astype(float)
         Pdbm = np.zeros(6)
-        
         FREQ = float(self.dev.GetICFreq())
-
         V0SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V0.s3p') #gets called from main location
         V1SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V1.s3p')
         V2SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V2.s3p')
         V3SMatrix = rfObject(touchstone='MatchingSystem/SMatrices/V3.s3p')
         
+        def InOutToDb(x):
+            return 10*np.log(x)
+        
         #The following needs to be modified
-        Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475 + 57#- V0SMatrix.getS(FREQ)[0,2].real #V0
-        Pdbm[1] = (Vmeas[2]-2.333738)/0.02521568 + 54#- V1SMatrix.getS(FREQ)[0,2].real #V1
-        Pdbm[2] = (Vmeas[1]-2.35944)/0.02507625  + 68#- V2SMatrix.getS(FREQ)[0,2].real #V2
-        Pdbm[3] = (Vmeas[0]-2.348957)/0.02479989 + 62 #- V3SMatrix.getS(FREQ)[0,2].real #V3
+        Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475
+        Pdbm[1] = (Vmeas[2]-2.333738)/0.02521568
+        Pdbm[2] = (Vmeas[1]-2.35944)/0.02507625
+        Pdbm[3] = (Vmeas[0]-2.348957)/0.02479989
         Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Pf
         Pdbm[5] = (Vmeas[5]-2.257531)/0.02522978 + 70 #Pr
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
-        GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr) in degrees
+        GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr)
+
+        V[0] = V[0]/abs(V0SMatrix.getS(FREQ)[0,2])
+        V[1] = V[1]/abs(V1SMatrix.getS(FREQ)[0,2])
+        V[2] = V[2]/abs(V2SMatrix.getS(FREQ)[0,2])
+        V[3] = V[3]/abs(V3SMatrix.getS(FREQ)[0,2])
         Vf = V[4]
         Vr = V[5]
-        Gamma = (10**(Pdbm[5]/10))/(10**(Pdbm[4]/10))
-        print('deduced values:')
-        print(f"Gamma = {Gamma} with a phase of {GPhase} degrees and |V0-3|²/|Vf|² - 1={(V[0:4]/Vf)**2 - 1}")
-        
-        SPFactor = 60
-        StepConversionFactor = 1/10 #about 10 steps per pF
 
+        GAmp = (abs(Vr))/(abs(Vf))
+
+        print('deduced values:')
+        print(f"Gamma = {GAmp} with a phase of {GPhase} degrees and |V0-3|²/|Vf|² - 1={(V[0:4]/Vf)**2 - 1}")
+        
+        #######################################
+        #          Calculate u and v          #
+        #######################################
+        SPFactor = 10
+        if GAmp > 0.1:
+            SPFactor = 55 #SPFactor = 55pF
+        StepConversionFactor = 5 #about 5 steps per pF
+        if method=="DirCoupler":
+            EpsG, EpsB = DirCoupler(V,Vf,Vr,GAmp,GPhase,FREQ)
+        elif method=="3V":
+            EpsG, EpsB = Algo3V(V,Vf,Vr,GAmp,GPhase,FREQ)
+        elif method=="2V":
+            EpsG, EpsB = Algo2V(V,Vf,Vr,GAmp,GPhase,FREQ)
+        else:
+            EpsG, EpsB = Algo4V(V,Vf,Vr,GAmp,GPhase,FREQ)
+        
         ######################################
         #       Calculate modification       #
         ######################################
-        EpsG, EpsB = ModAlgo3V(V,Vf,Vr,Gamma,GPhase,FREQ,0,1,3)
-
+        
+        
         CsM = round(SPFactor*StepConversionFactor*EpsG)
         CpM = round(SPFactor*StepConversionFactor*EpsB)
 
@@ -921,8 +946,12 @@ class GUI(tk.Tk):
         ######################################
         CsN = CsO + CsM
         CpN = CpO + CpM
-
-        print(f"going from S = {CsO} to {CsN} and P = {CpO} to {CpN}")
+        if (100 > CpN) or (CpN > int(self.maxPos[1])) or (100 > CsN) or (CsN > int(self.maxPos[2])):
+            CsN = CsO
+            CpN = CpO
+            print("At the edge of the domain")
+        else:
+            print(f"going from S = {CsO} to {CsN} and P = {CpO} to {CpN}")
     
         return CsN,CpN
         
