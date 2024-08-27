@@ -886,24 +886,17 @@ class GUI(tk.Tk):
             return 10*np.log(x)
         
         #The following needs to be modified
-        Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475
-        Pdbm[1] = (Vmeas[2]-2.333738)/0.02521568
-        Pdbm[2] = (Vmeas[1]-2.35944)/0.02507625
-        Pdbm[3] = (Vmeas[0]-2.348957)/0.02479989
+        Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475 - InOutToDb(abs(V0SMatrix.getS(FREQ)[0,2]))
+        Pdbm[1] = (Vmeas[2]-2.333738)/0.02521568 - InOutToDbabs(abs(V1SMatrix.getS(FREQ)[0,2]))
+        Pdbm[2] = (Vmeas[1]-2.35944)/0.02507625  - InOutToDbabs(abs(V2SMatrix.getS(FREQ)[0,2]))
+        Pdbm[3] = (Vmeas[0]-2.348957)/0.02479989 - InOutToDbabs(abs(V3SMatrix.getS(FREQ)[0,2]))
         Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Pf
         Pdbm[5] = (Vmeas[5]-2.257531)/0.02522978 + 70 #Pr
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
         GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr)
-
-        V[0] = V[0]/abs(V0SMatrix.getS(FREQ)[0,2])
-        V[1] = V[1]/abs(V1SMatrix.getS(FREQ)[0,2])
-        V[2] = V[2]/abs(V2SMatrix.getS(FREQ)[0,2])
-        V[3] = V[3]/abs(V3SMatrix.getS(FREQ)[0,2])
         Vf = V[4]
         Vr = V[5]
-
         GAmp = (abs(Vr))/(abs(Vf))
-
         print('deduced values:')
         print(f"Gamma = {GAmp} with a phase of {GPhase} degrees and |V0-3|²/|Vf|² - 1={(V[0:4]/Vf)**2 - 1}")
         
