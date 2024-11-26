@@ -1,9 +1,4 @@
-import csv
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
 import numpy as np
-from scipy import spatial, optimize
-
 
 def DirCoupler(V,Vf,Vr,GAmp,GPhase,FREQ,probeindexA=None,probeindexB=None,probeindexC=None):
 
@@ -13,22 +8,16 @@ def DirCoupler(V,Vf,Vr,GAmp,GPhase,FREQ,probeindexA=None,probeindexB=None,probei
     phi =  GPhase
 
     Gamma = rho*np.exp(1j*(phi)) 
-    
-    print("Gamma:")
-    print(Gamma)
 
     Beta = 2*np.pi*FREQ/(c)
-    BetaL3 = Beta*2.585
-    phi = -1*phi - 2*BetaL3 #phase transform from V3 to load
+    BetaL3 = Beta*(2.585+0.25)
+    phi = -1*phi - 2*BetaL3 #phase transform from Dir coupler to load
 
     Gamma = rho*np.exp(1j*(phi))
-    
-    print("Gamma at load:")
-    print(Gamma)
 
     u = Gamma.real
     v = Gamma.imag
-
+    
     EpsG = u**2 + v**2 + u
     EpsB = v
 
@@ -51,7 +40,7 @@ def Algo3V(V,Vf,Vr,GAmp,GPhase,FREQ,probeindexA=0,probeindexB=1,probeindexC=3):
     SABBC = (S[Ai] - S[Bi])/(S[Bi] - S[Ci])
     CABBC = (C[Ai] - C[Bi])/(C[Bi] - C[Ci])
 
-    Vs = (V/Vf)**2 - 1
+    Vs = (V/Vf)**2
 
     udenom = 2*(C[Bi]-C[Ci])*(CABBC - SABBC)
     vdenom = 2*(S[Bi]-S[Ci])*(CABBC - SABBC)
@@ -83,13 +72,15 @@ def Algo4V(V,Vf,Vr,GAmp,GPhase,FREQ,probeindexA=None,probeindexB=None,probeindex
     BigS = (S[0] - S[1])/(S[2] - S[3])
     BigC = (C[0] - C[1])/(C[2] - C[3])
 
-    Vs = (V**2)/(Vf**2) - 1
+    Vs = (V**2)/(Vf**2)
 
     u = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigS)/((C[2] - C[3])*(BigC - BigS))
     v = (1/2)*((Vs[0] - Vs[1]) - (Vs[2] - Vs[3])*BigC)/((S[2] - S[3])*(BigC - BigS))
+    
+    denom = (1+u**2) + v**2
 
-    EpsB = v
-    EpsG = u**2 + v**2 + u
+    EpsG = (u**2 + v**2 + u)/denom
+    EpsB = (v)/denom
 
     return -1*EpsG,-1*EpsB
 

@@ -5,36 +5,36 @@
    Define the stepper motors conntected to the motors (A is prematchingbox, P is parallel and S is series in L-box)
    and to the probes (X is sample manipulator, Y is horizontal triple probe, Z is vertical triple probe).
 */
-arx::vector<String> Motors = {"A", "P", "S", "X", "Y", "Z"};
+std::vector<String> Motors = {"A", "P", "S", "X", "Y", "Z"};
 
 /*
   Define a vector to keep track of the positions of the objects (capacitors and probes) that are moved by the stepper motors
 */
-arx::vector<int> Pos = {0, 0, 0, 0, 0, 0};
+std::vector<int> Pos = {0, 0, 0, 0, 0, 0};
 
 /*
    Define a vector for the pins of the Arduino that are used to drive the stepper motors
 */
 
-arx::vector<int> limitPinMin = {2, 7, 13, 17, 22, 27};
-arx::vector<int> limitPinMax = {3, 8, 12, 18, 23, 28};
-arx::vector<int> dirPin = {4, 9, 14, 19, 24, 29};
-arx::vector<int> pulsePin = {5, 10, 15, 20, 25, 30};
-arx::vector<int> enablePin = {6, 11, 16, 21, 26, 31};
+std::vector<int> limitPinMin = {2, 7, 12, 17, 22, 27};
+std::vector<int> limitPinMax = {3, 8, 13, 18, 23, 28};
+std::vector<int> dirPin =      {4, 9, 14, 19, 24, 29};
+std::vector<int> pulsePin =    {5, 10, 15, 20, 25, 30};
+std::vector<int> enablePin =   {6, 11, 16, 21, 26, 31};
 
 
 /*
    Define a vector for the limit switches. It was only possible to work with pointers
 */
-arx::vector<ezButton*> limitSwitchMin;
-arx::vector<ezButton*> limitSwitchMax;
+std::vector<ezButton*> limitSwitchMin;
+std::vector<ezButton*> limitSwitchMax;
 
 /*
    List the characteristics of the stepper motors
 */
-arx::vector<int> pulsesPerRev = {400, 400, 400, 400, 400, 400}; //The number of pulses that let the stepper motor make a full revolution of 360 degrees
-arx::vector<int> stepsPerRev = {400, 400, 400, 4, 4, 4}; //The user-defined number of steps we want there to be in a full revolution
-arx::vector<int> pulsesPerStep = {0, 0, 0, 0, 0, 0}; // The setup function will enter the number of pulses per step in the vector
+std::vector<int> pulsesPerRev = {400, 400, 400, 400, 400, 400}; //The number of pulses that let the stepper motor make a full revolution of 360 degrees
+std::vector<int> stepsPerRev = {400, 400, 400, 40, 40, 40}; //The user-defined number of steps we want there to be in a full revolution
+std::vector<int> pulsesPerStep = {0, 0, 0, 0, 0, 0}; // The setup function will enter the number of pulses per step in the vector
 int millisbetweenPulses = 1; // The number of milliseconds the motor waits between pulses
 
 //====================================================================================================================
@@ -42,9 +42,9 @@ int millisbetweenPulses = 1; // The number of milliseconds the motor waits betwe
 /*
   Function to split an input string at the spaces
 */
-arx::vector<String> splitString(String str)
+std::vector<String> splitString(String str)
 {
-  arx::vector<String> strs;
+  std::vector<String> strs;
   while (str.length() > 0) {
     int index = str.indexOf(' ');
     if (index == -1) { // No space found
@@ -61,7 +61,7 @@ arx::vector<String> splitString(String str)
 /*
    Function to find the index of an entry in a vector
 */
-int findIndex(arx::vector<String> vec, String s)
+int findIndex(std::vector<String> vec, String s)
 {
   int i = 0;
   for (i; i < vec.size(); i++) {
@@ -113,10 +113,6 @@ void findLimits(String motor, int &min, int &max)
 */
 bool Step(int i)
 {
-
-  // Start counting from 1 in order to keep track of number of steps with modulo-operator.
-  for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
-
     // Check if the moving object touches the limit switch.
     // In order to do so, the loop() function of the limitswitch must be called first.
     limitSwitchMin[i]->loop();
@@ -147,15 +143,20 @@ bool Step(int i)
         limitSwitchMax[i]->loop();
     }
     if (HitASwitch){return false;}
-    digitalWrite(pulsePin[i], HIGH);
-    digitalWrite(pulsePin[i], LOW);
-    delay(millisbetweenPulses);
-    if (nPulses % pulsesPerStep[i] == 0) {
-        if (!digitalRead(dirPin[i])) Pos[i] += 1;
-        else Pos[i] -= 1;
+    else {
+      // Start counting from 1 in order to keep track of number of steps with modulo-operator.
+      for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
+        // move a step
+        digitalWrite(pulsePin[i], HIGH);
+        digitalWrite(pulsePin[i], LOW);
+        delay(millisbetweenPulses);
+        if (nPulses % pulsesPerStep[i] == 0) {
+            if (!digitalRead(dirPin[i])) Pos[i] += 1;
+            else Pos[i] -= 1;
+        }
+      }
     }
-  }
-  return true;
+    return true;
 }
 
 /*
@@ -201,7 +202,7 @@ void setup() {
      Split the string at the white spaces, to obtain a vector <X,x,Y,y,Z,z>.
   */
   String str = Serial.readStringUntil('\n');
-  arx::vector<String> strs  = splitString(str);
+  std::vector<String> strs  = splitString(str);
 
   /*
      Enter the start positions of the motors in the array [a,p,s]
@@ -231,7 +232,7 @@ void loop() {
      Split the string at the white spaces, to obtain a vector <X,x,Y,y,Z,z>.
   */
   String str = Serial.readStringUntil('\n');
-  arx::vector<String> strs  = splitString(str);
+  std::vector<String> strs  = splitString(str);
 
   /*
      Determine the limits of the specified motors
@@ -284,7 +285,9 @@ void loop() {
           bool status = Step(i);
           if (status == false) {
             Serial.println("Error: motor " + Motors[i] + " at limit");
-            Pos[i] = 1;
+            if (i==4) {Pos[4] = 20;}
+            else if (i==5) {Pos[5] = 35;}
+            else {Pos[i] = 0;}
             break;
           }
         }

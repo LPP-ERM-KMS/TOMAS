@@ -24,7 +24,7 @@ if not args.debug:
 
     # Create a serial object and specify the serial port that the Arduino is connected to, in this case COM5 on usb 
     # splitter python and Arduino communicate through this serial port.
-    ArduinoUnoSerial = serial.Serial('COM5', 9600)
+    ArduinoUnoSerial = serial.Serial('COM4', 9600)
 
 
 

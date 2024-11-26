@@ -228,9 +228,9 @@ class GUI(tk.Tk):
                 if posStrs[i] == "X":
                     self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
                 elif posStrs[i] == "Y":
-                    self.posY_lbl.config(text="Triple Probe H: " + posStrs[i + 1].strip())
+                    self.posY_lbl.config(text="Triple Probe H: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
                 elif posStrs[i] == "Z":
-                    self.posZ_lbl.config(text="Triple Probe V: " + posStrs[i + 1].strip())
+                    self.posZ_lbl.config(text="Triple Probe V: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
 
         self.moveProbe_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue")
         self.moveX_lbl = tk.Label(self.moveProbe_frm, text="Move Sample manipulator to:", bg="LightSteelBlue")
@@ -856,7 +856,7 @@ class GUI(tk.Tk):
             else:
                 self.operation(doIC=True,doEC=False,doDAQ=True,nIter=1) #Discharge
                 #self.operation(doIC=False,doEC=False,doDAQ=True,nIter=1) #TEMPORARY
-            CsM, CpM = self.ICMatch("4V") #Get UDP signal and determine change in capacitor values
+            CsM, CpM = self.ICMatch() #Get UDP signal and determine change in capacitor values
             self.moveCap(CsM,CpM)
             time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
             # and the system to have cooled a bit.
@@ -885,43 +885,49 @@ class GUI(tk.Tk):
         def InOutToDb(x):
             return 10*np.log(x)
         
-        #The following needs to be modified
-        Pdbm[0] = (Vmeas[3]-2.333086)/0.02525475 - InOutToDb(abs(V0SMatrix.getS(FREQ)[0,2]))
-        Pdbm[1] = (Vmeas[2]-2.333738)/0.02521568 - InOutToDbabs(abs(V1SMatrix.getS(FREQ)[0,2]))
-        Pdbm[2] = (Vmeas[1]-2.35944)/0.02507625  - InOutToDbabs(abs(V2SMatrix.getS(FREQ)[0,2]))
-        Pdbm[3] = (Vmeas[0]-2.348957)/0.02479989 - InOutToDbabs(abs(V3SMatrix.getS(FREQ)[0,2]))
+        Pdbm[0] = Vmeas[3]
+        Pdbm[1] = Vmeas[2]
+        Pdbm[2] = Vmeas[1]
+        Pdbm[3] = Vmeas[0]
         Pdbm[4] = (Vmeas[4]-2.196569)/0.0257915 + 70 #Pf
         Pdbm[5] = (Vmeas[5]-2.257531)/0.02522978 + 70 #Pr
+        print(f"power dbm Vf:{Pdbm[4]}")
+        print(f"power dbm:{Pdbm}")
         V = np.sqrt(0.1*10**(Pdbm/10)) #Convert to Vpeak
         GPhase = 190.31 - Vmeas[6]*95.57214 #phase(Vf)-phase(Vr)
         Vf = V[4]
         Vr = V[5]
         GAmp = (abs(Vr))/(abs(Vf))
         print('deduced values:')
-        print(f"Gamma = {GAmp} with a phase of {GPhase} degrees and |V0-3|²/|Vf|² - 1={(V[0:4]/Vf)**2 - 1}")
+        print(f"Gamma = {GAmp} with a phase of {GPhase} degrees and |V0-3|²/|Vf|²={(V[0:4]/Vf)**2}")
         
         #######################################
         #          Calculate u and v          #
         #######################################
-        SPFactor = 10
-        if GAmp > 0.1:
-            SPFactor = 55 #SPFactor = 55pF
+        SSlowFactor = 1
+        SPFactor = 55 #SPFactor = 80pF
+        if 0.8 > GAmp:
+             SPFactor = 10 #SPFactor = 80pF
+        if 0.2 > GAmp:
+             SPFactor = 5 #SPFactor = 80pF
+        if 0.1 > GAmp:
+             SPFactor = 2
         StepConversionFactor = 5 #about 5 steps per pF
         if method=="DirCoupler":
-            EpsG, EpsB = DirCoupler(V,Vf,Vr,GAmp,GPhase,FREQ)
+            EpsG, EpsB = DirCoupler(V,Vf,Vr,GAmp,np.deg2rad(GPhase),FREQ)
         elif method=="3V":
-            EpsG, EpsB = Algo3V(V,Vf,Vr,GAmp,GPhase,FREQ)
+            EpsG, EpsB = Algo3V(V,Vf,Vr,GAmp,np.deg2rad(GPhase),FREQ)
         elif method=="2V":
-            EpsG, EpsB = Algo2V(V,Vf,Vr,GAmp,GPhase,FREQ)
+            EpsG, EpsB = Algo2V(V,Vf,Vr,GAmp,np.deg2rad(GPhase),FREQ)
         else:
-            EpsG, EpsB = Algo4V(V,Vf,Vr,GAmp,GPhase,FREQ)
+            EpsG, EpsB = Algo4V(V,Vf,Vr,GAmp,np.deg2rad(GPhase),FREQ)
         
         ######################################
         #       Calculate modification       #
         ######################################
         
         
-        CsM = round(SPFactor*StepConversionFactor*EpsG)
+        CsM = round(SPFactor*SSlowFactor*StepConversionFactor*EpsG)
         CpM = round(SPFactor*StepConversionFactor*EpsB)
 
         ######################################
@@ -1045,11 +1051,11 @@ class GUI(tk.Tk):
 
         cmd = ""
         if moveXto:
-            cmd += "X " + moveXto + " "
+            cmd += "X " + str(int(moveXto)*10) + " "
         if moveYto:
-            cmd += "Y " + moveYto + " "
+            cmd += "Y " + str(int(moveYto)*10) + " "
         if moveZto:
-            cmd += "Z " + moveZto
+            cmd += "Z " + str(int(moveZto)*10)
 
         if cmd == "":
             print("Specify at least one position")
@@ -1080,15 +1086,13 @@ class GUI(tk.Tk):
             if posStrs[i] == "X":
                 self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
             elif posStrs[i] == "Y":
-                self.posY_lbl.config(text="Triple Probe H: " + posStrs[i + 1].strip())
+                self.posY_lbl.config(text="Triple Probe H: " + str(float(posStrs[i + 1].strip())/10) + 'mm' )
             elif posStrs[i] == "Z":
-                self.posZ_lbl.config(text="Triple Probe V: " + posStrs[i + 1].strip())
+                self.posZ_lbl.config(text="Triple Probe V: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
 
         self.moveX_entr.delete(0, 'end')
         self.moveY_entr.delete(0, 'end')
         self.moveZ_entr.delete(0, 'end')
-        self.CapLbl = tk.Label(self.top, text=f"Move to the combination Cs: {self.SuggestedCsVal}, Cp: {self.SuggestedCpVal} and Ca: {self.SuggestedCaVal}",
-            bg="LightSteelBlue3").place(x=220,y=50)
         self.update()
 
     def findLimProbe(self):
@@ -1218,11 +1222,11 @@ class GUI(tk.Tk):
                         posStrs = Pos.decode().split(" ")
                         for i in range(0, len(posStrs)):
                             if posStrs[i] == "X":
-                                self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
+                                self.posX_lbl.config(text="Sample manipulator: " + str(float(posStrs[i + 1].strip())/10))
                             elif posStrs[i] == "Y":
-                                self.posY_lbl.config(text="Triple Probe H: " + posStrs[i + 1].strip())
+                                self.posY_lbl.config(text="Triple Probe H: " + str(float(posStrs[i + 1].strip())/10))
                             elif posStrs[i] == "Z":
-                                self.posZ_lbl.config(text="Triple Probe V: " + posStrs[i + 1].strip())
+                                self.posZ_lbl.config(text="Triple Probe V: " + str(float(posStrs[i + 1].strip())/10))
                         break
                     else:
                         print("The new positions are:")
