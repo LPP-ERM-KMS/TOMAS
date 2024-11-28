@@ -25,10 +25,10 @@ std::vector<int> dirPin =      {4, 9, 14, 19, 24, 29};
 std::vector<int> pulsePin =    {5, 10, 15, 20, 25, 30};
 std::vector<int> enablePin =   {6, 11, 16, 21, 26, 31};
 
-K1PIN = 41;
-K2PIN = 42;
-K3PIN = 43;
-K4PIN = 44;
+int K1PIN = 41;
+int K2PIN = 42;
+int K3PIN = 43;
+int K4PIN = 44;
 
 /*
    Define a vector for the limit switches. It was only possible to work with pointers
