@@ -8,8 +8,6 @@
 */
 std::vector<String> Motors = {"A", "P", "S", "X", "Y", "Z"};
 
-// Define switches of importance: which langmuir probe, Langmuir probe power supply and resistances
-std::vector<String> Switches = {"O", "L", "R"};
 Multi_Channel_Relay LPPS; //Langmuir Probe Power Supply and H/V switch (1-3 are power, 4 is H/V)
 
 /*
@@ -278,16 +276,17 @@ void loop() {
        Move motors to new position, specified by Python in the form X x Y y Z z
        with X,Y,Z in [A,P,S,X,Y,Z] and x,y,z in [1,100].
 
-       Arthur 2024: now also able to switch on and off LP power supply and switch LP resistors (R5,R6,R7,R8),
-       to accomodate this change the full input string will take the form
-       AaPpSsXxYyZzLlRr
-       L being the langmuir probe, values 0,1,2,3 corresponding to 0: all off, 1: first on, 2: second on and 3: third on,
-       voltages thus roughly 0,65,105,150
-       R being the Resistance, values are 5-8
+       Arthur 2024: now also able to switch LP power supply between 0,65,110 and 160V and switch LP resistors (R5,R6,R7,R8),
+       to accomodate this change there are now also L, R and O codes:
+       AaPpSsXxYyZzOoLlRr
+       O being either horizontal (0) or vertical (1)
+       L being the langmuir probe power supp, values 0,1,2,3 corresponding to:
+          0: all battery arrays off, 1: first on, 2: second on and 3: third on.
+       R being the Resistor, values are 5-8 for R5-R8
     */
   } else if (strs.size() >= 2) {
 
-    // For consecutive pairs in the string, e.g. X x, only motors
+    // For consecutive pairs in the string, e.g. X x
     for (int n = 0; n < 12; n += 2) {
 
       int arg;
@@ -297,42 +296,40 @@ void loop() {
       	if (strs[n + 1] == "0"){arg=0;}
 	      else {arg = strs[n + 1].toInt();}
 
-        //Find the index for the motor X that is used in the Arduino code
-        int i = findIndex(Motors, strs[n]);
-
-        // determine the steps to be taken relative to the current position.
-        int steps = arg - Pos[i];
-        // Set the direction of the stepper motor, based on the sign of the steps to be taken. [shorter, digitalWrite(dirPinA, steps > 0? LOW : HIGH);]
-        if (steps > 0) digitalWrite(dirPin[i], LOW); //CW
-        else digitalWrite(dirPin[i], HIGH);  //CCW
-        // Turn the stepper motor a number of steps
-        for (int s = 0; s < abs(steps); s++) {
-          bool status = Step(i);
-          if (status == false) {
-            Serial.println("Error: motor " + Motors[i] + " at limit");
-            if (i==4) {Pos[4] = 20;}
-            else if (i==5) {Pos[5] = 35;}
-            else {Pos[i] = 0;}
-            break;
+        //If not a switch statement
+        if ((strs[n] != "O") && (strs[n] != "L") && (strs[n] != "R")){
+          //Find the index for the motor X that is used in the Arduino code
+          int i = findIndex(Motors, strs[n]);
+        
+          // determine the steps to be taken relative to the current position.
+          int steps = arg - Pos[i];
+          // Set the direction of the stepper motor, based on the sign of the steps to be taken. [shorter, digitalWrite(dirPinA, steps > 0? LOW : HIGH);]
+          if (steps > 0) digitalWrite(dirPin[i], LOW); //CW
+          else digitalWrite(dirPin[i], HIGH);  //CCW
+          // Turn the stepper motor a number of steps
+          for (int s = 0; s < abs(steps); s++) {
+            bool status = Step(i);
+            if (status == false) {
+              Serial.println("Error: motor " + Motors[i] + " at limit");
+              if (i==4) {Pos[4] = 20;}
+              else if (i==5) {Pos[5] = 35;}
+              else {Pos[i] = 0;}
+              break;
+            }
           }
         }
-      } else {
-        Serial.println("Error: Command not understood by Arduino");
-      }
-    }
-    // switch stuff
-    if (strs.size() >= 12) {
-      // For consecutive pairs in the string, e.g. L l, only switches
-      for (int n = 12; n < strs.size(); n += 2) {
-        int arg;
-        // if x is a valid position, i.e. an integer
-        if (strs[n + 1].toInt() || (strs[n + 1] == "0")) {
+        else {
           if (strs[n] == "O") {
             if (strs[n+1] == "0") {
+              //Horizontal probe
               LPPS.turn_off_channel(4);
             }
             else if (strs[n+1] == "1") {
+              //Vertical probe
               LPPS.turn_on_channel(4);
+            }
+            else {
+              Serial.println("Error: Command not understood by Arduino");
             }
           }
           else if (strs[n] == "L") {
@@ -372,13 +369,15 @@ void loop() {
               digitalWrite(K2PIN, HIGH);
               digitalWrite(K3PIN, HIGH);
             }
+            else {
+              Serial.println("Error: Command not understood by Arduino");
+            }
           }
-        } else {
-          Serial.println("Error: Command not understood by Arduino");
         }
-      }    
+      } else {
+        Serial.println("Error: Command not understood by Arduino");
+      }
     }
-
     // Return the positions to Python
     String returnMessage = Motors[0] + " " + String(Pos[0]);
     for (int i = 1; i < Motors.size(); i++) returnMessage += " " + Motors[i] + " " + String(Pos[i]);

@@ -243,10 +243,6 @@ class GUI(tk.Tk):
 
         self.scanProbe_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue")
         self.scanXYZ_lbl = tk.Label(self.scanProbe_frm, text="Scan positions of:", bg="LightSteelBlue")
-        # self.varscanXYZ = tk.IntVar()
-        # self.scanX_chk = tk.Radiobutton(self.scanProbe_frm, text="Sample manipulator", variable=self.varscanXYZ, value=1, bg="LightSteelBlue3")
-        # self.scanY_chk = tk.Radiobutton(self.scanProbe_frm, text="Triple Probe H", variable=self.varscanXYZ, value=2, bg="LightSteelBlue3")
-        # self.scanZ_chk = tk.Radiobutton(self.scanProbe_frm, text="Triple Probe V", variable=self.varscanXYZ, value=3, bg="LightSteelBlue3")
         self.varscanXYZ = tk.StringVar()
         self.varscanXYZ.set("Sample manipulator")  # default value
         self.scanXYZ_opt = tk.OptionMenu(self.scanProbe_frm, self.varscanXYZ, "Sample manipulator", "Triple Probe H", "Triple Probe V")
@@ -268,6 +264,28 @@ class GUI(tk.Tk):
         self.scanDoDAQ = tk.IntVar()
         self.scanDoDAQ_chk = tk.Checkbutton(self.scanProbe_frm, variable=self.scanDoDAQ, text="DAQ", bg="LightSteelBlue")
         self.scanRoutine_btn = tk.Button(self.scanProbe_frm, text="Go!", bg="DarkSeaGreen4", command=self.scanProbe)
+
+        #LPPS (Langmuir Probe Power Supply (and resistor choice)
+        self.selectLPPS_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue")
+        self.LPPSV_lbl = tk.Label(self.selectLPPS_frm, text="LP Voltage Setting:", bg="LightSteelBlue")
+        self.varLPPSV = tk.StringVar()
+        self.varLPPSV.set("0 (off)")# default value
+        self.varLPPSV_opt = tk.OptionMenu(self.selectLPPS_frm, self.varLPPSV, "0 (off)", "1 (around 70V)", "2 (around 110V)", "3 (around 160V)")
+        self.varLPPSV_opt.config(bg="white")
+        self.varLPPSV_opt["menu"].config(bg="white")
+
+        self.LPPSR_lbl = tk.Label(self.selectLPPS_frm, text="LP Resistor:", bg="LightSteelBlue")
+        self.varLPPSR = tk.StringVar()
+        self.varLPPSR.set("R5")# default value
+        self.varLPPSR_opt = tk.OptionMenu(self.selectLPPS_frm, self.varLPPSR, "R5" ,"R6", "R7", "R8")
+
+        self.LP_lbl = tk.Label(self.selectLPPS_frm, text="LP:", bg="LightSteelBlue")
+        self.varLPO = tk.IntVar()
+        self.LPH_chk = tk.Radiobutton(self.selectLPPS_frm, text="H", variable=self.varLPO, value=0, bg="LightSteelBlue")
+        self.LPV_chk = tk.Radiobutton(self.selectLPPS_frm, text="V", variable=self.varLPO, value=1, bg="LightSteelBlue")
+
+        self.LPPS_btn = tk.Button(self.selectLPPS_frm, text="Instruct", bg="DarkSeaGreen4", command=self.InstructLPPS)
+
 
         # GRID PROBE
         self.probe_frm.grid(column=1, row=0, sticky="nsew")
@@ -304,9 +322,6 @@ class GUI(tk.Tk):
         self.scanProbe_frm.grid(column=0, row=5, sticky="nsew", pady=10)
         self.scanXYZ_lbl.grid(column=0, row=0, columnspan=3, rowspan=1, sticky="w")
         self.scanXYZ_opt.grid(column=2, row=0, columnspan=2, rowspan=1, sticky="ew")
-        # self.scanX_chk.grid(column=2, row=0, columnspan=2, rowspan=1, sticky="ew")
-        # self.scanY_chk.grid(column=4, row=0, columnspan=1, rowspan=1, sticky="ew")
-        # self.scanZ_chk.grid(column=5, row=0, columnspan=2, rowspan=1, sticky="ew")
 
         self.scanFrom_lbl.grid(column=0, row=1, columnspan=1, rowspan=1, sticky="w", pady=10)
         self.scanFrom_entr.grid(column=1, row=1, columnspan=1, rowspan=1, sticky="w", pady=10)
@@ -320,6 +335,15 @@ class GUI(tk.Tk):
         self.scanDoEC_chk.grid(column=2, row=2, columnspan=1, rowspan=1, sticky="ew")
         self.scanDoDAQ_chk.grid(column=3, row=2, columnspan=1, rowspan=1, sticky="ew")
         self.scanRoutine_btn.grid(column=0, row=3, columnspan=1, rowspan=1, sticky="w", pady=10)
+
+        self.selectLPPS_frm.grid(column=0, row=6, sticky="nsnew", pady=10)
+        self.LPPSV_lbl.grid(column=0, row=1, columnspan=2,sticky="w")
+        self.varLPPSV_opt.grid(column=3, row=1, )
+        self.LPPSR_lbl.grid(column=0, row=2, columnspan=2,sticky="w")
+        self.varLPPSR_opt.grid(column=3, row=2)
+        self.LPH_chk.grid(column=0, row=0)
+        self.LPV_chk.grid(column=1, row=0)
+        self.LPPS_btn.grid(column=0, row=3)
 
         # IC SIGNAL GENERATOR
         self.IC_frm = tk.Frame(self, borderwidth=15, bg="LightSteelBlue3")
@@ -664,6 +688,25 @@ class GUI(tk.Tk):
         self.DAQtrig.disconnect()
         self.destroy()
         
+    def InstructLPPS(self):
+        L = self.varLPPSV.get().split(' ')[0]
+        R = self.varLPPSR.get()[1]
+        O = str(self.varLPO.get())
+
+        cmd = ""
+        if L:
+            cmd += "L " + L + " "
+        if R:
+            cmd += "R " + R + " "
+        if O:
+            cmd += "O " + O
+
+        # Communicate the desired position to Arduino
+        print("Instruct Arduino:")
+        print(cmd)
+        self.arduino.write(cmd.encode())
+        time.sleep(2)
+
     def moveCap(self,CsM=None,CpM=None):
 
         if CsM and CpM:
