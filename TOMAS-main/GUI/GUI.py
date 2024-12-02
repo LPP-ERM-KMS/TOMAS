@@ -4,9 +4,11 @@ from pyRFtk import rfObject
 from .MatchingAlgos import *
 import socket
 import time
+import datetime
 import numpy as np
 from os.path import exists
 from datetime import date
+import json
 import os
 
 class GUI(tk.Tk):
@@ -17,6 +19,8 @@ class GUI(tk.Tk):
             print("Debug Mode")
         else:
             Debug = False
+
+        self.Parameters = {'ICf':'NA','A':0,'P':0,'S':0,'H(mm)':0,'V(mm)':0,'R':'NA','HGF(sccm)':0,'DGF(sccm)':0,'HeGF(sccm)':0,'ArGF(sccm)':0,'IB(A)':1600,'PolEC':'O'}
 
         self.SuggestedCsVal = None
         self.SuggestedCpVal = None
@@ -97,10 +101,13 @@ class GUI(tk.Tk):
             for i in range(0, len(posStrs)):
                 if posStrs[i] == "A":
                     self.posA_lbl.config(text="A: " + posStrs[i + 1].strip())
+                    self.Parameters['A'] = int(posStrs[i + 1].strip())
                 elif posStrs[i] == "P":
                     self.posP_lbl.config(text="P: " + posStrs[i + 1].strip())
+                    self.Parameters['P'] = int(posStrs[i + 1].strip())
                 elif posStrs[i] == "S":
                     self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
+                    self.Parameters['S'] = int(posStrs[i + 1].strip())
 
         self.move_frm = tk.Frame(self.matching_frm, borderwidth=5, bg="LightSteelBlue")
         self.moveA_lbl = tk.Label(self.move_frm, text="Move capacitor A to:", bg="LightSteelBlue")
@@ -229,8 +236,10 @@ class GUI(tk.Tk):
                     self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
                 elif posStrs[i] == "Y":
                     self.posY_lbl.config(text="Triple Probe H: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
+                    self.Parameters['H(mm)'] = float(posStrs[i + 1].strip())/10
                 elif posStrs[i] == "Z":
                     self.posZ_lbl.config(text="Triple Probe V: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
+                    self.Parameters['V(mm)'] = float(posStrs[i + 1].strip())/10
 
         self.moveProbe_frm = tk.Frame(self.probe_frm, borderwidth=5, bg="LightSteelBlue")
         self.moveX_lbl = tk.Label(self.moveProbe_frm, text="Move Sample manipulator to:", bg="LightSteelBlue")
@@ -585,70 +594,41 @@ class GUI(tk.Tk):
 
         # DAQ
         self.DAQ_frm = tk.Frame(self, borderwidth=15, bg="LightSteelBlue3")
-        self.DAQ_lbl = tk.Label(self.DAQ_frm, text="Data Acquisition", bg="LightSteelBlue3", font='helvetica 15 bold')
+        self.DAQ_lbl = tk.Label(self.DAQ_frm, text="System parameters", bg="LightSteelBlue3", font='helvetica 15 bold')
 
         self.DAQinfo_frm = tk.Frame(self.DAQ_frm, borderwidth=15, bg="LightSteelBlue")
-        self.DAQfile_lbl = tk.Label(self.DAQinfo_frm, text="output file name", bg="LightSteelBlue")
-        self.DAQfile_entr = tk.Entry(self.DAQinfo_frm, width=25)
 
-        self.DAQinfo_lbl = tk.Label(self.DAQinfo_frm, text="Parameter info for output file", bg="LightSteelBlue")
-        self.DAQfirstshot_lbl = tk.Label(self.DAQinfo_frm, text="First shot number", bg="LightSteelBlue")
-        self.DAQfirstshot_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQlastshot_lbl = tk.Label(self.DAQinfo_frm, text="Last shot number", bg="LightSteelBlue")
-        self.DAQlastshot_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQgasHe_lbl = tk.Label(self.DAQinfo_frm, text="He gasflow (sccm)", bg="LightSteelBlue")
-        self.DAQgasHe_entr = tk.Entry(self.DAQinfo_frm, width=5)
+        self.DAQcoilI_lbl = tk.Label(self.DAQinfo_frm, text="Coil Current (A):", bg="LightSteelBlue")
+        self.DAQcoilI_entr = tk.Entry(self.DAQinfo_frm, width=5)
+
+        self.DAQgasH_lbl = tk.Label(self.DAQinfo_frm, text="H gasflow (sccm)", bg="LightSteelBlue")
+        self.DAQgasH_entr = tk.Entry(self.DAQinfo_frm, width=5)
         self.DAQgasD_lbl = tk.Label(self.DAQinfo_frm, text="D gasflow (sccm)", bg="LightSteelBlue")
         self.DAQgasD_entr = tk.Entry(self.DAQinfo_frm, width=5)
+        self.DAQgasHe_lbl = tk.Label(self.DAQinfo_frm, text="He gasflow (sccm)", bg="LightSteelBlue")
+        self.DAQgasHe_entr = tk.Entry(self.DAQinfo_frm, width=5)
         self.DAQgasAr_lbl = tk.Label(self.DAQinfo_frm, text="Ar gasflow (sccm)", bg="LightSteelBlue")
         self.DAQgasAr_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQcoilI_lbl = tk.Label(self.DAQinfo_frm, text="Coil current (A)", bg="LightSteelBlue")
-        self.DAQcoilI_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQTPbat_lbl = tk.Label(self.DAQinfo_frm, text="Triple probe battery (V)", bg="LightSteelBlue")
-        self.DAQTPbat_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQVDiv_lbl = tk.Label(self.DAQinfo_frm, text="Voltage divider", bg="LightSteelBlue")
-        self.DAQVDiv_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQECpol_lbl = tk.Label(self.DAQinfo_frm, text="EC polarisation", bg="LightSteelBlue")
+        
+        self.DAQECpol_lbl = tk.Label(self.DAQinfo_frm, text="EC polarisation (O/X/M)", bg="LightSteelBlue")
         self.DAQECpol_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQcomment_lbl = tk.Label(self.DAQinfo_frm, text="Comment", bg="LightSteelBlue")
-        self.DAQcomment_entr = tk.Entry(self.DAQinfo_frm, width=5)
-        self.DAQwrite_btn = tk.Button(self.DAQinfo_frm, text="Write!", bg="DarkSeaGreen4", command=self.DAQwrite)
-        self.doDAQ_frm = tk.Frame(self.DAQ_frm, borderwidth=15, bg="LightSteelBlue")
-        self.doDAQ_lbl = tk.Label(self.DAQinfo_frm, text="Perform DAQ", bg="LightSteelBlue")
-        self.doDAQ_btn = tk.Button(self.DAQinfo_frm, text="Go!", bg="DarkSeaGreen4", command=self.doDAQ)
 
         # GRID DAQ
         self.DAQ_frm.grid(column=4, row=0, sticky="nsew")
         self.DAQ_lbl.grid(column=0, row=0, pady=10, sticky="nsew")
         self.DAQinfo_frm.grid(column=0, row=1, sticky="nsew")
-        self.DAQfile_lbl.grid(column=0, row=1, columnspan=4, rowspan=1, sticky="w")
-        self.DAQfile_entr.grid(column=0, row=2, columnspan=4, rowspan=1, sticky="w")
-        self.DAQinfo_lbl.grid(column=0, row=3, columnspan=1, rowspan=1, sticky="w")
-        self.DAQfirstshot_lbl.grid(column=0, row=4, columnspan=1, rowspan=1, sticky="w")
-        self.DAQfirstshot_entr.grid(column=1, row=4, columnspan=1, rowspan=1, sticky="w")
-        self.DAQlastshot_lbl.grid(column=0, row=5, columnspan=1, rowspan=1, sticky="w")
-        self.DAQlastshot_entr.grid(column=1, row=5, columnspan=1, rowspan=1, sticky="w")
-        self.DAQgasHe_lbl.grid(column=0, row=6, columnspan=1, rowspan=1, sticky="w")
-        self.DAQgasHe_entr.grid(column=1, row=6, columnspan=1, rowspan=1, sticky="w")
-        self.DAQgasD_lbl.grid(column=0, row=7, columnspan=1, rowspan=1, sticky="w")
-        self.DAQgasD_entr.grid(column=1, row=7, columnspan=1, rowspan=1, sticky="w")
+        self.DAQgasH_lbl.grid(column=0, row=5, columnspan=1, rowspan=1, sticky="w")
+        self.DAQgasH_entr.grid(column=1, row=5, columnspan=1, rowspan=1, sticky="w")
+        self.DAQgasD_lbl.grid(column=0, row=6, columnspan=1, rowspan=1, sticky="w")
+        self.DAQgasD_entr.grid(column=1, row=6, columnspan=1, rowspan=1, sticky="w")
+        self.DAQgasHe_lbl.grid(column=0, row=7, columnspan=1, rowspan=1, sticky="w")
+        self.DAQgasHe_entr.grid(column=1, row=7, columnspan=1, rowspan=1, sticky="w")
         self.DAQgasAr_lbl.grid(column=0, row=8, columnspan=1, rowspan=1, sticky="w")
         self.DAQgasAr_entr.grid(column=1, row=8, columnspan=1, rowspan=1, sticky="w")
         self.DAQcoilI_lbl.grid(column=0, row=9, columnspan=1, rowspan=1, sticky="w")
         self.DAQcoilI_entr.grid(column=1, row=9, columnspan=1, rowspan=1, sticky="w")
-        self.DAQTPbat_lbl.grid(column=0, row=10, columnspan=1, rowspan=1, sticky="w")
-        self.DAQTPbat_entr.grid(column=1, row=10, columnspan=1, rowspan=1, sticky="w")
-        self.DAQVDiv_lbl.grid(column=0, row=11, columnspan=1, rowspan=1, sticky="w")
-        self.DAQVDiv_entr.grid(column=1, row=11, columnspan=1, rowspan=1, sticky="w")
         self.DAQECpol_lbl.grid(column=0, row=12, columnspan=1, rowspan=1, sticky="w")
         self.DAQECpol_entr.grid(column=1, row=12, columnspan=1, rowspan=1, sticky="w")
-        self.DAQcomment_lbl.grid(column=0, row=13, columnspan=1, rowspan=1, sticky="w")
-        self.DAQcomment_entr.grid(column=1, row=13, columnspan=1, rowspan=1, sticky="w")
-        self.DAQwrite_btn.grid(column=0, row=14, columnspan=1, rowspan=1, sticky="w")
-        
-        self.doDAQ_frm.grid(column=0, row=2, sticky="nsew", pady=10)
-        self.doDAQ_lbl.grid(column=0, row=15, columnspan=1, rowspan=1, sticky="w")
-        self.doDAQ_btn.grid(column=0, row=16, columnspan=1, rowspan=1, sticky="w")
 
         # OPERATION
         self.operation_frm = tk.Frame(self, borderwidth=15, bg="LightSteelBlue3")
@@ -702,6 +682,7 @@ class GUI(tk.Tk):
             cmd += "O " + O
 
         # Communicate the desired position to Arduino
+        self.Parameters['R'] = R
         print("Instruct Arduino:")
         print(cmd)
         self.arduino.write(cmd.encode())
@@ -1361,7 +1342,9 @@ class GUI(tk.Tk):
             else:
                 ICfreqText += ", UNCLEAR."
         elif str(self.dev.GetICFreqMode()) == "CW" or str(self.dev.GetICFreqMode()) == "FIX":
-            ICfreqText += "set fixed at " + str(self.dev.GetICFreq()) + " Hz"
+            ICFREQ = str(self.dev.GetICFreq()) 
+            ICfreqText += "set fixed at " + ICFREQ + " Hz"
+            self.Parameters['ICf'] = ICFREQ
         else:
             ICfreqText += "UNCLEAR."
         return ICfreqText
@@ -1607,58 +1590,24 @@ class GUI(tk.Tk):
                 counter += 1
 
     def doDAQ(self):
+        self.DAQwrite()
         self.DAQtrig.trigger()
 
     def DAQwrite(self):
-
-        input = self.DAQfile_entr.get()
-        if len(input) == 0:
-            print("Specify file name")
-            return
-
-        filename = "./DAQ/" + input + ".csv"
+        now = datetime.datetime.now()
+        filename = "D:\Parameters\logging_data_" + now.strftime('%d_%m_%Y_%H_%M_%S') + ".json"
         print("Write DAQ settings to file " + filename)
-        
-        fexists = exists(filename)
-        
-        # a+ creates the file if it does not exist and opens it in append mode
-        DAQfile = open(filename, "a+")
-        
-        # If file did not exist yet, insert heading
 
-        if fexists == False:            
-            print("First entry to the file")
-            # date
-            DAQfile.write("Date,")
-            DAQfile.write(self.DAQfirstshot_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQlastshot_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQgasHe_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQgasD_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQgasAr_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQcoilI_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQTPbat_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQVDiv_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQECpol_lbl.cget("text") + ",")
-            DAQfile.write(self.DAQcomment_lbl.cget("text") + "\n")
+        self.Parameters['HGF(sccm)'] = int(self.DAQgasH_entr.get())
+        self.Parameters['DGF(sccm)'] = int(self.DAQgasD_entr.get())
+        self.Parameters['HeGF(sccm)'] = int(self.DAQgasHe_entr.get())
+        self.Parameters['ArGF(sccm)'] = int(self.DAQgasAr_entr.get())
+        self.Parameters['IB(A)'] = int(self.DAQcoilI_entr.get())
+        self.Parameters['PolEC'] = self.DAQECpol_entr.get()
 
-        DAQfile.write(str(date.today()) + ",")
-        DAQfile.write(self.DAQfirstshot_entr.get() + ",")
-        DAQfile.write(self.DAQlastshot_entr.get() + ",")
-        DAQfile.write(self.DAQgasHe_entr.get() + ",")
-        DAQfile.write(self.DAQgasD_entr.get() + ",")
-        DAQfile.write(self.DAQgasAr_entr.get() + ",")
-        DAQfile.write(self.DAQcoilI_entr.get() + ",")
-        DAQfile.write(self.DAQTPbat_entr.get() + ",")
-        DAQfile.write(self.DAQVDiv_entr.get() + ",")
-        DAQfile.write(self.DAQECpol_entr.get() + ",")
-        DAQfile.write(self.DAQcomment_entr.get() + "\n")
-
-        # Make sure the information is written and stored in the file right away
-        self.DAQfile.flush()
-        os.fsync(self.DAQfile)
-
-        DAQfile.close()
-        
+        with open(filename, 'w') as f:
+            json.dump(Parameters,f)
+ 
     def makeRoutine(self, doIC, doEC):
                     
         self.ICvec.clear()

@@ -88,6 +88,6 @@ else:
     fLim=None
     dev=None
     DAQtrig = None
-    ArduinoUnoSerial=serial.Serial('/dev/ttyUSB0', 9600)
+    ArduinoUnoSerial=None#serial.Serial('/dev/ttyUSB0', 9600)
 
 TOMASGUI = GUI(minPos, maxPos, pos, ArduinoUnoSerial, f, fLim, dev, DAQtrig)
