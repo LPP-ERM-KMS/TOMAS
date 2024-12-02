@@ -20,7 +20,7 @@ class GUI(tk.Tk):
         else:
             Debug = False
 
-        self.Parameters = {'ICf':'NA','A':0,'P':0,'S':0,'H(mm)':0,'V(mm)':0,'R':'NA','HGF(sccm)':0,'DGF(sccm)':0,'HeGF(sccm)':0,'ArGF(sccm)':0,'IB(A)':1600,'PolEC':'O'}
+        self.Parameters = {'ICf':'NA','A':0,'P':0,'S':0,'H(mm)':0.0,'V(mm)':0.0,'R':'NA','HGF(sccm)':'0','DGF(sccm)':'0','HeGF(sccm)':'0','ArGF(sccm)':'0','IB(A)':'0','PolEC':'O'}
 
         self.SuggestedCsVal = None
         self.SuggestedCpVal = None
@@ -1598,11 +1598,11 @@ class GUI(tk.Tk):
         filename = "D:/Parameters/logging_data_" + now.strftime('%d_%m_%Y_%H_%M_%S') + ".json"
         print("Write DAQ settings to file " + filename)
 
-        self.Parameters['HGF(sccm)'] = int(self.DAQgasH_entr.get())
-        self.Parameters['DGF(sccm)'] = int(self.DAQgasD_entr.get())
-        self.Parameters['HeGF(sccm)'] = int(self.DAQgasHe_entr.get())
-        self.Parameters['ArGF(sccm)'] = int(self.DAQgasAr_entr.get())
-        self.Parameters['IB(A)'] = int(self.DAQcoilI_entr.get())
+        self.Parameters['HGF(sccm)'] = self.DAQgasH_entr.get()
+        self.Parameters['DGF(sccm)'] = self.DAQgasD_entr.get()
+        self.Parameters['HeGF(sccm)'] = self.DAQgasHe_entr.get()
+        self.Parameters['ArGF(sccm)'] = self.DAQgasAr_entr.get()
+        self.Parameters['IB(A)'] = self.DAQcoilI_entr.get()
         self.Parameters['PolEC'] = self.DAQECpol_entr.get()
 
         with open(filename, 'w') as f:
