@@ -1606,7 +1606,7 @@ class GUI(tk.Tk):
         self.Parameters['PolEC'] = self.DAQECpol_entr.get()
 
         with open(filename, 'w') as f:
-            json.dump(Parameters,f)
+            json.dump(self.Parameters,f)
  
     def makeRoutine(self, doIC, doEC):
                     
