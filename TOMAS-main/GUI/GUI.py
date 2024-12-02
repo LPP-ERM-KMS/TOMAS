@@ -1595,7 +1595,7 @@ class GUI(tk.Tk):
 
     def DAQwrite(self):
         now = datetime.datetime.now()
-        filename = "D:\Parameters\logging_data_" + now.strftime('%d_%m_%Y_%H_%M_%S') + ".json"
+        filename = "D:/Parameters/logging_data_" + now.strftime('%d_%m_%Y_%H_%M_%S') + ".json"
         print("Write DAQ settings to file " + filename)
 
         self.Parameters['HGF(sccm)'] = int(self.DAQgasH_entr.get())
