@@ -1,6 +1,26 @@
 \documentclass{article}
 \usepackage{graphics}
 \usepackage{rotating}
+\usepackage{marginnote}
+
+\newenvironment{loggentry}[2]{%
+  \parindent=0em%
+
+  \reversemarginpar\marginnote{#1}%
+  \textbf{#2}
+
+}{\smallskip}
+
+
+\newenvironment{logentry}[2]{%
+  \parindent=0em%
+
+  \reversemarginpar\marginnote{#1}%
+  \textbf{#2}
+  \medskip
+
+}{\smallskip}
+
 
 \title{TOMAS Device Manual}
 \author{Arthur Adriaens}
@@ -12,4 +32,6 @@
 \include{USERGUIDE/USERGUIDE.tex}
 \include{SECTIONS/ICEC.tex}
 \include{SECTIONS/MOT.tex}
+\include{REPAIRS/FZJPeople.tex}
+\include{REPAIRS/log.tex}
 \end{document}
