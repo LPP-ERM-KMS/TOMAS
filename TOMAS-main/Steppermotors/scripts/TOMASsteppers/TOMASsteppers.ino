@@ -346,13 +346,15 @@ void loop() {
               LPPS.turn_off_channel(1);
               LPPS.turn_off_channel(2);
               LPPS.turn_off_channel(3);
-              digitalWrite(K4PIN, LOW);
+              digitalWrite(K4HPIN, LOW);
+              digitalWrite(K4VPIN, LOW);
             }
             else {
               LPPS.turn_off_channel(1);
               LPPS.turn_off_channel(2);
               LPPS.turn_off_channel(3);
-              digitalWrite(K4PIN, HIGH); //Allow output
+              digitalWrite(K4HPIN, HIGH); //Allow output
+              digitalWrite(K4VPIN, HIGH); //Allow output
               LPPS.turn_on_channel(strs[n+1].toInt()); 
             }
           }
