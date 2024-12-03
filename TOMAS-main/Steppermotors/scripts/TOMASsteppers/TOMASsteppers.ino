@@ -25,10 +25,14 @@ std::vector<int> dirPin =      {4, 9, 14, 19, 24, 29};
 std::vector<int> pulsePin =    {5, 10, 15, 20, 25, 30};
 std::vector<int> enablePin =   {6, 11, 16, 21, 26, 31};
 
-int K1PIN = 41;
-int K2PIN = 42;
-int K3PIN = 43;
-int K4PIN = 44;
+int K1HPIN = 41;
+int K2HPIN = 42;
+int K3HPIN = 43;
+int K4HPIN = 44;
+int K1VPIN = 36;
+int K2VPIN = 37;
+int K3VPIN = 38;
+int K4VPIN = 39;
 
 /*
    Define a vector for the limit switches. It was only possible to work with pointers
@@ -178,10 +182,14 @@ void setup() {
   Serial.begin(9600);
   LPPS.begin(0x11); //I^2C address of Power Supply relay
                     
-  pinMode(K1PIN, OUTPUT);    
-  pinMode(K2PIN, OUTPUT);   
-  pinMode(K3PIN, OUTPUT);  
-  pinMode(K4PIN, OUTPUT); 
+  pinMode(K1HPIN, OUTPUT);    
+  pinMode(K1VPIN, OUTPUT);    
+  pinMode(K2HPIN, OUTPUT);   
+  pinMode(K2VPIN, OUTPUT);   
+  pinMode(K3HPIN, OUTPUT);  
+  pinMode(K3VPIN, OUTPUT);  
+  pinMode(K4HPIN, OUTPUT); 
+  pinMode(K4VPIN, OUTPUT); 
 
                             
   Serial.println("Arduino is ready");
@@ -350,24 +358,39 @@ void loop() {
           }
           else if (strs[n] == "R") {
             if (strs[n+1] == "5") {
-              digitalWrite(K1PIN, LOW);
-              digitalWrite(K2PIN, LOW);
-              digitalWrite(K3PIN, LOW);
+              digitalWrite(K1HPIN, LOW);
+              digitalWrite(K2HPIN, LOW);
+              digitalWrite(K3HPIN, LOW);
+              digitalWrite(K1VPIN, LOW);
+              digitalWrite(K2VPIN, LOW);
+              digitalWrite(K3VPIN, LOW);
             }
             else if (strs[n+1] == "6") {
-              digitalWrite(K1PIN, HIGH);
-              digitalWrite(K2PIN, LOW);
-              digitalWrite(K3PIN, LOW);
+              digitalWrite(K1HPIN, HIGH);
+              digitalWrite(K2HPIN, LOW);
+              digitalWrite(K3HPIN, LOW);
+              digitalWrite(K1VPIN, HIGH);
+              digitalWrite(K2VPIN, LOW);
+              digitalWrite(K3VPIN, LOW);
+
             }
             else if (strs[n+1] == "7") {
-              digitalWrite(K1PIN, LOW);
-              digitalWrite(K2PIN, LOW);
-              digitalWrite(K3PIN, HIGH);
+              digitalWrite(K1HPIN, LOW);
+              digitalWrite(K2HPIN, LOW);
+              digitalWrite(K3HPIN, HIGH);
+              digitalWrite(K1VPIN, LOW);
+              digitalWrite(K2VPIN, LOW);
+              digitalWrite(K3VPIN, HIGH);
+
             }
             else if (strs[n+1] == "8") {
-              digitalWrite(K1PIN, LOW);
-              digitalWrite(K2PIN, HIGH);
-              digitalWrite(K3PIN, HIGH);
+              digitalWrite(K1HPIN, LOW);
+              digitalWrite(K2HPIN, HIGH);
+              digitalWrite(K3HPIN, HIGH);
+              digitalWrite(K1VPIN, LOW);
+              digitalWrite(K2VPIN, HIGH);
+              digitalWrite(K3VPIN, HIGH);
+
             }
             else {
               Serial.println("Error: Command not understood by Arduino");

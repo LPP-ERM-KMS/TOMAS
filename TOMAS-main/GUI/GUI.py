@@ -732,10 +732,13 @@ class GUI(tk.Tk):
         for i in range(0, len(posStrs)):
             if posStrs[i] == "A":
                 self.posA_lbl.config(text="A: " + posStrs[i + 1].strip())
+                self.Parameters['A'] = int(posStrs[i + 1].strip())
             elif posStrs[i] == "P":
                 self.posP_lbl.config(text="P: " + posStrs[i + 1].strip())
+                self.Parameters['P'] = int(posStrs[i + 1].strip())
             elif posStrs[i] == "S":
                 self.posS_lbl.config(text="S: " + posStrs[i + 1].strip())
+                self.Parameters['S'] = int(posStrs[i + 1].strip())
 
         self.Pos = newPos.decode()
         self.moveA_entr.delete(0, 'end')
@@ -1110,9 +1113,11 @@ class GUI(tk.Tk):
             if posStrs[i] == "X":
                 self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
             elif posStrs[i] == "Y":
-                self.posY_lbl.config(text="Triple Probe H: " + str(float(posStrs[i + 1].strip())/10) + 'mm' )
+                self.posY_lbl.config(text="Triple Probe H: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
+                self.Parameters['H(mm)'] = float(posStrs[i + 1].strip())/10
             elif posStrs[i] == "Z":
                 self.posZ_lbl.config(text="Triple Probe V: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
+                self.Parameters['V(mm)'] = float(posStrs[i + 1].strip())/10
 
         self.moveX_entr.delete(0, 'end')
         self.moveY_entr.delete(0, 'end')
