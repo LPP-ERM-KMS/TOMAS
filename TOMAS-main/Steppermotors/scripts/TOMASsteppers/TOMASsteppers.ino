@@ -224,7 +224,7 @@ void setup() {
      Split the string at the white spaces, to obtain a vector <X,x,Y,y,Z,z>.
   */
   String str = Serial.readStringUntil('\n');
-  std::vector<String> strs  = splitString(str);
+  std::vector<String> strs = splitString(str);
 
   /*
      Enter the start positions of the motors in the array [a,p,s]
@@ -295,11 +295,10 @@ void loop() {
   } else if (strs.size() >= 2) {
 
     // For consecutive pairs in the string, e.g. X x
-    for (int n = 0; n < 12; n += 2) {
-
+    for (int n = 0; n < strs.size(); n += 2) {
       int arg;
       // if x is a valid position, i.e. an integer
-      if (strs[n + 1].toInt() || (strs[n + 1] == "0")) {
+      if ((strs[n + 1].toInt()) || (strs[n + 1] == "0")) {
         //issue with value 0 as not int in arduino 
       	if (strs[n + 1] == "0"){arg=0;}
 	      else {arg = strs[n + 1].toInt();}
@@ -399,8 +398,9 @@ void loop() {
             }
           }
         }
-      } else {
-        Serial.println("Error: Command not understood by Arduino");
+      } 
+      else {
+        Serial.println("Error: Not a number");
       }
     }
     // Return the positions to Python
