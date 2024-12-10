@@ -68,18 +68,22 @@ $\ $\\
 \end{enumerate}
 
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Before operation}%%	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-Before operating TOMAS, some safety checks should be performed.
 
-\subsection{Vacuum}
 
 \begin{minipage}{.68\textwidth}
 	
-The average neutral pressure is shown on the readout unit located in the main equipment rack.	The vacuum vessel pressure is shown on the Channel 1 (upper number) of the readout. To start an operation the pressure level should be $\approx 5\cdot 10^{-7}$ mbar. If the pressure is slightly higher check that calibration of the Channel 1 is set for N2 (air). In other cases, check the Troubleshooting.\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Before operation}%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+Before operating TOMAS, some safety checks should be performed.
+
+\subsection{Vacuum and gas injection}
+
+The average neutral pressure is shown on the readout unit located in the main equipment rack.	The vacuum vessel pressure is shown on the Channel 1 (upper number) of the readout. To start an operation the pressure level should be $< 5\cdot 10^{-7}$ mbar. If the pressure is slightly higher check that calibration of the Channel 1 is set for N2 (air). In other cases, check the Troubleshooting.\\
 
 \textcolor{red}{\textbf{Before starting any plasma operation, check the pressure in the vacuum vessel.}}\\
 
@@ -94,7 +98,7 @@ The upstream and downstream pipes of the gas injection system must be evacuated 
 \end{minipage}
 \begin{minipage}{.3\textwidth}
 	\centering
-	\includegraphics[width=\linewidth]{Pressure1}
+	\includegraphics[width=\linewidth]{Pressure2}
 \end{minipage}
 
 
@@ -129,6 +133,8 @@ Open the `\textit{Flowmeter}' tab in the Control System and go to the section \t
 \end{minipage}	
 	
 \newpage
+
+\begin{minipage}{.68\textwidth}
 \textcolor{red}{\textbf{Close all small metallic valves and deactivate the Forepump.}}\\
 		
 \textcolor{red}{\textbf{Open the needed bottle(s).}}\\
@@ -138,54 +144,104 @@ Check that both manometers on the gas reducer connected to each bottle shows a p
 \textcolor{red}{\textbf{Open the respective black valves above the mass flow controller(s) (Figure \ref{Gas1} (2)).}}\\
 
 
-Don’t open the yellow valve (Figure \ref{Gas1} (3)). This is used to vent the machine. Check that the black shutter connecting the gas injection system to the tangential port is open (downward position). Since no gas is injected yet, the pressure level should not change significantly. If needed, wait until the pressure level is back at  $\approx 5\cdot 10^{-7}$ mbar. 
+Don’t open the yellow valve (Figure \ref{Gas1} (3)). This is used to vent the machine. Check that the black shutter (Figure \ref{Gas3}) connecting the gas injection system to the tangential port is open (downward position). Since no gas is injected yet, the pressure level should not change significantly. If needed, wait until the pressure level is back below  $\approx 5\cdot 10^{-7}$ mbar.\\
 
-		
-	
-\newpage
+The gas injection system is now ready for operation. Gas can be injected by the control system in the section \textit{`Flow Control'} in the \textit{`Flowmeter'} tab. Type the desired amount in the column \textit{`Setpoint'}. The actual injected amount is shown in the second column.\\
+
+The minimum amount of gas is 10 ml/min for helium, hydrogen and argon. For deuterium the starting value should not be below 15 ml/min. You can decrease it afterwards to a minimum of 11 ml/min. 
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{Gas3}
+	\captionof{figure}{Shutter of the gas injection system}
+	\label{Gas3}
+\end{minipage}	
+			
+
 \subsection{Cooling}
 
-The cooling system for the cooling of the coils, the turbo-pump, the EC source and the EC window is activated automatically by the control system. However, the main valve for the cooling of the coils, needs to be opened manually. Change the position of the black lever arm from horizontal to $30^\circ$ (Figures \ref{Cool4}-\ref{Cool5}). Position changing requires pushing the lever arm interlock. Verify that the water pump for the closed water circuit is activated (black button on Figure \ref{Cool9}).\\
+The cooling system for the cooling of the coils, the turbo-pump, the EC source and the EC window is activated automatically by the control system. However, the main valve for the cooling of the coils, needs to be opened manually. Position changing requires pushing the lever arm interlock.\\
 
-For safe operation, the electrical resistance of the cooling water has to be high enough to avoid that the coil current flows through the cooling water. This can be checked on the conductance meter (Leitwertmesser) (Figure \ref{Cool9}). The distillatory pump  is activated automatically when the coil current is switched on.\\
+\textcolor{red}{\textbf{Change the position of the black lever arm from horizontal to $30^\circ$ (Figure \ref{Cool2} right).}}\\
 
-\begin{minipage}{.5\textwidth}
+\textcolor{red}{\textbf{Verify that the water pump for the closed water circuit is activated (black button on Figure \ref{Cool9}).}}\\
+
+
+\begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.95\linewidth]{Cool2}
+	\includegraphics[height=8cm]{Cool2}
+	\includegraphics[height=8cm]{Cool5}
+	\captionsetup{width=0.8\textwidth}
 	\captionof{figure}{Cooling systems with \textbf{1.}Cooling for EC source and window \textbf{2.}Cooling for turbopump \textbf{3.}Not in use \textbf{4.}Main valve for cooling of the coils}
 	\label{Cool2}
-	\begin{minipage}{.49\textwidth}
-		\centering
-		\includegraphics[width=0.95\linewidth]{Cool4}
-		\captionof{figure}{Coils cooling off}
-		\captionsetup{width=.2\textwidth}
-		\label{Cool4}
-	\end{minipage}
-	\begin{minipage}{.49\textwidth}
-		\centering
-		\includegraphics[width=0.95\linewidth]{Cool5}
-		\captionof{figure}{Coils cooling on}
-		\label{Cool5}
-	\end{minipage}
+\end{figure}
+
+\newpage
+\begin{minipage}{.58\textwidth}
+For safe operation, the electrical resistance of the cooling water has to be high enough to avoid that the coil current flows through the cooling water. This can be checked on the conductance meter (Leitwertmesser) (Figure \ref{Cool9}).\\
+
+
+
+	\includegraphics[width=\linewidth]{Cool10}
+	\captionof{figure}{The `\textit{Magnetic Field}' tab in the Control System}
+	\label{Cool10}
 \end{minipage}
-\begin{minipage}{.5\textwidth}
-	\centering
+\begin{minipage}{.02\textwidth}
+	$\ $\\
+\end{minipage}
+\begin{minipage}{.4\textwidth}
+
+
 	\includegraphics[width=0.95\linewidth]{Cool9}
+	\captionsetup{width=0.75\textwidth}
 	\captionof{figure}{Closed water circuit pump with power switch (right) and conductance meter (bottom)}
 	\label{Cool9}
-	\vspace*{0.9cm}
 \end{minipage}
-
-
-
 \vspace*{0.5cm}
 
 
-\begin{minipage}{.5\textwidth}
 
 
+\begin{minipage}{.3\textwidth}
+\textcolor{red}{\textbf{Check the electrical resistance of the cooling water.}}\\
+	
+The distillatory pump is also activated automatically when the coil current is switched on.\\
 
+The status of both pumps can be verified in the section Rectifier MF on the `\textit{Magnetic Field}' tab in the Control System (Figure \ref{Cool10}).\\
+	
+You can verify the coil temperature on the \textit{`Overview Coils'} tab in the Control System. The status of both cooling pumps is also visible here. Temperatures above $40^\circ C$ should be avoided
+	
+	
+	
+All cooling systems are now ready to operate. They will be activated automatically by the control system when needed. 
 \end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.68\textwidth}
+\centering
+\includegraphics[width=0.95\linewidth]{Coil}
+\captionsetup{width=0.75\textwidth}
+\captionof{figure}{The \textit{`Overview Coils'} tab in the Control System}
+\label{Coil}
+\end{minipage}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %The wave equation can be written as:
 %\begin{equation}

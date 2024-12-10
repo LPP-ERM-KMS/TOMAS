@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.2)  10 DEC 2024 10:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.2)  10 DEC 2024 14:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -423,16 +423,6 @@ File: ./images/Cool2.jpg Graphic file (type jpg)
 Package pdftex.def Info: ./images/Cool2.jpg  used on input line 60.
 (pdftex.def)             Requested size: 512.14963pt x 385.58022pt.
  [3 <./images/Cool2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
@@ -443,28 +433,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
-
- []
-
-<./images/Pressure1.jpg, id=18, 3083.52pt x 4095.3pt>
-File: ./images/Pressure1.jpg Graphic file (type jpg)
-<use ./images/Pressure1.jpg>
-Package pdftex.def Info: ./images/Pressure1.jpg  used on input line 97.
-(pdftex.def)             Requested size: 153.64644pt x 204.02713pt.
-
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 80--99
-$[]$ $[]$ $[]$ 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--105
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+
+ []
+
+<./images/Pressure2.jpg, id=18, 690.78075pt x 1155.71774pt>
+File: ./images/Pressure2.jpg Graphic file (type jpg)
+<use ./images/Pressure2.jpg>
+Package pdftex.def Info: ./images/Pressure2.jpg  used on input line 101.
+(pdftex.def)             Requested size: 153.64644pt x 257.06262pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 75--103
+[]$[]$ $[]$ $[]$ 
  []
 
 
@@ -473,18 +463,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--107
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
 
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 113--114
-\OT1/cmr/m/n/10 switched on. Pump down the
- []
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 
-
-Underfull \hbox (badness 1466) in paragraph at lines 113--114
-\OT1/cmr/m/n/10 up-stream pipes dur-ing 10 { 15
  []
 
 
@@ -492,81 +477,171 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
+
+Underfull \hbox (badness 1584) in paragraph at lines 117--118
+\OT1/cmr/m/n/10 switched on. Pump down the
+ []
+
+
+Underfull \hbox (badness 1466) in paragraph at lines 117--118
+\OT1/cmr/m/n/10 up-stream pipes dur-ing 10 { 15
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+
+ []
+
 <./images/Gas1.jpg, id=19, 925.056pt x 1228.59pt>
 File: ./images/Gas1.jpg Graphic file (type jpg)
 <use ./images/Gas1.jpg>
-Package pdftex.def Info: ./images/Gas1.jpg  used on input line 116.
+Package pdftex.def Info: ./images/Gas1.jpg  used on input line 120.
 (pdftex.def)             Requested size: 153.64644pt x 204.05836pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
 <./images/Gas2.png, id=20, 773.289pt x 640.794pt>
 File: ./images/Gas2.png Graphic file (type png)
 <use ./images/Gas2.png>
-Package pdftex.def Info: ./images/Gas2.png  used on input line 125.
+Package pdftex.def Info: ./images/Gas2.png  used on input line 129.
 (pdftex.def)             Requested size: 330.84402pt x 274.1574pt.
 
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 111--130
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 115--134
 []$[]$ $[]$ $[]$ 
  []
 
-[4 <./images/Pressure1.jpg> <./images/Gas1.jpg> <./images/Gas2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
-
- []
-
-
+[4 <./images/Pressure2.jpg> <./images/Gas1.jpg> <./images/Gas2.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 148--149
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
+
+ []
+
+<./images/Gas3.jpg, id=31, 678.73575pt x 1036.47224pt>
+File: ./images/Gas3.jpg Graphic file (type jpg)
+<use ./images/Gas3.jpg>
+Package pdftex.def Info: ./images/Gas3.jpg  used on input line 158.
+(pdftex.def)             Requested size: 153.64644pt x 234.61957pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 137--162
+[]$[]$ $[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
 
 File: ./images/Cool2.jpg Graphic file (type jpg)
 <use ./images/Cool2.jpg>
-Package pdftex.def Info: ./images/Cool2.jpg  used on input line 154.
-(pdftex.def)             Requested size: 243.27028pt x 183.16824pt.
-<./images/Cool4.jpg, id=33, 1541.76pt x 2047.65pt>
-File: ./images/Cool4.jpg Graphic file (type jpg)
-<use ./images/Cool4.jpg>
-Package pdftex.def Info: ./images/Cool4.jpg  used on input line 159.
-(pdftex.def)             Requested size: 119.20377pt x 158.3163pt.
-<./images/Cool5.jpg, id=34, 1541.76pt x 2047.65pt>
+Package pdftex.def Info: ./images/Cool2.jpg  used on input line 175.
+(pdftex.def)             Requested size: 302.2601pt x 227.62204pt.
+<./images/Cool5.jpg, id=32, 925.056pt x 1228.59pt>
 File: ./images/Cool5.jpg Graphic file (type jpg)
 <use ./images/Cool5.jpg>
-Package pdftex.def Info: ./images/Cool5.jpg  used on input line 166.
-(pdftex.def)             Requested size: 119.20377pt x 158.3163pt.
-<./images/Cool9.png, id=35, 1485.75075pt x 2140.3965pt>
-File: ./images/Cool9.png Graphic file (type png)
-<use ./images/Cool9.png>
-Package pdftex.def Info: ./images/Cool9.png  used on input line 173.
-(pdftex.def)             Requested size: 243.27028pt x 350.43942pt.
+Package pdftex.def Info: ./images/Cool5.jpg  used on input line 176.
+(pdftex.def)             Requested size: 171.38675pt x 227.62204pt.
+[5 <./images/Gas3.jpg> <./images/Cool5.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 152--178
-[]$[]$ $[]$ 
  []
 
-[6 <./images/Cool4.jpg> <./images/Cool5.jpg> <./images/Cool9.png>]
+<./images/Cool10.png, id=36, 504.38437pt x 414.79968pt>
+File: ./images/Cool10.png Graphic file (type png)
+<use ./images/Cool10.png>
+Package pdftex.def Info: ./images/Cool10.png  used on input line 188.
+(pdftex.def)             Requested size: 297.04771pt x 244.28664pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
+
+ []
+
+<./images/Cool9.png, id=37, 1485.75075pt x 2140.3965pt>
+File: ./images/Cool9.png Graphic file (type png)
+<use ./images/Cool9.png>
+Package pdftex.def Info: ./images/Cool9.png  used on input line 198.
+(pdftex.def)             Requested size: 194.61325pt x 280.35153pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 183--204
+[]$[]$ $[]$ $[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
+
+ []
+
+
+Underfull \hbox (badness 6675) in paragraph at lines 211--212
+[]\OT1/cmr/m/n/10 The dis-til-la-tory pump is also
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
+
+ []
+
+<./images/Coil.png, id=38, 512.66531pt x 411.03563pt>
+File: ./images/Coil.png Graphic file (type png)
+<use ./images/Coil.png>
+Package pdftex.def Info: ./images/Coil.png  used on input line 226.
+(pdftex.def)             Requested size: 330.84402pt x 265.25706pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 208--231
+[]$[]$ $[]$ $[]$ 
+ []
+
+[6 <./images/Cool10.png> <./images/Cool9.png> <./images/Coil.png>]
 (USER_GUIDE.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -574,24 +649,25 @@ L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7395 strings out of 474424
- 126307 string characters out of 5741740
- 1933496 words of memory out of 5000000
- 29645 multiletter control sequences out of 15000+600000
+ 7420 strings out of 474424
+ 126793 string characters out of 5741740
+ 1934496 words of memory out of 5000000
+ 29670 multiletter control sequences out of 15000+600000
  562238 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,667b,387s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,65p,667b,388s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/tokol/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/tokol/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on USER_GUIDE.pdf (6 pages, 50110180 bytes).
+ublic/amsfonts/cm/cmmi10.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/tokol/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/tokol/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/tokol/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/tokol/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on USER_GUIDE.pdf (6 pages, 48433409 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
