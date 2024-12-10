@@ -5,7 +5,7 @@
  \usepackage[english]{babel}
 % \usepackage {boekF}
 \setlength{\parindent}{0pt}
-
+\usepackage{xcolor}
 \usepackage{epstopdf}
 \usepackage[utf8]{inputenc}
 \usepackage[justification=centering]{caption}
@@ -77,33 +77,69 @@ Before operating TOMAS, some safety checks should be performed.
 
 \subsection{Vacuum}
 
-Before starting any plasma operation, check the pressure in the vacuum vessel. 
-The average neutral pressure is shown on the readout unit located in the main equipment rack.\\
+\begin{minipage}{.68\textwidth}
+	
+The average neutral pressure is shown on the readout unit located in the main equipment rack.	The vacuum vessel pressure is shown on the Channel 1 (upper number) of the readout. To start an operation the pressure level should be $\approx 5\cdot 10^{-7}$ mbar. If the pressure is slightly higher check that calibration of the Channel 1 is set for N2 (air). In other cases, check the Troubleshooting.\\
 
+\textcolor{red}{\textbf{Before starting any plasma operation, check the pressure in the vacuum vessel.}}\\
 
+The gas injection system is located in a large support structure close to one of the tangential ports of the vacuum vessel. The gas injection system has 4 mass flow controllers directly connected to helium, hydrogen, argon and deuterium bottles.\\
+
+\textcolor{red}{\textbf{Check that the gas bottles are closed.}}\\
+
+The upstream and downstream pipes of the gas injection system must be evacuated from the residual gas prior an injection start.
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+	$\ $\\
+\end{minipage}
 \begin{minipage}{.3\textwidth}
 	\centering
 	\includegraphics[width=\linewidth]{Pressure1}
 \end{minipage}
-\begin{minipage}{.02\textwidth}
-\end{minipage}
-\begin{minipage}{.68\textwidth}
-	The vacuum vessel pressure is shown on the Channel 1 (upper number) of the readout. To start an operation the pressure level should be $\approx10^{-7}$ mbar. If the pressure is slightly higher check that calibration of the Channel 1 is set for N2 (air). In other cases, check the Troubleshooting.\\
-\end{minipage}
+
+
 \vspace{0.5cm}
+Find the small metallic valves below the mass flow controllers (Figure \ref{Gas1} (1)). If any element above a valve is missing don’t open a corresponding valve! \\
+
+\textcolor{red}{\textbf{Open the small metallic valves located below each mass flow controller (Figure \ref{Gas1} (1)).}}\\
+
+Open the `\textit{Flowmeter}' tab in the Control System and go to the section \textbf{Pressure Control} the activate the `\textit{Forpump Flowmeter}' (Figure \ref{Gas2}).\\
+
+
+\textcolor{red}{\textbf{Activate the Forepump to clear the lines (Figure \ref{Gas2}).}}\\
 
 \begin{minipage}{.3\textwidth}
-	\centering
+	
+{Check if the vacuum pump connected to the upstream pipes is switched on. Pump down the upstream pipes during 10 – 15 minutes. }\\
+
+{
 	\includegraphics[width=\linewidth]{Gas1}
+	\captionof{figure}{The gas injection system}
+	\label{Gas1}}
 \end{minipage}
 \begin{minipage}{.02\textwidth}
+	$\ $\\
 \end{minipage}
 \begin{minipage}{.68\textwidth}
-The upstream and downstream pipes of the gas injection system must be evacuated from the residual gas prior an injection start. The gas injection system is located in a large support structure close to one of the tangential ports of the vacuum vessel. The gas injection system has 4 mass flow controllers directly connected to helium, hydrogen, argon and deuterium bottles. 
+	\centering
+	\includegraphics[width=0.95\linewidth]{Gas2}
+	\captionof{figure}{The `\textit{Flowmeter}' tab in the Control System}
+	\label{Gas2}
+ 
 \end{minipage}	
 	
-	
-		\includegraphics[width=\linewidth]{Gas2}
+\newpage
+\textcolor{red}{\textbf{Close all small metallic valves and deactivate the Forepump.}}\\
+		
+\textcolor{red}{\textbf{Open the needed bottle(s).}}\\
+
+Check that both manometers on the gas reducer connected to each bottle shows a pressure different from 0. Otherwise, check the Troubleshooting.\\
+
+\textcolor{red}{\textbf{Open the respective black valves above the mass flow controller(s) (Figure \ref{Gas1} (2)).}}\\
+
+
+Don’t open the yellow valve (Figure \ref{Gas1} (3)). This is used to vent the machine. Check that the black shutter connecting the gas injection system to the tangential port is open (downward position). Since no gas is injected yet, the pressure level should not change significantly. If needed, wait until the pressure level is back at  $\approx 5\cdot 10^{-7}$ mbar. 
+
 		
 	
 \newpage
