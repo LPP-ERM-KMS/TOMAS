@@ -129,29 +129,26 @@ bool Step(int i)
     limitSwitchMin[i]->loop();
     limitSwitchMax[i]->loop();
     bool HitASwitch = false;
-
-    // Move until no longer hitting min limit switch
-    // Note: Counter hasn't been tested yet
-    while (limitSwitchMin[i]->getState() == HIGH) {
+    int counter = 0;
+    // Move until no longer hitting min limit switch (counter itco switch failure)
+    while ((limitSwitchMin[i]->getState() == HIGH) && (counter < 10*stepsPerRev[i])) {
         HitASwitch = true;
         digitalWrite(dirPin[i], LOW);
-        for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
-            digitalWrite(pulsePin[i], HIGH);
-            digitalWrite(pulsePin[i], LOW);
-            delay(millisbetweenPulses);
-        }
+        digitalWrite(pulsePin[i], HIGH);
+        digitalWrite(pulsePin[i], LOW);
+        delay(millisbetweenPulses);
         limitSwitchMin[i]->loop();
+        counter++;
     }
     // Move until no longer hitting max limit switch
-    while (limitSwitchMax[i]->getState() == HIGH) {
+    while ((limitSwitchMax[i]->getState() == HIGH) && (counter < 10*stepsPerRev[i])) {
         HitASwitch = true;
         digitalWrite(dirPin[i], HIGH);
-        for (int nPulses = 1; nPulses <= pulsesPerStep[i]; nPulses++) {
-            digitalWrite(pulsePin[i], HIGH);
-            digitalWrite(pulsePin[i], LOW);
-            delay(millisbetweenPulses);
-        }
+        digitalWrite(pulsePin[i], HIGH);
+        digitalWrite(pulsePin[i], LOW);
+        delay(millisbetweenPulses);
         limitSwitchMax[i]->loop();
+        counter++;
     }
     if (HitASwitch){return false;}
     else {
@@ -318,7 +315,7 @@ void loop() {
             bool status = Step(i);
             if (status == false) {
               Serial.println("Error: motor " + Motors[i] + " at limit");
-              if (i==4) {Pos[4] = 20;}
+              if (i==4) {Pos[4] = -80;}
               else if (i==5) {Pos[5] = 35;}
               else {Pos[i] = 0;}
               break;
