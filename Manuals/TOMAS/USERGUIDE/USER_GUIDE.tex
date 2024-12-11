@@ -67,6 +67,60 @@ $\ $\\
 	\item Main valve Cooling for magnets
 \end{enumerate}
 
+
+\newpage
+\subsection{The Control System and operator PC}
+
+To operate the TOMAS device, you have to prepare some actions on the control System and the Operator PC.
+
+
+PC Operator
+Username: tomas
+Password: tomasnv2
+IP: 134.94.244.155
+10.	Arduino operation
+a.	Open Arduino IDE on pc (will open code TOMASsteppers)
+b.	Select Port (Tools > Port)
+c.	Push the arrow button to upload the sketch to the Arduino
+i.	If error, unplug USB and plug it in an other USB socket
+11.	Open spyder
+a.	Start – anaconda3 (64-bit) – Spyder (wrk)
+i.	Run main.py (arrow button on top)
+ii.	GUI opens
+12.	Open Start – Kamera
+a.	By default looking at the probe
+13.	Open command prompt
+a.	Start – anaconda3 (64-bit) – anaconda Prompt (Anaconda 3)
+b.	Go to folder cd Python-scripts\ Camera
+c.	Python $cam_save.py$
+d.	Camera Window opens
+
+settings
+PC besturing
+User: CoDac
+Password ChL*2020
+
+
+PC measurement system
+Tecdaq
+Password: TecdaqTEC
+IP 134.94.244.134
+
+14.	Open labview
+a.	Start – NI labVIEW2019 SP1 (32-bit)
+b.	Open File : $DAQ_TOMAS_AA.vi$
+c.	Sampling rate: 10000 (Hz)
+d.	Number of samples =30000 (ms)
+e.	Start session with shotnumber : 1
+f.	Check gas K for density
+g.	Check gas K for pressure
+h.	Save Data : enabled/disabled
+i.	Start the acquisition
+
+
+
+
+
 \newpage
 
 
@@ -230,14 +284,114 @@ $\ $\\
 
 
 
-\subsection{Coil current}
+
+
+\begin{minipage}{.68\textwidth}
+\subsection{Magnetic field}
+	
+To activate the magnetic field, the cooling of the coils should be activated. You can initiate the coil current at the Magnetic field power supply (Figure \ref{Coil1}).\\
+
+\textcolor{red}{\textbf{Remove the lock from the black lever arm of the magnetic field power supply. Turn the lever arm counter-clockwise to the position “ON”.}}\\
+
+You can find the key of the lock inside one of the drawers of the main TOMAS computer table.\\
+
+When the magnetic field power supply is "ON", the green `STANDBY' LED is activated. When the red LED `STÖRUNG' is activated, you can push the reset button (F8 on Figure \ref{Coil2}). When the red LED keeps activated, there is a problem with the power supply. Turn the lever arm clockwise to the position “OFF” and call for specialized help.\\
+
+
+\textcolor{red}{\textbf{Set a value for the coils current and press “DC ON”. }}\\
+	
+When the coils current is activated, the white LED `DC-EIN' is activated. Verify that the value $A_{set}$ equals  $A_{act}$.\\
+	
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+	$\ $\\
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{Coil1}
+\captionsetup{width=0.75\textwidth}
+\captionof{figure}{The magnetic field power supply}
+\label{Coil2}
+\end{minipage}
+
+
+
+\begin{minipage}{.48\textwidth}
+The value of the current can vary (theoretically) between 0 A and 2200 A. Note that for EC operation, the position of the EC resonance layer depends on the magnetic field.  An overview of the position of the EC resonance layer as function of the coil current is given in Figure \ref{ECR} for the fundamental frequency. For second harmonic heating, the coil current should be halved.\\
+
+\includegraphics[width=0.98\linewidth]{ECR}
+\captionsetup{width=0.75\textwidth}
+\captionof{figure}{The magnetic field power supply touchscreen}
+\label{ECR}
+
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{Coil2}
+\captionsetup{width=0.75\textwidth}
+\captionof{figure}{The magnetic field power supply touchscreen}
+\label{Coil1}
+\end{minipage}
+
+
+
+\begin{center}
+	\textcolor{red}{\textbf{Note! Don’t use the magnetic field during Glow Discharge operation!}}\\
+\end{center}
+\vspace{0.2cm}
+
+
+\begin{minipage}{.63\textwidth}
+
+\subsection{EC operation}
+
+
+EC operation is controlled remotely by the Operator PC. The EC amplifier has to be activated manually.\\
+
+\textcolor{red}{\textbf{Activate the EC by pulling the black lever upwards (Figure \ref{EC1}).}}\\
+
+Wait until the amplifier is ready. This is indicated by LED number 2 on Figure \ref{EC1} (START/STOP PREHEAT/READY). The LED for remote operation should also be activated (LED number 1 on Figure \ref{EC1}).\\
+
+When EC is on, the first display shows the forwarded power, the second one shows the reflected power. To maximize the power absorbed by the plasma, the EC system should be matched (see section \ref{}).\\
+
+The EC amplifier is now ready for operation. 
+
+	
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+	$\ $\\
+\end{minipage}
+\begin{minipage}{.35\textwidth}
+\centering
+\includegraphics[width=\linewidth]{EC1}
+\captionsetup{width=0.75\textwidth}
+\captionof{figure}{The EC amplifier}
+\label{EC1}
+\end{minipage}
 
 
 
 
 
+\newpage
+\subsection{IC operation}
 
 
+
+
+\newpage	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Operational procedures}%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{EC matching procedure}
+
+
+\subsection{IC matching procedure}
 
 
 
@@ -291,551 +445,7 @@ $\ $\\
 %\end{itemize}
 %
 %\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Ordinary wave}%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{O-mode Accessibility}%%
-%
-%The ordinary wave has a component of the electric field parallel to the background magnetic field: $E_{\parallel}\neq0$. The rotation is opposite to that of the cyclotron rotation of the electron. The O-mode dispersion equation becomes:
-%	\begin{equation}
-%	n_\perp^2=K_\parallel=1-\dfrac{\omega_{pe}^2}{\omega^2}-\dfrac{\omega_{pi}^2}{\omega^2}\approx 1-\dfrac{\omega_{pe}^2}{\omega^2}
-%	\end{equation}
-%
-%The O-wave can only propagate for $\omega > \omega_{pe}$. For typical TOMAS parameters ($B_0 = 90 \ mT$) this leads to a cut-off density for the O-mode of $7.87e16\ m^{-3}$.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{O-mode absorption}%%
-%
-%The heating efficiency for O-mode absorption can be written as $\eta_h=1-e^{-\lambda_O}$ with:
-%	\begin{equation}
-%	\lambda_O =\dfrac{\pi}{4}\cdot \dfrac{v_{T_e}^2}{c^2}\cdot \dfrac{\omega_{ce}R_0}{c}\dfrac{\omega_{pe}^2}{\omega_{ce}^2}\cdot \sqrt{1-\dfrac{\omega_{pe}^2}{\omega_{ce}^2}}
-%	\end{equation}
-%
-%With $v_{T_e} = \sqrt{\dfrac{k\cdot T_e}{m_e}}=$ electron thermal velocity.\\
-%
-%For the TOMAS-device, O-wave absorption is very small. At $10 \ eV$ only $0.025 \% $ can be absorbed at an ideal density close to $ 5.25e16 \ m^{-3}$. With a ECRF power source of $2\ kW$ (supposedly only emitting O-wave polarization) only $0.5\ W$ can be coupled to the plasma with a single pass.
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{AbsorptionOwaveTOMAS}
-%	\caption{Absorption of the O-wave at the Electron Cyclotron Resonance layer in TOMAS for $B_0 = 90 \ mT$}
-%	\label{fig:AbsorptionOwaveTOMAS}
-%\end{figure}
-%
-%\newpage
-%If the value of the magnetic field is raised, O-wave absorption also rises, moving the electron cyclotron resonance layer from the High Filed side (HFS) to the Low Field Side (LFS). The O-wave cut-off is consequently raised. The influence is rather small. 
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{AbsorptionOwaveTOMASBsweep}
-%	\caption{Absorption of the O-wave at the Electron Cyclotron Resonance layer in TOMAS for $T_e = 10 \ eV$}
-%	\label{fig:AbsorptionOwaveTOMASBsweep}
-%\end{figure}
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Extraordinary wave}%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Accessibility}%%
-%
-%
-%The extraordinary wave has no component of the electric field parallel to the background magnetic field: $E_{\parallel}=0$. The rotation corresponds with the cyclotron rotation of the electrons. We get a different solution for the dispersion equation: 
-%\begin{equation}
-%n_\perp^2=\dfrac{\left( \omega^2+\omega\omega_{ce}-\omega_{pe}^2 \right)\cdot \left( \omega^2-\omega\omega_{ce}-\omega_{pe}^2 \right) }{\omega^2 \cdot \left( \omega^2-\omega_{ce}^2-\omega_{pe}^2 \right)}
-%\end{equation}
-%
-%
-%
-%This equation leads to four domains: 2 where wave propagation is possible and 2 evanescent regions (Figure	\ref{fig:XFreqDomain} and \ref{fig:XDensDomain}). Three interesting values for the frequency $\omega$ can be identified:
-%\begin{itemize}
-%	\item \textbf{R cut-off:} The Fast X-wave (FX) can propagate if $\omega>\omega_R$. For typical TOMAS parameters ($B_0 = 90 \ mT$) this leads to a cut-off density for the FX-mode of $2.11e15\ m^{-3}$.
-%		\begin{equation}
-%		\omega_R=\dfrac{\omega_{ce}+\sqrt{\omega_{ce}^2+4\omega_{pe}^2}}{2} 
-%		\end{equation}
-%	\item \textbf{L cut-off:} The Slow X-wave (SX) can propagate if $\omega>\omega_L$. For typical TOMAS parameters ($B_0 = 90 \ mT$) this leads to a cut-off density for the SX-mode of $1.51e17\ m^{-3}$.
-%		\begin{equation}
-%		\omega_L=\dfrac{-\omega_{ce}+\sqrt{\omega_{ce}^2+4\omega_{pe}^2}}{2} 
-%		\end{equation}
-%	\item \textbf{Upper Hybrid Resonance (UHR):} A wave resonance occurs for $\omega=\omega_{UHR}$. For typical TOMAS parameters ($B_0 = 90 \ mT$) this occurs at a density of $8.06e15\ m^{-3}$.
-%		\begin{equation}
-%		\omega_{UHR}= \sqrt{\omega_{pe}^2+\omega_{ce}^2}
-%		\end{equation}
-%\end{itemize}
-%
-%\paragraph{Conclusion} In TOMAS X-mode heating  at the fundamental harmonic is not possible because the wave cannot propagate if the density exceeds $2e15\ m^{-3}$.
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{XFreqDomain}
-%	\caption{TOMAS X-wave accessibility domains ($B_0=90 mT, n_e = 5e16 m^{-3}$)}
-%	\label{fig:XFreqDomain}
-%\end{figure}
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.78\linewidth]{XDensDomain}
-%	\caption{TOMAS X-wave density domains ($B_0=90 mT$)}
-%	\label{fig:XDensDomain}
-%\end{figure}
-%
-%When we consider second harmonic heating, the situation improves considerably. If we want the ECR-layer to remain at the same position, the toroidal magnetic field has to be halved ($B_0 = 45 \ mT$). Again four regions can be determined regarding the density:
-%\begin{itemize}
-%	\item \textbf{R cut-off:} The Fast X2-wave (FX2) can propagate if the density stays below $3.94e16\ m^{-3}$.
-%	\item \textbf{L cut-off:} The Slow X2-wave (SX2) can propagate if the density stays below $1.18e17\ m^{-3}$.
-%	\item \textbf{Upper Hybrid Resonance (UHR):} A wave resonance occurs at a density of $5.90e16\ m^{-3}$.
-%\end{itemize}
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.78\linewidth]{X2DensDomain}
-%	\caption{TOMAS X2-wave density domains ($B_0=45 mT$)}
-%	\label{fig:X2DensDomain}
-%\end{figure}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{X1-mode absorption}%%
-%
-%The heating efficiency for X1-mode absorption can be written as $\eta_h=1-e^{-\lambda_X}$ with:
-%\begin{equation}
-%\lambda_X =\dfrac{1}{2}\pi\cdot \dfrac{v_{T_e}^2}{c^2}\cdot \dfrac{\omega_{ce}R_0}{c} \cdot \alpha(2-\alpha)^{5/2}\cdot (1+\sqrt{\alpha})
-%\end{equation}
-%
-%With $\alpha =\dfrac{\omega_{pe}^2}{\omega_{ce}^2} $.\\
-%
-%
-%For the TOMAS-device, X1-wave absorption is very small. At $10 \ eV$ only $0.0215 \% $ can be absorbed close to the R cut-off density of $ 2.11e15 \ m^{-3}$. With a ECRF power source of $2\ kW$ (supposedly only emitting X-wave polarization) only $0.43\ W$ can be coupled to the plasma with a single pass. This is comparable to the O-wave absorption, but only applicable at very low density.\\
-%
-%If we can manage to introduce the Slow X-wave (SX) into the plasma core, the absorption efficiency can raise to $0.313 \%$  at an ideal density close to  $ 5.18e16 \ m^{-3}$. This can only be achieved using a HFS launch or by mode conversion.
-%
-%
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.91\linewidth]{AbsorptionXwaveTOMAS}
-%	\caption{Absorption of the X-wave at the Electron Cyclotron Resonance layer in TOMAS for $B_0 = 90 \ mT$}
-%	\label{fig:AbsorptionXwaveTOMAS}
-%\end{figure}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{X2-mode absorption}%%
-%
-%The heating efficiency for X2-mode absorption can be written as $\eta_h=1-e^{-\lambda_{X2}}$ with:
-%\begin{equation}
-%\lambda_{X2} =2\pi\cdot \dfrac{v_{T_e}^2}{c^2}\cdot \dfrac{\omega_{ce}R_0}{c} \cdot \dfrac{\alpha(2-\alpha)^{1/2}(6-\alpha)^{5/2}}{32(3-\alpha)^{5/2}}
-%\end{equation}
-%
-%%With $\alpha =\dfrac{\omega_{pe}^2}{\omega_{ce}^2} $.\\
-%
-%For the TOMAS-device, X2-wave absorption is small. At $10 \ eV$ only $0.147 \% $ can be absorbed at an ideal density close to $ 3.44e16 \ m^{-3}$. With a ECRF power source of $2\ kW$ (supposedly only emitting X-wave polarization) only $2.94\ W$ can be coupled to the plasma with a single pass.
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.91\linewidth]{AbsorptionX2waveTOMAS}
-%	\caption{Absorption of the X2-wave at the Electron Cyclotron Resonance layer in TOMAS for $B_0 = 45 \ mT$}
-%	\label{fig:AbsorptionX2waveTOMAS}
-%\end{figure}
-%
-%\newpage
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Comparison}%%
-%
-%
-%Second harmonic X2-mode heating ($0,147 \%$) is more than 5 times more effective than O-mode heating ($0,025 \%$), but has a lower cut-off density. Fundamental X-mode heating is most efficient, up to $0.31\%$, but the FX-wave can only reach the plasma core when it is launched from the HFS. Launching from the LFS limits the accessibility to a density of $2.11e15\ m^{-3}$.
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{AbsorptionOXX}
-%	\caption{Comparison of O-wave and X-wave absorption}
-%	\label{fig:AbsorptionOXX}
-%\end{figure}
-%
-%It is clear that fundamental X-mode heating can only be used at very low densities in the TOMAS device. Single pass absorption leads to a maximum coupling of $0.43\ W$, which is extremely low and seems insufficient for plasma production. Second harmonic X-mode heating couples three times less power with respect to fundamental heating. O-mode absorption is even 10 times lower with respect to fundamental heating. We can conclude that single pass absorption of O-wave or X-wave isn't likely to produce a plasma in the TOMAS device. Other mechanisms should be investigated to determine how a plasma can be produced:
-%
-%\begin{itemize}
-%	\item Multiple passes of the X-wave after reflection on the vessel wall can increase absorption efficiency. For the fundamental mode, the R cut-off still limits the density to $2.11e15\ m^{-3}$. This mechanism can perhaps initiate plasma production.
-%	\item Multiple passes of the O-wave after reflection on the vessel wall can increase absorption efficiency. This mechanism can perhaps contribute to the initial plasma production and the density build-up beyond the R cut-off. Efficiency stays limited.
-%	\item Mode conversion.
-%\end{itemize}
-%
-%
-%\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Mode conversion}%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{O-X mode-conversion}%%
-%
-%O-wave to X-wave conversion (O-X) after reflection on the wall at the HFS can boost absorption efficiency. Part of the incident wave is absorbed by the wall, part of it is reflected. After reflection the beam is depolarized and scattered, resulting in a mix of O-mode and X-mode. This process is also called polarization scrambling. For the TOMAS device, the wave injection is in the equatorial plane, which means that this conversion is negligible.\\
-%
-%Since the X-wave now comes from the HFS, it can reach the plasma core and deposit a portion of its energy (Figure \ref{fig:AbsorptionOXX}). This wave is only limited by the L cut-off at $1.51e17\ m^{-3}$ at the LFS of the EC resonance layer. Part of its energy can be absorbed at the EC resonance layer (Figure \ref{fig:OXB}).
-%
-%%If we can assume that $50\ \%$ of the initial O-wave is converted to an X-wave coming from the HFS after multiple reflections, this fraction can amount up to 3.13 W.
-%
-%%It is assumed that after a few reflections of the O-mode from the wall (about 4 reflections) 75\% of the injected power (if only the mode conversion take place) will be converted to X-mode and absorbed by the plasma [1]. B. Lloyd, P.G. Carolan, C.D. Warrick, Plasma Phys. Controlled Fusion 38, 1627-1643 (1996) 
-%%!!for an ideal oblique angle of about $23^\circ$!!
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{O-X-B mode-conversion}%%
-%
-%The origin of the O-X-B mode-conversion is twofold:
-%\begin{itemize}
-%	\item The former mechanism results in partial absorption of an X-wave at the EC Resonance layer. The remainder of the wave energy protrudes until it reaches the UHR layer. The wave can not penetrate the evanescent region beyond the UHR, is converted to the Bernstein wave and returns to the plasma core. This Bernstein wave deposits its energy near the EC Resonance layer (Figure \ref{fig:OXB}).
-%	\item If density rises to $7.87e16\ m^{-3}$, the O cut-off density is reached and the wave converts to the SX-wave, returning to the LFS until it reaches the UHR layer. Again, the wave can not penetrate the evanescent region beyond the UHR, is converted to the Bernstein wave and returns to the plasma core. This Bernstein wave deposits its energy near the EC Resonance layer (Figure \ref{fig:OXB2}).
-%\end{itemize}
-%
-%\begin{figure}[!h]
-%	\centering
-%	\begin{minipage}{.5\textwidth}
-%		\centering
-%	\includegraphics[width=0.94\linewidth]{OXB}
-%	  \captionsetup{width=.94\linewidth}
-%		\captionof{figure}{O-X-B mode-conversion due to polarization scrambling at the HFS wall}
-%		\label{fig:OXB}
-%	\end{minipage}%
-%	\begin{minipage}{.5\textwidth}
-%		\centering
-%	\includegraphics[width=0.94\linewidth]{OXB2}
-%		  \captionsetup{width=.94\linewidth}
-%		\captionof{figure}{O-X-B mode-conversion due to reflection at the O cut-off region}
-%		\label{fig:OXB2}
-%	\end{minipage}
-%\end{figure}
-%
-%
-%
-%
-%
-%
-%
-%% launch of the Owave, its full conversion in the first wall reflection to the
-%%X-wave and then conversion of the X-wave to EBW) [6]. 
-%% H.P. Laqua, W7-as Team, ECRH-Group, AIP
-%%Conference Proceedings 694, 15-23 (2003) 
-%
-%
-%
-%
-%\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{FX-B mode-conversion}%%
-%
-%As breakdown occurs and density rises above R-cutoff, an evanescent region appears for the X-wave. It can not exist between the R-cutoff and the Upper-Hybrid Resonance layer (UHR-layer). The Fast X-wave $(FX)$ can only exist below this R-cutoff. Beyond the UHR-layer, the Slow X-wave $(SX)$ can exist. The values for the particular frequencies corresponding with the position of these layers can be calculated and evaluated with respect to the frequency of the injected wave (Figure \ref{fig:Resonance1}):
-%
-%\begin{align}
-%\omega_R &= \dfrac{1}{2}\cdot (\omega_{ce}+\sqrt{\omega_{ce}^2+4\cdot \omega_{pe}^2})\\
-%\omega_{UH} &=	\sqrt{\omega_{pe}^2+ \omega_{ce}^2}
-%\end{align}
-%
-%where $\omega_{ce}=\dfrac{e\cdot B}{m_e}$, 
-%$\omega_{pe}=\sqrt{\dfrac{n_e\cdot e^2}{m_e\cdot \epsilon_0}}$.\\
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{Resonance1}
-%	\caption{Determination of the position of the UHR-layer and the R-cutoff.}
-%	\label{fig:Resonance1}
-%\end{figure}
-%
-%
-%When the Fast X-wave reaches this boundary, the wave can be split into three fractions (Figure \ref{fig:Budden1}):
-%\begin{itemize}
-%	\item Part of the wave is reflected $(R)$ and travels back to the LFS wall. The wave is reflected back and forth between the R-cutoff and the wall. Part of its energy can be absorbed by the wall. This X-wave can also partially be converted to the O-wave through the reflections on the wall.
-%	\item If the distance between UHR and R-cutoff is sufficiently small (smaller than the wavelength), the wave can reach the UHR-layer where it is converted $(C)$ to the Electron Bernstein Wave (EBW). This is called the direct FX-B mode-conversion.
-%	Collisional damping of the EBW near the UHR-layer is expected to increase the electron density []. The remainder of the EBW energy is coupled near the ECR-layer at this low densities.
-%	\item If the distance between UHR and R-cutoff is sufficiently small (smaller than the wavelength), the wave can be transmitted $(T)$ beyond the UHR-layer. It tunnels through the evanescent region and continues as a Slow X-wave. Collisional damping of this tunneling X-wave near the UHR-layer could increase the electron density. The remaining power is deposited at the ECR-layer by cyclotron damping.
-%\end{itemize}
-%
-%To evaluate the contribution of each fraction, the Budden parameter $\eta$ can be used. This parameter represents the thickness of the evanescent layer and determines the efficiency of tunneling and mode conversion []. It is expressed in function of the magnetic scale length $L_B$ and the density scale length $L_n$ evaluated at the UHR-layer.
-%\begin{equation}
-%\eta=\dfrac{\omega_{ce}\cdot L_n}{c}\dfrac{\alpha}{\sqrt{\alpha^2+2(L_n/L_B)}}\left[\dfrac{\sqrt{1+\alpha^2}-1}{\alpha^2+(L_n/L_B)\sqrt{1+\alpha^2}} \right]^{1/2} 
-%\end{equation}
-%where 	$L_n = \left|\dfrac{n}{\nabla n} \right| $, $L_B = \left|\dfrac{B_t}{\nabla B_t} \right| $, $\alpha = \left[\dfrac{\omega_{pe}}{\omega_{ce}} \right]_{UHR} $.
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.6\linewidth]{Budden1}
-%	\caption{Behavior of the Fast X-wave at R-cutoff}
-%	\label{fig:Budden1}
-%\end{figure}
-%The fractions can now be defined:
-%\begin{align}
-%T &= e^{-2\eta} &\Rightarrow& \text{ Tunneling}\nonumber \\
-%R &= (1-e^{-2\eta})^2 &\Rightarrow& \text{ Reflected}\\
-%C &= 1-T-R = e^{-2\eta} \cdot (1-e^{-2\eta}) &\Rightarrow&\text{ XB-Conversion} \nonumber
-%\end{align}
-%
-%The collisional damping near the UHR-layer has experimentally been verified on different plasma devices [VEST, KT-D5, WEGA]. It is expected to originate from the EBW. There is for now no evidence that the tunneling X-wave is also responsible for the density and temperature increase in this region.
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{FX-SX-B mode-conversion}%%
-%
-%A last conversion mechanism occurs when the L Cut-off density is reached at $1.51e17\ m^{-3}$. The tunneling X-wave reflects on the L cut-off and travels back to the LFS. Mode conversion to the EBW takes place when the UHR-layer is reached and resonant absorption occurs near to the ECR layer.
-%
-%
-%
-%
-%
-%
-%\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Electron Bernstein Wave}%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{EBW Accessibility}%%
-%
-%The Electron Bernstein Wave (EBW) is an electrostatic wave propagating at nearly right angles to $B_0$. It is polarized with its electric vector $\overline{E}$ nearly parallel to $\overline{k}$ i.e., it is almost pure longitudinal wave. Its frequency is that of the harmonics of the electron cyclotron frequency. Since the wavelength is of the order of the electron Larmour radius, they are  difficult to detect.\\
-%
-%The EBW doesn't have any density cut-offs inside the plasma and can propagate through any densities, but doesn't propagate in vacuum. Which means they cannot be launched by an antenna from outside the plasma. They can only be excited in the plasma by mode-conversion.
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{EBW Absorption}%%
-%
-%The heating efficiency for EBW absorption can be written as $\eta_h=1-e^{-\lambda_B}$ with:
-%\begin{equation}
-%\lambda_B =\dfrac{1}{2}\pi\cdot  \dfrac{\omega_{ce}R_0}{c} \cdot \alpha
-%\end{equation}
-%
-%Electron Bernstein wave absorption is very efficient, even at low densities and is mostly temperature independent. At a density of $ 1.3e14 \ m^{-3}$ already $10\ \%$ of the wave energy is absorbed. At $3.7e15 \ m^{-3}$ more than $95\ \%$ is coupled. The most important factor for EBW heating is consequently the conversion efficiency.\\
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{AbsorptionEBW}
-%	\caption{Absorption of the Electron Bernstein wave near the Electron Cyclotron Resonance layer in TOMAS for $B_0 = 90 \ mT$}
-%	\label{fig:AbsorptionEBW}
-%\end{figure}
-%
-%
-%	
-%	
-%\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Electron Cyclotron Resonance}%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Location}%%
-%
-%
-%\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Collisional damping}%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Location}%%
-%
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{Code Implementation}%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Below R cut-off}%%	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%Below R cut-off ($2.11e15\ m^{-3}$) both X-wave and O-wave can propagate. Since the injection is in the equatorial plane, mode scrambling is negligible. Multiple reflections occur; part of the energy is lost to the wall and part of it is coupled to the plasma. 
-%
-%We assume $\mu_w = 0.30$, which means that for each reflection, $30 \ \%$ of the power is absorbed by the wall.
-%
-%
-% 1st pass power absorption is $1-e^{-\lambda_O}$.
-%
-%
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{TOMAS}%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%
-%\section{Scenarios}%%	
-%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Before breakdown}%%
-%
-%At very low densities, both O- and X-wave propagate to the Electron Cyclotron Resonance layer (ECR-layer).
-%
-%%%--------------------%%
-%\subsubsection{O-wave}%%
-%
-%O-wave has a very low single-pass absorption, experiences multiple reflections at the wall and is converted partially to X-mode at each reflection. Part of the power is lost to the wall. The converted part of the O-wave can consequently been coupled to the ECR-layer. 
-%
-%%%--------------------%%
-%\subsubsection{X-wave}%%
-%
-%The X-wave has normally a high rate of single-pass absorption, but this is somewhat reduced at very low densities.
-%
-%
-%
-%%%------------------------%%
-%\subsubsection{Experiment}%%
-%
-%If a certain mode of wave injection can be selected (e.g. using a polarizer), the difference between O- and X-wave can be studied.
-%\begin{itemize}
-%	\item We can perhaps verify the multiple reflections of the O-wave using some temperature sensors at the HFS of the wave injection and compare the results with X-wave injection. We have to make sure though that density stays small so UHR and R-cutoff stay close together.
-%	\item The ratio of O-wave absorption through multiple reflection and X-wave absorption can be estimated through modeling.
-%\end{itemize}
-%
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Density above R-cutoff}%%
-%
-%
-%Experiments and modeling (TOMATOR code) on the TOMAS device support this assumption. Figure \ref{fig:Experiment1} compares a specific experiment with modeling. There is a good resemblance between experiment and modeling, except at the LFS. Clearly something is happening between the UHR-layer and the R-cutoff.
-%
-%\newpage
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.8\linewidth]{Experiment1}
-%	\caption{Comparison of experiment and modeling on the TOMAS device - The power is only coupled at the Electron Cyclotron Resonance layer.}
-%	\label{fig:Experiment1}
-%\end{figure}
-%
-%
-%In this specific experiment, $2$ kW of EC power at $2.45$ GHz is injected in a helium gas. The gas flow is $70$ sscm. The current in the coils is $1400$ A resulting in a toroidal magnetic field $B_t= 86.66$ mT. Temperature and density profiles are measured with a triple-pin Langmuir probe. The model assumes that the power is only coupled at the Electron Cyclotron Resonance layer. \\
-%
-%Figure \ref{fig:140msbis} shows the evolution of the density and temperature profiles for this experiment. The stixdisp software predicts power absorption somewhat left of the ECR-layer, based on the experimental density profiles. The power deposition starts at $-4.0$ cm at $80$ ms and shifts slowly to the LFS to $0.0$ cm at $140$ ms. This shift is clearly visible on the temperature profile. EC power is coupled to the electrons at the ECR-layer, the temperature is rising slightly in this region and density builds up.
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.95\linewidth]{FinalBudden}
-%	\caption{Evolution of the experimental density and temperature profiles - Budden Analysis of the X-wave behaviour at the R-cutoff at $140$ ms.}
-%	\label{fig:140msbis}
-%\end{figure}
-%
-%\newpage
-%The experimental temperature and density profiles suggests an additional power deposition between the UHR-layer and R-cutoff. This can be explained with the Budden model. At the right of Figure \ref{fig:140msbis}, we see that most of the X-wave is reflected at R-cutoff. There is only a very small amount of the X-wave that is tunneled through the evanescent layer and about the same amount is converted to the Electron Bernstein wave (EBW). This means that multiple reflections at the wall are needed in order to get a substantial energy transfer beyond the R-cutoff. This is clearly the case since density continues to rise near the ECR-layer.\\
-%
-%As density builds up, the UHR-layer and the R-cutoff shift to the LFS. The temperature profiles show the same trend in this region. This suggests that the additional power deposition is linked to collisional damping of the X-wave nearing the UHR-layer. The power from the tunneling X-wave and the residual EBW power is deposited near the ECR-layer.\\
-%
-%To verify these conclusions, an additional power deposition is added in the TOMATOR simulation between the UHR-layer and R-cutoff at $95.03$ cm. The results of this simulation are shown on Figure \ref{fig:Experiment2}. The additional power deposition results in a good accordance between simulation and experiment also at the LFS.\\
-%
-%The simulation provides us with some information on the amount of power that is deposited in each region. At the ECR-layer about $34$ W is coupled, which corresponds with $1.70 \%$ of the injected power.  About $20$ W is deposited between the UHR-layer and the R-cutoff, which corresponds with $1.02 \%$ of the injected power. We can conclude that in total, about $2.72 \%$ of the injected power is directly coupled to the plasma. The rest is lost to the wall. We can conclude that about $37.5 \%$ of the coupled power is deposited near the UHR-layer and $62.5 \%$ near the ECR-layer.
-%
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{Experiment2}
-%	\caption{Comparison of experiment and modeling on the TOMAS device - Two power deposition zones are simulated.}
-%	\label{fig:Experiment2}
-%\end{figure}
-%
-%
-%
-%
-%
-%
-%
-%%%--------------------%%
-%\subsubsection{O-wave}%% 
-%
-%If we take a closer look at the experimental density profiles, a third power deposition position could be observed 
-%
-%
-%
-%
-%%%------------------------%%
-%\subsubsection{Experiment}%%
-%
-%If a certain mode of wave injection can be selected (e.g. using a polarizer), the difference between O- and X-wave can be studied.
-%\begin{itemize}
-%	\item The polarizer can help to proof that the density build-up at the ECR-layer is due to the tunneling X-wave and EBW, and not only from multiple reflections of the O-wave. This also proofs that these waves are present in the machine and consequently are responsible for the power coupling in between the UHR-layer and R-cutoff.
-%	\item A change in the magnetic field or in the amount of neutral gas injected, could cause a change in the contribution of each fraction (Tunneling wave - EBW). This way we can possibly proof that the collisional damping is only due to the EBW (or not).
-%\end{itemize}
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Effect of gas pressure}%%
-%
-%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Effect of EC Power}%%
-%
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\chapter{JT-60SA}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%For JT-60SA several scenarios are envisaged depending on several parameters [PID]. Three of these scenarios are using Electron Cyclotron Resonance Heating (ECRH) as one of the heating systems. Three parameters are of interest for this study: the frequency and nature of the injected waves, the nominal magnetic Field $B_0$ and the desired electron density $n_e$.
-%
-%
-%
-%
-%\newpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Scenario 1}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%For the first scenario $7$ MW of ECRH power is available, the nominal magnetic Field is $B_0 = 2.25$ T and the desired density reaches $n_e = 6.3\ e19$ m$^{-3}$.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{X1-wave injection at 82 GHz}%%
-%
-%Redo the plots. R-cutoff is $1.934e19$.\\
-%
-%The ECR-layer is positioned at $227.6$ cm. The position of the UHR-layer and the R-cutoff depends on the electron density profile. We assume a normal electron density distribution. When density rises, both shift to the LFS. Five density regions can be distinguished:
-%
-%\begin{itemize}
-%	\item $n_e < 2.6\ e16$ m$^{-3}$: More than $50 \%$ of the injected X-wave is reflected at the R-cutoff (Figure \ref{fig:Scenario1_Budden}). Since the UHR-layer, R-cutoff and the ECR-layer are co-located, the X-wave can still deposit its energy at the ECR-layer
-%	\item $n_e > 2.0\ e17$ m$^{-3}$: $100 \%$ of the wave's energy is reflected at the R-cutoff (Figure \ref{fig:Scenario1_Budden}). Since the UHR-layer, R-cutoff and the ECR-layer are still co-located, the X-wave can deposit its energy at the ECR-layer.
-%\end{itemize}	
-%	
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=\linewidth]{Scenario1_Budden}
-%	\caption{Budden analysis in function of the electron density}
-%	\label{fig:Scenario1_Budden}
-%\end{figure}
-%
-%\begin{itemize}	
-%	\item $n_e > 1.0\ e18$ m$^{-3}$: The R-cutoff and the UHR-layer are slowly shifting to the LFS. When the R-cutoff shifts too much to the LFS, the X-wave cannot reach the ECR-layer anymore and travels back and forth between the R-cutoff and the LFS wall (Figure \ref{fig:Scenario1_Pulsations1}). No power is coupled to the plasma. This wave can partially be converted to an O-wave at each reflection at the wall. Part of its energy is absorbed by the wall.
-%\end{itemize}
-%
-%
-%\newpage
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.95\linewidth]{Scenario1_Pulsations1}
-%	\caption{Budden analysis in function of the electron density}
-%	\label{fig:Scenario1_Pulsations1}
-%\end{figure}
-%
-%\begin{itemize}	
-%	\item $n_e > 8.1\ e19$ m$^{-3}$: The O-cutoff comes into play (Figure \ref{fig:Scenario1_Pulsations2}). If an O-wave is present in the vessel, it is reflected back to the LFS. This wave can be converted to the slow X-wave, which in turn can convert to the EBW at the UHR-layer (O-X-B Conversion).
-%	\item $n_e > 17\ e19$ m$^{-3}$: The L-cutoff comes into play (Figure \ref{fig:Scenario1_Pulsations2}). If a slow X-wave is present in the vessel, it is reflected back to the LFS. This wave can be converted to the EBW at the UHR-layer (FX-SX-B Conversion). Since $100 \%$ of the original fast X-wave is reflected at the R-cutoff, no slow X-wave is present.
-%\end{itemize}
-%
-%\begin{figure}[!h]
-%	\centering
-%	\includegraphics[width=0.95\linewidth]{Scenario1_Pulsations2}
-%	\caption{Budden analysis in function of the electron density}
-%	\label{fig:Scenario1_Pulsations2}
-%\end{figure}
-%
-%\newpage
-%We can conclude that no power deposition is possible above $n_e= 1.0 e18$ m$^{-3}$. The operational (desired) density of $n_e= 6.3 e19$ m$^{-3}$ doesn't allow the X-wave to deposit energy to the plasma. This density is also below the O-cutoff, so O-X-B conversion as a heating scenario is not a possibility in this case.\\
-%
-%(We assume here horizontal injection of the X-wave. If an angle is present, a new study has to be performed.)
-%
-%\newpage%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{Scenario 5}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%
+
 %
 
 
