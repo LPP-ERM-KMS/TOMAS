@@ -862,12 +862,12 @@ class GUI(tk.Tk):
             self.ECoutPulsedNumber = 1
             self.ECoutPulsedStartTime = 0
             self.ECoutPulsedOnTime = 0.1 #just enough for a discharge
-            self.ECoutPulsedOffTime = 0.4
+            self.ECoutPulsedOffTime = 0.7
 
         self.ICout = 2
         self.ICoutPulsedNumber = 1
         self.ICoutPulsedStartTime = 0.1
-        self.ICoutPulsedOnTime = 0.4 #should be stable enough
+        self.ICoutPulsedOnTime = 0.7 #should be stable enough
         self.ICoutPulsedOffTime = 0
 
 
@@ -885,7 +885,7 @@ class GUI(tk.Tk):
                 #self.operation(doIC=False,doEC=False,doDAQ=True,nIter=1) #TEMPORARY
             CsM, CpM = self.ICMatch() #Get UDP signal and determine change in capacitor values
             self.moveCap(CsM,CpM)
-            time.sleep(3.5) #wait 3.5 seconds for the capacitors to have moved
+            time.sleep(1) #wait 1 second for the capacitors to have moved
             # and the system to have cooled a bit.
             # It will also have cooled whilst waiting for the DAQ response
 
@@ -934,10 +934,12 @@ class GUI(tk.Tk):
         SSlowFactor = 1
         SPFactor = 55 #SPFactor = 80pF
         if 0.8 > GAmp:
-             SPFactor = 10 #SPFactor = 80pF
+             SPFactor = 20 #SPFactor = 80pF
         if 0.2 > GAmp:
-             SPFactor = 5 #SPFactor = 80pF
+             SPFactor = 10 #SPFactor = 80pF
         if 0.1 > GAmp:
+             SPFactor = 5 #SPFactor = 80pF
+        if 0.08 > GAmp:
              SPFactor = 2
         StepConversionFactor = 5 #about 5 steps per pF
         if method=="DirCoupler":
