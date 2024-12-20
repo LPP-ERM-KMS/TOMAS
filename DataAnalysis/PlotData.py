@@ -172,11 +172,12 @@ def PScan(FolderLocation,probecount):
     CurrentLabel.pack()
     CurrentEntry.pack()
 
-    Voltage = tk.StringVar()
-    VoltageLabel = tk.Label(win, text="Supply Voltage:")
-    VoltageEntry = tk.Entry(win, textvariable=Voltage)
-    VoltageLabel.pack()
-    VoltageEntry.pack()
+    if probecount != 4:
+        Voltage = tk.StringVar()
+        VoltageLabel = tk.Label(win, text="Supply Voltage:")
+        VoltageEntry = tk.Entry(win, textvariable=Voltage)
+        VoltageLabel.pack()
+        VoltageEntry.pack()
 
     TimeInterest = tk.StringVar()
     TimeLabel = tk.Label(win, text="Time of interest (-1 for the end)")
@@ -220,10 +221,14 @@ def PScan(FolderLocation,probecount):
     R7_btn.pack()
     R8_btn.pack()
     RC_btn.pack()
-
-    Plot_button = tk.Button(win, text="Plot", command=lambda: PlotProbes(GasType.get(),float(Current.get()),probecount,Resistor.get(),pathlist,float(TimeInterest.get()),float(Voltage.get()),np.arange(float(Start.get()),float(Stop.get())+float(StepSize.get()),float(StepSize.get())),Orientation.get()))
-    Plot_button.pack(pady=10)
     
+    if probecount != 4:
+        Plot_button = tk.Button(win, text="Plot", command=lambda: PlotProbes(GasType.get(),float(Current.get()),probecount,Resistor.get(),pathlist,float(TimeInterest.get()),float(Voltage.get()),np.arange(float(Start.get()),float(Stop.get())+float(StepSize.get()),float(StepSize.get())),Orientation.get()))
+    else:
+        Plot_button = tk.Button(win, text="Plot", command=lambda: PlotProbes(GasType.get(),float(Current.get()),probecount,Resistor.get(),pathlist,float(TimeInterest.get()),None,np.arange(float(Start.get()),float(Stop.get())+float(StepSize.get()),float(StepSize.get())),Orientation.get()))
+    
+    Plot_button.pack(pady=10)
+        
     def GetProbeNames(ListboxSelection,probecount):
         Pselection = []
         for i in ListboxSelection:
@@ -269,7 +274,7 @@ def PScan(FolderLocation,probecount):
 
                 data = read(path)
                 try: 
-                    i = int(np.where('TP2' == np.array(data[0]['Channel names']))[0][0])
+                    i = int(np.where('TP1' == np.array(data[0]['Channel names']))[0][0])
                 except:
                     i = int(np.where('TP_1' == np.array(data[0]['Channel names']))[0][0])
 
@@ -286,7 +291,7 @@ def PScan(FolderLocation,probecount):
                 try: 
                     j = int(np.where('TP2' == np.array(data[0]['Channel names']))[0][0])
                 except: 
-                    j = int(np.where('TP_1' == np.array(data[0]['Channel names']))[0][0])
+                    j = int(np.where('TP_2' == np.array(data[0]['Channel names']))[0][0])
 
                 x_ = data[0]['data'][:,0]
                 k = np.abs(TimeInterest - x_).argmin()
@@ -310,6 +315,81 @@ def PScan(FolderLocation,probecount):
             #Check if mostly negative or positive
             if len(np.where(T < 0)[0]) > len(np.where(T > 0)[0]):
                 T = -1*T
+            T[np.where(T<0)[0]] = 0 #set others to zero
+            sortednumbers = sorted(numbers)
+            CorrectedT = np.zeros(len(T))
+            for i,number in enumerate(sortednumbers):
+                #index of old list
+                j = np.where(number == np.array(numbers))[0][0]
+                CorrectedT[i] = T[j]
+            Correctedn = np.zeros(len(n))
+            for i,number in enumerate(sortednumbers):
+                #index of old list
+                j = np.where(number == np.array(numbers))[0][0]
+                Correctedn[i] = n[j]
+
+
+            plt.plot(X,CorrectedT)
+            plt.xlabel("position (cm)")
+            plt.ylabel("Temperature (eV)")
+            plt.show()
+
+            plt.plot(X,Correctedn)
+            plt.xlabel("position (cm)")
+            plt.ylabel(r"Density ($\frac{particles}{m^3}$)")
+            plt.show()
+        if probecount == 4:
+            T = []
+            n = []
+            numbers = []
+            for l,path in enumerate(pathlist):
+                path_in_str = str(path)   
+                filename = path_in_str.split('/')[-1][:-4]
+                number = filename.split('_')[-1]
+                numbers.append(int(number))
+
+                data = read(path)
+                x = data[0]['data'][:,0]
+                k = np.abs(TimeInterest - x).argmin()
+                kBeginAvg = np.abs(TimeInterest - 0.1 - x).argmin()
+
+                i = int(np.where('HLP1' == np.array(data[0]['Channel names']))[0][0])
+                j = int(np.where('HLP2' == np.array(data[0]['Channel names']))[0][0])
+                k = int(np.where('HLP3' == np.array(data[0]['Channel names']))[0][0])
+                v = int(np.where('LP Voltage' == np.array(data[0]['Channel names']))[0][0])
+                if TimeInterest == -1:
+                    HLP1 = float(data[0]['data'][-1,i][0])
+                    HLP2 = float(data[0]['data'][-1,j][0])
+                    HLP3 = float(data[0]['data'][-1,k][0])
+                    SupplyVoltage = float(data[0]['data'][-1,v][0])
+                else:
+                    kEndAvg = np.abs(TimeInterest + 0.1 - x).argmin()
+                    HLP1 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,i])/(kEndAvg-kBeginAvg)) 
+                    HLP2 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,j])/(kEndAvg-kBeginAvg))
+                    HLP3 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,k])/(kEndAvg-kBeginAvg))
+                    SupplyVoltage = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,v])/(kEndAvg-kBeginAvg))
+                                  
+                R1 = 825
+                R2 = 162
+                Tp1V = (HLP2-HLP1)*(R1+R2)/R1
+                TGuess = abs(Tp1V)/np.log(2)
+                try:
+                    Tfinal = optimize.newplton(TemperatureFunction,x0=abs(TGuess),args=(abs(Tp1V),SupplyVoltage))
+                except:
+                    Tfinal = TGuess
+                if Tfinal > 200:
+                    Tfinal = TGuess
+                T.append(Tfinal)
+                position = X[l]
+                n.append(DensityFunction(Tfinal,Resistor,Tp1V,HLP3,GasType,Current,position,Orientation))
+
+            T = np.array(T)
+            n = np.array(n)
+            #Check if mostly negative or positive
+            if len(np.where(T < 0)[0]) > len(np.where(T > 0)[0]):
+                T = -1*T
+            if len(np.where(n < 0)[0]) > len(np.where(n > 0)[0]):
+                n = -1*n
             T[np.where(T<0)[0]] = 0 #set others to zero
             sortednumbers = sorted(numbers)
             CorrectedT = np.zeros(len(T))
