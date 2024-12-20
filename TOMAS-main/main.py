@@ -48,6 +48,7 @@ if not args.debug:
     ArdPos = ArduinoUnoSerial.readline()
     if "Error" in ArdPos.decode():
         f.close()
+        print("Error in arduino pos readline")
         # sys.exit(ArdPosPos.decode())
     print("The Arduino starting positions are:")
     print(ArdPos.decode())

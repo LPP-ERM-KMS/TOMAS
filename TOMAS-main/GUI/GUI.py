@@ -687,6 +687,19 @@ class GUI(tk.Tk):
         print(cmd)
         self.arduino.write(cmd.encode())
         time.sleep(2)
+        
+        # Retrieve communication from Arduino, new mod hopefully not needed
+        newPos = self.arduino.readline()
+        if "Error" in newPos.decode():
+            print(newPos.decode())
+            # After the error, Arduino will communicate the new positions
+            newPos = self.arduino.readline()
+        print("The new positions are:")
+        print(newPos.decode())
+        self.f.write(newPos.decode().strip()+"\n")
+        # Make sure the information is written and stored in the file right away
+        self.f.flush()
+        os.fsync(self.f)
 
     def moveCap(self,CsM=None,CpM=None):
 
@@ -726,6 +739,9 @@ class GUI(tk.Tk):
         print("The new positions are:")
         print(newPos.decode())
         self.f.write(newPos.decode().strip()+"\n")
+        # Make sure the information is written and stored in the file right away
+        self.f.flush()
+        os.fsync(self.f)
 
         # Update the information on the GUI
         posStrs = newPos.decode().split(" ")
@@ -934,13 +950,13 @@ class GUI(tk.Tk):
         SSlowFactor = 1
         SPFactor = 55 #SPFactor = 80pF
         if 0.8 > GAmp:
-             SPFactor = 20 #SPFactor = 80pF
-        if 0.2 > GAmp:
-             SPFactor = 10 #SPFactor = 80pF
-        if 0.1 > GAmp:
              SPFactor = 5 #SPFactor = 80pF
+        if 0.2 > GAmp:
+             SPFactor = 4 #SPFactor = 80pF
+        if 0.1 > GAmp:
+             SPFactor = 2 #SPFactor = 80pF
         if 0.08 > GAmp:
-             SPFactor = 2
+             SPFactor = 1
         StepConversionFactor = 5 #about 5 steps per pF
         if method=="DirCoupler":
             EpsG, EpsB = DirCoupler(V,Vf,Vr,GAmp,np.deg2rad(GPhase),FREQ)
@@ -1232,7 +1248,7 @@ class GUI(tk.Tk):
 
         for posProbe in range(int(fromPos), int(toPos)+1, int(step)):
                     # Communicate the desired position to Arduino
-                    cmd = probe + " " + str(posProbe)
+                    cmd = probe + " " + str(int(posProbe)*10)
                     print(cmd)
                     self.arduino.write(cmd.encode())
                     time.sleep(3)
@@ -1272,10 +1288,12 @@ class GUI(tk.Tk):
                             if posStrs[i] == "X":
                                 self.posX_lbl.config(text="Sample manipulator: " + posStrs[i + 1].strip())
                             elif posStrs[i] == "Y":
-                                self.posY_lbl.config(text="Triple Probe H: " + posStrs[i + 1].strip())
+                                self.posY_lbl.config(text="Triple Probe H: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
+                                self.Parameters['H(mm)'] = float(posStrs[i + 1].strip())/10
                             elif posStrs[i] == "Z":
-                                self.posZ_lbl.config(text="Triple Probe V: " + posStrs[i + 1].strip())
-                        # self.update()
+                                self.posZ_lbl.config(text="Triple Probe V: " + str(float(posStrs[i + 1].strip())/10) + 'mm')
+                                self.Parameters['V(mm)'] = float(posStrs[i + 1].strip())/10
+                        self.update()
 
                         self.doRoutine(doIC, doEC, doDAQ)
                         # As safety cross-check, disable the function generator output for IC and EC
