@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.2)  11 DEC 2024 12:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.2)  13 JAN 2025 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -204,63 +204,473 @@ Package caption Info: Standard document class detected.
 \c@caption@flags=\count267
 \c@continuedfloat=\count268
 )
-(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/menukeys\menukeys.sty
+Package: menukeys 2022/07/01 v1.6.2 -- A package to format menus, paths and sho
+rtcuts
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2024-03-14 L3 programming layer (loader) 
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count269
+\l__pdf_internal_box=\box51
+))
+Package: xparse 2024-03-14 L3 Experimental document command parser
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex
+\xs_counta=\count270
+\xs_countb=\count271
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+) (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count272
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.
+sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.st
+y
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
+-common.tex
+\pgfutil@everybye=\toks22
+\pgfutil@tempdima=\dimen161
+\pgfutil@tempdimb=\dimen162
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
+-latex.def
+\pgfutil@abb=\box52
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.
+code.tex
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.
+sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.
+sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+s.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+.code.tex
+\pgfkeys@pathtoks=\toks23
+\pgfkeys@temptoks=\toks24
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+libraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks25
+))
+\pgf@x=\dimen163
+\pgf@y=\dimen164
+\pgf@xa=\dimen165
+\pgf@ya=\dimen166
+\pgf@xb=\dimen167
+\pgf@yb=\dimen168
+\pgf@xc=\dimen169
+\pgf@yc=\dimen170
+\pgf@xd=\dimen171
+\pgf@yd=\dimen172
+\w@pgf@writea=\write3
+\r@pgf@reada=\read3
+\c@pgf@counta=\count273
+\c@pgf@countb=\count274
+\c@pgf@countc=\count275
+\c@pgf@countd=\count276
+\t@pgf@toka=\toks26
+\t@pgf@tokb=\toks27
+\t@pgf@tokc=\toks28
+\pgf@sys@id@count=\count277
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
+fg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+s-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+s-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+ssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count278
+\pgfsyssoftpath@bigbuffer@items=\count279
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+sprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+e.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code
+.tex
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.
+code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
+r.code.tex
+\pgfmath@dimen=\dimen173
+\pgfmath@count=\count280
+\pgfmath@box=\box53
+\pgfmath@toks=\toks29
+\pgfmath@stack@operand=\toks30
+\pgfmath@stack@operation=\toks31
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.basic.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.trigonometric.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.random.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.comparison.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.base.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.round.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.misc.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.integerarithmetics.code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.
+code.tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
+.code.tex
+\c@pgfmathroundto@lastzeros=\count281
+))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
+tex)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen174
+\pgf@picmaxx=\dimen175
+\pgf@picminy=\dimen176
+\pgf@picmaxy=\dimen177
+\pgf@pathminx=\dimen178
+\pgf@pathmaxx=\dimen179
+\pgf@pathminy=\dimen180
+\pgf@pathmaxy=\dimen181
+\pgf@xx=\dimen182
+\pgf@xy=\dimen183
+\pgf@yx=\dimen184
+\pgf@yy=\dimen185
+\pgf@zx=\dimen186
+\pgf@zy=\dimen187
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen188
+\pgf@path@lasty=\dimen189
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen190
+\pgf@shorten@start@additional=\dimen191
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+escopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box54
+\pgf@hbox=\box55
+\pgf@layerbox@main=\box56
+\pgf@picture@serial@count=\count282
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+egraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen192
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+etransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen193
+\pgf@pt@y=\dimen194
+\pgf@pt@temp=\dimen195
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+equick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+earrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen196
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen197
+\pgf@sys@shading@range@num=\count283
+\pgf@shadingcount=\count284
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box57
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+elayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+etransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+erdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
+shapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box58
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
+plot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfco
+mp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen198
+\pgf@nodesepend=\dimen199
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfco
+mp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.st
+y
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.s
+ty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+.code.tex))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code
+.tex))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.
+code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen256
+\pgffor@skip=\dimen257
+\pgffor@stack=\toks32
+\pgffor@toks=\toks33
+))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z\tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
+aryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count285
+\pgfplotmarksize=\dimen258
+)
+\tikz@lastx=\dimen259
+\tikz@lasty=\dimen260
+\tikz@lastxsaved=\dimen261
+\tikz@lastysaved=\dimen262
+\tikz@lastmovetox=\dimen263
+\tikz@lastmovetoy=\dimen264
+\tikzleveldistance=\dimen265
+\tikzsiblingdistance=\dimen266
+\tikz@figbox=\box59
+\tikz@figbox@bg=\box60
+\tikz@tempbox=\box61
+\tikz@tempbox@bg=\box62
+\tikztreelevel=\count286
+\tikznumberofchildren=\count287
+\tikznumberofcurrentchild=\count288
+\tikz@fig@count=\count289
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
+matrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count290
+\pgfmatrixcurrentcolumn=\count291
+\pgf@matrix@numberofcolumns=\count292
+)
+\tikz@expandcount=\count293
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\
+pgflibraryshapes.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibraryshadows.code.tex
+File: tikzlibraryshadows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibraryfadings.code.tex
+File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
+aryfadings.code.tex
+File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.sty
+Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+\XKV@toks=\toks34
+\XKV@tempa@toks=\toks35
+)
+\XKV@depth=\count294
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\trimclip.sty
+Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbox.s
+ty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box63
+)
+\tc@llx=\dimen267
+\tc@lly=\dimen268
+\tc@urx=\dimen269
+\tc@ury=\dimen270
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.def
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen271
+\adjbox@Height=\dimen272
+\adjbox@Depth=\dimen273
+\adjbox@Totalheight=\dimen274
+\adjbox@pwidth=\dimen275
+\adjbox@pheight=\dimen276
+\adjbox@pdepth=\dimen277
+\adjbox@ptotalheight=\dimen278
+
+(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count295
+) (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box64
+\sift@deathcycles=\count296
+\@vwid@loff=\dimen279
+\@vwid@roff=\dimen280
+)) (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/relsize\relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\l__twmk_indris_int=\count297
+\c@tw@hyphen@char@num=\count298
+) (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
 (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen161
+\pmbraise@=\dimen281
 )
 (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count269
+\inf@bad=\count299
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count270
-\leftroot@=\count271
+\uproot@=\count300
+\leftroot@=\count301
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count272
-\DOTSCASE@=\count273
+\classnum@=\count302
+\DOTSCASE@=\count303
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box51
-\strutbox@=\box52
+\Mathstrutbox@=\box65
+\strutbox@=\box66
 LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen162
+\big@size=\dimen282
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count274
+\macc@depth=\count304
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count275
+\c@MaxMatrixCols=\count305
 \dotsspace@=\muskip16
-\c@parentequation=\count276
-\dspbrk@lvl=\count277
-\tag@help=\toks22
-\row@=\count278
-\column@=\count279
-\maxfields@=\count280
-\andhelp@=\toks23
-\eqnshift@=\dimen163
-\alignsep@=\dimen164
-\tagshift@=\dimen165
-\tagwidth@=\dimen166
-\totwidth@=\dimen167
-\lineht@=\dimen168
-\@envbody=\toks24
+\c@parentequation=\count306
+\dspbrk@lvl=\count307
+\tag@help=\toks36
+\row@=\count308
+\column@=\count309
+\maxfields@=\count310
+\andhelp@=\toks37
+\eqnshift@=\dimen283
+\alignsep@=\dimen284
+\tagshift@=\dimen285
+\tagwidth@=\dimen286
+\totwidth@=\dimen287
+\lineht@=\dimen288
+\@envbody=\toks38
 \multlinegap=\skip52
 \multlinetaggap=\skip53
-\mathdisplay@stack=\toks25
+\mathdisplay@stack=\toks39
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
@@ -268,31 +678,31 @@ LaTeX Info: Redefining \] on input line 2954.
 Package: mathtools 2024/10/04 v1.31 mathematical typesetting tools
 (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count281
-\calc@Bcount=\count282
-\calc@Adimen=\dimen169
-\calc@Bdimen=\dimen170
+\calc@Acount=\count311
+\calc@Bcount=\count312
+\calc@Adimen=\dimen289
+\calc@Bdimen=\dimen290
 \calc@Askip=\skip54
 \calc@Bskip=\skip55
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count283
+\calc@Ccount=\count313
 \calc@Cskip=\skip56
 )
 (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count284
-\l_MT_multwidth_dim=\dimen171
+\g_MT_multlinerow_int=\count314
+\l_MT_multwidth_dim=\dimen291
 \origjot=\skip57
-\l_MT_shortvdotswithinadjustabove_dim=\dimen172
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen173
-\l_MT_above_intertext_sep=\dimen174
-\l_MT_below_intertext_sep=\dimen175
-\l_MT_above_shortintertext_sep=\dimen176
-\l_MT_below_shortintertext_sep=\dimen177
-\xmathstrut@box=\box53
-\xmathstrut@dim=\dimen178
+\l_MT_shortvdotswithinadjustabove_dim=\dimen292
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen293
+\l_MT_above_intertext_sep=\dimen294
+\l_MT_below_intertext_sep=\dimen295
+\l_MT_above_shortintertext_sep=\dimen296
+\l_MT_below_shortintertext_sep=\dimen297
+\xmathstrut@box=\box67
+\xmathstrut@dim=\dimen298
 ) (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
@@ -311,12 +721,6 @@ Package: hhtensor 2011/12/29 v0.61 Print vectors and tensors
 ushort.sty by M. Vaeth: Release: 2.2 
 Package: ushort 2001/06/13 v2.2
 ))
-(C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
-tex.def
-File: l3backend-pdftex.def 2024-03-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count285
-\l__pdf_internal_box=\box54
-)
 
 LaTeX Warning: Unused global option(s):
     [20pt].
@@ -342,17 +746,17 @@ LaTeX Font Info:    ... okay on input line 19.
 (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count286
-\scratchdimen=\dimen179
-\scratchbox=\box55
-\nofMPsegments=\count287
-\nofMParguments=\count288
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count289
-\MPscratchDim=\dimen180
-\MPnumerator=\count290
-\makeMPintoPDFobject=\count291
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count315
+\scratchdimen=\dimen299
+\scratchbox=\box68
+\nofMPsegments=\count316
+\nofMParguments=\count317
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count318
+\MPscratchDim=\dimen300
+\MPnumerator=\count319
+\makeMPintoPDFobject=\count320
+\everyMPtoPDFconversion=\toks41
 )
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -401,7 +805,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
 (C:\Users\tokol\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<./images/TOMAS1.jpg, id=1, 6263.4pt x 4175.6pt>
+<./images/TOMAS1.jpg, id=28, 6263.4pt x 4175.6pt>
 File: ./images/TOMAS1.jpg Graphic file (type jpg)
 <use ./images/TOMAS1.jpg>
 Package pdftex.def Info: ./images/TOMAS1.jpg  used on input line 32.
@@ -411,366 +815,605 @@ Package pdftex.def Info: ./images/TOMAS1.jpg  used on input line 32.
 
 {C:/Users/tokol/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./images/TOM
 AS1.jpg>]
-<./images/MainRack1.png, id=8, 4501.81876pt x 4095.3pt>
-File: ./images/MainRack1.png Graphic file (type png)
-<use ./images/MainRack1.png>
-Package pdftex.def Info: ./images/MainRack1.png  used on input line 51.
+<./images/MainRack2.png, id=35, 4501.81876pt x 4095.3pt>
+File: ./images/MainRack2.png Graphic file (type png)
+<use ./images/MainRack2.png>
+Package pdftex.def Info: ./images/MainRack2.png  used on input line 51.
 (pdftex.def)             Requested size: 512.14963pt x 465.85674pt.
- [2 <./images/MainRack1.png>]
-<./images/Cool2.jpg, id=14, 4095.3pt x 3083.52pt>
+ [2 <./images/MainRack2.png>]
+<./images/Cool2.jpg, id=41, 4095.3pt x 3083.52pt>
 File: ./images/Cool2.jpg Graphic file (type jpg)
 <use ./images/Cool2.jpg>
 Package pdftex.def Info: ./images/Cool2.jpg  used on input line 60.
 (pdftex.def)             Requested size: 512.14963pt x 385.58022pt.
- [3 <./images/Cool2.jpg>] [4]
+ [3 <./images/Cool2.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--84
+
+ []
+
+
+Overfull \hbox (5.2325pt too wide) in paragraph at lines 86--91
+[][] 
+ []
+
+
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 85--100
+[]$[]$ $[]$
+ []
+
+
+Underfull \hbox (badness 2213) in paragraph at lines 102--103
+\OT1/cmr/m/n/10 will open au-to-mat-i-cally the code 'TOMASstep-pers.ino'
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--103
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
+<./images/Arduino1.png, id=45, 84.315pt x 102.3825pt>
+File: ./images/Arduino1.png Graphic file (type png)
+<use ./images/Arduino1.png>
+Package pdftex.def Info: ./images/Arduino1.png  used on input line 112.
+(pdftex.def)             Requested size: 69.65053pt x 84.57751pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+
+ []
+
+<./images/PC2.jpg, id=46, 421.575pt x 657.05475pt>
+File: ./images/PC2.jpg Graphic file (type jpg)
+<use ./images/PC2.jpg>
+Package pdftex.def Info: ./images/PC2.jpg  used on input line 121.
+(pdftex.def)             Requested size: 153.64644pt x 239.46707pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 76--126
+$[]$ $[]$ $[]$ 
+ []
+
+<./images/Arduino2.png, id=47, 1050.17343pt x 713.66624pt>
+File: ./images/Arduino2.png Graphic file (type png)
+<use ./images/Arduino2.png>
+Package pdftex.def Info: ./images/Arduino2.png  used on input line 128.
+(pdftex.def)             Requested size: 512.14963pt x 348.05518pt.
+[4 <./images/Arduino1.png> <./images/PC2.jpg> <./images/Arduino2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
+<./images/Spyder1.png, id=56, 64.74188pt x 93.34875pt>
+File: ./images/Spyder1.png Graphic file (type png)
+<use ./images/Spyder1.png>
+Package pdftex.def Info: ./images/Spyder1.png  used on input line 147.
+(pdftex.def)             Requested size: 65.29688pt x 94.15898pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 146--147
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
-
- []
-
-<./images/Pressure2.jpg, id=23, 690.78075pt x 1155.71774pt>
-File: ./images/Pressure2.jpg Graphic file (type jpg)
-<use ./images/Pressure2.jpg>
-Package pdftex.def Info: ./images/Pressure2.jpg  used on input line 155.
-(pdftex.def)             Requested size: 153.64644pt x 257.06262pt.
-
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 129--157
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 135--149
 []$[]$ $[]$ $[]$ 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
-
- []
-
-
+<./images/Spyder2.png, id=57, 1433.355pt x 762.59906pt>
+File: ./images/Spyder2.png Graphic file (type png)
+<use ./images/Spyder2.png>
+Package pdftex.def Info: ./images/Spyder2.png  used on input line 151.
+(pdftex.def)             Requested size: 512.14963pt x 272.48746pt.
+<./images/GUI1.png, id=58, 1437.87187pt x 637.63219pt>
+File: ./images/GUI1.png Graphic file (type png)
+<use ./images/GUI1.png>
+Package pdftex.def Info: ./images/GUI1.png  used on input line 156.
+(pdftex.def)             Requested size: 512.14963pt x 227.11504pt.
+[5 <./images/Spyder1.png> <./images/Spyder2.png> <./images/GUI1.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 164--176
+[]$[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--168
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 171--172
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+
+ []
+
+<./images/Cam1.png, id=65, 61.73062pt x 94.10156pt>
+File: ./images/Cam1.png Graphic file (type png)
+<use ./images/Cam1.png>
+Package pdftex.def Info: ./images/Cam1.png  used on input line 194.
+(pdftex.def)             Requested size: 65.29688pt x 99.54326pt.
+[6 <./images/Cam1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
+
+ []
+
+
+Overfull \hbox (2.66472pt too wide) in paragraph at lines 212--217
+[][] 
+ []
+
+
+Overfull \hbox (4.48517pt too wide) in paragraph at lines 219--224
+[][] 
+ []
+
+
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 211--226
+[]$[]$ $[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+
+ []
+
+<./images/Remote1.png, id=70, 115.93312pt x 95.6072pt>
+File: ./images/Remote1.png Graphic file (type png)
+<use ./images/Remote1.png>
+Package pdftex.def Info: ./images/Remote1.png  used on input line 233.
+(pdftex.def)             Requested size: 87.06473pt x 71.80148pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 206--235
+$[]$ $[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+
+ []
+
+<./images/Remote2.png, id=71, 682.04813pt x 219.06844pt>
+File: ./images/Remote2.png Graphic file (type png)
+<use ./images/Remote2.png>
+Package pdftex.def Info: ./images/Remote2.png  used on input line 241.
+(pdftex.def)             Requested size: 512.14963pt x 164.50815pt.
+<./images/Remote3.png, id=72, 1324.19719pt x 744.53156pt>
+File: ./images/Remote3.png Graphic file (type png)
+<use ./images/Remote3.png>
+Package pdftex.def Info: ./images/Remote3.png  used on input line 246.
+(pdftex.def)             Requested size: 512.14963pt x 287.95769pt.
+[7 <./images/Remote1.png> <./images/Remote2.png> <./images/Remote3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+
+ []
+
+
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 260--275
+[]$[]$ $[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
+
+ []
+
+File: ./images/Remote1.png Graphic file (type png)
+<use ./images/Remote1.png>
+Package pdftex.def Info: ./images/Remote1.png  used on input line 282.
+(pdftex.def)             Requested size: 87.06473pt x 71.80148pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 255--284
+$[]$ $[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
+
+ []
+
+<./images/Remote4.png, id=80, 682.04813pt x 215.30438pt>
+File: ./images/Remote4.png Graphic file (type png)
+<use ./images/Remote4.png>
+Package pdftex.def Info: ./images/Remote4.png  used on input line 292.
+(pdftex.def)             Requested size: 512.14963pt x 161.68156pt.
+<./images/Remote5.png, id=81, 1445.4pt x 722.7pt>
+File: ./images/Remote5.png Graphic file (type png)
+<use ./images/Remote5.png>
+Package pdftex.def Info: ./images/Remote5.png  used on input line 297.
+(pdftex.def)             Requested size: 512.14963pt x 256.06956pt.
+[8 <./images/Remote4.png> <./images/Remote5.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 322--323
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+<./images/Pressure2.jpg, id=87, 690.78075pt x 1155.71774pt>
+File: ./images/Pressure2.jpg Graphic file (type jpg)
+<use ./images/Pressure2.jpg>
+Package pdftex.def Info: ./images/Pressure2.jpg  used on input line 334.
+(pdftex.def)             Requested size: 153.64644pt x 257.06262pt.
+
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 312--336
+[]$[]$ $[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--342
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 343--344
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--347
+
+ []
+
+
+Underfull \hbox (badness 1584) in paragraph at lines 351--352
 \OT1/cmr/m/n/10 switched on. Pump down the
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 171--172
+Underfull \hbox (badness 1466) in paragraph at lines 351--352
 \OT1/cmr/m/n/10 up-stream pipes dur-ing 10 { 15
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
+Underfull \hbox (badness 10000) in paragraph at lines 351--352
 
  []
 
-<./images/Gas1.jpg, id=24, 925.056pt x 1228.59pt>
+<./images/Gas1.jpg, id=88, 925.056pt x 1228.59pt>
 File: ./images/Gas1.jpg Graphic file (type jpg)
 <use ./images/Gas1.jpg>
-Package pdftex.def Info: ./images/Gas1.jpg  used on input line 174.
+Package pdftex.def Info: ./images/Gas1.jpg  used on input line 354.
 (pdftex.def)             Requested size: 153.64644pt x 204.05836pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
 
  []
 
-<./images/Gas2.png, id=25, 773.289pt x 640.794pt>
+<./images/Gas2.png, id=89, 773.289pt x 640.794pt>
 File: ./images/Gas2.png Graphic file (type png)
 <use ./images/Gas2.png>
-Package pdftex.def Info: ./images/Gas2.png  used on input line 183.
+Package pdftex.def Info: ./images/Gas2.png  used on input line 363.
 (pdftex.def)             Requested size: 330.84402pt x 274.1574pt.
 
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 169--188
-[]$[]$ $[]$ $[]$ 
- []
-
-[5 <./images/Pressure2.jpg> <./images/Gas1.jpg> <./images/Gas2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 192--193
-
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 349--369
+[]$[]$ $[]$ $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 196--197
+[9 <./images/Pressure2.jpg> <./images/Gas1.jpg> <./images/Gas2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 379--380
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--199
+Underfull \hbox (badness 10000) in paragraph at lines 381--382
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
+Underfull \hbox (badness 10000) in paragraph at lines 383--384
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 386--387
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 388--389
 
  []
 
-<./images/Gas3.jpg, id=35, 678.73575pt x 1036.47224pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 393--394
+
+ []
+
+<./images/Gas3.jpg, id=98, 678.73575pt x 1036.47224pt>
 File: ./images/Gas3.jpg Graphic file (type jpg)
 <use ./images/Gas3.jpg>
-Package pdftex.def Info: ./images/Gas3.jpg  used on input line 212.
+Package pdftex.def Info: ./images/Gas3.jpg  used on input line 397.
 (pdftex.def)             Requested size: 153.64644pt x 234.61957pt.
 
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 191--216
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 376--401
 []$[]$ $[]$ $[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--221
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
+Underfull \hbox (badness 10000) in paragraph at lines 409--410
 
  []
 
 File: ./images/Cool2.jpg Graphic file (type jpg)
 <use ./images/Cool2.jpg>
-Package pdftex.def Info: ./images/Cool2.jpg  used on input line 228.
+Package pdftex.def Info: ./images/Cool2.jpg  used on input line 413.
 (pdftex.def)             Requested size: 302.2601pt x 227.62204pt.
-<./images/Cool5.jpg, id=36, 925.056pt x 1228.59pt>
+<./images/Cool5.jpg, id=99, 925.056pt x 1228.59pt>
 File: ./images/Cool5.jpg Graphic file (type jpg)
 <use ./images/Cool5.jpg>
-Package pdftex.def Info: ./images/Cool5.jpg  used on input line 229.
+Package pdftex.def Info: ./images/Cool5.jpg  used on input line 414.
 (pdftex.def)             Requested size: 171.38675pt x 227.62204pt.
-[6 <./images/Gas3.jpg> <./images/Cool5.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+[10 <./images/Gas3.jpg> <./images/Cool5.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 422--423
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 424--425
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--244
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
 
  []
 
-<./images/Cool10.png, id=40, 504.38437pt x 414.79968pt>
+<./images/Cool10.png, id=103, 504.38437pt x 414.79968pt>
 File: ./images/Cool10.png Graphic file (type png)
 <use ./images/Cool10.png>
-Package pdftex.def Info: ./images/Cool10.png  used on input line 245.
+Package pdftex.def Info: ./images/Cool10.png  used on input line 430.
 (pdftex.def)             Requested size: 297.04771pt x 244.28664pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+Underfull \hbox (badness 10000) in paragraph at lines 435--436
 
  []
 
-<./images/Cool9.png, id=41, 1485.75075pt x 2140.3965pt>
+<./images/Cool9.png, id=104, 1485.75075pt x 2140.3965pt>
 File: ./images/Cool9.png Graphic file (type png)
 <use ./images/Cool9.png>
-Package pdftex.def Info: ./images/Cool9.png  used on input line 255.
+Package pdftex.def Info: ./images/Cool9.png  used on input line 440.
 (pdftex.def)             Requested size: 198.71126pt x 286.26295pt.
 
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 241--261
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 426--446
 []$[]$ $[]$ $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--264
+Underfull \hbox (badness 10000) in paragraph at lines 448--449
 
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 265--266
+Underfull \hbox (badness 1748) in paragraph at lines 450--451
 [][]\OT1/cmr/bx/n/10 Activate the Closed Cir-cuit
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--266
+Underfull \hbox (badness 10000) in paragraph at lines 450--451
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+Underfull \hbox (badness 10000) in paragraph at lines 452--453
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 454--455
 
  []
 
 
-Underfull \hbox (badness 1107) in paragraph at lines 271--272
+Underfull \hbox (badness 1107) in paragraph at lines 456--457
 \OT1/cmr/m/n/10 be ac-ti-vated au-to-mat-i-cally when
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--276
+Underfull \hbox (badness 10000) in paragraph at lines 460--461
 
  []
 
-<./images/Coil.png, id=42, 512.66531pt x 411.03563pt>
+<./images/Coil.png, id=105, 512.66531pt x 411.03563pt>
 File: ./images/Coil.png Graphic file (type png)
 <use ./images/Coil.png>
-Package pdftex.def Info: ./images/Coil.png  used on input line 279.
+Package pdftex.def Info: ./images/Coil.png  used on input line 464.
 (pdftex.def)             Requested size: 341.29134pt x 273.6363pt.
 
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 262--284
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 447--469
 []$[]$ $[]$ $[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 292--293
+Underfull \hbox (badness 10000) in paragraph at lines 477--478
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 294--295
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--297
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--299
+Underfull \hbox (badness 10000) in paragraph at lines 483--484
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 301--302
+Underfull \hbox (badness 10000) in paragraph at lines 486--487
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--304
+Underfull \hbox (badness 10000) in paragraph at lines 488--489
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--308
+Underfull \hbox (badness 10000) in paragraph at lines 492--493
 
  []
 
-<./images/Coil1.png, id=43, 227.34938pt x 303.38344pt>
+<./images/Coil1.png, id=106, 227.34938pt x 303.38344pt>
 File: ./images/Coil1.png Graphic file (type png)
 <use ./images/Coil1.png>
-Package pdftex.def Info: ./images/Coil1.png  used on input line 311.
+Package pdftex.def Info: ./images/Coil1.png  used on input line 496.
 (pdftex.def)             Requested size: 150.57285pt x 200.9327pt.
 
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 289--316
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 474--501
 []$[]$ $[]$ $[]$ 
  []
 
-[7 <./images/Cool10.png> <./images/Cool9.png> <./images/Coil.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 320--321
+[11 <./images/Cool10.png> <./images/Cool9.png> <./images/Coil.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 505--506
 
  []
 
-<./images/ECR.png, id=51, 735.9495pt x 266.79675pt>
+<./images/ECR.png, id=113, 735.9495pt x 266.79675pt>
 File: ./images/ECR.png Graphic file (type png)
 <use ./images/ECR.png>
-Package pdftex.def Info: ./images/ECR.png  used on input line 322.
+Package pdftex.def Info: ./images/ECR.png  used on input line 507.
 (pdftex.def)             Requested size: 240.91197pt x 87.33484pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--330
+Underfull \hbox (badness 10000) in paragraph at lines 514--515
 
  []
 
-<./images/Coil2.png, id=52, 284.56313pt x 213.04594pt>
+<./images/Coil2.png, id=114, 284.56313pt x 213.04594pt>
 File: ./images/Coil2.png Graphic file (type png)
 <use ./images/Coil2.png>
-Package pdftex.def Info: ./images/Coil2.png  used on input line 333.
+Package pdftex.def Info: ./images/Coil2.png  used on input line 518.
 (pdftex.def)             Requested size: 250.95221pt x 187.8906pt.
 
-Overfull \hbox (4.44441pt too wide) in paragraph at lines 319--338
+Overfull \hbox (4.44441pt too wide) in paragraph at lines 504--523
 []$[]$ $[]$ $[]$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--353
+Underfull \hbox (badness 10000) in paragraph at lines 537--538
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--355
+Underfull \hbox (badness 10000) in paragraph at lines 539--540
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--357
+Underfull \hbox (badness 10000) in paragraph at lines 541--542
 
  []
 
 
-LaTeX Warning: Reference `' on page 8 undefined on input line 358.
+LaTeX Warning: Reference `' on page 12 undefined on input line 543.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--359
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 365--366
+Underfull \hbox (badness 10000) in paragraph at lines 543--544
 
  []
 
-<./images/EC1.jpg, id=53, 773.89125pt x 750.4035pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 550--551
+
+ []
+
+<./images/EC1.jpg, id=115, 773.89125pt x 750.4035pt>
 File: ./images/EC1.jpg Graphic file (type jpg)
 <use ./images/EC1.jpg>
-Package pdftex.def Info: ./images/EC1.jpg  used on input line 369.
+Package pdftex.def Info: ./images/EC1.jpg  used on input line 554.
 (pdftex.def)             Requested size: 179.2555pt x 173.81435pt.
 
-Overfull \hbox (4.45222pt too wide) in paragraph at lines 347--374
+Overfull \hbox (4.45222pt too wide) in paragraph at lines 532--559
 []$[]$ $[]$ $[]$ 
  []
 
-[8 <./images/Coil1.png> <./images/ECR.png> <./images/Coil2.png> <./images/EC1.j
-pg>] [9] [10] (USER_GUIDE.aux)
+[12 <./images/Coil1.png> <./images/ECR.png> <./images/Coil2.png> <./images/EC1.
+jpg>] [13] [14] (USER_GUIDE.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
@@ -781,13 +1424,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7475 strings out of 474424
- 127785 string characters out of 5741740
- 1937496 words of memory out of 5000000
- 29725 multiletter control sequences out of 15000+600000
- 562238 words of font info for 52 fonts, out of 8000000 for 9000
+ 20404 strings out of 474424
+ 406604 string characters out of 5741740
+ 1938496 words of memory out of 5000000
+ 42372 multiletter control sequences out of 15000+600000
+ 563429 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,449b,388s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,10n,101p,521b,1030s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -795,12 +1438,14 @@ ublic/amsfonts/cm/cmmi10.pfb><C:/Users/tokol/AppData/Local/Programs/MiKTeX/font
 s/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/tokol/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/tokol/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/tokol/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/tokol/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/
-tokol/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on USER_GUIDE.pdf (10 pages, 48994065 bytes).
+al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/tokol/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
+rs/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+><C:/Users/tokol/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mti10.pfb>
+Output written on USER_GUIDE.pdf (14 pages, 50213846 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
+ 172 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 244 words of extra memory for PDF output out of 10000 (max. 10000000)
 

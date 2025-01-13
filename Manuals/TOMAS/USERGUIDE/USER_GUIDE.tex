@@ -9,7 +9,7 @@
 \usepackage{epstopdf}
 \usepackage[utf8]{inputenc}
 \usepackage[justification=centering]{caption}
-
+\usepackage[os=win]{menukeys}
 \usepackage{amsmath,mathtools,amssymb}%ss
 \usepackage[arrow]{hhtensor}
 
@@ -48,7 +48,7 @@ $\ $\\
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{MainRack1}
+	\includegraphics[width=\linewidth]{MainRack2}
 \end{figure}
 
 
@@ -69,56 +69,235 @@ $\ $\\
 
 
 \newpage
-\subsection{The Control System and operator PC}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{System preparation}%%	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-To operate the TOMAS device, you have to prepare some actions on the control System and the Operator PC.
+\begin{minipage}{.68\textwidth}
+To operate the TOMAS device, several preparatory actions are necessary.
+
+\subsection{The Operator PC} To operate the TOMAS device you have to login to the Operator PC (Figure \ref{PC1}). The username is \textit{'tomas'}. No password is required.\\
+
+\changemenucolor{gray}{txt}{named}{red}
+\textcolor{red}{\textbf{Press \keys{\ctrl + \Alt + \del} to get to the login screen. Press \keys{\enter} to login to the Operator PC. }}\\
+\changemenucolor{gray}{txt}{named}{black}
+
+\begin{minipage}{.5\textwidth}
+\begin{tabular}{ll}
+	PC name: &IPP126.ipp.kfa-juelich.de\\
+	Username: &tomas\\
+	Password: &(nopassword)
+\end{tabular}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+	\begin{tabular}{ll}
+		IPv4 Address: &134.94.244.185\\
+		Subnet Mask:& 255.255.252.0\\
+		Default Gateway:& 134.94.244.1
+	\end{tabular}
+\end{minipage}
+\vspace{0.6cm}
+
+\begin{minipage}{.76\textwidth}
+\subsubsection{Arduino operation} Open the 'Arduino IDE' app on the Operator PC. This will open automatically the code 'TOMASsteppers.ino' (Figure \ref{Arduino2}). At the bottom right you can verify on which COM-port the Arduino is located. Push the arrow button at the top left of the app to upload the sketch to the Arduino.\\
+
+\textcolor{red}{\textbf{Open the 'Arduino IDE' app and upload the sketch 'TOMASsteppers.ino' to the Arduino.}}\\
+
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.2\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Arduino1}
+\end{minipage}
+
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+\centering
+\includegraphics[width=\linewidth]{PC2}
+\label{PC1}
+\captionof{figure}{Operator PC Login screen}
+\end{minipage}
+%\vspace{0.2cm}
+
+\begin{minipage}{\textwidth}
+\includegraphics[width=\linewidth]{Arduino2}
+\label{Arduino2}
+\captionof{figure}{'Arduino IDE' app and 'TOMASsteppers.ino' sketch}
+\end{minipage}
+
+\newpage
+
+\begin{minipage}{.83\textwidth}
+\subsubsection{TOMAS Operation GUI}
+
+Open the 'Spyder' app. This will automatically open several python scripts (Figure 	\ref{Spyder2}). Run the 'main.py' script by clicking the arrow button on the top left. This will open the TOMAS Operation GUI (Figure \ref{GUI1}). This Graphical User Interface controls several systems on TOMAS: the IC matching system, probe manipulation and the IC and EC power system. You can also introduce several System parameters which will be stored in a specific file for future reference.\\
+
+\textcolor{red}{\textbf{Open the TOMAS Operation GUI.}}\\
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.15\textwidth}
+\centering
+\includegraphics[width=0.85\linewidth]{Spyder1}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+	\includegraphics[width=\linewidth]{Spyder2}
+	\label{Spyder2}
+	\captionof{figure}{'Spyder' app and 'main.py' python script}
+	\vspace{0.6cm}
+	
+	\includegraphics[width=\linewidth]{GUI1}
+	\label{GUI1}
+	\captionof{figure}{TOMAS Operation GUI}
+\end{minipage}
+
+\newpage
+The TOMAS Operation GUI indicates the capacitor limits of the matching system, the probe position limits and the sample manipulator limits. It also indicates the actual positions of the capacitors, the probes and the sample manipulator.\\
+
+\begin{minipage}{.5\textwidth}
+The capacitor limits are:\\
+A: [0, 19254]\\
+P: [0, 11701]\\
+S: [0, 8482]
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+The probe limits are:\\
+Sample Manipulator: [1, 3697]\\
+Horizontal Triple Probe: [0, 512]\\
+Vertical Triple Probe: [50, 500]
+\end{minipage}
 
 
-PC Operator
-Username: tomas
-Password: tomasnv2
-IP: 134.94.244.155
-10.	Arduino operation
-a.	Open Arduino IDE on pc (will open code TOMASsteppers)
-b.	Select Port (Tools > Port)
-c.	Push the arrow button to upload the sketch to the Arduino
-i.	If error, unplug USB and plug it in an other USB socket
-11.	Open spyder
-a.	Start – anaconda3 (64-bit) – Spyder (wrk)
-i.	Run main.py (arrow button on top)
-ii.	GUI opens
-12.	Open Start – Kamera
-a.	By default looking at the probe
-13.	Open command prompt
-a.	Start – anaconda3 (64-bit) – anaconda Prompt (Anaconda 3)
-b.	Go to folder cd Python-scripts\ Camera
-c.	Python $cam_save.py$
-d.	Camera Window opens
 
-settings
-PC besturing
-User: CoDac
-Password ChL*2020
+\subsubsection{Camera Operation}
+
+\begin{minipage}{.78\textwidth}
+	Open the 'Camera' app on the Operator PC. It will normally by default open the 'B525 HD Webcam', which is located at the tangential port where the gas is injected.\\
+	
+	\textcolor{red}{\textbf{Open the 'Camera' app on the Operator PC.}}\\
+	
+In the future - when the new cameras are installed - a python script will be written to open and display the different video streams.
+	
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+	$\ $\\
+\end{minipage}
+\begin{minipage}{.15\textwidth}
+	\centering
+	\includegraphics[width=0.85\linewidth]{Cam1}
+\end{minipage}
 
 
-PC measurement system
-Tecdaq
-Password: TecdaqTEC
-IP 134.94.244.134
+%\begin{minipage}{\textwidth}
+%	\includegraphics[width=\linewidth]{Spyder2}
+%	\label{Spyder2}
+%	\captionof{figure}{'Spyder' app and 'main.py' python script}
+%\end{minipage}
 
-14.	Open labview
-a.	Start – NI labVIEW2019 SP1 (32-bit)
-b.	Open File : $DAQ_TOMAS_AA.vi$
-c.	Sampling rate: 10000 (Hz)
-d.	Number of samples =30000 (ms)
-e.	Start session with shotnumber : 1
-f.	Check gas K for density
-g.	Check gas K for pressure
-h.	Save Data : enabled/disabled
-i.	Start the acquisition
+\newpage
+\subsection{The Control System}
+\begin{minipage}{.78\textwidth}
+To access the Control System, you can open a Remote Desktop connection on the Operator PC using the 'Remote Desktop' app. Click on the tile 'Control System' (Figure \ref{Remote2}).\\
+
+\textcolor{red}{\textbf{Open a Remote Desktop connection to the Control System.}}\\
+
+\begin{minipage}{.58\textwidth}
+	\begin{tabular}{ll}
+		PC name: & IPPTOMAS-WCC1.ipp.kfa-juelich.de\\
+		Username: &CoDac\\
+		Password: &ChL*2020
+	\end{tabular}
+\end{minipage}
+\begin{minipage}{.42\textwidth}
+	\begin{tabular}{ll}
+		IPv4 Address: & xxx.xxx.xxx.xxx\\
+		Subnet Mask:& xxx.xxx.xxx.xxx\\
+		Default Gateway:& xxx.xxx.xxx.xxx
+	\end{tabular}
+\end{minipage}
+\vspace{0.6cm}
+
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.2\textwidth}
+\centering
+\includegraphics[width=0.85\linewidth]{Remote1}
+\end{minipage}
+
+
+The main page shows different tabs. These will be discussed further on in this manual.\\
+
+\begin{minipage}{\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{Remote2}
+		\captionof{figure}{Remote Desktop connection to the Control System}
+		\label{Remote2}
+		\vspace{0.2cm}
+
+	\includegraphics[width=\linewidth]{Remote3}
+	\captionof{figure}{The Control System main page}
+	\label{Remote3}
+\end{minipage}
 
 
 
+\newpage
+\subsection{The Data Acquisition System}
+\begin{minipage}{.78\textwidth}
+	To access the Data Acquisition System, you can open a Remote Desktop connection on the Operator PC using the 'Remote Desktop' app. Click on the tile 'DAQ' (Figure \ref{Remote4}).\\
+	
+	\textcolor{red}{\textbf{Open a Remote Desktop connection to the  Data Acquisition System.}}\\
+	
+	\begin{minipage}{.58\textwidth}
+		\begin{tabular}{ll}
+			PC name: & IPP034.ipp.kfa-juelich.de\\
+			Username: &Tecdaq\\
+			Password: &TecdaqTEC
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}{.42\textwidth}
+		\begin{tabular}{ll}
+			IPv4 Address: & 134.94.244.134\\
+			Subnet Mask:& 255.255.252.0\\
+			Default Gateway:& 134.94.244.134
+		\end{tabular}
+	\end{minipage}
+	\vspace{0.6cm}
+	
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+	$\ $\\
+\end{minipage}
+\begin{minipage}{.2\textwidth}
+	\centering
+	\includegraphics[width=0.85\linewidth]{Remote1}
+\end{minipage}
+
+When you connect to the Data Acquisition System, you will notice that the LabVIEW file 'DAQ\_TOMAS\_AA.vi' is already loaded (Figure 	\ref{Remote5}), together with the Block Diagram. If not, open 'NI labVIEW2019 SP1 (32-bit)' and load the file 'DAQ\_TOMAS\_AA.vi'. The icon is on the DAQ Desktop.\\
+
+
+To initialize the Data Acquisition, introduce the Sampling rate (default value: 1000 Hz), the Sampling time (default value: 12 s) and the Gas Type (H,D,He,Ar). Also introduce the starting value for the shot number (Start session with shotnumber : 1). Start the Data Acquisition by clicking the arrow on the top left. Enable data saving when required by clicking on 'Disabled'. The Data Acquisition System is now ready to receive the data.\\
+
+\begin{minipage}{\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{Remote4}
+	\captionof{figure}{Remote Desktop connection to the Data Acquisition System}
+	\label{Remote4}
+	\vspace{0.2cm}
+	
+	\includegraphics[width=\linewidth]{Remote5}
+	\captionof{figure}{The LabVIEW file 'NI labVIEW2019 SP1 (32-bit)' on the Data Acquisition System}
+	\label{Remote5}
+\end{minipage}
 
 
 \newpage
@@ -126,16 +305,13 @@ i.	Start the acquisition
 
 
 
+
+
+
+
 \begin{minipage}{.68\textwidth}
 	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Before operation}%%	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	
-Before operating TOMAS, some safety checks should be performed.
-
-\subsection{Vacuum and gas injection}
+\subsection{The Vacuum and gas injection system}
 
 The average neutral pressure is shown on the readout unit located in the main equipment rack.	The vacuum vessel pressure is shown on the Channel 1 (upper number) of the readout. To start an operation the pressure level should be $< 5\cdot 10^{-7}$ mbar. If the pressure is slightly higher check that calibration of the Channel 1 is set for N2 (air). In other cases, check the Troubleshooting.\\
 
@@ -145,7 +321,10 @@ The gas injection system is located in a large support structure close to one of
 
 \textcolor{red}{\textbf{Check that the gas bottles are closed.}}\\
 
-The upstream and downstream pipes of the gas injection system must be evacuated from the residual gas prior an injection start.
+The upstream and downstream pipes of the gas injection system must be evacuated from the residual gas prior an injection start.\\
+
+Find the small metallic valves below the mass flow controllers (Figure \ref{Gas1} (1)). If any element above a valve is missing don’t open a corresponding valve! \\
+
 \end{minipage}
 \begin{minipage}{.02\textwidth}
 	$\ $\\
@@ -157,7 +336,7 @@ The upstream and downstream pipes of the gas injection system must be evacuated 
 
 
 \vspace{0.5cm}
-Find the small metallic valves below the mass flow controllers (Figure \ref{Gas1} (1)). If any element above a valve is missing don’t open a corresponding valve! \\
+
 
 \textcolor{red}{\textbf{Open the small metallic valves located below each mass flow controller (Figure \ref{Gas1} (1)).}}\\
 
@@ -165,6 +344,7 @@ Open the `\textit{Flowmeter}' tab in the Control System and go to the section \t
 
 
 \textcolor{red}{\textbf{Activate the Forepump to clear the lines (Figure \ref{Gas2}).}}\\
+
 
 \begin{minipage}{.3\textwidth}
 	
@@ -185,11 +365,16 @@ Open the `\textit{Flowmeter}' tab in the Control System and go to the section \t
 	\label{Gas2}
  
 \end{minipage}	
+\vspace{0.2cm}
 	
+\textcolor{red}{\textbf{Close all small metallic valves and deactivate the Forepump.}}\\
+
+The gas injection system is now ready for operation.
+
 \newpage
 
 \begin{minipage}{.68\textwidth}
-\textcolor{red}{\textbf{Close all small metallic valves and deactivate the Forepump.}}\\
+
 		
 \textcolor{red}{\textbf{Open the needed bottle(s).}}\\
 
