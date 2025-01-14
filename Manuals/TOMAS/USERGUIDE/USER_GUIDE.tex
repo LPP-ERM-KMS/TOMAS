@@ -73,64 +73,38 @@ $\ $\\
 \section{System preparation}%%	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{minipage}{.68\textwidth}
 To operate the TOMAS device, several preparatory actions are necessary.
 
+\begin{minipage}{.7\textwidth}
 \subsection{The Operator PC} To operate the TOMAS device you have to login to the Operator PC (Figure \ref{PC1}). The username is \textit{'tomas'}. No password is required.\\
 
 \changemenucolor{gray}{txt}{named}{red}
-\textcolor{red}{\textbf{Press \keys{\ctrl + \Alt + \del} to get to the login screen. Press \keys{\enter} to login to the Operator PC. }}\\
+\textcolor{red}{\textbf{If needed, press \keys{\ctrl + \Alt + \del} to get to the login screen (moving the mouse most often suffices). Press \keys{\enter} to login to the Operator PC. }}\\
 \changemenucolor{gray}{txt}{named}{black}
 
-\begin{minipage}{.5\textwidth}
+\begin{minipage}{.48\textwidth}
 \begin{tabular}{ll}
 	PC name: &IPP126.ipp.kfa-juelich.de\\
 	Username: &tomas\\
 	Password: &(nopassword)
 \end{tabular}
 \end{minipage}
-\begin{minipage}{.5\textwidth}
+\begin{minipage}{.48\textwidth}
 	\begin{tabular}{ll}
 		IPv4 Address: &134.94.244.185\\
 		Subnet Mask:& 255.255.252.0\\
 		Default Gateway:& 134.94.244.1
 	\end{tabular}
 \end{minipage}
-\vspace{0.6cm}
-
-\begin{minipage}{.76\textwidth}
-\subsubsection{Arduino operation} Open the 'Arduino IDE' app on the Operator PC. This will open automatically the code 'TOMASsteppers.ino' (Figure \ref{Arduino2}). At the bottom right you can verify on which COM-port the Arduino is located. Push the arrow button at the top left of the app to upload the sketch to the Arduino.\\
-
-\textcolor{red}{\textbf{Open the 'Arduino IDE' app and upload the sketch 'TOMASsteppers.ino' to the Arduino.}}\\
-
-\end{minipage}
-\begin{minipage}{.02\textwidth}
-$\ $\\
-\end{minipage}
-\begin{minipage}{.2\textwidth}
-\centering
-\includegraphics[width=\linewidth]{Arduino1}
-\end{minipage}
-
-\end{minipage}
-\begin{minipage}{.02\textwidth}
-$\ $\\
 \end{minipage}
 \begin{minipage}{.3\textwidth}
 \centering
-\includegraphics[width=\linewidth]{PC2}
+\includegraphics[width=0.6\linewidth]{PC2}
 \label{PC1}
 \captionof{figure}{Operator PC Login screen}
 \end{minipage}
-%\vspace{0.2cm}
 
-\begin{minipage}{\textwidth}
-\includegraphics[width=\linewidth]{Arduino2}
-\label{Arduino2}
-\captionof{figure}{'Arduino IDE' app and 'TOMASsteppers.ino' sketch}
-\end{minipage}
-
-\newpage
+\vspace{0.6cm}
 
 \begin{minipage}{.83\textwidth}
 \subsubsection{TOMAS Operation GUI}
@@ -147,18 +121,19 @@ $\ $\\
 \includegraphics[width=0.85\linewidth]{Spyder1}
 \end{minipage}
 
-\begin{minipage}{\textwidth}
-	\includegraphics[width=\linewidth]{Spyder2}
+
+\begin{minipage}{0.49\textwidth}
+	\includegraphics[height=0.7\linewidth]{Spyder2}
 	\label{Spyder2}
 	\captionof{figure}{'Spyder' app and 'main.py' python script}
-	\vspace{0.6cm}
-	
-	\includegraphics[width=\linewidth]{GUI1}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+	\includegraphics[height=0.55\linewidth]{GUI1}
 	\label{GUI1}
 	\captionof{figure}{TOMAS Operation GUI}
 \end{minipage}
+\vspace{0.5cm}
 
-\newpage
 The TOMAS Operation GUI indicates the capacitor limits of the matching system, the probe position limits and the sample manipulator limits. It also indicates the actual positions of the capacitors, the probes and the sample manipulator.\\
 
 \begin{minipage}{.5\textwidth}
@@ -173,6 +148,35 @@ Sample Manipulator: [1, 3697]\\
 Horizontal Triple Probe: [0, 512]\\
 Vertical Triple Probe: [50, 500]
 \end{minipage}
+
+\begin{minipage}{.76\textwidth}
+\subsubsection{Arduino operation} 
+\textcolor{red}{\textbf{Only execute this step if the GUI fails to open due to "error: failed to comunicate to arduino" or "error: COM* not found"}}\\
+
+Open the 'Arduino IDE' app on the Operator PC. This will open automatically the code 'TOMASsteppers.ino' (Figure \ref{Arduino2}). At the bottom right you can verify on which COM-port the Arduino is located. Push the arrow button at the top left of the app to upload the sketch to the Arduino.\\
+
+
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.2\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Arduino1}
+\end{minipage}
+
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+%\vspace{0.2cm}
+
+\begin{minipage}{\textwidth}
+\includegraphics[width=\linewidth]{Arduino2}
+\label{Arduino2}
+\captionof{figure}{'Arduino IDE' app and 'TOMASsteppers.ino' sketch}
+\end{minipage}
+
+\newpage
 
 
 
