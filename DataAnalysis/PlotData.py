@@ -5,10 +5,10 @@ import re
 import sys
 import numpy as np              
 from pathlib import Path
-from scipy import spatial
-from scipy import optimize
+from scipy import spatial, optimize
 from lvm_read import read
 import matplotlib.pyplot as plt  
+from tsmoothie.smoother import *
 from tkinter import filedialog as fd
 from tkinter import *
 from tkinter import StringVar, OptionMenu
@@ -60,32 +60,48 @@ def SelectSignals(ToRead,convert,GasType):
         # Traverse the tuple returned by
         # curselection method and print
         # corresponding value(s) in the listbox
+
+
         ToPlot = []
         unit = "Volts"
         for i in listbox.curselection():
             ToPlot.append(listbox.get(i))
         lookuptable = np.array(data[0]['Channel names'][:-1])
         plt.clf()
+
         for key in ToPlot:
             i = np.where(key == lookuptable)[0]
             x = data[0]['data'][:,0]
             y = data[0]['data'][:,i]
+
+            
             if convert:
                 unit,y = Convert(key,y,GasType)
+
+            if SmoothingVar.get():
+                # operate smoothing
+                smoother = ConvolutionSmoother(window_len=30, window_type='ones')
+                smoother.smooth(y)
+                y = smoother.smooth_data[0]
+
             plt.plot(x,y,label=key)
             plt.xlabel("time (s)")
             plt.ylabel(unit)
             plt.legend()
+
         plt.show()
 
      
     # Create a button widget and
     # map the command parameter to
     # selected_item function
-    btn = Button(win, text='Plot Selected', command=selected_item)
+    FilterVar = tk.IntVar()
+    FilterCheck = tk.Checkbutton(win, text='Smoothing',variable=SmoothingVar, onvalue=1, offvalue=0)
+    Plot = Button(win, text='Plot Selected', command=selected_item)
      
     # Placing the button and listbox
-    btn.pack(side='bottom')
+    Plot.pack(side='bottom')
+    FilterCheck.pack(side='bottom')
     listbox.pack()
 
 def Convert(key,y,GasType):
