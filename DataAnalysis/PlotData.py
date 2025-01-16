@@ -95,7 +95,7 @@ def SelectSignals(ToRead,convert,GasType):
     # Create a button widget and
     # map the command parameter to
     # selected_item function
-    FilterVar = tk.IntVar()
+    SmoothingVar = tk.IntVar()
     FilterCheck = tk.Checkbutton(win, text='Smoothing',variable=SmoothingVar, onvalue=1, offvalue=0)
     Plot = Button(win, text='Plot Selected', command=selected_item)
      
