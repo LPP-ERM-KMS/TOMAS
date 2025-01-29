@@ -14,6 +14,12 @@ from tkinter import *
 from tkinter import StringVar, OptionMenu
 from tkinter.messagebox import showinfo
 
+def Smooth(y):
+    smoother = ConvolutionSmoother(window_len=30, window_type='ones')
+    smoother.smooth(y)
+    y = smoother.smooth_data[0]
+    return y
+
 def find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.abs(array - value)).argmin()
@@ -80,10 +86,8 @@ def SelectSignals(ToRead,convert,GasType):
 
             if SmoothingVar.get():
                 # operate smoothing
-                smoother = ConvolutionSmoother(window_len=30, window_type='ones')
-                smoother.smooth(y)
-                y = smoother.smooth_data[0]
-
+                y = Smooth(y)
+                
             plt.plot(x,y,label=key)
             plt.xlabel("time (s)")
             plt.ylabel(unit)
@@ -368,6 +372,7 @@ def PScan(FolderLocation,probecount):
                 x = data[0]['data'][:,0]
                 k = np.abs(TimeInterest - x).argmin()
                 kBeginAvg = np.abs(TimeInterest - 0.1 - x).argmin()
+                kEndAvg = np.abs(TimeInterest + 0.1 - x).argmin()
 
                 i = int(np.where('HLP1' == np.array(data[0]['Channel names']))[0][0])
                 j = int(np.where('HLP2' == np.array(data[0]['Channel names']))[0][0])
@@ -379,10 +384,9 @@ def PScan(FolderLocation,probecount):
                     HLP3 = float(data[0]['data'][-1,k][0])
                     SupplyVoltage = float(data[0]['data'][-1,v][0])
                 else:
-                    kEndAvg = np.abs(TimeInterest + 0.1 - x).argmin()
                     HLP1 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,i])/(kEndAvg-kBeginAvg)) 
-                    HLP2 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,j])/(kEndAvg-kBeginAvg))
-                    HLP3 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,k])/(kEndAvg-kBeginAvg))
+                    HLP2 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,j])/(kEndAvg-kBeginAvg)) 
+                    HLP3 = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,k])/(kEndAvg-kBeginAvg)) 
                     SupplyVoltage = float(np.sum(data[0]['data'][kBeginAvg:kEndAvg,v])/(kEndAvg-kBeginAvg))
                                   
                 R1 = 825
