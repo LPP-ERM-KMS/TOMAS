@@ -315,7 +315,7 @@ To initialize the Data Acquisition, introduce the Sampling rate (default value: 
 
 \begin{minipage}{.68\textwidth}
 	
-\subsection{The Vacuum and gas injection system}
+\subsection{The Vacuum and gas injection system}\label{Gasin1}
 
 The average neutral pressure is shown on the readout unit located in the main equipment rack.	The vacuum vessel pressure is shown on the Channel 1 (upper number) of the readout. To start an operation the pressure level should be $< 5\cdot 10^{-7}$ mbar. If the pressure is slightly higher check that calibration of the Channel 1 is set for N2 (air). In other cases, check the Troubleshooting.\\
 
@@ -389,9 +389,11 @@ Check that both manometers on the gas reducer connected to each bottle shows a p
 
 Don’t open the yellow valve (Figure \ref{Gas1} (3)). This is used to vent the machine. Check that the black shutter (Figure \ref{Gas3}) connecting the gas injection system to the tangential port is open (downward position). Since no gas is injected yet, the pressure level should not change significantly. If needed, wait until the pressure level is back below  $\approx 5\cdot 10^{-7}$ mbar.\\
 
-The gas injection system is now ready for operation. Gas can be injected by the control system in the section \textit{`Flow Control'} in the \textit{`Flowmeter'} tab. Type the desired amount in the column \textit{`Setpoint'}. The actual injected amount is shown in the second column.\\
+The gas injection system is now ready for operation. Gas can be injected by the control system in the section \textit{`Flow Control'} in the \textit{`Flowmeter'} tab (Figure \ref{Gas2}). Type the desired amount in the column \textit{`Setpoint'}. The actual injected amount is shown in the second column.\\
 
-The minimum amount of gas is 10 ml/min for helium, hydrogen and argon. For deuterium the starting value should not be below 15 ml/min. You can decrease it afterwards to a minimum of 11 ml/min. 
+\changemenucolor{gray}{txt}{named}{red}
+\textcolor{red}{\textbf{Enter the desired amount of gas in the column \textit{`Setpoint'} and press \keys{\enter}.}}\\
+\changemenucolor{gray}{txt}{named}{black}
 \end{minipage}
 \begin{minipage}{.02\textwidth}
 $\ $\\
@@ -403,6 +405,7 @@ $\ $\\
 	\label{Gas3}
 \end{minipage}	
 			
+The minimum starting amount of gas is 10 ml/min for helium, hydrogen and argon. For deuterium the starting value should not be below 15 ml/min. You can decrease it afterwards to a minimum of 7 ml/min (11 ml/min for deuterium). 
 
 \subsection{Cooling}
 
@@ -414,8 +417,8 @@ The cooling system for the turbo-pump, the EC source and the EC window is activa
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[height=8cm]{Cool2}
-	\includegraphics[height=8cm]{Cool5}
+	\includegraphics[height=7.8cm]{Cool2}
+	\includegraphics[height=7.8cm]{Cool5}
 	\captionsetup{width=0.8\textwidth}
 	\captionof{figure}{Cooling systems with \textbf{1.}Cooling for EC source and window \textbf{2.}Cooling for turbopump \textbf{3.}Not in use \textbf{4.}Main valve for cooling of the coils}
 	\label{Cool2}
@@ -544,7 +547,7 @@ EC operation is controlled remotely by the Operator PC. The EC amplifier has to 
 
 Wait until the amplifier is ready. This is indicated by LED number 2 on Figure \ref{EC1} (START/STOP PREHEAT/READY). The LED for remote operation should also be activated (LED number 1 on Figure \ref{EC1}).\\
 
-When EC is on, the first display shows the forwarded power, the second one shows the reflected power. To maximize the power absorbed by the plasma, the EC system should be matched (see section \ref{}).\\
+When EC is on, the first display shows the forwarded power, the second one shows the reflected power. To maximize the power absorbed by the plasma, the EC system should be matched (see section \ref{ECmatching}).\\
 
 The EC amplifier is now ready for operation. 
 
@@ -570,6 +573,71 @@ The EC amplifier is now ready for operation.
 
 
 
+\newpage
+\begin{minipage}{.53\textwidth}
+\subsection{Glow Discharge}
+
+To prepare a glow discharge, you need to activate the glow discharge power supply by turning the `Netz' button (1 on Figure \ref{Glow1}) to position 1. The operation is remotely controlled by the Control System if the `Steuerung' button (2 on Figure \ref{Glow1}) is set to `ext.'.\\
+
+\textcolor{red}{\textbf{Turn the `Netz' button to position 1. Verify that the `Steuerung' button  is set to ext.}}\\
+
+To initiate a glow discharge, the gas pressure has to be considerably high. Use the procedure explained in section \ref{Gasin1}, to inject gas at a level of 400 ml/min.\\
+
+\changemenucolor{gray}{txt}{named}{red}
+\textcolor{red}{\textbf{Enter a value of 400  ml/min for the desired gas species in the column \textit{`Setpoint'} and press \keys{\enter}.}}\\
+\changemenucolor{gray}{txt}{named}{black}
+
+Go to the \textit{`Glow Discharge'} tab (Figure \ref{Glow2}) and verify the value for the Voltage and the Current. You should have a Voltage of 1500,0 V and a Current of 1,0 A set. If the ´Reset Fault' light is red, click the button to reset the power supply.\\
+
+\textcolor{red}{\textbf{You can now start the glow discharge by pressing the ON button.}}\\
+
+The light should turn green, the actual values should increase and reach the desired values. The voltage and current indicators on the power supply should increase towards a voltage value of 311 V and a current value of 1.1 A. A discharge should happen and a plasma should be visible in the machine.\\
+
+
+
+
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.45\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Glow1}
+\captionsetup{width=0.75\textwidth}
+\captionof{figure}{The Glow discharge power control}
+\label{Glow1}
+\end{minipage}
+
+\includegraphics[width=\linewidth]{Glow2}
+\captionsetup{width=0.75\textwidth}
+\captionof{figure}{The Glow discharge power control}
+\label{Glow2}
+\vspace{0.2cm}
+
+Once the plasma discharge has initiated, you can change the value for the gas flow and/or the current. Don't do this abruptly so that the discharge will remain. The value for the current should not exceed 5 A. When you change the current, the voltage will change. For a hydrogen gas with a gas flow of 150 ml/min, we obtain the following values:\\
+
+\begin{minipage}{.3\textwidth}
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	V & 314 & 338 & 357 & 375 & 392 \\ \hline
+	A &  1 & 2 & 3 & 4  & 5 \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}{.02\textwidth}
+$\ $\\
+\end{minipage}
+\begin{minipage}{.68\textwidth}
+
+
+
+\textcolor{red}{\textbf{Change the value for the gas flow and/or the current as desired.}}\\
+\end{minipage}
+\vspace*{0.4cm}
+
+When there is no initial plasma discharge, increase the gas pressure by closing the valve to the turbopomp for a short period of time ($\approx 5 s).
+
+
+
 
 \newpage	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -577,7 +645,7 @@ The EC amplifier is now ready for operation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection{EC matching procedure}
+\subsection{EC matching procedure}\label{ECmatching}
 
 
 \subsection{IC matching procedure}
